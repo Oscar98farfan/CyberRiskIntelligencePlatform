@@ -1,0 +1,64 @@
+[META]
+titulo=Acta de Constitución del Proyecto
+fecha=2026-03-08
+version=1.0
+autor=Equipo de Proyecto
+
+[OBJETIVO_GENERAL]
+Desarrollar una Plataforma de Inteligencia de Amenazas orientada a PYMEs colombianas, que mediante técnicas de Big Data y Machine Learning permita identificar, analizar y predecir vulnerabilidades de ciberseguridad en tiempo real, reduciendo el riesgo de ataques informáticos y fortaleciendo la resiliencia digital del sector empresarial colombiano.
+
+[OBJETIVOS_ESPECIFICOS]
+1. Diseñar e implementar una arquitectura de Big Data capaz de recolectar y procesar fuentes de amenazas en tiempo real (feeds de inteligencia, logs, tráfico de red).
+2. Desarrollar modelos de Machine Learning para la detección predictiva de vulnerabilidades con al menos un 85% de precisión.
+3. Crear un panel de control intuitivo y accesible para usuarios sin perfil técnico avanzado.
+4. Integrar alertas automatizadas y recomendaciones de mitigación adaptadas al contexto de las PYMEs colombianas.
+5. Garantizar el cumplimiento de la normativa colombiana de protección de datos (Ley 1581 de 2012).
+
+[ALCANCE]
+INCLUYE:
+- Módulo de recolección de datos de amenazas (Open Source Intelligence - OSINT).
+- Motor de análisis predictivo basado en modelos de ML supervisado y no supervisado.
+- Dashboard web responsivo para visualización de amenazas y alertas.
+- Sistema de notificaciones automáticas (correo, SMS, webhook).
+- Documentación técnica y manual de usuario.
+- Fase piloto con al menos 3 PYMEs colombianas.
+
+NO INCLUYE:
+- Desarrollo de hardware especializado o appliances físicos.
+- Servicios de respuesta a incidentes (IR) gestionados.
+- Integración con sistemas ERP o CRM de terceros en la fase inicial.
+
+[ENTREGABLES_ESPERADOS]
+E1. Documento de arquitectura del sistema (Semana 4)
+E2. Dataset etiquetado de amenazas para entrenamiento (Semana 6)
+E3. Modelos ML entrenados y validados (Semana 10)
+E4. Plataforma web funcional - versión beta (Semana 14)
+E5. Informe de pruebas piloto con PYMEs (Semana 17)
+E6. Plataforma en producción + documentación final (Semana 20)
+
+[JUSTIFICACION]
+Colombia registró un incremento del 72% en ciberataques a PYMEs entre 2023 y 2025, según el Centro Cibernético Policial. Sin embargo, el 89% de estas empresas carece de herramientas especializadas de ciberseguridad debido a su alto costo y complejidad técnica. Este proyecto cierra esa brecha ofreciendo una solución accesible, contextualizada y predictiva.
+
+[RESTRICCIONES]
+- Presupuesto limitado a recursos académicos e infraestructura cloud de capa gratuita.
+- El equipo está compuesto por estudiantes universitarios con disponibilidad parcial.
+- El proyecto debe concluir en un período académico de 20 semanas.
+- Los datos utilizados deben cumplir con estándares éticos y legales colombianos.
+
+[SUPUESTOS]
+- Las PYMEs piloto aceptarán compartir logs anonimizados para el entrenamiento del modelo.
+- Se tendrá acceso a feeds de inteligencia de amenazas de fuentes abiertas (VirusTotal, OTX, etc.).
+- La infraestructura cloud (AWS/GCP free tier) será suficiente para el prototipo.
+
+[CRONOGRAMA_RESUMEN]
+Fase 1 - Inicio y Planificación: Semanas 1-3
+Fase 2 - Diseño y Arquitectura: Semanas 4-6
+Fase 3 - Desarrollo del Motor ML: Semanas 7-11
+Fase 4 - Desarrollo de la Plataforma Web: Semanas 12-15
+Fase 5 - Pruebas y Piloto: Semanas 16-18
+Fase 6 - Despliegue y Cierre: Semanas 19-20
+
+[FIRMAS]
+Director del Proyecto: [Nombre del Director]
+Patrocinador: [Nombre del Patrocinador / Institución]
+Fecha de Aprobación: 2026-03-08
