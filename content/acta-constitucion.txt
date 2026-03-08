@@ -2,7 +2,7 @@
 titulo=Acta de Constitución del Proyecto
 fecha=2026-03-08
 version=1.0
-autor=Equipo de Proyecto
+autor= Juan Camilo Madero - Oscar Daniel Farfan Juanias
 
 [OBJETIVO_GENERAL]
 Desarrollar una Plataforma de Inteligencia de Amenazas orientada a PYMEs colombianas, que mediante técnicas de Big Data y Machine Learning permita identificar, analizar y predecir vulnerabilidades de ciberseguridad en tiempo real, reduciendo el riesgo de ataques informáticos y fortaleciendo la resiliencia digital del sector empresarial colombiano.
