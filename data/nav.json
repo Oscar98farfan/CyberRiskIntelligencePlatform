@@ -3,19 +3,32 @@
   "project": {
     "name": "CyberRisk Intelligence Platform",
     "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "sprint": "Sprint 3",
     "status": "active",
     "repo": "https://github.com/usuario/cyberrisk-platform"
   },
+  "stages": [
+    {
+      "id": "planeacion",
+      "label": "Planeación",
+      "icon": "▸"
+    },
+    {
+      "id": "ejecucion",
+      "label": "Ejecución",
+      "icon": "▸"
+    }
+  ],
   "sections": [
     {
       "id": "acta",
       "label": "Acta de Constitución",
-      "icon": "◈",
+      "icon": "◉",
       "file": "data/sections/acta.json",
       "order": 1,
       "sprint": 3,
+      "stage": "planeacion",
       "status": "done"
     },
     {
@@ -25,69 +38,187 @@
       "file": "data/sections/interesados.json",
       "order": 2,
       "sprint": 3,
+      "stage": "planeacion",
       "status": "done"
     },
     {
       "id": "vision",
       "label": "Visión del Proyecto",
-      "icon": "◎",
+      "icon": "◉",
       "file": "data/sections/vision.json",
       "order": 3,
       "sprint": 3,
+      "stage": "planeacion",
       "status": "done"
     },
     {
       "id": "objetivos",
       "label": "Objetivos",
-      "icon": "◆",
+      "icon": "◉",
       "file": "data/sections/objetivos.json",
       "order": 4,
       "sprint": 3,
-      "status": "done"
+      "stage": "planeacion",
+      "status": "in-progress"
     },
     {
       "id": "alcance",
       "label": "Alcance",
-      "icon": "◇",
+      "icon": "◉",
       "file": "data/sections/alcance.json",
       "order": 5,
       "sprint": 3,
-      "status": "done"
+      "stage": "planeacion",
+      "status": "in-progress"
     },
     {
       "id": "cronograma",
       "label": "Cronograma del Proyecto",
-      "icon": "○",
+      "icon": "◉",
       "file": "data/sections/cronograma.json",
       "order": 7,
       "sprint": 4,
+      "stage": "planeacion",
       "status": "todo"
     },
     {
       "id": "metodologia",
       "label": "Metodología",
-      "icon": "○",
+      "icon": "◉",
       "file": "data/sections/metodologia.json",
       "order": 6,
       "sprint": 4,
+      "stage": "planeacion",
       "status": "todo"
     },
     {
       "id": "presupuesto",
       "label": "Presupuesto del Proyecto",
-      "icon": "○",
+      "icon": "◉",
       "file": "data/sections/presupuesto.json",
       "order": 8,
       "sprint": 5,
+      "stage": "planeacion",
       "status": "todo"
     },
     {
       "id": "riesgos",
       "label": "Matriz de Riesgos",
-      "icon": "○",
+      "icon": "◉",
       "file": "data/sections/riesgos.json",
       "order": 9,
       "sprint": 5,
+      "stage": "planeacion",
+      "status": "todo"
+    },
+    {
+      "id": "asignacion",
+      "label": "Asignación de Tareas",
+      "icon": "◉",
+      "file": "data/sections/asignacion.json",
+      "order": 10,
+      "sprint": 6,
+      "stage": "planeacion",
+      "status": "todo"
+    },
+    {
+      "id": "calidad",
+      "label": "Plan de Calidad",
+      "icon": "◉",
+      "file": "data/sections/calidad.json",
+      "order": 11,
+      "sprint": 6,
+      "stage": "planeacion",
+      "status": "todo"
+    },
+    {
+      "id": "comunicacion",
+      "label": "Gestión de la Comunicación",
+      "icon": "◉",
+      "file": "data/sections/comunicacion.json",
+      "order": 12,
+      "sprint": 7,
+      "stage": "planeacion",
+      "status": "todo"
+    },
+    {
+      "id": "roi",
+      "label": "ROI",
+      "icon": "◉",
+      "file": "data/sections/comunicacion.json",
+      "order": 13,
+      "sprint": 7,
+      "stage": "planeacion",
+      "status": "todo"
+    },
+    {
+      "id": "desarrollo",
+      "label": "Desarrollo de la Plataforma",
+      "icon": "◉",
+      "file": "data/sections/desarrollo.json",
+      "order": 14,
+      "sprint": 8,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "arquitectura",
+      "label": "Arquitectura Tecnológica",
+      "icon": "◉",
+      "file": "data/sections/arquitectura.json",
+      "order": 15,
+      "sprint": 8,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "integracion",
+      "label": "Integración de Fuentes de Inteligencia",
+      "icon": "◉",
+      "file": "data/sections/integracion.json",
+      "order": 16,
+      "sprint": 9,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "implementacion",
+      "label": "Implementación de Módulos",
+      "icon": "◉",
+      "file": "data/sections/implementacion.json",
+      "order": 17,
+      "sprint": 9,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "pruebas",
+      "label": "Pruebas y Validación",
+      "icon": "◉",
+      "file": "data/sections/pruebas.json",
+      "order": 18,
+      "sprint": 10,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "despliegue",
+      "label": "Despliegue de la Plataforma",
+      "icon": "◉",
+      "file": "data/sections/despliegue.json",
+      "order": 19,
+      "sprint": 10,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "documentacion",
+      "label": "Documentación Técnica",
+      "icon": "◉",
+      "file": "data/sections/documentacion.json",
+      "order": 20,
+      "sprint": 11,
+      "stage": "ejecucion",
       "status": "todo"
     }
   ]

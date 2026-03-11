@@ -237,12 +237,83 @@ body::after {
 
 .sidebar-section-label:first-child { margin-top: 0; }
 
+/* ── Encabezado de etapa colapsable ── */
+.stage-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem 0.4rem;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 0.8rem;
+  transition: background var(--transition);
+  outline: none;
+}
+
+.stage-header:first-child { margin-top: 0; }
+
+.stage-header:hover { background: rgba(255,255,255,0.02); }
+
+.stage-arrow {
+  font-size: 0.55rem;
+  color: var(--cyan);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.stage-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  flex: 1;
+}
+
+.stage-progress {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+/* Barra de progreso delgada bajo el header */
+.stage-progress-bar {
+  height: 2px;
+  background: var(--border);
+  margin: 0 1.2rem 0.3rem;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.stage-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), rgba(0,200,232,0.4));
+  border-radius: 1px;
+  transition: width 0.6s ease;
+}
+
+/* Contenedor de ítems — colapso animado */
+.stage-items {
+  overflow: hidden;
+  max-height: 1000px;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  opacity: 1;
+}
+
+.stage-items.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
 /* Nav links */
 .nav-item {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  padding: 0.55rem 1.2rem;
+  padding: 0.5rem 1.2rem 0.5rem 1.8rem;
   cursor: pointer;
   transition: all var(--transition);
   border: none;
@@ -251,7 +322,7 @@ body::after {
   text-align: left;
   color: var(--text-dim);
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   position: relative;
   border-left: 2px solid transparent;
 }
@@ -269,13 +340,16 @@ body::after {
 }
 
 .nav-item .nav-icon {
-  font-size: 0.75rem;
-  opacity: 0.7;
+  font-size: 0.6rem;
+  opacity: 0.5;
   flex-shrink: 0;
   color: inherit;
 }
 
-.nav-item .nav-badge {
+.nav-item .nav-label { flex: 1; }
+
+/* Badges de status */
+.nav-badge {
   margin-left: auto;
   font-family: var(--font-mono);
   font-size: 0.5rem;
@@ -285,6 +359,20 @@ body::after {
   color: var(--green);
   border: 1px solid rgba(46,204,113,0.2);
   letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-badge.todo {
+  background: rgba(150,150,150,0.08);
+  color: #e7141e;
+  border: 1px solid rgba(231,7,7,0.2);
+}
+
+.nav-badge.progress {
+  background: rgba(241,196,15,0.12);
+  color: #f1c40f;
+  border: 1px solid rgba(241,196,15,0.25);
 }
 
 /* Panel de info del sidebar */

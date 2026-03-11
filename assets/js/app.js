@@ -66,53 +66,136 @@ function setActiveNav(id) {
 ───────────────────────────────────────── */
 
 /**
- * Construye los ítems de navegación a partir del nav.json.
- * @param {Array} sections - Array de objetos de sección del nav.json.
+ * Construye el sidebar con dos niveles:
+ *   Nivel 1 — Etapa  (colapsable, viene de "stages" en nav.json)
+ *   Nivel 2 — Sprint (sublabel dentro de cada etapa)
+ *   Nivel 3 — Ítems  (botones de sección con badge de status)
+ *
+ * @param {Array} sections - Array de secciones de nav.json.
+ * @param {Array} stages   - Array de etapas de nav.json (define orden y label).
  */
-function buildSidebar(sections) {
+function buildSidebar(sections, stages = []) {
   const nav = DOM.sidebar();
   if (!nav) return;
 
-  /* Ordenar por campo "order" */
+  /* Ordenar secciones por "order" */
   const sorted = [...sections].sort((a, b) => (a.order || 0) - (b.order || 0));
 
-  /* Agrupar por sprint */
-  const bySprint = sorted.reduce((acc, sec) => {
-    const key = `Sprint ${sec.sprint || '?'}`;
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(sec);
-    return acc;
-  }, {});
+  /* Etapas: usar las del JSON o crear una por defecto */
+  const stageList = stages.length > 0
+    ? stages
+    : [{ id: '__default__', label: 'Secciones', icon: '▸' }];
 
+  /* ── Agrupar: stage → sprint → secciones ── */
+  const byStage = {};
+  stageList.forEach(st => { byStage[st.id] = {}; }); // { stageId: { sprintKey: [secs] } }
+
+  sorted.forEach(sec => {
+    const stageId   = sec.stage  || stageList[0].id;
+    const sprintKey = `Sprint ${sec.sprint || '?'}`;
+
+    if (!byStage[stageId])            byStage[stageId] = {};
+    if (!byStage[stageId][sprintKey]) byStage[stageId][sprintKey] = [];
+
+    byStage[stageId][sprintKey].push(sec);
+  });
+
+  /* ── Helpers ── */
+
+  /* Conteo de progreso de un array plano de secciones */
+  function countProgress(items) {
+    const done = items.filter(s => s.status === 'done').length;
+    return { done, total: items.length };
+  }
+
+  /* Todas las secciones de una etapa (aplanadas) */
+  function flatItems(stageId) {
+    return Object.values(byStage[stageId] || {}).flat();
+  }
+
+  /* Badge visual de status */
+  function statusBadge(status) {
+    const map = {
+      'done':        { text: '✓ done',        cls: ''         },
+      'in-progress': { text: '⏳ in progress', cls: 'progress' },
+      'todo':        { text: '○ todo',         cls: 'todo'     },
+    };
+    const s = map[status] || map['todo'];
+    return `<span class="nav-badge ${s.cls}" aria-label="${status}">${s.text}</span>`;
+  }
+
+  /* ── Construcción del HTML ── */
   let html = '';
 
-  for (const [sprintLabel, items] of Object.entries(bySprint)) {
-    html += `<div class="sidebar-section-label">${sprintLabel}</div>`;
+  stageList.forEach(stage => {
+    const allItems = flatItems(stage.id);
+    if (allItems.length === 0) return; /* omitir etapas vacías */
 
-    for (const sec of items) {
-      const badge = sec.status === 'done'
-        ? '<span class="nav-badge">✓ done</span>'
-        : '';
-      html += `
-        <button
-          class="nav-item"
-          data-section-id="${sec.id}"
-          data-section-file="${sec.file}"
-          aria-label="Ir a ${sec.label}">
-          <span class="nav-icon">${sec.icon || '◈'}</span>
-          <span>${sec.label}</span>
-          ${badge}
-        </button>
-      `;
-    }
-  }
+    const { done, total } = countProgress(allItems);
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+    /* Encabezado colapsable de etapa */
+    html += `
+      <div class="stage-header" data-stage="${stage.id}"
+           role="button" aria-expanded="true" tabindex="0">
+        <span class="stage-arrow">▾</span>
+        <span class="stage-label">${stage.label}</span>
+        <span class="stage-progress">${done}/${total}</span>
+      </div>
+      <div class="stage-progress-bar">
+        <div class="stage-progress-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="stage-items" data-stage-items="${stage.id}">
+    `;
+
+    /* Sublabels de sprint dentro de la etapa */
+    const sprintMap = byStage[stage.id];
+    Object.entries(sprintMap).forEach(([sprintKey, items]) => {
+
+      html += `<div class="sidebar-section-label">${sprintKey}</div>`;
+
+      items.forEach(sec => {
+        html += `
+          <button
+            class="nav-item"
+            data-section-id="${sec.id}"
+            data-section-file="${sec.file}"
+            aria-label="Ir a ${sec.label}">
+            <span class="nav-icon">${sec.icon || '◈'}</span>
+            <span class="nav-label">${sec.label}</span>
+            ${statusBadge(sec.status)}
+          </button>
+        `;
+      });
+    });
+
+    html += `</div>`; /* cierre .stage-items */
+  });
 
   nav.innerHTML = html;
 
-  /* Asignar eventos de clic */
+  /* ── Eventos: clic en sección ── */
   nav.querySelectorAll('.nav-item').forEach(btn => {
     btn.addEventListener('click', () => {
       navigateTo(btn.dataset.sectionId, btn.dataset.sectionFile);
+    });
+  });
+
+  /* ── Eventos: colapsar / expandir etapa ── */
+  nav.querySelectorAll('.stage-header').forEach(header => {
+    const toggle = () => {
+      const stageId  = header.dataset.stage;
+      const body     = nav.querySelector(`[data-stage-items="${stageId}"]`);
+      const expanded = header.getAttribute('aria-expanded') === 'true';
+
+      header.setAttribute('aria-expanded', String(!expanded));
+      header.querySelector('.stage-arrow').textContent = expanded ? '▸' : '▾';
+      body.classList.toggle('collapsed', expanded);
+    };
+
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
   });
 }
@@ -210,8 +293,8 @@ async function init() {
   /* Rellenar meta */
   populateMeta(project);
 
-  /* Construir sidebar */
-  buildSidebar(sections || []);
+  /* Construir sidebar — pasamos stages para definir el orden y labels de etapas */
+  buildSidebar(sections || [], App.nav.stages || []);
 
   /* Determinar sección inicial: hash de la URL o la primera */
   const hashId = window.location.hash.replace('#', '');
@@ -238,3 +321,4 @@ window.addEventListener('hashchange', () => {
     navigateTo(target.id, target.file);
   }
 });
+
