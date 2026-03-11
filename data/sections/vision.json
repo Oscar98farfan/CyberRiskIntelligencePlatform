@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "id": "vision",
+    "title": "Visión del Proyecto",
+    "sprint": "Sprint 1 · Entregable",
+    "fecha": "2026-03-08",
+    "version": "1.0"
+  },
+  "blocks": [
+    {
+      "type": "highlight",
+      "icon": "🎯",
+      "label": "Propósito",
+      "content": "CyberRisk Intelligence Platform busca convertirse en una herramienta de análisis de amenazas accesible para PYMEs colombianas, facilitando la comprensión de riesgos cibernéticos mediante visualización de datos y análisis de inteligencia de amenazas."
+    },
+    {
+      "type": "paragraph",
+      "label": "Visión",
+      "content": "El proyecto propone una plataforma digital que integre fuentes de información de ciberseguridad, análisis de datos y visualización interactiva para apoyar la toma de decisiones de pequeñas y medianas empresas frente a riesgos digitales."
+    },
+    {
+      "type": "numbered-list",
+      "label": "Impacto esperado",
+      "items": [
+        "Mejorar la comprensión de amenazas cibernéticas en PYMEs.",
+        "Facilitar el acceso a información de inteligencia de amenazas.",
+        "Promover el uso de análisis de datos aplicado a ciberseguridad."
+      ]
+    }
+  ]
+}

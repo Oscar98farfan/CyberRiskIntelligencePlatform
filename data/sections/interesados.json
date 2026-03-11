@@ -1,0 +1,70 @@
+{
+  "_comment": "Sección: Análisis de Interesados del proyecto.",
+  "meta": {
+    "id": "interesados",
+    "title": "Análisis de Interesados",
+    "sprint": "Sprint 1 · Entregable 2",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Descripción",
+      "content": "El análisis de interesados identifica a las personas y organizaciones que pueden influir o verse afectadas por el proyecto. Gestionar correctamente estos actores permite asegurar la alineación del proyecto con los objetivos académicos y las necesidades del sector empresarial."
+    },
+    {
+      "type": "two-col",
+      "label": "Actores Clave del Proyecto",
+      "cols": [
+        {
+          "icon": "👥",
+          "title": "Interesados Internos",
+          "variant": "positive",
+          "items": [
+            "Equipo del Proyecto — desarrollo técnico y ejecución.",
+            "Institución Académica — supervisión y evaluación.",
+            "Asesor Académico — orientación metodológica."
+          ]
+        },
+        {
+          "icon": "🌐",
+          "title": "Interesados Externos",
+          "variant": "info",
+          "items": [
+            "PYMEs Colombianas — usuarios finales.",
+            "CSIRT Colombia / MinTIC — fuente de datos e incidentes.",
+            "Comunidad de ciberseguridad — retroalimentación y difusión."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Clasificación Poder / Interés",
+      "cols": [
+        {
+          "icon": "★",
+          "title": "Alta Prioridad",
+          "variant": "positive",
+          "items": [
+            "Equipo del Proyecto",
+            "Institución Académica",
+            "Asesor Académico"
+          ]
+        },
+        {
+          "icon": "○",
+          "title": "Mantener Informados",
+          "variant": "info",
+          "items": [
+            "PYMEs Colombianas",
+            "CSIRT Colombia",
+            "Comunidad de ciberseguridad"
+          ]
+        }
+      ]
+    }
+  ]
+}

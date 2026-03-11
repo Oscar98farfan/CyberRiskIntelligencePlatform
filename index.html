@@ -3,102 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wiki — Inteligencia de Amenazas PYMEs CO</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+
+  <!--
+    ═══════════════════════════════════════════════════════
+    CyberRisk Intelligence Platform — Wiki del Proyecto
+    Plataforma de Inteligencia de Amenazas para PYMEs CO
+    ═══════════════════════════════════════════════════════
+    El contenido de cada sección se carga desde archivos
+    JSON en /data/sections/ mediante fetch().
+    Para agregar una sección nueva:
+      1. Crea data/sections/mi-seccion.json
+      2. Agrega la entrada en data/nav.json
+    ═══════════════════════════════════════════════════════
+  -->
+
+  <!-- SEO básico -->
+  <title>CyberRisk Intelligence Platform — Wiki</title>
+  <meta name="description" content="Plataforma de Inteligencia de Amenazas para PYMEs Colombianas. Análisis predictivo de vulnerabilidades mediante Big Data y Machine Learning." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="CyberRisk Intelligence Platform" />
+  <meta property="og:description" content="Plataforma de Inteligencia de Amenazas para PYMEs Colombianas." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Favicon inline (sin archivos extra) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+
+  <!-- Estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <span class="badge-status">● ACTIVO</span>
-    <h1 class="header-title">
-      <span>THREAT</span>INTEL<span>.wiki</span>
-    </h1>
-    <div class="header-meta" id="header-meta">Cargando...</div>
-  </div>
-  <nav id="main-nav">
-    <button class="nav-btn active" data-page="acta">📋 Acta de Constitución</button>
-    <button class="nav-btn" data-page="interesados">👥 Análisis de Interesados</button>
-    <button class="nav-btn" data-page="vision">🔭 Visión del Proyecto</button>
-  </nav>
-</header>
+  <!-- ══════════════════════════════════════════
+       HEADER — Se rellena con datos de nav.json
+  ══════════════════════════════════════════ -->
+  <header id="app-header" role="banner">
 
-<div class="layout">
-  <aside>
-    <div class="sidebar-section">
-      <div class="sidebar-label">// Navegación</div>
-      <div class="sidebar-link active" data-page="acta">
-        <span class="icon">📋</span> Acta de Constitución
-      </div>
-      <div class="sidebar-link" data-page="interesados">
-        <span class="icon">👥</span> Análisis de Interesados
-      </div>
-      <div class="sidebar-link" data-page="vision">
-        <span class="icon">🔭</span> Visión del Proyecto
+    <div class="header-logo">
+      <!-- Logo marca -->
+      <div class="logo-mark" aria-hidden="true">CR</div>
+      <div>
+        <div class="logo-text"><span>Cyber</span>Risk<span>.wiki</span></div>
+        <div class="logo-sub">PYMEs Colombia · Big Data · ML</div>
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">// Proyecto</div>
-      <div class="project-info" id="project-info">
+    <!-- Metadato de versión / sprint — llenado por app.js -->
+    <div class="header-meta" id="header-meta" aria-label="Versión del proyecto">Cargando…</div>
+
+    <!-- Indicador de estado -->
+    <div class="header-status" aria-label="Estado del sistema">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>ACTIVO</span>
+    </div>
+
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       LAYOUT: SIDEBAR + CONTENIDO
+  ══════════════════════════════════════════ -->
+  <div id="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside id="app-sidebar" role="navigation" aria-label="Navegación del proyecto">
+
+      <!-- Los nav-items se inyectan aquí por app.js -->
+      <nav id="sidebar-nav" aria-label="Secciones del proyecto"></nav>
+
+      <!-- Panel de información del proyecto -->
+      <div class="sidebar-info" role="complementary" aria-label="Información del proyecto">
         <div class="info-row">
           <span class="info-key">versión</span>
-          <span class="info-val" id="si-version">—</span>
+          <span class="info-val" id="info-version">—</span>
         </div>
         <div class="info-row">
-          <span class="info-key">inicio</span>
-          <span class="info-val" id="si-fecha">—</span>
+          <span class="info-key">sprint</span>
+          <span class="info-val" id="info-sprint">—</span>
         </div>
         <div class="info-row">
-          <span class="info-key">institución</span>
-          <span class="info-val" id="si-inst" style="font-size:0.68rem">—</span>
-        </div>
-        <div class="info-row">
-          <span class="info-key">fase</span>
-          <span class="info-val" style="color:var(--accent3)">Inicio</span>
+          <span class="info-key">estado</span>
+          <span class="info-val active-val" id="info-status">—</span>
         </div>
       </div>
-    </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">// Entregables Sprint 1</div>
-      <div style="font-size:0.75rem; color:var(--text-dim); line-height:1.8;">
-        <div style="color:var(--accent3);">✓ Acta de Constitución</div>
-        <div style="color:var(--accent3);">✓ Análisis de Interesados</div>
-        <div style="color:var(--accent3);">✓ Visión del Proyecto</div>
-      </div>
-    </div>
-  </aside>
+    </aside>
 
-  <main>
-    <!-- ═══ PÁGINA: ACTA DE CONSTITUCIÓN ═══ -->
-    <div class="page active" id="page-acta">
-      <div class="loading" id="loading-acta">Leyendo acta-constitucion.txt...</div>
-      <div id="content-acta" style="display:none;"></div>
-    </div>
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <!-- Todo el contenido se inyecta aquí dinámicamente por app.js + renderer.js -->
+    <main id="app-content" role="main" aria-live="polite" aria-label="Contenido de la sección">
+      <!-- El spinner inicial lo muestra app.js en el evento DOMContentLoaded -->
+    </main>
 
-    <!-- ═══ PÁGINA: ANÁLISIS DE INTERESADOS ═══ -->
-    <div class="page" id="page-interesados">
-      <div class="loading" id="loading-interesados">Leyendo analisis-interesados.txt...</div>
-      <div id="content-interesados" style="display:none;"></div>
-    </div>
+  </div><!-- /#app-layout -->
 
-    <!-- ═══ PÁGINA: VISIÓN DEL PROYECTO ═══ -->
-    <div class="page" id="page-vision">
-      <div class="loading" id="loading-vision">Leyendo vision-proyecto.txt...</div>
-      <div id="content-vision" style="display:none;"></div>
-    </div>
-  </main>
-</div>
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer id="app-footer" role="contentinfo">
+    <span>© <span id="footer-year"></span> — CyberRisk Intelligence Platform</span>
+    <span>
+      Repositorio:
+      <a id="footer-repo" href="#" target="_blank" rel="noopener noreferrer">[cargando…]</a>
+    </span>
+    <span>HTML · CSS · JS Vanilla · JSON</span>
+  </footer>
 
-<footer>
-  <span>© 2026 — Plataforma de Inteligencia de Amenazas para PYMEs Colombianas</span>
-  <span id="repo-link">Repositorio: cargando...</span>
-  <span id="footer-date">Última actualización: —</span>
-</footer>
+  <!--
+    ══════════════════════════════════════════
+    SCRIPTS — cargados en orden de dependencia
+    ══════════════════════════════════════════
+    1. loader.js   — Carga y caché de JSON (fetchJSON, loadNav, loadSection)
+    2. renderer.js — Convierte objetos JSON en HTML (renderSection, RENDERERS)
+    3. app.js      — Controlador principal (init, navigateTo, buildSidebar)
+  -->
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/renderer.js"></script>
+  <script src="assets/js/app.js"></script>
 
-<script src="assets/app.js" defer></script>
 </body>
 </html>

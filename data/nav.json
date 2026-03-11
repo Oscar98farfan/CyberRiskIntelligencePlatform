@@ -1,0 +1,94 @@
+{
+  "_comment": "Registro central de secciones. Agrega una entrada aquí y crea el JSON correspondiente en data/sections/ para añadir una nueva sección.",
+  "project": {
+    "name": "CyberRisk Intelligence Platform",
+    "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
+    "version": "1.0.0",
+    "sprint": "Sprint 3",
+    "status": "active",
+    "repo": "https://github.com/usuario/cyberrisk-platform"
+  },
+  "sections": [
+    {
+      "id": "acta",
+      "label": "Acta de Constitución",
+      "icon": "◈",
+      "file": "data/sections/acta.json",
+      "order": 1,
+      "sprint": 3,
+      "status": "done"
+    },
+    {
+      "id": "interesados",
+      "label": "Análisis de Interesados",
+      "icon": "◉",
+      "file": "data/sections/interesados.json",
+      "order": 2,
+      "sprint": 3,
+      "status": "done"
+    },
+    {
+      "id": "vision",
+      "label": "Visión del Proyecto",
+      "icon": "◎",
+      "file": "data/sections/vision.json",
+      "order": 3,
+      "sprint": 3,
+      "status": "done"
+    },
+    {
+      "id": "objetivos",
+      "label": "Objetivos",
+      "icon": "◆",
+      "file": "data/sections/objetivos.json",
+      "order": 4,
+      "sprint": 3,
+      "status": "done"
+    },
+    {
+      "id": "alcance",
+      "label": "Alcance",
+      "icon": "◇",
+      "file": "data/sections/alcance.json",
+      "order": 5,
+      "sprint": 3,
+      "status": "done"
+    },
+    {
+      "id": "cronograma",
+      "label": "Cronograma del Proyecto",
+      "icon": "○",
+      "file": "data/sections/cronograma.json",
+      "order": 7,
+      "sprint": 4,
+      "status": "todo"
+    },
+    {
+      "id": "metodologia",
+      "label": "Metodología",
+      "icon": "○",
+      "file": "data/sections/metodologia.json",
+      "order": 6,
+      "sprint": 4,
+      "status": "todo"
+    },
+    {
+      "id": "presupuesto",
+      "label": "Presupuesto del Proyecto",
+      "icon": "○",
+      "file": "data/sections/presupuesto.json",
+      "order": 8,
+      "sprint": 5,
+      "status": "todo"
+    },
+    {
+      "id": "riesgos",
+      "label": "Matriz de Riesgos",
+      "icon": "○",
+      "file": "data/sections/riesgos.json",
+      "order": 9,
+      "sprint": 5,
+      "status": "todo"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "id": "alcance",
+    "title": "Alcance del Proyecto",
+    "sprint": "Sprint 1 · Entregable",
+    "fecha": "2026-03-08",
+    "version": "1.0"
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Descripción",
+      "content": "El alcance del proyecto define las funcionalidades y límites de la plataforma CyberRisk Intelligence Platform dentro del contexto académico."
+    },
+    {
+      "type": "two-col",
+      "label": "Definición de Alcance",
+      "cols": [
+        {
+          "icon": "✔",
+          "title": "Incluye",
+          "variant": "positive",
+          "items": [
+            "Recopilación de información de amenazas de fuentes públicas.",
+            "Análisis de datos de ciberseguridad.",
+            "Visualización de información mediante dashboards.",
+            "Prototipo funcional de plataforma web."
+          ]
+        },
+        {
+          "icon": "✖",
+          "title": "No Incluye",
+          "variant": "warning",
+          "items": [
+            "Implementación en producción empresarial.",
+            "Integración con sistemas corporativos reales.",
+            "Monitoreo en tiempo real de infraestructuras empresariales."
+          ]
+        }
+      ]
+    }
+  ]
+}

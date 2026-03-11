@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "id": "objetivos",
+    "title": "Objetivos del Proyecto",
+    "sprint": "Sprint 1 · Entregable",
+    "fecha": "2026-03-08",
+    "version": "1.0"
+  },
+  "blocks": [
+    {
+      "type": "highlight",
+      "icon": "🎯",
+      "label": "Objetivo General",
+       "content": "Desarrollar una plataforma web de análisis de exposición a riesgos cibernéticos orientada a PYMEs colombianas, que permita identificar vulnerabilidades potenciales a partir de las tecnologías utilizadas por la organización, utilizando bases de datos públicas de amenazas y vulnerabilidades para generar reportes de riesgo y recomendaciones de mitigación."
+    },
+    {
+      "type": "numbered-list",
+      "label": "Objetivos Específicos",
+        "items": [
+            "Identificar y analizar bases de datos públicas de vulnerabilidades y amenazas cibernéticas (CVE, NVD, OSINT) relevantes para el análisis de riesgos.",
+            "Diseñar un sistema que permita a las organizaciones ingresar o seleccionar las tecnologías que utilizan (sistemas operativos, servidores, frameworks, bases de datos).",
+            "Desarrollar un motor de análisis que relacione las tecnologías seleccionadas con vulnerabilidades conocidas presentes en las bases de datos de amenazas.",
+            "Construir una plataforma web que visualice el nivel de exposición al riesgo mediante dashboards y reportes comprensibles para usuarios no técnicos.",
+            "Generar recomendaciones básicas de mitigación y buenas prácticas de ciberseguridad basadas en las vulnerabilidades identificadas."
+        ]
+    }
+  ]
+}
