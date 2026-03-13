@@ -994,14 +994,117 @@ body::after {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
 
 /* ══════════════════════════════════════════
+   HAMBURGUESA (oculta en desktop)
+══════════════════════════════════════════ */
+#menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+#menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: all 0.22s ease;
+  transform-origin: center;
+}
+
+/* Animación X cuando está abierto */
+#menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+#menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Overlay oscuro */
+#sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 49;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+#sidebar-overlay.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 800px) {
-  :root { --sidebar-w: 0px; }
+  /* El sidebar-w no afecta al grid en móvil */
+  #app-layout {
+    grid-template-columns: 1fr;
+  }
 
-  #app-layout { grid-template-columns: 1fr; }
-  #app-sidebar { display: none; }
-  #app-content { padding: 1.5rem; }
-  .two-col-grid { grid-template-columns: 1fr; }
-  .stakeholder-grid { grid-template-columns: 1fr; }
+  /* El sidebar se convierte en drawer lateral */
+  #app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid var(--border-2);
+    padding-top: calc(var(--header-h) + 1rem);
+    /* Fondo sólido para que tape el contenido */
+    background: var(--bg-2);
+  }
+
+  /* Cuando está abierto */
+  #app-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 8px 0 32px rgba(0,0,0,0.5);
+  }
+
+  /* Mostrar hamburguesa */
+  #menu-toggle {
+    display: flex;
+  }
+
+  /* Ocultar meta del header en móvil para no saturar */
+  .header-meta { display: none; }
+
+  /* Contenido ocupa todo el ancho */
+  #app-content {
+    padding: 1.2rem 1rem;
+    min-height: calc(100vh - var(--header-h));
+  }
+
+  /* Grids de una sola columna en móvil */
+  .two-col-grid        { grid-template-columns: 1fr; }
+  .stakeholder-grid    { grid-template-columns: 1fr; }
+  .cards-grid          { grid-template-columns: 1fr; }
+  .kpi-grid            { grid-template-columns: 1fr 1fr; }
+  .signatures-grid     { grid-template-columns: 1fr 1fr; }
+
+  /* Tipografía de página más compacta */
+  .page-title { font-size: 1.6rem; }
+  .page-meta  { gap: 0.8rem; }
+
+  /* Footer apilado */
+  #app-footer { flex-direction: column; text-align: center; gap: 0.4rem; }
+}
+
+/* Tablet: sidebar más estrecho pero visible */
+@media (min-width: 801px) and (max-width: 1100px) {
+  :root { --sidebar-w: 220px; }
+  #app-content { padding: 2rem 1.8rem; }
+  .cards-grid  { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
