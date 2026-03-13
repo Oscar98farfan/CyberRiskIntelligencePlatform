@@ -202,21 +202,27 @@ body::after {
   grid-template-columns: var(--sidebar-w) 1fr;
   min-height: 100vh;
   padding-top: var(--header-h);
-  position: relative;
-  z-index: 1;
+  /* SIN position:relative ni z-index — evitar stacking context
+     que atrapa el sidebar fixed en móvil */
 }
 
 /* ══════════════════════════════════════════
    SIDEBAR
 ══════════════════════════════════════════ */
 #app-sidebar {
-  position: sticky;
+  /* Siempre fixed: ocupa la columna izquierda en desktop
+     y se convierte en drawer en móvil */
+  position: fixed;
   top: var(--header-h);
+  left: 0;
+  width: var(--sidebar-w);
   height: calc(100vh - var(--header-h));
   overflow-y: auto;
+  overflow-x: hidden;
   border-right: 1px solid var(--border);
-  background: rgba(8, 13, 20, 0.7);
+  background: #080d14;
   padding: 1.5rem 0;
+  z-index: 50;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
@@ -397,6 +403,14 @@ body::after {
 .info-key { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-dim); }
 .info-val { color: var(--text); font-weight: 500; font-size: 0.72rem; }
 .info-val.active-val { color: var(--green); }
+
+/* ══════════════════════════════════════════
+   SIDEBAR SPACER — columna fantasma en desktop
+══════════════════════════════════════════ */
+#sidebar-spacer {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+}
 
 /* ══════════════════════════════════════════
    ÁREA DE CONTENIDO
@@ -994,115 +1008,129 @@ body::after {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
 
 /* ══════════════════════════════════════════
-   HAMBURGUESA (oculta en desktop)
+   HAMBURGUESA — oculta en desktop
 ══════════════════════════════════════════ */
 #menu-toggle {
-  display: none;
+  display: none; /* solo visible en móvil via @media */
   flex-direction: column;
   justify-content: center;
   gap: 5px;
   background: none;
   border: 1px solid var(--border-2);
   border-radius: var(--radius);
-  padding: 0.4rem 0.5rem;
+  padding: 0.45rem 0.55rem;
   cursor: pointer;
-  margin-left: auto;
   flex-shrink: 0;
 }
 
 #menu-toggle span {
   display: block;
-  width: 18px;
-  height: 1.5px;
+  width: 20px;
+  height: 2px;
   background: var(--text);
   border-radius: 1px;
-  transition: all 0.22s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease;
   transform-origin: center;
 }
 
-/* Animación X cuando está abierto */
-#menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+/* Cruz cuando está abierto */
+#menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 #menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-#menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+#menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Overlay oscuro */
+/* ══════════════════════════════════════════
+   OVERLAY — detrás del drawer en móvil
+══════════════════════════════════════════ */
 #sidebar-overlay {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.65);
   z-index: 49;
+  /* Usar visibility+opacity para que la transición funcione en iOS Safari */
   opacity: 0;
-  transition: opacity 0.25s ease;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  pointer-events: none;
 }
 
 #sidebar-overlay.visible {
-  display: block;
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — MÓVIL (≤ 800px)
 ══════════════════════════════════════════ */
 @media (max-width: 800px) {
-  /* El sidebar-w no afecta al grid en móvil */
+
+  /* Layout: una sola columna */
   #app-layout {
     grid-template-columns: 1fr;
   }
 
-  /* El sidebar se convierte en drawer lateral */
+  /* Spacer desaparece en móvil */
+  #sidebar-spacer { display: none; }
+
+  /* ── Sidebar: drawer que entra desde la izquierda ── */
   #app-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100vh;
-    z-index: 50;
-    transform: translateX(-100%);
+    width: 82vw;
+    max-width: 300px;
+    /* Oculto por defecto */
+    transform: translateX(-110%);
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     border-right: 1px solid var(--border-2);
-    padding-top: calc(var(--header-h) + 1rem);
-    /* Fondo sólido para que tape el contenido */
-    background: var(--bg-2);
+    padding: 1rem 0 2rem;
   }
 
-  /* Cuando está abierto */
+  /* Drawer abierto */
   #app-sidebar.open {
     transform: translateX(0);
-    box-shadow: 8px 0 32px rgba(0,0,0,0.5);
+    box-shadow: 6px 0 40px rgba(0, 0, 0, 0.7);
   }
 
-  /* Mostrar hamburguesa */
+  /* ── Mostrar hamburguesa ── */
   #menu-toggle {
     display: flex;
+    margin-left: auto; /* empuja al extremo derecho del header */
   }
 
-  /* Ocultar meta del header en móvil para no saturar */
-  .header-meta { display: none; }
+  /* ── Ocultar elementos del header que no caben en móvil ── */
+  .header-meta,
+  .header-status {
+    display: none;
+  }
 
-  /* Contenido ocupa todo el ancho */
+  /* En móvil el toggle ocupa el extremo derecho del header */
+  .header-status { margin-left: 0; }
+
+  /* ── Contenido principal ocupa todo el ancho ── */
   #app-content {
-    padding: 1.2rem 1rem;
-    min-height: calc(100vh - var(--header-h));
+    padding: 1.2rem 1rem 2rem;
   }
 
-  /* Grids de una sola columna en móvil */
-  .two-col-grid        { grid-template-columns: 1fr; }
-  .stakeholder-grid    { grid-template-columns: 1fr; }
-  .cards-grid          { grid-template-columns: 1fr; }
-  .kpi-grid            { grid-template-columns: 1fr 1fr; }
-  .signatures-grid     { grid-template-columns: 1fr 1fr; }
+  /* ── Grids: una columna en móvil ── */
+  .two-col-grid     { grid-template-columns: 1fr; }
+  .stakeholder-grid { grid-template-columns: 1fr; }
+  .cards-grid       { grid-template-columns: 1fr; }
+  .kpi-grid         { grid-template-columns: 1fr 1fr; }
+  .signatures-grid  { grid-template-columns: 1fr 1fr; }
 
-  /* Tipografía de página más compacta */
-  .page-title { font-size: 1.6rem; }
-  .page-meta  { gap: 0.8rem; }
+  /* ── Tipografía más compacta ── */
+  .page-title { font-size: 1.5rem; }
+  .page-meta  { gap: 0.6rem; font-size: 0.6rem; }
 
-  /* Footer apilado */
-  #app-footer { flex-direction: column; text-align: center; gap: 0.4rem; }
+  /* ── Footer apilado ── */
+  #app-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.3rem;
+  }
 }
 
-/* Tablet: sidebar más estrecho pero visible */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (801px – 1100px)
+══════════════════════════════════════════ */
 @media (min-width: 801px) and (max-width: 1100px) {
   :root { --sidebar-w: 220px; }
   #app-content { padding: 2rem 1.8rem; }

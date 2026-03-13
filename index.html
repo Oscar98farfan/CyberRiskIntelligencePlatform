@@ -73,33 +73,40 @@
   <div id="sidebar-overlay" aria-hidden="true"></div>
 
   <!-- ══════════════════════════════════════════
-       LAYOUT: SIDEBAR + CONTENIDO
+       SIDEBAR — fuera del layout para que
+       position:fixed funcione bien en móvil
+  ══════════════════════════════════════════ -->
+  <aside id="app-sidebar" role="navigation" aria-label="Navegación del proyecto">
+
+    <!-- Los nav-items se inyectan aquí por app.js -->
+    <nav id="sidebar-nav" aria-label="Secciones del proyecto"></nav>
+
+    <!-- Panel de información del proyecto -->
+    <div class="sidebar-info" role="complementary" aria-label="Información del proyecto">
+      <div class="info-row">
+        <span class="info-key">versión</span>
+        <span class="info-val" id="info-version">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">sprint</span>
+        <span class="info-val" id="info-sprint">—</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">estado</span>
+        <span class="info-val active-val" id="info-status">—</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════
+       LAYOUT: SIDEBAR PLACEHOLDER + CONTENIDO
   ══════════════════════════════════════════ -->
   <div id="app-layout">
 
-    <!-- SIDEBAR -->
-    <aside id="app-sidebar" role="navigation" aria-label="Navegación del proyecto">
-
-      <!-- Los nav-items se inyectan aquí por app.js -->
-      <nav id="sidebar-nav" aria-label="Secciones del proyecto"></nav>
-
-      <!-- Panel de información del proyecto -->
-      <div class="sidebar-info" role="complementary" aria-label="Información del proyecto">
-        <div class="info-row">
-          <span class="info-key">versión</span>
-          <span class="info-val" id="info-version">—</span>
-        </div>
-        <div class="info-row">
-          <span class="info-key">sprint</span>
-          <span class="info-val" id="info-sprint">—</span>
-        </div>
-        <div class="info-row">
-          <span class="info-key">estado</span>
-          <span class="info-val active-val" id="info-status">—</span>
-        </div>
-      </div>
-
-    </aside>
+    <!-- Columna izquierda vacía — el sidebar real está fuera del layout
+         pero ocupa esta columna en desktop via position:sticky -->
+    <div id="sidebar-spacer" aria-hidden="true"></div>
 
     <!-- ÁREA DE CONTENIDO PRINCIPAL -->
     <!-- Todo el contenido se inyecta aquí dinámicamente por app.js + renderer.js -->

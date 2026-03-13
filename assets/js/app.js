@@ -310,7 +310,10 @@ async function init() {
 }
 
 /* ─── Lanzar cuando el DOM esté listo ─── */
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+  initMobileMenu();
+});
 
 /* ─── Manejar navegación con el botón atrás/adelante del navegador ─── */
 window.addEventListener('hashchange', () => {
@@ -324,8 +327,10 @@ window.addEventListener('hashchange', () => {
 
 /* ─────────────────────────────────────────
    MENÚ MÓVIL — hamburguesa + drawer
+   Se llama desde DOMContentLoaded para
+   garantizar que el DOM ya existe.
 ───────────────────────────────────────── */
-(function initMobileMenu() {
+function initMobileMenu() {
   const toggle  = document.getElementById('menu-toggle');
   const sidebar = document.getElementById('app-sidebar');
   const overlay = document.getElementById('sidebar-overlay');
@@ -337,7 +342,7 @@ window.addEventListener('hashchange', () => {
     overlay.classList.add('visible');
     toggle.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden'; /* evitar scroll del fondo */
+    document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
@@ -348,33 +353,26 @@ window.addEventListener('hashchange', () => {
     document.body.style.overflow = '';
   }
 
-  function toggleMenu() {
-    sidebar.classList.contains('open') ? closeMenu() : openMenu();
-  }
-
   /* Botón hamburguesa */
-  toggle.addEventListener('click', toggleMenu);
+  toggle.addEventListener('click', () => {
+    sidebar.classList.contains('open') ? closeMenu() : openMenu();
+  });
 
   /* Clic en overlay cierra el menú */
   overlay.addEventListener('click', closeMenu);
 
-  /* Tecla Escape cierra el menú */
+  /* Tecla Escape */
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMenu();
   });
 
-  /*
-   * Cerrar automáticamente al navegar a una sección en móvil.
-   * Escuchamos el evento de clic en cualquier nav-item del sidebar.
-   * Usamos delegación para capturar ítems generados dinámicamente.
-   */
+  /* Al navegar en móvil, cerrar el drawer automáticamente */
   sidebar.addEventListener('click', e => {
-    const btn = e.target.closest('.nav-item');
-    if (btn && window.innerWidth <= 800) closeMenu();
+    if (e.target.closest('.nav-item') && window.innerWidth <= 800) closeMenu();
   });
 
-  /* Cerrar si el viewport crece a desktop (p.ej. rotar pantalla) */
+  /* Al rotar a landscape / agrandar ventana */
   window.addEventListener('resize', () => {
     if (window.innerWidth > 800) closeMenu();
   });
-})();
+}
