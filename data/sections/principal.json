@@ -1,0 +1,52 @@
+{
+  "_comment": "Sección: Acta de Constitución del Proyecto. Edita los campos de texto sin tocar el HTML.",
+  "meta": {
+    "id": "acta",
+    "title": "CyberRisk Intelligence Platform",
+    "sprint": "",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "highlight",
+      "label": "¿Qué es CyberRisk Intelligence Platform",
+      "content": "CyberRisk sera un proyecto web que permita a cualquier empresa o persona conocer a qué vulnerabilidades de ciberseguridad está expuesta, según el software que usa, de manera gratuita, en español y con contexto colombiano.Para lograrlo, se construirá un pipeline de Big Data que procesa más de 200.000 vulnerabilidades registradas en la base de datos pública del NIST (National Vulnerability Database), se entrenará un modelo de Machine Learning que predice la criticidad y urgencia de cada vulnerabilidad, y se desarrollará una aplicación web con un dashboard interactivo y un escáner de riesgo personalizado."
+    },
+    {
+      "type": "deliverables",
+      "label": "Entregables Esperados",
+      "items": [
+        { "code": "E2", "text": "Dataset consolidado de vulnerabilidades y amenazas cibernéticas", "date": "Semana 6" },
+        { "code": "E3", "text": "Motor de análisis de exposición a vulnerabilidades", "date": "Semana 10" },
+        { "code": "E3", "text": "Modelos ML entrenados y validados", "date": "Semana 10" },
+        { "code": "E4", "text": "Plataforma web funcional — versión beta", "date": "Semana 14" },
+        { "code": "E5", "text": "Informe de pruebas piloto con PYMEs", "date": "Semana 17" },
+        { "code": "E6", "text": "Plataforma en producción + documentación final", "date": "Semana 20" }
+      ]
+    },
+    {
+      "type": "timeline",
+      "label": "Cronograma Resumido",
+      "phases": [
+        { "id": "F1", "name": "Inicio y Planificación", "weeks": "Semanas 3–6" },
+        { "id": "F2", "name": "Diseño y Arquitectura", "weeks": "Semanas 7–8" },
+        { "id": "F3", "name": "Desarrollo del Motor ML", "weeks": "Semanas 9–11" },
+        { "id": "F4", "name": "Desarrollo de la Plataforma Web", "weeks": "Semanas 12–15" },
+        { "id": "F5", "name": "Pruebas y Piloto", "weeks": "Semanas 16–18" },
+        { "id": "F6", "name": "Despliegue y Cierre", "weeks": "Semanas 19–20" }
+      ]
+    },
+    {
+      "type": "signatures",
+      "label": "Aprobación",
+      "entries": [
+        { "role": "Líder del Proyecto", "name": "Oscar Daniel Farfan - Juan Camilo Madero" },
+        { "role": "Co-Investigador", "name": "Juan Camilo Madero - Oscar Daniel Farfan" },
+        { "role": "Asesor Académico", "name": "Cesar Espinoza" },
+        { "role": "Fecha de Aprobación", "name": "2026-03-08" }
+      ]
+    }
+  ]
+}

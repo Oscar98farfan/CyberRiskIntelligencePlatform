@@ -4,7 +4,7 @@
     "title": "Alcance del Proyecto",
     "sprint": "Sprint 3 · Entregable 5",
     "fecha": "2026-03-08",
-    "version": "1.0"
+    "version": "1.0.2"
   },
   "blocks": [
     {
@@ -21,10 +21,12 @@
           "title": "Incluye",
           "variant": "positive",
           "items": [
-            "Recopilación de información de amenazas de fuentes públicas.",
-            "Análisis de datos de ciberseguridad.",
-            "Visualización de información mediante dashboards.",
-            "Prototipo funcional de plataforma web."
+            "Integración con bases de datos públicas de vulnerabilidades (CVE, NVD u otras fuentes OSINT).",
+            "Prototipo funcional de plataforma web donde el usuario seleccione las tecnologías que utiliza en su infraestructura.",
+            "Motor de análisis que identifique vulnerabilidades asociadas a dichas tecnologías.",
+            "Dashboard web para visualización del nivel de riesgo y exposición.",
+            "Generación de recomendaciones de mitigación basadas en buenas prácticas de ciberseguridad.",
+            "Documentación técnica y manual de usuario."
           ]
         },
         {
@@ -34,7 +36,10 @@
           "items": [
             "Implementación en producción empresarial.",
             "Integración con sistemas corporativos reales.",
-            "Monitoreo en tiempo real de infraestructuras empresariales."
+            "Monitoreo en tiempo real de infraestructuras empresariales.",
+            "Desarrollo de hardware especializado o appliances físicos.",
+            "Servicios de respuesta a incidentes (IR) gestionados.",
+            "Integración con sistemas ERP o CRM en la fase inicial."
           ]
         }
       ]

@@ -35,7 +35,7 @@
           "variant": "positive",
         "items": [
           "Integración con bases de datos públicas de vulnerabilidades (CVE, NVD u otras fuentes OSINT).",
-          "Sistema de consulta donde el usuario seleccione las tecnologías que utiliza en su infraestructura.",
+          "Prototipo funcional de plataforma web donde el usuario seleccione las tecnologías que utiliza en su infraestructura.",
           "Motor de análisis que identifique vulnerabilidades asociadas a dichas tecnologías.",
           "Dashboard web para visualización del nivel de riesgo y exposición.",
           "Generación de recomendaciones de mitigación basadas en buenas prácticas de ciberseguridad.",
@@ -47,6 +47,9 @@
           "title": "No Incluye",
           "variant": "negative",
           "items": [
+            "Implementación en producción empresarial.",
+            "Integración con sistemas corporativos reales.",
+            "Monitoreo en tiempo real de infraestructuras empresariales.",
             "Desarrollo de hardware especializado o appliances físicos.",
             "Servicios de respuesta a incidentes (IR) gestionados.",
             "Integración con sistemas ERP o CRM en la fase inicial."
@@ -82,7 +85,7 @@
           "items": [
             "Presupuesto limitado a recursos académicos e infraestructura cloud de capa gratuita.",
             "El equipo está compuesto por estudiantes con disponibilidad parcial.",
-            "El proyecto debe concluir en un período académico de 20 semanas.",
+            "El proyecto debe concluir en un período académico de 16 semanas.",
             "Los datos deben cumplir con estándares éticos y legales colombianos."
           ]
         },
@@ -102,9 +105,9 @@
       "type": "timeline",
       "label": "Cronograma Resumido",
       "phases": [
-        { "id": "F1", "name": "Inicio y Planificación", "weeks": "Semanas 1–3" },
-        { "id": "F2", "name": "Diseño y Arquitectura", "weeks": "Semanas 4–6" },
-        { "id": "F3", "name": "Desarrollo del Motor ML", "weeks": "Semanas 7–11" },
+        { "id": "F1", "name": "Inicio y Planificación", "weeks": "Semanas 3–6" },
+        { "id": "F2", "name": "Diseño y Arquitectura", "weeks": "Semanas 7–8" },
+        { "id": "F3", "name": "Desarrollo del Motor ML", "weeks": "Semanas 9–11" },
         { "id": "F4", "name": "Desarrollo de la Plataforma Web", "weeks": "Semanas 12–15" },
         { "id": "F5", "name": "Pruebas y Piloto", "weeks": "Semanas 16–18" },
         { "id": "F6", "name": "Despliegue y Cierre", "weeks": "Semanas 19–20" }
@@ -114,9 +117,9 @@
       "type": "signatures",
       "label": "Aprobación",
       "entries": [
-        { "role": "Líder del Proyecto", "name": "Juan Camilo Madero" },
-        { "role": "Co-Investigador", "name": "Oscar Daniel Farfan Juanias" },
-        { "role": "Asesor Académico", "name": "[Nombre del Asesor]" },
+        { "role": "Líder del Proyecto", "name": "Oscar Daniel Farfan - Juan Camilo Madero" },
+        { "role": "Co-Investigador", "name": "Juan Camilo Madero - Oscar Daniel Farfan" },
+        { "role": "Asesor Académico", "name": "Cesar Espinoza" },
         { "role": "Fecha de Aprobación", "name": "2026-03-08" }
       ]
     }
