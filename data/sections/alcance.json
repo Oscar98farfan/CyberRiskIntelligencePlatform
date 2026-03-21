@@ -2,7 +2,7 @@
   "meta": {
     "id": "alcance",
     "title": "Alcance del Proyecto",
-    "sprint": "Sprint 3 · Entregable 5",
+    "sprint": "Sprint 4 · Entregable 5",
     "fecha": "2026-03-08",
     "version": "1.0.2"
   },
@@ -42,6 +42,18 @@
             "Integración con sistemas ERP o CRM en la fase inicial."
           ]
         }
+      ]
+    },
+    {
+      "type": "deliverables",
+      "label": "Entregables Esperados",
+      "items": [
+        { "code": "E2", "text": "Dataset consolidado de vulnerabilidades y amenazas cibernéticas", "date": "Semana 6" },
+        { "code": "E3", "text": "Motor de análisis de exposición a vulnerabilidades", "date": "Semana 10" },
+        { "code": "E3", "text": "Modelos ML entrenados y validados", "date": "Semana 10" },
+        { "code": "E4", "text": "Plataforma web funcional — versión beta", "date": "Semana 14" },
+        { "code": "E5", "text": "Informe de pruebas piloto con PYMEs", "date": "Semana 17" },
+        { "code": "E6", "text": "Plataforma en producción + documentación final", "date": "Semana 20" }
       ]
     }
   ]

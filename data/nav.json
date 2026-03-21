@@ -82,7 +82,7 @@
       "icon": "◉",
       "file": "data/sections/alcance.json",
       "order": 5,
-      "sprint": 3,
+      "sprint": 4,
       "stage": "planeacion",
       "status": "done"
     },

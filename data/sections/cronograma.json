@@ -22,26 +22,32 @@
       "week_offset": 0,
       "activities": [
         {
-          "id": "S3",
-          "name": "Acta, interesados, visión, objetivos, alcance",
+          "id": "S2",
+          "name": "Inicio Proyecto",
           "color": "blue",
-          "weeks": [1, 2, 3]
+          "weeks": [1, 2]
+        },
+        {
+          "id": "S3",
+          "name": "Acta, Interesados, Visión, Objetivos",
+          "color": "blue",
+          "weeks": [3]
         },
         {
           "id": "S4",
-          "name": "Metodología y cronograma del proyecto",
+          "name": "Alcance, Metodología y cronograma del proyecto",
           "color": "blue",
           "weeks": [4]
         },
         {
           "id": "S5",
-          "name": "Presupuesto y matriz de riesgos",
+          "name": "Presupuesto y Matriz de riesgos",
           "color": "blue",
           "weeks": [5]
         },
         {
           "id": "S6",
-          "name": "Asignación de tareas y plan de calidad",
+          "name": "Asignación de tareas y Plan de calidad",
           "color": "blue",
           "weeks": [6]
         },
@@ -149,8 +155,9 @@
           "title": "Planeación — Semanas 1–8",
           "variant": "info",
           "items": [
-            "Sprint 3 (sem. 1–3) — Acta, interesados, visión, objetivos, alcance.",
-            "Sprint 4 (sem. 4) — Metodología y cronograma del proyecto.",
+            "Sprint 1 y 2 (sem. 1–2) — Definición de tema y formación de grupos.",
+            "Sprint 3 (sem. 3) — Acta, interesados, visión y objetivos.",
+            "Sprint 4 (sem. 4) — Alcance, Metodología y cronograma del proyecto.",
             "Sprint 5 (sem. 5) — Presupuesto y matriz de riesgos.",
             "Sprint 6 (sem. 6) — Asignación de tareas y plan de calidad.",
             "Sprint 7 (sem. 7) — Gestión de la comunicación y ROI.",
