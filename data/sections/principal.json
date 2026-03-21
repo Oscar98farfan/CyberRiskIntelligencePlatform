@@ -12,7 +12,7 @@
     {
       "type": "highlight",
       "label": "¿Qué es CyberRisk Intelligence Platform",
-      "content": "CyberRisk sera un proyecto web que permita a cualquier empresa o persona conocer a qué vulnerabilidades de ciberseguridad está expuesta, según el software que usa, de manera gratuita, en español y con contexto colombiano.Para lograrlo, se construirá un pipeline de Big Data que procesa más de 200.000 vulnerabilidades registradas en la base de datos pública del NIST (National Vulnerability Database), se entrenará un modelo de Machine Learning que predice la criticidad y urgencia de cada vulnerabilidad, y se desarrollará una aplicación web con un dashboard interactivo y un escáner de riesgo personalizado."
+      "content": "CyberRisk sera un proyecto web que permita a cualquier empresa o persona conocer a qué vulnerabilidades de ciberseguridad está expuesta, según el software que usa, de manera gratuita, en español y con contexto colombiano.Para lograrlo, se construirá un pipeline de Big Data que procesa diferentes fuentes de datos con vulnerabilidades registradas en la base de datos pública como NIST (National Vulnerability Database), NVD, entre otros. Se entrenará un modelo de Machine Learning que predice la criticidad y urgencia de cada vulnerabilidad, y se desarrollará una aplicación web con un dashboard interactivo y un escáner de riesgo personalizado."
     },
     {
       "type": "deliverables",

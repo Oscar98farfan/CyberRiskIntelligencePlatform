@@ -74,7 +74,7 @@
       "order": 4,
       "sprint": 3,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "alcance",
@@ -84,7 +84,7 @@
       "order": 5,
       "sprint": 3,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "cronograma",
@@ -94,7 +94,7 @@
       "order": 7,
       "sprint": 4,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "metodologia",
@@ -104,7 +104,7 @@
       "order": 6,
       "sprint": 4,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "presupuesto",

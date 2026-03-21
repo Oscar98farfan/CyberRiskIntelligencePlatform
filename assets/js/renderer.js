@@ -245,6 +245,96 @@ function renderDashboard(block) {
   `);
 }
 
+
+/* ─────────────────────────────────────────
+   AGREGAR ESTA FUNCIÓN A renderer.js
+   justo antes del objeto RENDERERS
+─────────────────────────────────────────
+
+   Bloque JSON esperado:
+   {
+     "type": "gantt",
+     "label": "Etapa 1 — Planeación (Semanas 1–8)",
+     "weeks_total": 8,
+     "week_offset": 0,
+     "activities": [
+       {
+         "id": "A1",
+         "name": "Identificar fuentes de información",
+         "color": "blue",
+         "weeks": [1, 2]
+       }
+     ]
+   }
+
+   Colores disponibles en "color":
+     "blue"   → azul claro  (actividades ML / datos)
+     "green"  → verde claro (actividades de desarrollo web)
+     "salmon" → salmón      (documentación)
+─────────────────────────────────────────── */
+
+/** Diagrama de Gantt por semanas. */
+function renderGantt(block) {
+  const weeks  = block.weeks_total || 8;
+  const offset = block.week_offset || 0;
+  const acts   = block.activities  || [];
+
+  /* Mapa de color → clase CSS */
+  const COLOR_CLASS = {
+    blue:   'gantt-blue',
+    green:  'gantt-green',
+    salmon: 'gantt-salmon',
+  };
+
+  /* ── Encabezado de columnas ── */
+  let headerCells = '<th class="gantt-th gantt-name-col"></th>';
+  for (let w = 1; w <= weeks; w++) {
+    headerCells += `<th class="gantt-th">S${w + offset}</th>`;
+  }
+
+  /* ── Filas de actividades ── */
+  let rows = '';
+  acts.forEach(act => {
+    const weekSet = new Set(act.weeks || []);
+    const colorCls = COLOR_CLASS[act.color] || 'gantt-blue';
+
+    let cells = `<td class="gantt-name-col">
+      <span class="gantt-act-id">${esc(act.id)}</span>
+      ${esc(act.name)}
+    </td>`;
+
+    for (let w = 1; w <= weeks; w++) {
+      const absW = w + offset;
+      if (weekSet.has(absW)) {
+        cells += `<td><div class="gantt-cell ${colorCls}"></div></td>`;
+      } else {
+        cells += `<td></td>`;
+      }
+    }
+
+    rows += `<tr>${cells}</tr>`;
+  });
+
+  /* ── HTML completo ── */
+  const html = `
+    <div class="gantt-legend">
+      <span class="gantt-legend-item"><span class="gantt-dot gantt-blue"></span>ML / Datos</span>
+      <span class="gantt-legend-item"><span class="gantt-dot gantt-green"></span>Desarrollo Web</span>
+      <span class="gantt-legend-item"><span class="gantt-dot gantt-salmon"></span>Documentación</span>
+    </div>
+    <div class="gantt-scroll">
+      <table class="gantt-table">
+        <thead><tr>${headerCells}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+
+  return wrapBlock(block.label, html);
+}
+
+
+
 /* ─────────────────────────────────────────
    REGISTRO CENTRAL DE RENDERERS
    Para añadir un nuevo tipo:
@@ -266,6 +356,7 @@ const RENDERERS = {
   'stakeholder-matrix': renderStakeholderMatrix,
   'signatures':         renderSignatures,
   'dashboard':          renderDashboard,
+  'gantt':              renderGantt,
 };
 
 /**
