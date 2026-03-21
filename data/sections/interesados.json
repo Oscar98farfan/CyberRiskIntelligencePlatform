@@ -1,70 +1,173 @@
 {
-  "_comment": "Sección: Análisis de Interesados del proyecto.",
+  "_comment": "Sección: Análisis de Interesados. Clasificación tridimensional: Poder, Interés, Influencia. Las PYMEs colombianas son el usuario final y cliente principal.",
   "meta": {
     "id": "interesados",
     "title": "Análisis de Interesados",
     "sprint": "Sprint 3 · Entregable 2",
     "fecha": "2026-03-08",
-    "version": "1.0",
+    "version": "2.0",
     "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
   },
   "blocks": [
     {
       "type": "paragraph",
       "label": "Descripción",
-      "content": "El análisis de interesados identifica a las personas y organizaciones que pueden influir o verse afectadas por el proyecto. Gestionar correctamente estos actores permite asegurar la alineación del proyecto con los objetivos académicos y las necesidades del sector empresarial."
+      "content": "El análisis de interesados identifica a todos los actores que afectan o son afectados por la plataforma CyberRisk. Cada stakeholder se clasifica en tres dimensiones: Poder (capacidad de tomar decisiones o bloquear el proyecto), Interés (nivel de impacto directo que el proyecto tiene sobre ellos) e Influencia (capacidad de afectar la percepción, adopción o dirección del proyecto). Esta clasificación guía la estrategia de comunicación, priorización de funcionalidades y gestión de expectativas a lo largo del proyecto."
     },
     {
-      "type": "two-col",
-      "label": "Actores Clave del Proyecto",
-      "cols": [
+      "type": "stakeholders",
+      "label": "Registro de Stakeholders",
+      "items": [
         {
-          "icon": "👥",
-          "title": "Interesados Internos",
-          "variant": "positive",
-          "items": [
-            "Equipo del Proyecto — desarrollo técnico y ejecución.",
-            "Institución Académica — supervisión y evaluación.",
-            "Asesor Académico — orientación metodológica."
-          ]
+          "id": "ST-01",
+          "nombre": "PYMEs Colombianas",
+          "rol": "Usuario Final y Cliente Principal",
+          "tipo": "Externo",
+          "poder": "Medio",
+          "interes": "Alto",
+          "influencia": "Alta",
+          "estrategia": "Involucrar desde la fase de pruebas piloto. Recopilar feedback continuo para ajustar la plataforma a sus necesidades reales de ciberseguridad."
         },
         {
-          "icon": "🌐",
-          "title": "Interesados Externos",
-          "variant": "info",
-          "items": [
-            "PYMEs Colombianas — usuarios finales.",
-            "CSIRT Colombia / MinTIC — fuente de datos e incidentes.",
-            "Comunidad de ciberseguridad — retroalimentación y difusión."
-          ]
+          "id": "ST-02",
+          "nombre": "Equipo del Proyecto",
+          "rol": "Desarrollo, Arquitectura y Ciencia de Datos",
+          "tipo": "Interno",
+          "poder": "Alto",
+          "interes": "Alto",
+          "influencia": "Alta",
+          "estrategia": "Gestión directa. Responsables de todas las decisiones técnicas, de diseño y de entrega del producto."
+        },
+        {
+          "id": "ST-03",
+          "nombre": "Asesor Académico",
+          "rol": "Supervisor y Evaluador del Proyecto",
+          "tipo": "Interno",
+          "poder": "Alto",
+          "interes": "Medio",
+          "influencia": "Media",
+          "estrategia": "Mantener informado con informes de avance al cierre de cada sprint. Su aprobación es requisito para la entrega formal del proyecto."
+        },
+        {
+          "id": "ST-04",
+          "nombre": "MinTIC / Gobierno Digital",
+          "rol": "Ente regulador y fuente de lineamientos de ciberseguridad nacional",
+          "tipo": "Externo",
+          "poder": "Alto",
+          "interes": "Medio",
+          "influencia": "Alta",
+          "estrategia": "Alinear la plataforma con la Política Nacional de Seguridad Digital. Posible aliado estratégico para escalar la solución al sector público."
+        },
+        {
+          "id": "ST-05",
+          "nombre": "CSIRT Colombia",
+          "rol": "Proveedor de datos de incidentes e inteligencia de amenazas",
+          "tipo": "Externo",
+          "poder": "Medio",
+          "interes": "Medio",
+          "influencia": "Alta",
+          "estrategia": "Establecer acuerdo de uso de datos públicos. Sus reportes de incidentes son insumo clave para el entrenamiento de modelos ML."
+        },
+        {
+          "id": "ST-06",
+          "nombre": "Institución Académica",
+          "rol": "Patrocinador institucional y evaluador del proyecto de grado",
+          "tipo": "Interno",
+          "poder": "Alto",
+          "interes": "Bajo",
+          "influencia": "Media",
+          "estrategia": "Cumplir con los requisitos formales de entrega y presentación. Aprovechar su respaldo para acceder a PYMEs piloto y aliados estratégicos."
+        },
+        {
+          "id": "ST-07",
+          "nombre": "Comunidad de Ciberseguridad",
+          "rol": "Validador técnico y canal de difusión de la plataforma",
+          "tipo": "Externo",
+          "poder": "Bajo",
+          "interes": "Medio",
+          "influencia": "Alta",
+          "estrategia": "Compartir avances en comunidades especializadas (OWASP, foros de seguridad). Su validación técnica aporta credibilidad al proyecto."
+        },
+        {
+          "id": "ST-08",
+          "nombre": "Proveedores de Datos (NVD, VirusTotal, OTX)",
+          "rol": "Fuentes de datos de vulnerabilidades y amenazas",
+          "tipo": "Externo",
+          "poder": "Medio",
+          "interes": "Bajo",
+          "influencia": "Media",
+          "estrategia": "Gestionar el acceso a sus APIs dentro de los términos de uso. Monitorear cambios en sus estructuras de datos que puedan afectar el pipeline."
         }
       ]
     },
     {
-      "type": "two-col",
-      "label": "Clasificación Poder / Interés",
-      "cols": [
+      "type": "stakeholder-matrix",
+      "label": "Matriz de Poder / Interés",
+      "quadrants": {
+        "high_power_high_interest": {
+          "label": "Gestionar de cerca",
+          "ids": ["ST-01 PYMEs", "ST-02 Equipo", "ST-04 MinTIC"]
+        },
+        "high_power_low_interest": {
+          "label": "Mantener satisfechos",
+          "ids": ["ST-03 Asesor", "ST-06 Institución"]
+        },
+        "low_power_high_interest": {
+          "label": "Mantener informados",
+          "ids": ["ST-05 CSIRT", "ST-07 Comunidad"]
+        },
+        "low_power_low_interest": {
+          "label": "Monitorear",
+          "ids": ["ST-08 Proveedores de Datos"]
+        }
+      }
+    },
+    {
+      "type": "kpi-grid",
+      "label": "Clasificación por Dimensión",
+      "items": [
         {
-          "icon": "★",
-          "title": "Alta Prioridad",
-          "variant": "positive",
-          "items": [
-            "Equipo del Proyecto",
-            "Institución Académica",
-            "Asesor Académico"
-          ]
+          "id": "PODER ALTO",
+          "text": "Equipo del Proyecto · Asesor Académico · MinTIC / Gobierno Digital · Institución Académica"
         },
         {
-          "icon": "○",
-          "title": "Mantener Informados",
-          "variant": "info",
-          "items": [
-            "PYMEs Colombianas",
-            "CSIRT Colombia",
-            "Comunidad de ciberseguridad"
-          ]
+          "id": "PODER MEDIO",
+          "text": "PYMEs Colombianas · CSIRT Colombia · Proveedores de Datos (NVD, VirusTotal, OTX)"
+        },
+        {
+          "id": "PODER BAJO",
+          "text": "Comunidad de Ciberseguridad"
+        },
+        {
+          "id": "INTERÉS ALTO",
+          "text": "PYMEs Colombianas · Equipo del Proyecto"
+        },
+        {
+          "id": "INTERÉS MEDIO",
+          "text": "Asesor Académico · MinTIC · CSIRT Colombia · Comunidad de Ciberseguridad"
+        },
+        {
+          "id": "INTERÉS BAJO",
+          "text": "Institución Académica · Proveedores de Datos"
+        },
+        {
+          "id": "INFLUENCIA ALTA",
+          "text": "PYMEs Colombianas · Equipo del Proyecto · MinTIC · CSIRT Colombia · Comunidad de Ciberseguridad"
+        },
+        {
+          "id": "INFLUENCIA MEDIA",
+          "text": "Asesor Académico · Institución Académica · Proveedores de Datos"
+        },
+        {
+          "id": "INFLUENCIA BAJA",
+          "text": "—"
         }
       ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Estrategia General de Gestión",
+      "content": "Las PYMEs colombianas son el eje central de la estrategia de gestión: aunque su poder formal sobre el proyecto es medio, su interés e influencia son altos dado que son el cliente final de la plataforma. Todas las decisiones de diseño, priorización de funcionalidades y criterios de aceptación deben validarse contra sus necesidades reales. MinTIC y el CSIRT Colombia se gestionan como aliados estratégicos: aportan datos, legitimidad y potencial de escalabilidad. El Equipo del Proyecto y el Asesor Académico concentran el mayor poder de decisión y son los actores que determinan el rumbo técnico y académico del proyecto."
     }
   ]
 }
