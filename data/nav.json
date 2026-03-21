@@ -3,8 +3,8 @@
   "project": {
     "name": "CyberRisk Intelligence Platform",
     "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
-    "version": "1.0.5",
-    "sprint": "Sprint 3",
+    "version": "1.0.6",
+    "sprint": "Sprint 4",
     "status": "active",
     "repo": "https://github.com/usuario/cyberrisk-platform"
   },

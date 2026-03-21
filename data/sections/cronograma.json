@@ -1,18 +1,18 @@
 {
-  "_comment": "Sección: Cronograma del Proyecto. 16 semanas totales: Sprints 1-8 = Planeación, Sprints 9-16 = Ejecución.",
+  "_comment": "Sección: Cronograma del Proyecto. 16 semanas totales: Semanas 1-8 = Planeación documental, Semanas 9-16 = Ejecución técnica.",
   "meta": {
     "id": "cronograma",
     "title": "Cronograma del Proyecto",
     "sprint": "Sprint 4 · Entregable 6",
     "fecha": "2026-03-08",
-    "version": "1.0",
+    "version": "1.1",
     "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
   },
   "blocks": [
     {
       "type": "paragraph",
       "label": "Descripción",
-      "content": "El proyecto se divide en dos etapas de 8 semanas cada una. La etapa de Planeación (Sprints 1–8) cubre toda la documentación, análisis y diseño del sistema. La etapa de Ejecución (Sprints 9–16) comprende el desarrollo, pruebas, despliegue y cierre del proyecto."
+      "content": "El proyecto se estructura en 16 semanas divididas en dos etapas. La Planeación (semanas 1–8) cubre toda la documentación, análisis y diseño del proyecto, organizada por sprints. La Ejecución (semanas 9–16) abarca el desarrollo técnico, integración, pruebas y despliegue de la plataforma. Desde la semana 7 se inicia en paralelo la identificación de fuentes y la arquitectura tecnológica, como puente entre ambas etapas."
     },
     {
       "type": "gantt",
@@ -22,57 +22,51 @@
       "week_offset": 0,
       "activities": [
         {
-          "id": "A1",
-          "name": "Identificar fuentes de información",
+          "id": "S3",
+          "name": "Acta, interesados, visión, objetivos, alcance",
           "color": "blue",
-          "weeks": [1, 2]
+          "weeks": [1, 2, 3]
         },
         {
-          "id": "A2",
-          "name": "Realizar data mining y construir base de datos",
+          "id": "S4",
+          "name": "Metodología y cronograma del proyecto",
           "color": "blue",
-          "weeks": [2, 3, 4]
+          "weeks": [4]
         },
         {
-          "id": "A3",
-          "name": "Desarrollar modelos de machine learning",
+          "id": "S5",
+          "name": "Presupuesto y matriz de riesgos",
           "color": "blue",
-          "weeks": [3, 4, 5]
+          "weeks": [5]
         },
         {
-          "id": "A4",
-          "name": "Selección y validación de modelo",
+          "id": "S6",
+          "name": "Asignación de tareas y plan de calidad",
           "color": "blue",
-          "weeks": [5, 6]
+          "weeks": [6]
         },
         {
-          "id": "A5",
-          "name": "Testeo modelo con datos reales y prueba en campo",
+          "id": "S7",
+          "name": "Gestión de la comunicación y ROI",
           "color": "blue",
-          "weeks": [6, 7]
+          "weeks": [7]
         },
         {
-          "id": "A6",
-          "name": "Construcción modelo web",
-          "color": "green",
-          "weeks": [2, 3, 5, 6]
+          "id": "S8",
+          "name": "Cierre de documentación de planeación",
+          "color": "blue",
+          "weeks": [8]
         },
         {
-          "id": "A7",
-          "name": "Testeo en campo de modelo web con aliados estratégicos",
-          "color": "green",
-          "weeks": [6, 7]
-        },
-        {
-          "id": "A8",
-          "name": "Plataforma en producción",
+          "id": "T1",
+          "name": "Identificar fuentes de información (inicio anticipado)",
           "color": "green",
           "weeks": [7, 8]
         },
         {
-          "id": "A9",
-          "name": "Documentación",
-          "color": "salmon",
+          "id": "T2",
+          "name": "Arquitectura tecnológica (inicio anticipado)",
+          "color": "green",
           "weeks": [8]
         }
       ]
@@ -85,49 +79,61 @@
       "week_offset": 8,
       "activities": [
         {
-          "id": "B1",
+          "id": "T1",
+          "name": "Identificar fuentes de información",
+          "color": "blue",
+          "weeks": [9]
+        },
+        {
+          "id": "T2",
           "name": "Arquitectura tecnológica y setup de infraestructura",
           "color": "blue",
           "weeks": [9, 10]
         },
         {
-          "id": "B2",
-          "name": "Integración de fuentes de inteligencia (CVE, NVD, OSINT)",
+          "id": "T3",
+          "name": "Realizar data mining y construir base de datos",
           "color": "blue",
           "weeks": [10, 11]
         },
         {
-          "id": "B3",
-          "name": "Desarrollo del motor de análisis de vulnerabilidades",
+          "id": "T4",
+          "name": "Desarrollar modelos de machine learning",
           "color": "blue",
-          "weeks": [11, 12, 13]
+          "weeks": [11, 12]
         },
         {
-          "id": "B4",
-          "name": "Implementación de módulos ML en la plataforma",
+          "id": "T5",
+          "name": "Selección y validación de modelo",
           "color": "blue",
-          "weeks": [12, 13, 14]
+          "weeks": [12, 13]
         },
         {
-          "id": "B5",
-          "name": "Construcción de dashboards e interfaz web",
+          "id": "T6",
+          "name": "Construcción modelo web e integración de fuentes",
           "color": "green",
-          "weeks": [11, 12, 13]
+          "weeks": [10, 11, 12]
         },
         {
-          "id": "B6",
-          "name": "Pruebas y validación con PYMEs piloto",
+          "id": "T7",
+          "name": "Testeo modelo con datos reales y prueba en campo",
+          "color": "green",
+          "weeks": [13, 14]
+        },
+        {
+          "id": "T8",
+          "name": "Testeo en campo con aliados estratégicos",
           "color": "green",
           "weeks": [14, 15]
         },
         {
-          "id": "B7",
-          "name": "Despliegue de la plataforma en producción",
+          "id": "T9",
+          "name": "Plataforma en producción",
           "color": "green",
           "weeks": [15, 16]
         },
         {
-          "id": "B8",
+          "id": "T10",
           "name": "Documentación técnica y manual de usuario",
           "color": "salmon",
           "weeks": [15, 16]
@@ -139,30 +145,30 @@
       "label": "Distribución por Etapas",
       "cols": [
         {
-          "icon": "📋",
+          "icon": "◉",
           "title": "Planeación — Semanas 1–8",
           "variant": "info",
           "items": [
-            "Sprint 3 — Acta, interesados, visión, objetivos, alcance.",
-            "Sprint 4 — Metodología y cronograma del proyecto.",
-            "Sprint 5 — Presupuesto y matriz de riesgos.",
-            "Sprint 6 — Asignación de tareas y plan de calidad.",
-            "Sprint 7 — Gestión de la comunicación y ROI.",
-            "Sprint 8 — Cierre de documentación de planeación."
+            "Sprint 3 (sem. 1–3) — Acta, interesados, visión, objetivos, alcance.",
+            "Sprint 4 (sem. 4) — Metodología y cronograma del proyecto.",
+            "Sprint 5 (sem. 5) — Presupuesto y matriz de riesgos.",
+            "Sprint 6 (sem. 6) — Asignación de tareas y plan de calidad.",
+            "Sprint 7 (sem. 7) — Gestión de la comunicación y ROI.",
+            "Sprint 8 (sem. 8) — Cierre documental. Inicio anticipado de fuentes y arquitectura."
           ]
         },
         {
-          "icon": "⚙️",
+          "icon": "◉",
           "title": "Ejecución — Semanas 9–16",
           "variant": "positive",
           "items": [
-            "Sprint 9 — Arquitectura tecnológica e integración de fuentes.",
-            "Sprint 10 — Implementación de módulos y dashboards.",
-            "Sprint 11 — Motor ML + interfaz web funcional.",
-            "Sprint 12 — Pruebas y validación con PYMEs piloto.",
-            "Sprint 13 — Ajustes y optimización post-pruebas.",
-            "Sprint 14 — Despliegue en producción.",
-            "Sprint 15-16 — Documentación técnica y cierre del proyecto."
+            "Sem. 9–10 — Fuentes de datos, arquitectura e infraestructura.",
+            "Sem. 10–11 — Data mining y construcción de base de datos.",
+            "Sem. 11–12 — Desarrollo de modelos ML + construcción del modelo web.",
+            "Sem. 12–13 — Selección, validación e integración.",
+            "Sem. 13–14 — Testeo con datos reales y prueba en campo.",
+            "Sem. 14–15 — Testeo con aliados estratégicos.",
+            "Sem. 15–16 — Plataforma en producción + documentación final."
           ]
         }
       ]
@@ -171,12 +177,12 @@
       "type": "timeline",
       "label": "Hitos Clave del Proyecto",
       "phases": [
-        { "id": "H1", "name": "Inicio del Proyecto — Acta Firmada", "weeks": "Semana 1 · Sprint 3" },
-        { "id": "H2", "name": "Fuentes de datos identificadas y base construida", "weeks": "Semana 3 · Sprint 4" },
-        { "id": "H3", "name": "Modelos ML entrenados y validados", "weeks": "Semana 6 · Sprint 6" },
-        { "id": "H4", "name": "Prototipo web funcional — versión beta", "weeks": "Semana 8 · Sprint 8" },
-        { "id": "H5", "name": "Prueba piloto con PYMEs aliadas", "weeks": "Semana 13 · Sprint 13" },
-        { "id": "H6", "name": "Plataforma en producción + documentación final", "weeks": "Semana 16 · Sprint 16" }
+        { "id": "H1", "name": "Inicio del proyecto — Acta firmada", "weeks": "Semana 1 · Sprint 3" },
+        { "id": "H2", "name": "Documentación de planeación completa", "weeks": "Semana 8 · Sprint 8" },
+        { "id": "H3", "name": "Base de datos y fuentes consolidadas", "weeks": "Semana 11 · Ejecución" },
+        { "id": "H4", "name": "Modelos ML entrenados y validados", "weeks": "Semana 13 · Ejecución" },
+        { "id": "H5", "name": "Prueba piloto con PYMEs aliadas", "weeks": "Semana 15 · Ejecución" },
+        { "id": "H6", "name": "Plataforma en producción + documentación final", "weeks": "Semana 16 · Cierre" }
       ]
     }
   ]

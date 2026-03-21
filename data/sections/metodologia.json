@@ -1,0 +1,128 @@
+{
+  "_comment": "Sección: Metodología del Proyecto. Enfoque híbrido Scrum + CRISP-DM adaptado a un proyecto de Big Data, ML y desarrollo web.",
+  "meta": {
+    "id": "metodologia",
+    "title": "Metodología del Proyecto",
+    "sprint": "Sprint 4 · Entregable 7",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "highlight",
+      "label": "Enfoque Metodológico",
+      "content": "El proyecto adopta una metodología híbrida que integra Scrum como marco ágil de gestión de entregas con CRISP-DM como proceso estándar para el ciclo de vida de datos y modelos de Machine Learning. Esta combinación permite estructurar iteraciones cortas y medibles (sprints) mientras se garantiza rigor en las fases de análisis, modelado y validación de datos propias de un proyecto de inteligencia de amenazas."
+    },
+    {
+      "type": "two-col",
+      "label": "Marcos Metodológicos",
+      "cols": [
+        {
+          "icon": "⟳",
+          "title": "Scrum — Gestión Ágil",
+          "variant": "info",
+          "items": [
+            "Sprints de 1 semana con entregables definidos al inicio.",
+            "Backlog priorizado por valor académico y técnico.",
+            "Revisión de avance al cierre de cada sprint.",
+            "Roles: Líder de Proyecto (Scrum Master) y Co-Investigador (Dev Team).",
+            "Artefactos: Product Backlog, Sprint Backlog y Definition of Done.",
+            "Comunicación continua mediante herramientas colaborativas (GitHub, Notion)."
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "CRISP-DM — Ciclo de Datos y ML",
+          "variant": "positive",
+          "items": [
+            "Comprensión del negocio: mapeo de riesgos cibernéticos en PYMEs.",
+            "Comprensión de datos: exploración de CVE, NVD y fuentes OSINT.",
+            "Preparación de datos: limpieza, normalización y enriquecimiento.",
+            "Modelado: entrenamiento y ajuste de modelos de clasificación de riesgo.",
+            "Evaluación: validación con métricas de precisión, recall y F1-score.",
+            "Despliegue: integración del modelo en la plataforma web como API."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cards-grid",
+      "label": "Fases CRISP-DM Aplicadas al Proyecto",
+      "items": [
+        {
+          "title": "1 · Comprensión del negocio",
+          "content": "Identificar los vectores de ataque más frecuentes en PYMEs colombianas. Definir qué tecnologías serán consultables y qué nivel de riesgo se reportará."
+        },
+        {
+          "title": "2 · Comprensión de datos",
+          "content": "Explorar las bases CVE/NVD, feeds OSINT (VirusTotal, OTX) y registros del CSIRT Colombia. Analizar estructura, calidad y cobertura temporal de cada fuente."
+        },
+        {
+          "title": "3 · Preparación de datos",
+          "content": "Limpieza de registros incompletos, normalización de scores CVSS, etiquetado de severidad y construcción del dataset consolidado para entrenamiento."
+        },
+        {
+          "title": "4 · Modelado",
+          "content": "Entrenamiento de modelos de clasificación (Random Forest, XGBoost) para predecir nivel de exposición según stack tecnológico. Tuning de hiperparámetros."
+        },
+        {
+          "title": "5 · Evaluación",
+          "content": "Validación cruzada con datos reales de PYMEs piloto. Métricas: precisión, recall, F1-score y AUC-ROC. Comparación entre modelos candidatos."
+        },
+        {
+          "title": "6 · Despliegue",
+          "content": "Empaquetado del modelo como microservicio (FastAPI). Integración con la plataforma web. Generación de reportes y dashboards en tiempo real."
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Integración Scrum + CRISP-DM",
+      "cols": [
+        {
+          "icon": "✓",
+          "title": "Cómo se integran",
+          "variant": "positive",
+          "items": [
+            "Cada fase CRISP-DM se descompone en tareas dentro del Product Backlog de Scrum.",
+            "Los sprints de planeación (1–8) cubren las fases de comprensión del negocio y los datos.",
+            "Los sprints de ejecución (9–16) cubren preparación, modelado, evaluación y despliegue.",
+            "Cada sprint termina con un entregable revisable: dataset, modelo, módulo o demo.",
+            "Las retrospectivas de sprint retroalimentan el proceso CRISP-DM si el modelo no cumple métricas."
+          ]
+        },
+        {
+          "icon": "⚙",
+          "title": "Herramientas de soporte",
+          "variant": "info",
+          "items": [
+            "GitHub — control de versiones del código y los notebooks.",
+            "Python (Pandas, Scikit-learn, Plotly) — análisis y modelado.",
+            "FastAPI — exposición del modelo como API REST.",
+            "Jupyter Notebooks — exploración y documentación del proceso de datos.",
+            "GitHub Pages — publicación continua de la plataforma web.",
+            "Notion / GitHub Projects — gestión del backlog y sprints."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "numbered-list",
+      "label": "Criterios de Calidad y Validación",
+      "items": [
+        "Cada entregable debe cumplir la Definition of Done definida al inicio del sprint antes de cerrarse.",
+        "Los modelos ML deben alcanzar un F1-score mínimo de 0.75 en el conjunto de validación para ser aceptados.",
+        "El dataset consolidado debe tener menos del 5% de valores nulos tras la fase de preparación.",
+        "La plataforma web debe ser funcional en los navegadores Chrome, Firefox y Edge en su versión de producción.",
+        "Toda la documentación técnica debe estar actualizada al cierre de cada sprint de ejecución.",
+        "Las pruebas con PYMEs piloto deben incluir al menos 3 empresas de sectores distintos para garantizar representatividad."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Justificación de la Metodología",
+      "content": "La elección de un enfoque híbrido responde a la naturaleza dual del proyecto: por un lado, un ciclo de desarrollo de software con entregas iterativas (Scrum); por otro, un proceso científico de datos con fases no lineales que pueden requerir iteraciones internas (CRISP-DM). Ninguno de los dos marcos por separado cubre la complejidad total del proyecto. Scrum aporta visibilidad, ritmo y control de avance; CRISP-DM aporta rigor metodológico en el tratamiento de datos y la construcción de modelos predictivos. Esta combinación es ampliamente utilizada en proyectos académicos y empresariales de Data Science con componentes de desarrollo de producto."
+    }
+  ]
+}
