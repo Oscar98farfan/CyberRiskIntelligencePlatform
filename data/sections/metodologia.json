@@ -112,7 +112,7 @@
       "label": "Criterios de Calidad y Validación",
       "items": [
         "Cada entregable debe cumplir la Definition of Done definida al inicio del sprint antes de cerrarse.",
-        "Los modelos ML deben alcanzar un F1-score mínimo de 0.75 en el conjunto de validación para ser aceptados.",
+        "Los modelos ML deben alcanzar un F1-score mínimo de 0.75 en el conjunto de validación para ser aceptados. (El F1-score corresponde a un valor estimado este podria cambiar durante la primera semana de la fase de ejecución cuando se analicen mas a profundidad los datos)",
         "El dataset consolidado debe tener menos del 5% de valores nulos tras la fase de preparación.",
         "La plataforma web debe ser funcional en los navegadores Chrome, Firefox y Edge en su versión de producción.",
         "Toda la documentación técnica debe estar actualizada al cierre de cada sprint de ejecución.",
