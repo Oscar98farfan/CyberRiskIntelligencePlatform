@@ -117,11 +117,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "paragraph",
-      "label": "Retorno de Inversión Proyectado",
-      "content": "Bajo un modelo SaaS con suscripción mensual de COP $180.000 por empresa, el proyecto recupera la inversión total al alcanzar 22 PYMEs suscritas de forma sostenida. Con una proyección conservadora de 60 suscriptores al primer año de operación comercial, el proyecto generaría COP $129.600.000 en ingresos anuales, representando un ROI del 174% sobre la inversión total de desarrollo. Colombia cuenta con más de 1,6 millones de PYMEs, de las cuales el 89% carece de herramientas especializadas de ciberseguridad — un mercado direccionable amplio para una solución accesible, en español y contextualizada al entorno regulatorio colombiano."
     }
   ]
 }
