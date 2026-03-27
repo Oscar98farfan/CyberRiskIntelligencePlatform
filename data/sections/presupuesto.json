@@ -22,7 +22,7 @@
         { "id": "RECURSOS HUMANOS", "text": "COP $42.880.000 · 88% del total" },
         { "id": "INFRAESTRUCTURA",  "text": "COP $1.077.000 · 2% del total" },
         { "id": "CONTINGENCIA",     "text": "COP $3.243.000 · 6% del total" },
-        { "id": "EQUIPO",           "text": "3 perfiles técnicos + asesor académico" },
+        { "id": "EQUIPO",           "text": "3 perfiles técnicos + asesor externo (Freelancer)" },
         { "id": "DURACIÓN",         "text": "16 semanas · 320 hrs por perfil" }
       ]
     },
@@ -34,7 +34,7 @@
         ["Juan C. Madero",    "Líder de Proyecto / Arquitecto de Datos",   "20", "16", "320", "COP $48.000", "COP $15.360.000"],
         ["Oscar D. Farfan",   "Co-Investigador / ML Engineer",              "20", "16", "320", "COP $42.000", "COP $13.440.000"],
         ["Desarrollador Web", "Frontend + Backend (FastAPI, HTML/CSS/JS)",  "20", "16", "320", "COP $40.000", "COP $12.800.000"],
-        ["Asesor Académico",  "Supervisión y revisión metodológica",         "1",  "16",  "16", "COP $80.000", "COP $1.280.000 *"]
+        ["Asesor externo (Freelancer)",  "Supervisión y revisión metodológica",         "1",  "16",  "16", "COP $80.000", "COP $1.280.000 *"]
       ],
       "footer": ["", "", "", "", "", "TOTAL RRHH", "COP $42.880.000"]
     },
@@ -80,7 +80,7 @@
       "label": "Resumen Consolidado del Presupuesto",
       "headers": ["Categoría", "COP", "USD aprox.", "% del total"],
       "rows": [
-        ["Recursos Humanos (3 perfiles técnicos + asesor)", "COP $42.880.000", "USD $10.459", "88,2%"],
+        ["Recursos Humanos (3 perfiles técnicos + Freelancer)", "COP $42.880.000", "USD $10.459", "88,2%"],
         ["Infraestructura Cloud y Servicios",               "COP $1.077.000",  "USD $263",    "2,2%"],
         ["Herramientas y Software",                         "COP $0",          "USD $0",      "0,0%"],
         ["Reserva de Contingencia (6%)",                    "COP $2.637.000",  "USD $643",    "5,4%"],
