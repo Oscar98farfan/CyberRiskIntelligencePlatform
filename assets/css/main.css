@@ -1108,6 +1108,91 @@ body::after {
 }
 
 
+/* ══════════════════════════════════════════
+   AGREGAR AL FINAL DE main.css
+   Estilos para el bloque tipo "table"
+══════════════════════════════════════════ */
+
+/* Scroll horizontal en pantallas pequeñas */
+.tbl-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Tabla base */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 480px;
+}
+
+/* Encabezados */
+.tbl-th {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.65rem 1rem;
+  text-align: left;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-2);
+  white-space: nowrap;
+}
+
+.tbl-th:first-child { border-radius: var(--radius) 0 0 0; }
+.tbl-th:last-child  { border-radius: 0 var(--radius) 0 0; }
+
+/* Celdas */
+.tbl-td {
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+/* Filas alternas */
+.tbl-tr-alt .tbl-td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover en filas */
+.tbl-tr:hover .tbl-td {
+  background: rgba(0, 200, 232, 0.04);
+}
+
+/* Fila de totales / footer */
+tfoot .tbl-footer {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-bright);
+  padding: 0.7rem 1rem;
+  background: var(--surface-2);
+  border-top: 1px solid var(--border-2);
+}
+
+tfoot .tbl-footer:first-child {
+  border-radius: 0 0 0 var(--radius);
+}
+
+tfoot .tbl-footer:last-child {
+  border-radius: 0 0 var(--radius) 0;
+  color: var(--cyan);
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .tbl { min-width: 400px; font-size: 0.75rem; }
+  .tbl-th { font-size: 0.55rem; padding: 0.5rem 0.7rem; }
+  .tbl-td { padding: 0.5rem 0.7rem; }
+}
+
 
 /* ══════════════════════════════════════════
    FOOTER
