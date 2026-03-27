@@ -1,0 +1,254 @@
+{
+  "_comment": "Sección: Matriz de Riesgos. Riesgos reales de un proyecto de ML + ciberseguridad + desarrollo web. Clasificados por probabilidad, impacto y categoría.",
+  "meta": {
+    "id": "riesgos",
+    "title": "Matriz de Riesgos",
+    "sprint": "Sprint 5 · Entregable 9",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Enfoque de Gestión de Riesgos",
+      "content": "La gestión de riesgos se realiza con enfoque proactivo: cada riesgo identificado tiene un plan de respuesta definido antes de que ocurra, no después. Los riesgos se clasifican en cinco categorías: Datos, Modelo ML, Técnico, Negocio y Proyecto. La severidad se calcula como Probabilidad × Impacto en escala 1–5. Los riesgos con severidad ≥ 12 requieren plan de mitigación inmediato y revisión semanal."
+    },
+    {
+      "type": "kpi-grid",
+      "label": "Resumen de Riesgos Identificados",
+      "items": [
+        {
+          "id": "TOTAL RIESGOS",
+          "text": "14 riesgos identificados en 5 categorías"
+        },
+        {
+          "id": "CRÍTICOS (≥12)",
+          "text": "3 riesgos · Requieren mitigación inmediata"
+        },
+        {
+          "id": "ALTOS (8–11)",
+          "text": "5 riesgos · Monitoreo semanal"
+        },
+        {
+          "id": "MEDIOS (4–7)",
+          "text": "4 riesgos · Monitoreo por sprint"
+        },
+        {
+          "id": "BAJOS (1–3)",
+          "text": "2 riesgos · Registro y revisión mensual"
+        },
+        {
+          "id": "EXPOSICIÓN NETA",
+          "text": "Media-Alta · Plan de contingencia activo"
+        }
+      ]
+    },
+    {
+      "type": "stakeholders",
+      "label": "Riesgos Críticos — Severidad ≥ 12",
+      "items": [
+        {
+          "id": "R-01",
+          "nombre": "Baja calidad o desactualización de datos CVE/NVD",
+          "rol": "Categoría: Datos",
+          "tipo": "Crítico",
+          "poder": "Alta",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Implementar pipeline de validación automática con alertas si el feed lleva más de 72h sin actualizarse. Fuente de respaldo: MITRE CVE + CISA KEV. Responsable: ML Engineer."
+        },
+        {
+          "id": "R-02",
+          "nombre": "Modelo ML con alta tasa de falsos positivos",
+          "rol": "Categoría: Modelo ML",
+          "tipo": "Crítico",
+          "poder": "Alta",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Definir umbral mínimo de F1-score (0.75) como criterio de aceptación. Si no se alcanza, iterar con feature engineering adicional o cambiar algoritmo base antes de integrar al producto."
+        },
+        {
+          "id": "R-03",
+          "nombre": "Baja adopción por parte de las PYMEs piloto",
+          "rol": "Categoría: Negocio",
+          "tipo": "Crítico",
+          "poder": "Alta",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Involucrar a al menos 3 PYMEs desde la semana 7 (antes del desarrollo) para co-diseñar la interfaz. Reducir fricción de onboarding: la plataforma debe generar un primer reporte en menos de 5 minutos desde el registro."
+        }
+      ]
+    },
+    {
+      "type": "stakeholders",
+      "label": "Riesgos Altos — Severidad 8 a 11",
+      "items": [
+        {
+          "id": "R-04",
+          "nombre": "Cambios en la API de NVD o VirusTotal que rompan el pipeline",
+          "rol": "Categoría: Técnico",
+          "tipo": "Externo",
+          "poder": "Media",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Abstraer el acceso a APIs detrás de adaptadores intercambiables. Tests de integración automáticos que se ejecuten diariamente y alerten al equipo si la estructura de respuesta cambia."
+        },
+        {
+          "id": "R-05",
+          "nombre": "Capacidad de cómputo insuficiente para entrenar modelos ML",
+          "rol": "Categoría: Técnico",
+          "tipo": "Interno",
+          "poder": "Media",
+          "interes": "Alta",
+          "influencia": "Media",
+          "estrategia": "Mitigación: Usar Google Colab Pro como entorno principal de entrenamiento. Si el dataset supera 10 GB, aplicar técnicas de muestreo estratificado. Contingencia: créditos gratuitos de AWS SageMaker para estudiantes."
+        },
+        {
+          "id": "R-06",
+          "nombre": "Incumplimiento de plazos por carga académica del equipo",
+          "rol": "Categoría: Proyecto",
+          "tipo": "Interno",
+          "poder": "Media",
+          "interes": "Alta",
+          "influencia": "Media",
+          "estrategia": "Mitigación: Definir buffer de 1 semana por etapa en el cronograma. Priorizar funcionalidades con MoSCoW (Must/Should/Could/Won't). Si hay retraso, recortar funcionalidades 'Could' antes de extender el plazo."
+        },
+        {
+          "id": "R-07",
+          "nombre": "Vulnerabilidades de seguridad en la propia plataforma",
+          "rol": "Categoría: Técnico",
+          "tipo": "Interno",
+          "poder": "Media",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Seguir OWASP Top 10 como checklist mínimo de seguridad. Realizar escaneo con OWASP ZAP antes del despliegue. Una plataforma de ciberseguridad con vulnerabilidades propias es un riesgo reputacional crítico."
+        },
+        {
+          "id": "R-08",
+          "nombre": "Dataset con sesgo hacia grandes empresas o sectores específicos",
+          "rol": "Categoría: Datos",
+          "tipo": "Externo",
+          "poder": "Bajo",
+          "interes": "Alta",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Verificar la distribución del dataset por sector y tamaño de empresa. Enriquecer con datos específicos de PYMEs colombianas del CSIRT. Documentar las limitaciones del dataset en el informe final."
+        }
+      ]
+    },
+    {
+      "type": "stakeholders",
+      "label": "Riesgos Medios — Severidad 4 a 7",
+      "items": [
+        {
+          "id": "R-09",
+          "nombre": "Dificultad para conseguir PYMEs dispuestas a participar en el piloto",
+          "rol": "Categoría: Negocio",
+          "tipo": "Externo",
+          "poder": "Bajo",
+          "interes": "Media",
+          "influencia": "Media",
+          "estrategia": "Mitigación: Contactar a través de la institución académica y cámaras de comercio desde la semana 5. Ofrecer el reporte de riesgo gratuito como incentivo para participar en el piloto."
+        },
+        {
+          "id": "R-10",
+          "nombre": "Cambios regulatorios en tratamiento de datos de ciberseguridad en Colombia",
+          "rol": "Categoría: Negocio",
+          "tipo": "Externo",
+          "poder": "Bajo",
+          "interes": "Media",
+          "influencia": "Media",
+          "estrategia": "Mitigación: Trabajar solo con datos públicos y anonimizados. Revisar la Ley 1581 de protección de datos y el CONPES 3995 de seguridad digital al inicio del proyecto. Consultar con asesor si hay duda."
+        },
+        {
+          "id": "R-11",
+          "nombre": "Interfaz web percibida como demasiado técnica para usuarios no especializados",
+          "rol": "Categoría: Negocio",
+          "tipo": "Interno",
+          "poder": "Bajo",
+          "interes": "Media",
+          "influencia": "Alta",
+          "estrategia": "Mitigación: Realizar pruebas de usabilidad con al menos 2 usuarios no técnicos de las PYMEs piloto. Usar lenguaje de riesgo en términos de negocio (Alto/Medio/Bajo) en lugar de puntuaciones CVSS crudas."
+        },
+        {
+          "id": "R-12",
+          "nombre": "Pérdida de datos o corrupción del dataset durante el procesamiento",
+          "rol": "Categoría: Datos",
+          "tipo": "Interno",
+          "poder": "Bajo",
+          "interes": "Media",
+          "influencia": "Media",
+          "estrategia": "Mitigación: Implementar versionado del dataset con DVC (Data Version Control) o en su defecto snapshots en S3 con etiquetas de versión. Nunca procesar sobre el dataset original sin hacer copia previa."
+        }
+      ]
+    },
+    {
+      "type": "stakeholders",
+      "label": "Riesgos Bajos — Severidad 1 a 3",
+      "items": [
+        {
+          "id": "R-13",
+          "nombre": "Competencia de herramientas similares en el mercado (Tenable, Qualys)",
+          "rol": "Categoría: Negocio",
+          "tipo": "Externo",
+          "poder": "Bajo",
+          "interes": "Bajo",
+          "influencia": "Baja",
+          "estrategia": "Aceptar: Las herramientas competidoras están orientadas a grandes empresas con precios de USD $3.000+/año. CyberRisk apunta al segmento de PYMEs no atendido. La diferenciación es el precio, el idioma español y el contexto colombiano."
+        },
+        {
+          "id": "R-14",
+          "nombre": "Rotación o baja disponibilidad del asesor académico",
+          "rol": "Categoría: Proyecto",
+          "tipo": "Interno",
+          "poder": "Bajo",
+          "interes": "Bajo",
+          "influencia": "Baja",
+          "estrategia": "Mitigación: Documentar todas las decisiones clave en el repositorio del proyecto. En caso de cambio de asesor, el nuevo evaluador puede seguir el proyecto completo a través de la wiki."
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Estrategia de Respuesta por Tipo",
+      "cols": [
+        {
+          "icon": "⚡",
+          "title": "Tipos de Respuesta Aplicados",
+          "variant": "warning",
+          "items": [
+            "Mitigar — Reducir probabilidad o impacto con acciones preventivas. Aplica a R-01, R-02, R-04, R-05, R-07.",
+            "Transferir — Delegar el riesgo a un tercero (proveedor, seguro). No aplica en esta etapa.",
+            "Aceptar — Reconocer el riesgo y tener un plan de contingencia listo. Aplica a R-13.",
+            "Evitar — Cambiar el alcance o enfoque para eliminar el riesgo. Aplica a R-08 (ajuste de dataset).",
+            "Escalar — Riesgos fuera del control del equipo que requieren decisión del asesor. Aplica a R-10."
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "Indicadores de Alerta Temprana",
+          "variant": "positive",
+          "items": [
+            "El feed de NVD no actualiza en más de 72 horas → activar fuente de respaldo.",
+            "F1-score del modelo cae por debajo de 0.70 en validación → detener integración y revisar features.",
+            "Ninguna PYME confirmada para el piloto en la semana 10 → escalar a institución académica.",
+            "Retraso acumulado de más de 3 días en un sprint → revisar alcance con priorización MoSCoW.",
+            "Reporte de vulnerabilidad encontrado en la propia plataforma → detener despliegue hasta resolver."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "label": "Ciclo de Revisión de Riesgos",
+      "phases": [
+        { "id": "R1", "name": "Revisión inicial del registro de riesgos", "weeks": "Semana 5 · Al publicar esta matriz" },
+        { "id": "R2", "name": "Primera revisión de riesgos críticos (R-01, R-02, R-03)", "weeks": "Semana 8 · Cierre de planeación" },
+        { "id": "R3", "name": "Revisión completa del registro al iniciar ejecución", "weeks": "Semana 9 · Inicio de desarrollo" },
+        { "id": "R4", "name": "Revisión de riesgos técnicos y de datos (R-04 a R-08)", "weeks": "Semana 12 · Mid-point de ejecución" },
+        { "id": "R5", "name": "Revisión final antes del despliegue en producción", "weeks": "Semana 15 · Pre-lanzamiento" },
+        { "id": "R6", "name": "Cierre del registro de riesgos y lecciones aprendidas", "weeks": "Semana 16 · Cierre del proyecto" }
+      ]
+    }
+  ]
+}

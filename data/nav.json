@@ -114,7 +114,7 @@
       "order": 8,
       "sprint": 5,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "riesgos",
@@ -124,7 +124,7 @@
       "order": 9,
       "sprint": 5,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "asignacion",
@@ -134,7 +134,7 @@
       "order": 10,
       "sprint": 6,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "calidad",
@@ -144,7 +144,7 @@
       "order": 11,
       "sprint": 6,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "comunicacion",
