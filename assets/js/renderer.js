@@ -245,6 +245,70 @@ function renderDashboard(block) {
   `);
 }
 
+/* ─────────────────────────────────────────
+   AGREGAR ESTA FUNCIÓN A renderer.js
+   justo antes del objeto RENDERERS
+ 
+   Bloque JSON esperado:
+   {
+     "type": "table",
+     "label": "Título de la tabla",
+     "headers": ["Col A", "Col B", "Col C"],
+     "rows": [
+       ["valor 1", "valor 2", "valor 3"],
+       ["valor 4", "valor 5", "valor 6"]
+     ],
+     "footer": ["", "TOTAL", "COP $X"]   ← opcional
+   }
+─────────────────────────────────────────── */
+ 
+/** Tabla de datos con encabezados, filas y fila de totales opcional. */
+function renderTable(block) {
+  const headers = block.headers || [];
+  const rows    = block.rows    || [];
+  const footer  = block.footer  || null;
+ 
+  /* ── Encabezados ── */
+  const thead = headers
+    .map(h => `<th class="tbl-th">${esc(h)}</th>`)
+    .join('');
+ 
+  /* ── Filas de datos ── */
+  const tbody = rows.map((row, i) => {
+    const cells = row
+      .map(cell => `<td class="tbl-td">${esc(cell)}</td>`)
+      .join('');
+    return `<tr class="tbl-tr ${i % 2 === 1 ? 'tbl-tr-alt' : ''}">${cells}</tr>`;
+  }).join('');
+ 
+  /* ── Fila de totales (footer) ── */
+  const tfoot = footer
+    ? `<tfoot><tr>${footer.map(cell => `<td class="tbl-footer">${esc(cell)}</td>`).join('')}</tr></tfoot>`
+    : '';
+ 
+  const html = `
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <thead><tr>${thead}</tr></thead>
+        <tbody>${tbody}</tbody>
+        ${tfoot}
+      </table>
+    </div>
+  `;
+ 
+  return wrapBlock(block.label, html);
+}
+ 
+/* ─────────────────────────────────────────
+   TAMBIÉN AGREGAR EN EL OBJETO RENDERERS:
+ 
+   const RENDERERS = {
+     // ... los que ya tienes ...
+     'table': renderTable,   ← agregar esta línea
+   };
+─────────────────────────────────────────── */
+
+
 
 /* ─────────────────────────────────────────
    AGREGAR ESTA FUNCIÓN A renderer.js
@@ -357,6 +421,7 @@ const RENDERERS = {
   'signatures':         renderSignatures,
   'dashboard':          renderDashboard,
   'gantt':              renderGantt,
+  'table':              renderTable,
 };
 
 /**
