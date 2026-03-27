@@ -1,0 +1,192 @@
+{
+  "_comment": "Sección: Presupuesto del Proyecto. Valoración real de recursos humanos, infraestructura cloud, APIs, herramientas y contingencia.",
+  "meta": {
+    "id": "presupuesto",
+    "title": "Presupuesto del Proyecto",
+    "sprint": "Sprint 5 · Entregable 8",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Criterios de Valoración",
+      "content": "El presupuesto refleja el costo real del proyecto como si fuera un emprendimiento tecnológico. Los recursos humanos se valoran a tarifa de mercado colombiano para perfiles junior-mid de Data Engineer y ML Engineer (promedio COP 45.000/hora). La infraestructura se cotiza en su capa de pago real, aunque en el prototipo académico se usarán capas gratuitas. Este ejercicio permite dimensionar el proyecto para una eventual ronda de inversión o propuesta comercial."
+    },
+    {
+      "type": "kpi-grid",
+      "label": "Resumen Ejecutivo del Presupuesto",
+      "items": [
+        {
+          "id": "TOTAL PROYECTO",
+          "text": "COP $34.560.000 · USD ~8.400"
+        },
+        {
+          "id": "RECURSOS HUMANOS",
+          "text": "COP $28.800.000 · 83% del total"
+        },
+        {
+          "id": "INFRAESTRUCTURA",
+          "text": "COP $3.360.000 · 10% del total"
+        },
+        {
+          "id": "CONTINGENCIA",
+          "text": "COP $2.400.000 · 7% del total"
+        },
+        {
+          "id": "DURACIÓN",
+          "text": "16 semanas · 4 meses"
+        },
+        {
+          "id": "EQUIPO",
+          "text": "2 personas · ~320 horas totales c/u"
+        }
+      ]
+    },
+    {
+      "type": "deliverables",
+      "label": "Recursos Humanos — Detalle por Rol",
+      "items": [
+        {
+          "code": "RH-01",
+          "text": "Juan Camilo Madero — Líder de Proyecto / Arquitecto de Datos. Tarifa: COP $48.000/hora. Dedicación: 320 horas (20 hrs/semana × 16 semanas).",
+          "date": "COP $15.360.000"
+        },
+        {
+          "code": "RH-02",
+          "text": "Oscar Daniel Farfan — Co-Investigador / ML Engineer. Tarifa: COP $42.000/hora. Dedicación: 320 horas (20 hrs/semana × 16 semanas).",
+          "date": "COP $13.440.000"
+        },
+        {
+          "code": "RH-03",
+          "text": "Asesor Académico — Supervisión y revisión metodológica. Tarifa referencial: COP $80.000/hora. Dedicación estimada: 16 horas (1 hr/semana).",
+          "date": "COP $1.280.000 (referencial)"
+        }
+      ]
+    },
+    {
+      "type": "deliverables",
+      "label": "Infraestructura Cloud y Servicios",
+      "items": [
+        {
+          "code": "INF-01",
+          "text": "AWS EC2 t3.medium — Servidor de aplicación FastAPI + modelo ML. 16 semanas × $0.0416 USD/hr × 720 hrs/mes.",
+          "date": "USD ~$48 / COP ~$196.000"
+        },
+        {
+          "code": "INF-02",
+          "text": "AWS S3 — Almacenamiento del dataset consolidado CVE/NVD (~5 GB estimados). Incluye transferencia de datos.",
+          "date": "USD ~$12 / COP ~$49.000"
+        },
+        {
+          "code": "INF-03",
+          "text": "AWS RDS t3.micro (PostgreSQL) — Base de datos relacional para vulnerabilidades y registros de consultas.",
+          "date": "USD ~$30 / COP ~$122.000"
+        },
+        {
+          "code": "INF-04",
+          "text": "GitHub Pro — Repositorios privados, GitHub Actions (CI/CD), GitHub Pages para la wiki del proyecto.",
+          "date": "USD $4/mes × 4 = USD $16 / COP ~$65.000"
+        },
+        {
+          "code": "INF-05",
+          "text": "VirusTotal API (plan gratuito con límite 4 req/min) — En producción requiere plan Premium para consultas en batch.",
+          "date": "USD $0 prototipo / USD $200/mes producción"
+        },
+        {
+          "code": "INF-06",
+          "text": "NVD API (NIST) — Acceso gratuito con API key. Sin costo en todas las fases del proyecto.",
+          "date": "USD $0"
+        },
+        {
+          "code": "INF-07",
+          "text": "Dominio web (.com o .co) — Para despliegue de la plataforma en producción.",
+          "date": "USD ~$15/año / COP ~$61.000"
+        },
+        {
+          "code": "INF-08",
+          "text": "Google Colab Pro — Entrenamiento acelerado de modelos ML con GPU. 4 meses de uso.",
+          "date": "USD $9.99/mes × 4 = USD ~$40 / COP ~$163.000"
+        }
+      ]
+    },
+    {
+      "type": "deliverables",
+      "label": "Herramientas y Licencias de Software",
+      "items": [
+        {
+          "code": "SW-01",
+          "text": "Stack Python (Pandas, Scikit-learn, FastAPI, Plotly, XGBoost) — Todo open source, sin costo de licencia.",
+          "date": "USD $0"
+        },
+        {
+          "code": "SW-02",
+          "text": "Notion — Gestión del backlog, documentación de sprints y wiki interna del equipo. Plan gratuito suficiente.",
+          "date": "USD $0"
+        },
+        {
+          "code": "SW-03",
+          "text": "Figma (plan gratuito) — Diseño de wireframes y prototipo de la interfaz web antes del desarrollo.",
+          "date": "USD $0"
+        },
+        {
+          "code": "SW-04",
+          "text": "VS Code + extensiones — Entorno de desarrollo principal. Open source.",
+          "date": "USD $0"
+        },
+        {
+          "code": "SW-05",
+          "text": "Postman — Pruebas de la API REST del motor de análisis. Plan gratuito.",
+          "date": "USD $0"
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Costo Prototipo vs Producción",
+      "cols": [
+        {
+          "icon": "◈",
+          "title": "Prototipo Académico (actual)",
+          "variant": "positive",
+          "items": [
+            "Infraestructura en capa gratuita: AWS Free Tier, GitHub Pages, Colab gratuito.",
+            "APIs sin costo: NVD/NIST, VirusTotal plan gratuito.",
+            "Costo real de infraestructura: ~USD $80 en 4 meses.",
+            "Costo total con RRHH valorados: COP ~$29.000.000.",
+            "Viable con recursos académicos y personales del equipo."
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title": "Versión Producción Comercial",
+          "variant": "warning",
+          "items": [
+            "Servidor dedicado o contenedores ECS para alta disponibilidad.",
+            "VirusTotal Premium: USD $200/mes para consultas en batch.",
+            "Base de datos RDS Multi-AZ para redundancia.",
+            "Costo mensual estimado de infraestructura: USD ~$350/mes.",
+            "Modelo de negocio SaaS: recuperación de costos desde la suscripción #3 de PYME."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "deliverables",
+      "label": "Reserva de Contingencia",
+      "items": [
+        {
+          "code": "CONT",
+          "text": "Reserva del 7% sobre el total del presupuesto para cubrir imprevistos: retrasos en integración de APIs, necesidad de mayor capacidad de cómputo para entrenamiento ML, o extensión del proyecto.",
+          "date": "COP $2.400.000"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Retorno de Inversión Esperado",
+      "content": "Bajo un modelo SaaS con suscripción mensual de COP $150.000 por empresa, el proyecto recupera la inversión total al alcanzar 19 PYMEs suscritas. Dado que Colombia tiene más de 1.6 millones de PYMEs con acceso limitado a herramientas de ciberseguridad, el mercado potencial justifica ampliamente la inversión inicial. En un escenario conservador de 50 suscriptores al primer año, el proyecto generaría COP $90.000.000 en ingresos, representando un ROI del 160% sobre el costo total de desarrollo."
+    }
+  ]
+}
