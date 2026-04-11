@@ -32,7 +32,7 @@
         },
         {
           "id": "COBERTURA DE TESTS",
-          "text": "≥ 70% de cobertura en módulos críticos de backend y modelo"
+          "text": "≥ 70% de cobertura en módulos críticos realizando pruebas unitarias para verificar la integridad del desearrollo."
         },
         {
           "id": "USABILIDAD",
@@ -40,11 +40,11 @@
         },
         {
           "id": "DISPONIBILIDAD",
-          "text": "≥ 99% de uptime durante el período de pruebas piloto con PYMEs"
+          "text": "≥ 90% de disponibilidad de la herramienta durante el período de pruebas piloto con PYMEs"
         },
         {
           "id": "PRESUPUESTO",
-          "text": "Entrega del mvp para la semana 13 y entrega de la herramienta para la semana 16."
+          "text": "Cumplir con el presupuesto establecido sin requerir en gastos adicionales."
         }
       ]
     },
@@ -112,7 +112,7 @@
         [
           "Fuentes de datos integradas",
           "APIs de CVE/NVD, OSINT y CSIRT conectadas y respondiendo correctamente",
-          "Test de integración automático con respuesta exitosa en < 5s. Sin errores 5xx.",
+          "Test de integración automático con respuesta exitosa en < 25s.",
           "J. Madero"
         ],
         [
@@ -124,7 +124,7 @@
         [
           "Análisis exploratorio (EDA)",
           "Notebook documentado con hallazgos, distribuciones y decisiones de features",
-          "Mínimo 10 visualizaciones relevantes. Conclusiones escritas en cada sección.",
+          "Mínimo 5 visualizaciones relevantes. Conclusiones escritas en cada sección.",
           "O. Farfan"
         ],
         [
@@ -146,9 +146,9 @@
           "O. Farfan"
         ],
         [
-          "Modelo en producción (API)",
-          "Modelo empaquetado como endpoint FastAPI funcional e integrado a la plataforma",
-          "Respuesta correcta en < 2s para payload estándar. Manejo de errores implementado.",
+          "Modelo en producción",
+          "Modelo empaquetado (en estudio si puede ser API) funcional e integrado a la plataforma",
+          "Respuesta correcta en < 1mins para payload estándar. Manejo de errores implementado.",
           "O. Farfan / Dev Web"
         ],
         [
@@ -174,11 +174,11 @@
         [
           "Interfaz de usuario (UI)",
           "Prototipo validado con al menos 2 usuarios no técnicos antes del desarrollo final",
-          "≥ 80% de tareas completadas sin ayuda en prueba de usabilidad. Tiempo de onboarding < 5 min.",
+          "≥ 80% de tareas completadas sin ayuda en prueba de usabilidad.",
           "Dev Web"
         ],
         [
-          "Backend y API REST",
+          "Backend",
           "Endpoints documentados en Swagger/OpenAPI y testeados con Postman",
           "Cobertura de tests ≥ 70%. Sin errores críticos en tests de integración.",
           "Dev Web"
@@ -191,14 +191,14 @@
         ],
         [
           "Seguridad de la plataforma",
-          "Checklist OWASP Top 10 completado sin hallazgos críticos antes del despliegue",
-          "Escaneo OWASP ZAP sin vulnerabilidades de severidad Alta o Crítica.",
+          "Checklist de seguridad o hallazgos críticos antes del despliegue",
+          "Escaneo constante sin vulnerabilidades de severidad Alta o Crítica.",
           "Dev Web"
         ],
         [
           "Rendimiento",
           "La plataforma responde en tiempos aceptables bajo carga normal de uso",
-          "Tiempo de carga inicial < 3s. Consulta de riesgo completa (UI + API + modelo) < 5s.",
+          "Tiempo de carga inicial y acorde al desarrollo",
           "Dev Web"
         ],
         [
@@ -209,8 +209,8 @@
         ],
         [
           "Despliegue en producción",
-          "Plataforma accesible desde dominio público con HTTPS y CI/CD configurado",
-          "Uptime ≥ 99% durante el piloto. Deploy automático desde rama main del repositorio.",
+          "Plataforma accesible desde dominio público correctamente configurado",
+          "Deploy automático desde rama main del repositorio.",
           "Dev Web / J. Madero"
         ]
       ],
