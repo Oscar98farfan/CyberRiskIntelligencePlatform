@@ -12,7 +12,7 @@
     {
       "type": "paragraph",
       "label": "Metodología RACI",
-      "content": "La asignación de tareas sigue la metodología RACI, estándar en gestión de proyectos reales: R (Responsable) es quien ejecuta la tarea; A (Aprobador) es quien valida y aprueba el entregable — solo puede haber uno por tarea; C (Consultado) aporta criterio técnico o de dominio antes y durante la ejecución; I (Informado) recibe actualizaciones al finalizar. El equipo está conformado por tres perfiles técnicos: Arquitecto de Datos / Líder de Proyecto, ML Engineer y Desarrollador Web, más el Asesor Académico como aprobador institucional."
+      "content": "La asignación de tareas sigue la metodología RACI, estándar en gestión de proyectos reales: R (Responsable) es quien ejecuta la tarea; A (Aprobador) es quien valida y aprueba el entregable — solo puede haber uno por tarea; C (Consultado) aporta criterio técnico o de dominio antes y durante la ejecución; I (Informado) recibe actualizaciones al finalizar. El equipo está conformado por tres perfiles técnicos: Arquitecto de Datos / Líder de Proyecto, ML Engineer y Desarrollador Web, más el Asesor externo como consultor y aseosr academico."
     },
     {
       "type": "kpi-grid",
@@ -71,7 +71,7 @@
       "headers": ["ID", "Tarea", "Sem.", "J. Madero (Líder/Datos)", "O. Farfan (ML)", "Dev Web", "Asesor"],
       "rows": [
         ["T1",  "Identificar y conectar fuentes de datos (CVE, NVD, OSINT)",  "9",     "R · integración APIs y ETL",       "C · criterios de selección",      "C · estructura de consumo",      "I"],
-        ["T2",  "Arquitectura tecnológica e infraestructura cloud",            "9-10",  "R · diseño de arquitectura AWS",   "C · entorno ML",                  "C · estructura backend/frontend","I"],
+        ["T2",  "Arquitectura tecnológica e infraestructura cloud",            "9-10",  "R · diseño de arquitectura",   "C · entorno ML",                  "C · estructura backend/frontend","I"],
         ["T3",  "Data mining y construcción de base de datos",                 "10-11", "R · pipeline ETL y almacenamiento","C · criterios de calidad de datos","I",                              "I"],
         ["T4",  "Análisis exploratorio y preparación del dataset",             "10-11", "C · validación de estructura",     "R · EDA y feature engineering",   "I",                              "I"],
         ["T5",  "Desarrollo y entrenamiento de modelos ML",                    "11-12", "C · revisión de pipeline de datos","R · entrenamiento y tuning",       "I",                              "I"],
@@ -97,7 +97,7 @@
           "variant": "info",
           "items": [
             "Responsable de toda la documentación de planeación del proyecto.",
-            "Diseña la arquitectura cloud (AWS) y el pipeline ETL de datos.",
+            "Diseña la arquitectura y el pipeline ETL de datos.",
             "Integra las APIs externas: CVE, NVD, OSINT, VirusTotal.",
             "Coordina las sesiones piloto con las PYMEs aliadas.",
             "Gestiona el despliegue final en producción y el dominio.",
@@ -111,7 +111,7 @@
           "items": [
             "Lidera todo el ciclo CRISP-DM: EDA, features, entrenamiento y validación.",
             "Responsable de alcanzar el F1-score mínimo de 0.75 en el modelo.",
-            "Empaqueta el modelo como microservicio FastAPI para su integración.",
+            "Empaqueta el modelo como microservicio para una mejor integración.",
             "Documenta el proceso de datos y los notebooks de entrenamiento.",
             "Aprobador de la selección del modelo final antes de integrarse a la plataforma."
           ]
@@ -128,7 +128,7 @@
           "variant": "warning",
           "items": [
             "Construye la interfaz de usuario completa con HTML, CSS y JavaScript.",
-            "Desarrolla el backend de la plataforma y la integración con FastAPI.",
+            "Desarrolla el backend de la plataforma y la integración.",
             "Implementa los dashboards interactivos de visualización de riesgos.",
             "Ejecuta las pruebas de usabilidad con usuarios no técnicos de las PYMEs.",
             "Gestiona el CI/CD con GitHub Actions y el despliegue del frontend."
@@ -136,7 +136,7 @@
         },
         {
           "icon": "◉",
-          "title": "Asesor Académico — Supervisor",
+          "title": "Asesor Externo — Académico",
           "variant": "info",
           "items": [
             "Aprobador formal del Acta de Constitución y documentos de planeación.",

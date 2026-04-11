@@ -27,8 +27,8 @@
           "text": "< 5% de valores nulos tras la fase de preparación de datos"
         },
         {
-          "id": "TIEMPO DE RESPUESTA API",
-          "text": "< 2 segundos para una consulta estándar de vulnerabilidades"
+          "id": "CUMPLIMIENTO DE PLAZOS",
+          "text": "Entrega del mvp para la semana 13 y entrega de la herramienta para la semana 16."
         },
         {
           "id": "COBERTURA DE TESTS",
@@ -41,6 +41,10 @@
         {
           "id": "DISPONIBILIDAD",
           "text": "≥ 99% de uptime durante el período de pruebas piloto con PYMEs"
+        },
+        {
+          "id": "PRESUPUESTO",
+          "text": "Entrega del mvp para la semana 13 y entrega de la herramienta para la semana 16."
         }
       ]
     },
@@ -52,7 +56,7 @@
         [
           "Acta de constitución",
           "Documento completo con todos los campos definidos y firmado formalmente",
-          "Checklist de secciones completadas al 100%. Firma del asesor.",
+          "Checklist de secciones completadas al 100%.",
           "J. Madero"
         ],
         [
@@ -81,8 +85,8 @@
         ],
         [
           "Matriz de riesgos",
-          "14 riesgos identificados con probabilidad, impacto, severidad y plan de respuesta",
-          "Todos los riesgos críticos (≥12) tienen indicador de alerta y responsable asignado.",
+          "10 riesgos identificados con probabilidad, impacto, severidad y plan de respuesta",
+          "Todos los riesgos críticos (≥5) tienen indicador de alerta y responsable asignado.",
           "J. Madero"
         ],
         [
@@ -213,49 +217,6 @@
       "footer": ["8 entregables de plataforma web", "", "Revisión al cierre de semana 15", "Aprueba: Dev Web / Asesor"]
     },
     {
-      "type": "table",
-      "label": "Definition of Done (DoD) — Criterios Generales por Sprint",
-      "headers": ["Criterio", "Descripción", "Verifica"],
-      "rows": [
-        [
-          "Código en repositorio",
-          "Todo el código del sprint está en la rama correspondiente del repositorio con commit descriptivo.",
-          "J. Madero"
-        ],
-        [
-          "Tests ejecutados",
-          "Los tests unitarios y de integración del módulo entregado pasan sin errores.",
-          "Responsable del módulo"
-        ],
-        [
-          "Documentación actualizada",
-          "El README o la wiki del proyecto refleja los cambios introducidos en el sprint.",
-          "Responsable del módulo"
-        ],
-        [
-          "Revisión de código",
-          "Al menos otro miembro del equipo revisó el código antes de fusionarlo a main.",
-          "Equipo"
-        ],
-        [
-          "Entregable presentado",
-          "El responsable presentó el entregable al aprobador correspondiente y recibió validación.",
-          "Aprobador del entregable"
-        ],
-        [
-          "Sin deuda técnica crítica",
-          "No se deja código comentado, variables sin usar ni TODO pendientes en módulos críticos.",
-          "Responsable del módulo"
-        ],
-        [
-          "Informe al asesor",
-          "Se envió resumen del sprint al asesor académico con avances, blockers y plan del siguiente sprint.",
-          "J. Madero"
-        ]
-      ],
-      "footer": ["7 criterios DoD", "Aplican a todos los sprints de ejecución (semanas 9–16)", "Revisión en retrospectiva de sprint"]
-    },
-    {
       "type": "two-col",
       "label": "Proceso de Revisión y Aprobación de Calidad",
       "cols": [
@@ -293,8 +254,8 @@
         "Al menos 3 PYMEs de sectores distintos participan en el piloto y generan su reporte de riesgo sin asistencia técnica del equipo.",
         "El 80% de usuarios no técnicos del piloto califica la plataforma como comprensible y útil en encuesta post-uso.",
         "La plataforma genera un reporte completo de exposición a riesgos en menos de 5 segundos desde la consulta.",
-        "El dataset consolidado cubre al menos 50.000 registros de vulnerabilidades con cobertura de los últimos 5 años.",
-        "La plataforma supera el escaneo OWASP ZAP sin vulnerabilidades de severidad Alta o Crítica antes del despliegue.",
+        "El dataset consolidado cubre al menos 1.000 registros de vulnerabilidades con cobertura de los últimos 5 años.",
+        "La plataforma contara con uan revisónde seguridad autonoma antes del despliegue.",
         "Toda la documentación técnica, notebooks y código están publicados y reproducibles en el repositorio de GitHub al cierre del proyecto."
       ]
     }

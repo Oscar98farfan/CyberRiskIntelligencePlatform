@@ -134,7 +134,7 @@
       "order": 10,
       "sprint": 6,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "calidad",
@@ -144,7 +144,7 @@
       "order": 11,
       "sprint": 6,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "comunicacion",
@@ -154,7 +154,7 @@
       "order": 12,
       "sprint": 7,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "roi",
@@ -164,7 +164,7 @@
       "order": 13,
       "sprint": 7,
       "stage": "planeacion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "desarrollo",
