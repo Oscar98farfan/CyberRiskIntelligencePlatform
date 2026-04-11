@@ -1,0 +1,302 @@
+{
+  "_comment": "Sección: Plan de Calidad. Criterios medibles por entregable, métricas de aceptación y proceso de revisión por sprint.",
+  "meta": {
+    "id": "calidad",
+    "title": "Plan de Calidad",
+    "sprint": "Sprint 6 · Entregable 11",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Enfoque de Calidad",
+      "content": "El plan de calidad define criterios de aceptación concretos y medibles para cada entregable del proyecto. A diferencia de un enfoque genérico, cada criterio está vinculado a una métrica específica, un responsable de verificación y un umbral mínimo de aprobación. Un entregable que no supere sus criterios de calidad no se considera cerrado aunque haya sido completado. El proceso sigue el principio de Definition of Done (DoD) de Scrum: el entregable está listo solo cuando cumple todos los criterios definidos, no cuando el equipo considera que está terminado."
+    },
+    {
+      "type": "kpi-grid",
+      "label": "Indicadores Clave de Calidad del Proyecto",
+      "items": [
+        {
+          "id": "F1-SCORE MODELO",
+          "text": "≥ 0.75 en conjunto de validación — criterio de aceptación del modelo ML"
+        },
+        {
+          "id": "PRECISIÓN DATASET",
+          "text": "< 5% de valores nulos tras la fase de preparación de datos"
+        },
+        {
+          "id": "TIEMPO DE RESPUESTA API",
+          "text": "< 2 segundos para una consulta estándar de vulnerabilidades"
+        },
+        {
+          "id": "COBERTURA DE TESTS",
+          "text": "≥ 70% de cobertura en módulos críticos de backend y modelo"
+        },
+        {
+          "id": "USABILIDAD",
+          "text": "≥ 80% de usuarios no técnicos generan su primer reporte sin ayuda"
+        },
+        {
+          "id": "DISPONIBILIDAD",
+          "text": "≥ 99% de uptime durante el período de pruebas piloto con PYMEs"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Criterios de Calidad — Entregables de Planeación",
+      "headers": ["Entregable", "Criterio de aceptación", "Métrica / Verificación", "Responsable"],
+      "rows": [
+        [
+          "Acta de constitución",
+          "Documento completo con todos los campos definidos y firmado formalmente",
+          "Checklist de secciones completadas al 100%. Firma del asesor.",
+          "J. Madero"
+        ],
+        [
+          "Análisis de interesados",
+          "Todos los stakeholders clasificados en las tres dimensiones: Poder, Interés e Influencia",
+          "Mínimo 6 stakeholders identificados. Estrategia definida para cada uno.",
+          "J. Madero"
+        ],
+        [
+          "Metodología",
+          "Integración Scrum + CRISP-DM documentada con fases mapeadas al cronograma",
+          "Cada fase CRISP-DM tiene al menos una tarea en el backlog del proyecto.",
+          "J. Madero"
+        ],
+        [
+          "Cronograma",
+          "16 semanas planificadas con actividades, responsables y dependencias visibles",
+          "Todas las tareas del RACI tienen semana asignada en el cronograma.",
+          "J. Madero"
+        ],
+        [
+          "Presupuesto",
+          "Valoración completa de RRHH, infraestructura, software y contingencia",
+          "Suma de categorías igual al total consolidado. Prototipo vs producción diferenciados.",
+          "J. Madero"
+        ],
+        [
+          "Matriz de riesgos",
+          "14 riesgos identificados con probabilidad, impacto, severidad y plan de respuesta",
+          "Todos los riesgos críticos (≥12) tienen indicador de alerta y responsable asignado.",
+          "J. Madero"
+        ],
+        [
+          "Matriz RACI",
+          "Todas las tareas del cronograma con exactamente un Aprobador asignado",
+          "Sin tareas sin Aprobador. Sin persona con más del 60% de tareas como R.",
+          "J. Madero"
+        ],
+        [
+          "Plan de calidad (este documento)",
+          "Criterios medibles para cada entregable técnico con umbral de aceptación definido",
+          "Mínimo un criterio cuantitativo (número, porcentaje, tiempo) por entregable técnico.",
+          "J. Madero"
+        ]
+      ],
+      "footer": ["8 entregables de planeación", "", "Revisión al cierre de la semana 8", "Aprueba: Asesor Académico"]
+    },
+    {
+      "type": "table",
+      "label": "Criterios de Calidad — Pipeline de Datos y Modelo ML",
+      "headers": ["Entregable", "Criterio de aceptación", "Métrica / Umbral", "Responsable"],
+      "rows": [
+        [
+          "Fuentes de datos integradas",
+          "APIs de CVE/NVD, OSINT y CSIRT conectadas y respondiendo correctamente",
+          "Test de integración automático con respuesta exitosa en < 5s. Sin errores 5xx.",
+          "J. Madero"
+        ],
+        [
+          "Dataset consolidado",
+          "Dataset limpio, normalizado y versionado listo para entrenamiento",
+          "< 5% valores nulos. Distribución documentada por categoría de vulnerabilidad.",
+          "O. Farfan"
+        ],
+        [
+          "Análisis exploratorio (EDA)",
+          "Notebook documentado con hallazgos, distribuciones y decisiones de features",
+          "Mínimo 10 visualizaciones relevantes. Conclusiones escritas en cada sección.",
+          "O. Farfan"
+        ],
+        [
+          "Feature engineering",
+          "Variables derivadas documentadas con justificación técnica de cada una",
+          "Mínimo 5 features derivadas. Correlación con la variable objetivo > 0.3 en al menos 3.",
+          "O. Farfan"
+        ],
+        [
+          "Modelo ML entrenado",
+          "Modelo que supera el umbral mínimo de F1-score en validación cruzada",
+          "F1-score ≥ 0.75. AUC-ROC ≥ 0.80. Recall ≥ 0.70 para vulnerabilidades críticas.",
+          "O. Farfan"
+        ],
+        [
+          "Comparación de modelos",
+          "Al menos 3 algoritmos evaluados y comparados con justificación de la selección final",
+          "Tabla comparativa con métricas por modelo. El modelo ganador supera a la línea base.",
+          "O. Farfan"
+        ],
+        [
+          "Modelo en producción (API)",
+          "Modelo empaquetado como endpoint FastAPI funcional e integrado a la plataforma",
+          "Respuesta correcta en < 2s para payload estándar. Manejo de errores implementado.",
+          "O. Farfan / Dev Web"
+        ],
+        [
+          "Versionado del modelo",
+          "Modelo versionado y reproducible desde el repositorio del proyecto",
+          "Archivo requirements.txt actualizado. Script de entrenamiento ejecutable desde cero.",
+          "O. Farfan"
+        ]
+      ],
+      "footer": ["8 entregables de datos y ML", "", "Revisión al cierre de semana 13", "Aprueba: O. Farfan / Asesor"]
+    },
+    {
+      "type": "table",
+      "label": "Criterios de Calidad — Plataforma Web",
+      "headers": ["Entregable", "Criterio de aceptación", "Métrica / Umbral", "Responsable"],
+      "rows": [
+        [
+          "Arquitectura del sistema",
+          "Diagrama de arquitectura documentado y validado por el equipo antes de codificar",
+          "Componentes, flujos de datos y puntos de integración identificados explícitamente.",
+          "J. Madero"
+        ],
+        [
+          "Interfaz de usuario (UI)",
+          "Prototipo validado con al menos 2 usuarios no técnicos antes del desarrollo final",
+          "≥ 80% de tareas completadas sin ayuda en prueba de usabilidad. Tiempo de onboarding < 5 min.",
+          "Dev Web"
+        ],
+        [
+          "Backend y API REST",
+          "Endpoints documentados en Swagger/OpenAPI y testeados con Postman",
+          "Cobertura de tests ≥ 70%. Sin errores críticos en tests de integración.",
+          "Dev Web"
+        ],
+        [
+          "Dashboards de riesgo",
+          "Visualizaciones comprensibles para usuarios no técnicos con lenguaje de negocio",
+          "Nivel de riesgo expresado en Alto/Medio/Bajo, no en puntuaciones CVSS crudas.",
+          "Dev Web / O. Farfan"
+        ],
+        [
+          "Seguridad de la plataforma",
+          "Checklist OWASP Top 10 completado sin hallazgos críticos antes del despliegue",
+          "Escaneo OWASP ZAP sin vulnerabilidades de severidad Alta o Crítica.",
+          "Dev Web"
+        ],
+        [
+          "Rendimiento",
+          "La plataforma responde en tiempos aceptables bajo carga normal de uso",
+          "Tiempo de carga inicial < 3s. Consulta de riesgo completa (UI + API + modelo) < 5s.",
+          "Dev Web"
+        ],
+        [
+          "Compatibilidad",
+          "La plataforma funciona correctamente en los navegadores principales",
+          "Sin errores en Chrome, Firefox y Edge (versiones actuales). Responsive en móvil.",
+          "Dev Web"
+        ],
+        [
+          "Despliegue en producción",
+          "Plataforma accesible desde dominio público con HTTPS y CI/CD configurado",
+          "Uptime ≥ 99% durante el piloto. Deploy automático desde rama main del repositorio.",
+          "Dev Web / J. Madero"
+        ]
+      ],
+      "footer": ["8 entregables de plataforma web", "", "Revisión al cierre de semana 15", "Aprueba: Dev Web / Asesor"]
+    },
+    {
+      "type": "table",
+      "label": "Definition of Done (DoD) — Criterios Generales por Sprint",
+      "headers": ["Criterio", "Descripción", "Verifica"],
+      "rows": [
+        [
+          "Código en repositorio",
+          "Todo el código del sprint está en la rama correspondiente del repositorio con commit descriptivo.",
+          "J. Madero"
+        ],
+        [
+          "Tests ejecutados",
+          "Los tests unitarios y de integración del módulo entregado pasan sin errores.",
+          "Responsable del módulo"
+        ],
+        [
+          "Documentación actualizada",
+          "El README o la wiki del proyecto refleja los cambios introducidos en el sprint.",
+          "Responsable del módulo"
+        ],
+        [
+          "Revisión de código",
+          "Al menos otro miembro del equipo revisó el código antes de fusionarlo a main.",
+          "Equipo"
+        ],
+        [
+          "Entregable presentado",
+          "El responsable presentó el entregable al aprobador correspondiente y recibió validación.",
+          "Aprobador del entregable"
+        ],
+        [
+          "Sin deuda técnica crítica",
+          "No se deja código comentado, variables sin usar ni TODO pendientes en módulos críticos.",
+          "Responsable del módulo"
+        ],
+        [
+          "Informe al asesor",
+          "Se envió resumen del sprint al asesor académico con avances, blockers y plan del siguiente sprint.",
+          "J. Madero"
+        ]
+      ],
+      "footer": ["7 criterios DoD", "Aplican a todos los sprints de ejecución (semanas 9–16)", "Revisión en retrospectiva de sprint"]
+    },
+    {
+      "type": "two-col",
+      "label": "Proceso de Revisión y Aprobación de Calidad",
+      "cols": [
+        {
+          "icon": "◈",
+          "title": "Durante la Planeación (Sem. 1–8)",
+          "variant": "info",
+          "items": [
+            "Cada documento se revisa al cierre de su sprint correspondiente.",
+            "El Asesor Académico aprueba los entregables formales: Acta, Metodología, Presupuesto.",
+            "El equipo completo revisa la Matriz RACI y el Plan de Calidad antes de iniciar la ejecución.",
+            "Si un documento no cumple los criterios, se abre como tarea correctiva en el siguiente sprint.",
+            "Cierre formal de la planeación en la semana 8 con aprobación del asesor."
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title": "Durante la Ejecución (Sem. 9–16)",
+          "variant": "positive",
+          "items": [
+            "Cada módulo técnico se verifica contra sus criterios de calidad antes de integrarse.",
+            "El modelo ML no se integra a la plataforma hasta que O. Farfan lo aprueba con métricas.",
+            "La plataforma no entra a producción hasta superar el checklist OWASP y las pruebas de rendimiento.",
+            "Las PYMEs piloto validan la usabilidad antes del despliegue final.",
+            "El asesor aprueba los resultados del piloto y la documentación técnica final en la semana 16."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "numbered-list",
+      "label": "Métricas de Éxito del Proyecto",
+      "items": [
+        "El modelo ML alcanza F1-score ≥ 0.75 y AUC-ROC ≥ 0.80 en el conjunto de validación con datos reales.",
+        "Al menos 3 PYMEs de sectores distintos participan en el piloto y generan su reporte de riesgo sin asistencia técnica del equipo.",
+        "El 80% de usuarios no técnicos del piloto califica la plataforma como comprensible y útil en encuesta post-uso.",
+        "La plataforma genera un reporte completo de exposición a riesgos en menos de 5 segundos desde la consulta.",
+        "El dataset consolidado cubre al menos 50.000 registros de vulnerabilidades con cobertura de los últimos 5 años.",
+        "La plataforma supera el escaneo OWASP ZAP sin vulnerabilidades de severidad Alta o Crítica antes del despliegue.",
+        "Toda la documentación técnica, notebooks y código están publicados y reproducibles en el repositorio de GitHub al cierre del proyecto."
+      ]
+    }
+  ]
+}

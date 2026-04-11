@@ -1,0 +1,165 @@
+{
+  "_comment": "Sección: Matriz de Responsabilidades (RACI). Asignación de tareas por rol basada en el cronograma del proyecto. R=Responsable, A=Aprobador, C=Consultado, I=Informado.",
+  "meta": {
+    "id": "asignacion",
+    "title": "Matriz de Responsabilidades",
+    "sprint": "Sprint 6 · Entregable 10",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Metodología RACI",
+      "content": "La asignación de tareas sigue la metodología RACI, estándar en gestión de proyectos reales: R (Responsable) es quien ejecuta la tarea; A (Aprobador) es quien valida y aprueba el entregable — solo puede haber uno por tarea; C (Consultado) aporta criterio técnico o de dominio antes y durante la ejecución; I (Informado) recibe actualizaciones al finalizar. El equipo está conformado por tres perfiles técnicos: Arquitecto de Datos / Líder de Proyecto, ML Engineer y Desarrollador Web, más el Asesor Académico como aprobador institucional."
+    },
+    {
+      "type": "kpi-grid",
+      "label": "Distribución de Carga por Perfil",
+      "items": [
+        {
+          "id": "JUAN C. MADERO",
+          "text": "Arq. de Datos · Líder · 8R / 10A / 4C / 2I"
+        },
+        {
+          "id": "OSCAR D. FARFAN",
+          "text": "ML Engineer · 7R / 1A / 6C / 3I"
+        },
+        {
+          "id": "DESARROLLADOR WEB",
+          "text": "Frontend + Backend · 6R / 1A / 5C / 4I"
+        },
+        {
+          "id": "ASESOR ACADÉMICO",
+          "text": "Supervisor · 0R / 5A / 2C / 9I"
+        },
+        {
+          "id": "TOTAL TAREAS",
+          "text": "19 tareas · 8 planeación + 11 ejecución"
+        },
+        {
+          "id": "DURACIÓN",
+          "text": "16 semanas · sprints de 1 semana"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Etapa 1 — Planeación (Semanas 1–8)",
+      "headers": ["ID", "Tarea", "Sem.", "J. Madero (Líder/Datos)", "O. Farfan (ML)", "Dev Web", "Asesor"],
+      "rows": [
+        ["S3-1", "Acta de constitución del proyecto",           "1",   "R · redacción y estructura",     "C · revisión de alcance",      "I",                            "A · aprobación formal"],
+        ["S3-2", "Análisis de interesados",                     "1-2", "R · identificación y clasificación", "C · revisión técnica",      "I",                            "A · validación"],
+        ["S3-3", "Visión y propósito del proyecto",             "2",   "R · definición estratégica",     "C · alineación técnica",       "C · viabilidad web",           "A · aprobación"],
+        ["S3-4", "Objetivos y alcance",                         "2-3", "R · definición y límites",       "C · objetivos ML",             "C · objetivos web",            "A · aprobación"],
+        ["S4-1", "Metodología del proyecto",                    "4",   "R · marco Scrum + CRISP-DM",     "C · ciclo CRISP-DM",           "I",                            "A · validación metodológica"],
+        ["S4-2", "Cronograma del proyecto",                     "4",   "R · estructura y sprints",       "C · tiempos ML",               "C · tiempos web",              "I"],
+        ["S5-1", "Presupuesto del proyecto",                    "5",   "R · consolidación y valoración", "C · infraestructura ML",       "C · infraestructura web",      "I"],
+        ["S5-2", "Matriz de riesgos",                           "5",   "R · identificación y planes",    "C · riesgos de datos y modelo","C · riesgos técnicos web",     "I"],
+        ["S6-1", "Matriz de responsabilidades (RACI)",          "6",   "R · estructura y asignación",    "C · revisión de roles",        "C · revisión de roles",        "I"],
+        ["S6-2", "Plan de calidad",                             "6",   "R · criterios y métricas",       "C · métricas ML",              "C · métricas web y API",       "I"],
+        ["S7-1", "Gestión de la comunicación",                  "7",   "R · canales y frecuencia",       "I",                            "I",                            "I"],
+        ["S7-2", "ROI y modelo de negocio",                     "7",   "R · proyección financiera",      "C · valoración del modelo ML", "C · valoración plataforma web","I"],
+        ["S8-1", "Cierre documental de planeación",             "8",   "R · revisión y consolidación",   "R · documentación ML/datos",   "R · documentación web",        "A · aprobación final planeación"]
+      ],
+      "footer": ["", "13 tareas de planeación", "", "8 como R · 10 como A", "4 como R · 7 como C", "3 como R · 6 como C", "5 como A · 8 como I"]
+    },
+    {
+      "type": "table",
+      "label": "Etapa 2 — Ejecución (Semanas 9–16)",
+      "headers": ["ID", "Tarea", "Sem.", "J. Madero (Líder/Datos)", "O. Farfan (ML)", "Dev Web", "Asesor"],
+      "rows": [
+        ["T1",  "Identificar y conectar fuentes de datos (CVE, NVD, OSINT)",  "9",     "R · integración APIs y ETL",       "C · criterios de selección",      "C · estructura de consumo",      "I"],
+        ["T2",  "Arquitectura tecnológica e infraestructura cloud",            "9-10",  "R · diseño de arquitectura AWS",   "C · entorno ML",                  "C · estructura backend/frontend","I"],
+        ["T3",  "Data mining y construcción de base de datos",                 "10-11", "R · pipeline ETL y almacenamiento","C · criterios de calidad de datos","I",                              "I"],
+        ["T4",  "Análisis exploratorio y preparación del dataset",             "10-11", "C · validación de estructura",     "R · EDA y feature engineering",   "I",                              "I"],
+        ["T5",  "Desarrollo y entrenamiento de modelos ML",                    "11-12", "C · revisión de pipeline de datos","R · entrenamiento y tuning",       "I",                              "I"],
+        ["T6",  "Selección y validación del modelo final",                     "12-13", "C · criterios de negocio",         "R · evaluación F1, AUC, recall",  "C · requisitos de integración",  "A · validación académica"],
+        ["T7",  "Construcción del modelo web e interfaz de usuario",           "11-13", "C · revisión de arquitectura",     "C · endpoints del modelo",        "R · Frontend + backend FastAPI", "I"],
+        ["T8",  "Integración del modelo ML con la plataforma web",             "13",    "C · validación del flujo de datos","R · empaquetado y API del modelo", "R · integración y consumo API",  "I"],
+        ["T9",  "Desarrollo de dashboards e informes de riesgo",               "12-13", "C · lógica de negocio y métricas", "C · datos del modelo",            "R · visualización Plotly/JS",    "I"],
+        ["T10", "Testeo con datos reales y prueba en campo",                   "13-14", "R · coordinación del piloto",      "R · evaluación del modelo real",  "R · pruebas de la plataforma",   "A · validación resultados"],
+        ["T11", "Testeo con PYMEs aliadas y recopilación de feedback",         "14-15", "R · gestión de aliados y sesiones","C · análisis del modelo en campo", "C · pruebas de usabilidad",      "I"],
+        ["T12", "Ajustes post-piloto: modelo, plataforma e interfaz",          "15",    "C · ajustes de datos",             "R · ajuste del modelo",           "R · correcciones UI y backend",  "I"],
+        ["T13", "Despliegue en producción",                                    "15-16", "R · configuración AWS y dominio",  "C · modelo en producción",        "R · despliegue web y CI/CD",     "I"],
+        ["T14", "Documentación técnica y manual de usuario",                   "15-16", "C · arquitectura y datos",         "R · documentación ML y modelo",   "R · documentación web y API",    "A · aprobación final"]
+      ],
+      "footer": ["", "14 tareas de ejecución", "", "6 como R · 7 como C", "7 como R · 6 como C", "6 como R · 5 como C", "3 como A · 11 como I"]
+    },
+    {
+      "type": "two-col",
+      "label": "Referencia Rápida por Perfil",
+      "cols": [
+        {
+          "icon": "◉",
+          "title": "Juan C. Madero — Arq. de Datos / Líder",
+          "variant": "info",
+          "items": [
+            "Responsable de toda la documentación de planeación del proyecto.",
+            "Diseña la arquitectura cloud (AWS) y el pipeline ETL de datos.",
+            "Integra las APIs externas: CVE, NVD, OSINT, VirusTotal.",
+            "Coordina las sesiones piloto con las PYMEs aliadas.",
+            "Gestiona el despliegue final en producción y el dominio.",
+            "Aprobador de la documentación técnica de sus módulos."
+          ]
+        },
+        {
+          "icon": "◉",
+          "title": "Oscar D. Farfan — ML Engineer",
+          "variant": "positive",
+          "items": [
+            "Lidera todo el ciclo CRISP-DM: EDA, features, entrenamiento y validación.",
+            "Responsable de alcanzar el F1-score mínimo de 0.75 en el modelo.",
+            "Empaqueta el modelo como microservicio FastAPI para su integración.",
+            "Documenta el proceso de datos y los notebooks de entrenamiento.",
+            "Aprobador de la selección del modelo final antes de integrarse a la plataforma."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "",
+      "cols": [
+        {
+          "icon": "◉",
+          "title": "Desarrollador Web — Frontend + Backend",
+          "variant": "warning",
+          "items": [
+            "Construye la interfaz de usuario completa con HTML, CSS y JavaScript.",
+            "Desarrolla el backend de la plataforma y la integración con FastAPI.",
+            "Implementa los dashboards interactivos de visualización de riesgos.",
+            "Ejecuta las pruebas de usabilidad con usuarios no técnicos de las PYMEs.",
+            "Gestiona el CI/CD con GitHub Actions y el despliegue del frontend."
+          ]
+        },
+        {
+          "icon": "◉",
+          "title": "Asesor Académico — Supervisor",
+          "variant": "info",
+          "items": [
+            "Aprobador formal del Acta de Constitución y documentos de planeación.",
+            "Valida la metodología CRISP-DM + Scrum adoptada por el equipo.",
+            "Aprueba el modelo ML seleccionado como entregable académico.",
+            "Valida los resultados del piloto con PYMEs antes del cierre del proyecto.",
+            "Aprueba la documentación técnica final para la entrega de grado.",
+            "No ejecuta tareas técnicas — rol exclusivo de supervisión y aprobación."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "bullet-list",
+      "label": "Reglas de Operación del Equipo",
+      "items": [
+        "Cada tarea tiene exactamente un Aprobador (A). Si nadie aprueba, la tarea no se cierra aunque esté ejecutada.",
+        "El Responsable (R) de cada tarea presenta el entregable al Aprobador al cierre del sprint correspondiente.",
+        "Los Consultados (C) deben ser informados antes de iniciar la tarea, no después. Su criterio técnico define el enfoque.",
+        "Las decisiones técnicas que afecten a más de un perfil se resuelven en reunión de equipo, no de forma unilateral.",
+        "Si el Responsable de una tarea no puede completarla en el plazo, lo escala al Líder de Proyecto con al menos 3 días de anticipación.",
+        "El Asesor Académico recibe un informe de avance al cierre de cada sprint, sin necesidad de reunión, salvo que él lo solicite."
+      ]
+    }
+  ]
+}
