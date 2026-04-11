@@ -1,29 +1,29 @@
 {
-  "_comment": "Sección: Presupuesto del Proyecto. 3 personas: Líder/Datos, ML Engineer, Desarrollador Web. Valoración real a tarifas de mercado colombiano.",
+  "_comment": "Sección: Presupuesto del Proyecto. 3 personas: Líder/Datos, ML Engineer, Desarrollador Web. Contingencia del 15% sobre el subtotal.",
   "meta": {
     "id": "presupuesto",
     "title": "Presupuesto del Proyecto",
     "sprint": "Sprint 5 · Entregable 8",
     "fecha": "2026-03-08",
-    "version": "2.0",
+    "version": "2.2",
     "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
   },
   "blocks": [
     {
       "type": "paragraph",
       "label": "Criterios de Valoración",
-      "content": "El presupuesto refleja el costo real del proyecto como si fuera un emprendimiento tecnológico. Se incorpora un tercer perfil — Desarrollador Web Frontend/Backend — dado que cubrir simultáneamente arquitectura de datos, modelos ML y desarrollo web completo con solo dos personas en 16 semanas no es viable sin sacrificar calidad. Los recursos humanos se valoran a tarifas de mercado colombiano 2026 para perfiles junior-mid. La infraestructura se cotiza en capa de pago real aunque el prototipo use capas gratuitas, permitiendo dimensionar el proyecto para una propuesta de inversión o escalamiento comercial."
+      "content": "El presupuesto refleja el costo real del proyecto como si fuera un emprendimiento tecnológico. Se incorpora un tercer perfil — Desarrollador Web Frontend/Backend — dado que cubrir simultáneamente arquitectura de datos, modelos ML y desarrollo web completo con solo dos personas en 16 semanas no es viable sin sacrificar calidad. Los recursos humanos se valoran a tarifas de mercado colombiano 2026 para perfiles junior-mid (TRM de referencia: COP $4.100 por USD). La infraestructura se cotiza en capa de pago real aunque el prototipo use capas gratuitas. La reserva de contingencia corresponde al 15% del subtotal operativo, porcentaje estándar en proyectos de emprendimiento tecnológico con componentes de investigación y desarrollo, cubriendo imprevistos de infraestructura, ampliación de APIs, ajustes al modelo ML o extensión del proyecto."
     },
     {
       "type": "kpi-grid",
       "label": "Resumen Ejecutivo",
       "items": [
-        { "id": "TOTAL PROYECTO",   "text": "COP $47.200.000 · USD ~11.500" },
-        { "id": "RECURSOS HUMANOS", "text": "COP $42.880.000 · 88% del total" },
-        { "id": "INFRAESTRUCTURA",  "text": "COP $1.077.000 · 2% del total" },
-        { "id": "CONTINGENCIA",     "text": "COP $3.243.000 · 6% del total" },
-        { "id": "EQUIPO",           "text": "3 perfiles técnicos + asesor externo (Freelancer)" },
-        { "id": "DURACIÓN",         "text": "16 semanas · 320 hrs por perfil" }
+        { "id": "TOTAL PROYECTO",    "text": "COP $50.552.045 · USD ~$12.330" },
+        { "id": "RECURSOS HUMANOS",  "text": "COP $42.880.000 · 84,8% del total" },
+        { "id": "INFRAESTRUCTURA",   "text": "COP $1.078.300 · 2,1% del total" },
+        { "id": "CONTINGENCIA 15%",  "text": "COP $6.593.745 · 13,0% del total" },
+        { "id": "EQUIPO",            "text": "3 perfiles técnicos + asesor freelance" },
+        { "id": "DURACIÓN",          "text": "16 semanas · 320 hrs por perfil técnico" }
       ]
     },
     {
@@ -31,47 +31,47 @@
       "label": "Recursos Humanos — Detalle por Rol",
       "headers": ["Perfil", "Rol principal", "Hrs/sem", "Semanas", "Total hrs", "Tarifa/hr", "Subtotal"],
       "rows": [
-        ["Juan C. Madero",    "Líder de Proyecto / Arquitecto de Datos",   "20", "16", "320", "COP $48.000", "COP $15.360.000"],
-        ["Oscar D. Farfan",   "Co-Investigador / ML Engineer",              "20", "16", "320", "COP $42.000", "COP $13.440.000"],
-        ["Desarrollador Web", "Frontend + Backend (FastAPI, HTML/CSS/JS)",  "20", "16", "320", "COP $40.000", "COP $12.800.000"],
-        ["Asesor externo (Freelancer)",  "Supervisión y revisión metodológica",         "1",  "16",  "16", "COP $80.000", "COP $1.280.000 *"]
+        ["Juan C. Madero",    "Líder de Proyecto / Arquitecto de Datos",  "20", "16", "320", "COP $48.000", "COP $15.360.000"],
+        ["Oscar D. Farfan",   "Co-Investigador / ML Engineer",             "20", "16", "320", "COP $42.000", "COP $13.440.000"],
+        ["Desarrollador Web", "Frontend + Backend (FastAPI, HTML/CSS/JS)", "20", "16", "320", "COP $40.000", "COP $12.800.000"],
+        ["Asesor Freelance",  "Supervisión y revisión metodológica",        "1",  "16",  "16", "COP $80.000", "COP $1.280.000 *"]
       ],
-      "footer": ["", "", "", "", "", "TOTAL RRHH", "COP $42.880.000"]
+      "footer": ["", "", "", "", "656 hrs totales", "TOTAL RRHH", "COP $42.880.000"]
     },
     {
       "type": "paragraph",
       "label": "División de Responsabilidades",
-      "content": "Con tres perfiles técnicos el trabajo se divide limpiamente: Juan Camilo lidera la arquitectura general, el pipeline de datos (ETL, integración CVE/NVD/OSINT) y la gestión del proyecto. Oscar se concentra en el ciclo completo de ML: exploración, entrenamiento, validación y empaquetado del modelo como API. El Desarrollador Web toma la plataforma completa: interfaz de usuario, dashboards interactivos y conexión con el backend. Esta separación elimina los cuellos de botella que ocurren cuando una persona debe cambiar de contexto entre ciencia de datos y desarrollo web dentro del mismo sprint."
+      "content": "Con tres perfiles técnicos el trabajo se divide limpiamente: Juan Camilo lidera la arquitectura general, el pipeline de datos (ETL, integración CVE/NVD/OSINT) y la gestión del proyecto. Oscar se concentra en el ciclo completo de ML: exploración, entrenamiento, validación y empaquetado del modelo como API. El Desarrollador Web toma la plataforma completa: interfaz de usuario, dashboards interactivos y conexión con el backend. El asesor freelance aporta una hora semanal de revisión metodológica sin participar en tareas de ejecución. Esta separación elimina los cuellos de botella que ocurren cuando una persona debe cambiar de contexto entre ciencia de datos y desarrollo web dentro del mismo sprint."
     },
     {
       "type": "table",
       "label": "Infraestructura Cloud y Servicios",
       "headers": ["Código", "Servicio", "Descripción", "Costo/mes", "Meses", "Subtotal USD"],
       "rows": [
-        ["INF-01", "AWS EC2 t3.medium",  "Servidor app FastAPI + modelo ML",         "USD $30",  "4", "USD $120"],
-        ["INF-02", "AWS S3",             "Dataset CVE/NVD ~5 GB + backups",           "USD $3",   "4", "USD $12"],
-        ["INF-03", "AWS RDS t3.micro",   "PostgreSQL vulnerabilidades y consultas",   "USD $15",  "4", "USD $60"],
-        ["INF-04", "GitHub Pro",         "Repos privados, Actions CI/CD, Pages",      "USD $4",   "4", "USD $16"],
-        ["INF-05", "Google Colab Pro",   "Entrenamiento ML con GPU",                  "USD $10",  "4", "USD $40"],
-        ["INF-06", "Dominio web (.co)",  "Despliegue plataforma producción",          "USD $15",  "1", "USD $15"],
-        ["INF-07", "NVD API (NIST)",     "Feed de vulnerabilidades — open source",    "USD $0",   "—", "USD $0"],
-        ["INF-08", "VirusTotal API",     "Plan gratuito prototipo (4 req/min)",        "USD $0",   "—", "USD $0"]
+        ["INF-01", "AWS EC2 t3.medium", "Servidor app FastAPI + modelo ML en producción", "USD $30",  "4", "USD $120"],
+        ["INF-02", "AWS S3",            "Dataset CVE/NVD ~5 GB + backups automáticos",    "USD $3",   "4", "USD $12"],
+        ["INF-03", "AWS RDS t3.micro",  "PostgreSQL — vulnerabilidades y consultas",      "USD $15",  "4", "USD $60"],
+        ["INF-04", "GitHub Pro",        "Repos privados, Actions CI/CD, Pages",           "USD $4",   "4", "USD $16"],
+        ["INF-05", "Google Colab Pro",  "Entrenamiento ML con GPU (T4)",                  "USD $10",  "4", "USD $40"],
+        ["INF-06", "Dominio web (.co)", "Dominio público para despliegue en producción",  "USD $15",  "1", "USD $15"],
+        ["INF-07", "NVD API (NIST)",    "Feed de vulnerabilidades CVE — open source",     "USD $0",   "—", "USD $0"],
+        ["INF-08", "VirusTotal API",    "Plan gratuito prototipo — 4 req/min",            "USD $0",   "—", "USD $0"]
       ],
-      "footer": ["", "", "", "", "TOTAL", "", "USD $263 / COP ~$1.077.000"]
+      "footer": ["", "", "", "", "TOTAL INFRA", "", "USD $263 / COP $1.078.300"]
     },
     {
       "type": "table",
       "label": "Herramientas y Licencias de Software",
       "headers": ["Herramienta", "Uso en el proyecto", "Costo"],
       "rows": [
-        ["Python · Pandas · Scikit-learn · XGBoost · FastAPI · Plotly", "Análisis, modelos ML y backend API",     "USD $0 — open source"],
-        ["HTML5 · CSS3 · JavaScript Vanilla",                           "Frontend de la plataforma web",          "USD $0 — open source"],
-        ["Jupyter Notebooks",                                           "Exploración y documentación de datos",    "USD $0 — open source"],
-        ["GitHub",                                                      "Control de versiones, CI/CD, wiki",       "USD $0 — plan gratuito"],
-        ["Figma",                                                       "Wireframes y prototipo de UI",            "USD $0 — plan gratuito"],
-        ["Notion",                                                      "Backlog de sprints y docs internas",      "USD $0 — plan gratuito"],
-        ["Postman",                                                     "Pruebas de la API REST del motor",        "USD $0 — plan gratuito"],
-        ["OWASP ZAP",                                                   "Escaneo de seguridad pre-despliegue",     "USD $0 — open source"]
+        ["Python · Pandas · Scikit-learn · XGBoost · FastAPI · Plotly", "Análisis, modelos ML y backend API",  "USD $0 — open source"],
+        ["HTML5 · CSS3 · JavaScript Vanilla",                           "Frontend de la plataforma web",       "USD $0 — open source"],
+        ["Jupyter Notebooks",                                           "Exploración y documentación de datos", "USD $0 — open source"],
+        ["GitHub",                                                      "Control de versiones, CI/CD, wiki",    "USD $0 — plan gratuito"],
+        ["Figma",                                                       "Wireframes y prototipo de UI",         "USD $0 — plan gratuito"],
+        ["Notion",                                                      "Backlog de sprints y docs internas",   "USD $0 — plan gratuito"],
+        ["Postman",                                                     "Pruebas de la API REST del motor",     "USD $0 — plan gratuito"],
+        ["OWASP ZAP",                                                   "Escaneo de seguridad pre-despliegue",  "USD $0 — open source"]
       ],
       "footer": ["", "TOTAL SOFTWARE", "USD $0"]
     },
@@ -80,13 +80,43 @@
       "label": "Resumen Consolidado del Presupuesto",
       "headers": ["Categoría", "COP", "USD aprox.", "% del total"],
       "rows": [
-        ["Recursos Humanos (3 perfiles técnicos + Freelancer)", "COP $42.880.000", "USD $10.459", "88,2%"],
-        ["Infraestructura Cloud y Servicios",               "COP $1.077.000",  "USD $263",    "2,2%"],
-        ["Herramientas y Software",                         "COP $0",          "USD $0",      "0,0%"],
-        ["Reserva de Contingencia (6%)",                    "COP $2.637.000",  "USD $643",    "5,4%"],
-        ["Imprevistos y varios",                            "COP $606.000",    "USD $148",    "1,2%"]
+        ["Recursos Humanos (3 perfiles técnicos + asesor freelance)", "COP $42.880.000", "USD $10.459", "84,8%"],
+        ["Infraestructura Cloud y Servicios (4 meses)",               "COP $1.078.300",  "USD $263",    "2,1%"],
+        ["Herramientas y Software",                                   "COP $0",          "USD $0",      "0,0%"],
+        ["Subtotal operativo",                                        "COP $43.958.300", "USD $10.722", "87,0%"],
+        ["Reserva de Contingencia (15% del subtotal)",                "COP $6.593.745",  "USD $1.608",  "13,0%"]
       ],
-      "footer": ["TOTAL PROYECTO", "COP $47.200.000", "USD ~$11.513", "100%"]
+      "footer": ["TOTAL PROYECTO", "COP $50.552.045", "USD ~$12.330", "100%"]
+    },
+    {
+      "type": "two-col",
+      "label": "¿Qué cubre la contingencia del 10%?",
+      "cols": [
+        {
+          "icon": "⚠",
+          "title": "Usos previstos de la contingencia",
+          "variant": "warning",
+          "items": [
+            "Ampliación de plan de VirusTotal API si el volumen supera el límite gratuito.",
+            "Mayor capacidad de cómputo en AWS si el entrenamiento ML requiere instancias más potentes.",
+            "Extensión de 1 a 2 semanas si el piloto con PYMEs requiere ajustes mayores.",
+            "Horas adicionales del asesor freelance si se requiere revisión extraordinaria.",
+            "Herramientas de monitoreo no contempladas inicialmente (ej. Sentry, CloudWatch)."
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "Reglas de uso de la contingencia",
+          "variant": "info",
+          "items": [
+            "Solo puede activarse con aprobación del Líder de Proyecto y documentación del motivo.",
+            "Cada uso debe registrarse en el log de cambios con fecha y justificación.",
+            "Si al cierre del proyecto queda saldo, se reporta como ahorro en el informe final.",
+            "No se puede usar para incorporar funcionalidades fuera del alcance original.",
+            "El uso de más del 50% de la contingencia activa una revisión de alcance del proyecto."
+          ]
+        }
+      ]
     },
     {
       "type": "two-col",
@@ -100,7 +130,7 @@
             "Infraestructura en capa gratuita: AWS Free Tier, GitHub Pages, Colab gratuito.",
             "APIs sin costo: NVD/NIST, VirusTotal plan gratuito (4 req/min).",
             "Costo real de infraestructura durante el proyecto: ~USD $80.",
-            "Costo total con RRHH a valor de mercado: COP $47.200.000.",
+            "Costo total con RRHH a valor de mercado: COP $48.354.130.",
             "Viable ejecutarlo con recursos académicos y personales del equipo."
           ]
         },
@@ -113,10 +143,15 @@
             "VirusTotal Premium: USD $200/mes para consultas en batch sin límite.",
             "RDS Multi-AZ y backups automáticos para redundancia de datos.",
             "Costo mensual estimado de infraestructura en producción: USD ~$400/mes.",
-            "Punto de equilibrio desde la suscripción número 22 de PYME."
+            "Punto de equilibrio desde la suscripción número 22 de PYME a COP $180.000/mes."
           ]
         }
       ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Retorno de Inversión Proyectado",
+      "content": "Bajo un modelo SaaS con suscripción mensual de COP $180.000 por empresa, el proyecto recupera la inversión total al alcanzar 22 PYMEs suscritas de forma sostenida. Con una proyección conservadora de 60 suscriptores al primer año de operación comercial, el proyecto generaría COP $129.600.000 en ingresos anuales, representando un ROI del 156% sobre la inversión total incluyendo contingencia. Colombia cuenta con más de 1,6 millones de PYMEs, de las cuales el 89% carece de herramientas especializadas de ciberseguridad — un mercado direccionable amplio para una solución accesible, en español y contextualizada al entorno regulatorio colombiano."
     }
   ]
 }
