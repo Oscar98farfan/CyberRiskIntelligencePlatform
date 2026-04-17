@@ -160,7 +160,7 @@
       "id": "roi",
       "label": "ROI",
       "icon": "◉",
-      "file": "data/sections/comunicacion.json",
+      "file": "data/sections/roi.json",
       "order": 13,
       "sprint": 7,
       "stage": "planeacion",
