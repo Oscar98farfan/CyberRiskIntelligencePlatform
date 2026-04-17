@@ -3,8 +3,8 @@
   "project": {
     "name": "CyberRisk Intelligence Platform",
     "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
-    "version": "1.0.15",
-    "sprint": "Sprint 7",
+    "version": "1.0.20",
+    "sprint": "Sprint 8",
     "status": "active",
     "repo": "https://github.com/usuario/cyberrisk-platform"
   },
@@ -154,7 +154,7 @@
       "order": 12,
       "sprint": 7,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "roi",
@@ -164,7 +164,7 @@
       "order": 13,
       "sprint": 7,
       "stage": "planeacion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "desarrollo",
@@ -174,7 +174,7 @@
       "order": 14,
       "sprint": 8,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "arquitectura",
@@ -184,7 +184,7 @@
       "order": 15,
       "sprint": 8,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "integracion",
