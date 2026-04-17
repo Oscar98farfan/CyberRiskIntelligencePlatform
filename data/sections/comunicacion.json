@@ -1,0 +1,157 @@
+{
+  "_comment": "Sección: Gestión de la Comunicación. Canales, reuniones, reportes y protocolos del proyecto.",
+  "meta": {
+    "id": "comunicacion",
+    "title": "Gestión de la Comunicación",
+    "sprint": "Sprint 7 · Entregable 12",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Estrategia de Comunicación",
+      "content": "El plan de comunicación define los canales, frecuencias y responsables para garantizar que toda la información fluya de forma oportuna entre el equipo técnico, el asesor y los interesados del proyecto. Se distinguen dos niveles: comunicación interna del equipo de trabajo (ágil, directa y continua) y comunicación formal con stakeholders (estructurada, documentada y orientada a aprobaciones de hitos). La transparencia en la comunicación es un factor crítico para el éxito del proyecto dado que el equipo opera de forma distribuida y con dedicación parcial."
+    },
+    {
+      "type": "two-col",
+      "label": "Canales de Comunicación",
+      "cols": [
+        {
+          "icon": "◈",
+          "title": "Comunicación Interna — Equipo Técnico",
+          "variant": "info",
+          "items": [
+            "WhatsApp — canal principal del equipo para consultas de tareas, dudas de código y coordinación diaria.",
+            "Google Colab — entorno compartido de desarrollo para actualización de código, notebooks y experimentos ML.",
+            "Excel compartido (Google Sheets) — gestión y retroalimentación de tareas con metodología ágil. Backlog, estado de sprints y seguimiento de avances.",
+            "GitHub — control de versiones, revisión de código (pull requests) y registro de cambios técnicos.",
+            "Wiki del proyecto (CyberRisk.wiki) — registro de minutas, documentación técnica y entregables por sprint."
+          ]
+        },
+        {
+          "icon": "◉",
+          "title": "Comunicación con Stakeholders",
+          "variant": "positive",
+          "items": [
+            "Correo electrónico formal — canal principal para comunicaciones con el asesor académico, interesados institucionales y aliados estratégicos.",
+            "Reunión de interesados mensual — espacio formal para aprobaciones de hitos, revisión del estado del proyecto y confirmación de calidad.",
+            "Wiki del proyecto — los reportes de estado y minutas de acuerdos quedan publicados aquí para consulta de todos los interesados.",
+            "Informe de estado semanal — documento de una página enviado al asesor al cierre de cada sprint."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Plan de Reuniones — Ritmo del Proyecto",
+      "headers": ["Reunión", "Frecuencia", "Participantes", "Objetivo"],
+      "rows": [
+        [
+          "Sprint Modelo / Datos",
+          "Semanal",
+          "Equipo de datos + ML Engineer + Desarrollador Web",
+          "Revisar proceso ETL y desarrollo del aplicativo, resolver dudas de código y alinear próximos pasos del sprint."
+        ],
+        [
+          "Sprint Página Web",
+          "Cada 2 semanas",
+          "Equipo técnico + Desarrollador externo (Web)",
+          "Revisar construcción de arquitectura y avance del desarrollo de backend y frontend. Validar integración con el modelo ML."
+        ],
+        [
+          "Comité de Proyecto",
+          "Semanal",
+          "Líder de Proyecto + Asesor Académico",
+          "Revisar avances macro del proyecto, recibir asesoría metodológica y obtener aprobación del gate del sprint."
+        ],
+        [
+          "Aprobación de Interesados",
+          "Mensual",
+          "Equipo completo + Sponsor / Aliados estratégicos",
+          "Aprobación formal de la plataforma web, confirmación de la matriz de calidad y validación antes de implementar con clientes piloto."
+        ]
+      ],
+      "footer": ["4 tipos de reunión", "Semanal a mensual según nivel de decisión", "", ""]
+    },
+    {
+      "type": "table",
+      "label": "Plan de Reportes",
+      "headers": ["Reporte", "Frecuencia", "Contenido", "Responsable", "Destinatario"],
+      "rows": [
+        [
+          "Reporte de Estado Semanal",
+          "Semanal — al cierre del sprint",
+          "Salud del proyecto: seguimiento de cronograma y presupuesto. KPIs predictivos: estatus del ETL y precisión del modelo (umbral ≥ 0.75). Riesgos: ejecución de planes de acción y seguimiento de la matriz.",
+          "J. Madero",
+          "Asesor académico + equipo"
+        ],
+        [
+          "Minutas de Acuerdos",
+          "Después de cada reunión formal",
+          "Decisiones tomadas, compromisos adquiridos, responsables y fechas límite de cada acuerdo.",
+          "Responsable de la reunión",
+          "Wiki del proyecto — visible para todos los interesados"
+        ],
+        [
+          "Reporte de Riesgos de Datos",
+          "Mensual",
+          "Confirmación de extracción correcta desde APIs públicas (CVE, NVD, OSINT). Estado del reentrenamiento mensual del modelo. Alertas de calidad de datos.",
+          "O. Farfan",
+          "J. Madero + Asesor"
+        ],
+        [
+          "Actualización Matriz de Riesgos",
+          "Al cierre de cada hito",
+          "Revisión de riesgos activos, ajuste de probabilidades e impactos según el avance real del proyecto. Cierre de riesgos resueltos.",
+          "J. Madero",
+          "Equipo + Asesor"
+        ]
+      ],
+      "footer": ["4 tipos de reporte", "", "", "", ""]
+    },
+    {
+      "type": "two-col",
+      "label": "Protocolos de Comunicación",
+      "cols": [
+        {
+          "icon": "⚡",
+          "title": "Tiempos de Respuesta Esperados",
+          "variant": "warning",
+          "items": [
+            "WhatsApp interno — respuesta en menos de 4 horas en días hábiles.",
+            "Correo formal a stakeholders — respuesta en máximo 48 horas hábiles.",
+            "Solicitudes de aprobación al asesor — respuesta en máximo 5 días hábiles.",
+            "Blockers críticos del equipo — escalar al Líder de Proyecto en el mismo día.",
+            "Cambios de alcance — comunicar con mínimo 1 semana de anticipación antes del sprint afectado."
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "Reglas de Comunicación del Equipo",
+          "variant": "info",
+          "items": [
+            "Toda decisión técnica que afecte a más de un perfil debe quedar registrada en la wiki, no solo en WhatsApp.",
+            "Los commits de GitHub deben tener mensajes descriptivos: qué se hizo y por qué, no solo 'fix' o 'update'.",
+            "Las minutas de reunión deben publicarse en la wiki en máximo 24 horas tras la reunión.",
+            "El reporte semanal se envía el viernes antes de las 6pm, sin excepción.",
+            "Si un miembro del equipo no puede asistir a una reunión, debe enviar su actualización escrita antes de la misma."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "timeline",
+      "label": "Hitos de Comunicación Formal con Stakeholders",
+      "phases": [
+        { "id": "C1", "name": "Presentación del proyecto al asesor y aprobación del Acta", "weeks": "Semana 1 · Sprint 3" },
+        { "id": "C2", "name": "Revisión de avance documental — cierre de planeación",      "weeks": "Semana 8 · Sprint 8" },
+        { "id": "C3", "name": "Presentación de arquitectura y pipeline de datos al asesor", "weeks": "Semana 10 · Ejecución" },
+        { "id": "C4", "name": "Aprobación del modelo ML seleccionado (gate de calidad)",    "weeks": "Semana 13 · Ejecución" },
+        { "id": "C5", "name": "Reunión de interesados — validación piloto con PYMEs",       "weeks": "Semana 15 · Ejecución" },
+        { "id": "C6", "name": "Presentación final del proyecto y aprobación de cierre",     "weeks": "Semana 16 · Cierre" }
+      ]
+    }
+  ]
+}
