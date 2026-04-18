@@ -398,6 +398,200 @@ function renderGantt(block) {
 }
 
 
+/* ─────────────────────────────────────────
+   REEMPLAZA la función renderCashflowChart
+   en renderer.js (versión corregida)
+
+   El problema anterior: los <script> dentro
+   de innerHTML no se ejecutan en el navegador.
+   Solución: guardar los datos en window y
+   ejecutar con document.createElement('script')
+   que sí dispara la ejecución.
+─────────────────────────────────────────── */
+
+function renderCashflowChart(block) {
+  const months  = block.months          || [];
+  const series  = block.series          || [];
+  const beMonth = block.breakeven_month || null;
+  const note    = block.note            || '';
+  const uid     = 'cf_' + Math.random().toString(36).slice(2, 8);
+
+  /* Mapa de colores */
+  const COLOR = {
+    green: { stroke: '#2ecc71', fill: 'rgba(46,204,113,0.10)'  },
+    red:   { stroke: '#e84040', fill: 'rgba(232,64,64,0.08)'   },
+    cyan:  { stroke: '#00c8e8', fill: 'rgba(0,200,232,0.10)'   },
+    amber: { stroke: '#f0a500', fill: 'rgba(240,165,0,0.08)'   },
+  };
+
+  /* Guardar datos en window para que el script los encuentre */
+  const dataKey = '__cfdata_' + uid;
+  window[dataKey] = {
+    months,
+    beMonth,
+    series: series.map(s => ({
+      ...s,
+      stroke: (COLOR[s.color] || COLOR.cyan).stroke,
+      fill:   (COLOR[s.color] || COLOR.cyan).fill,
+    })),
+  };
+
+  /* HTML del contenedor — sin script inline */
+  const html = `
+    <div class="cf-chart-wrap">
+      <canvas id="${uid}" class="cf-canvas" height="300"></canvas>
+      <div class="cf-legend" id="${uid}_leg"></div>
+      ${note ? `<div class="cf-note">${esc(note)}</div>` : ''}
+    </div>
+  `;
+
+  /* Script que se ejecuta DESPUÉS de insertar el HTML */
+  const initChart = () => {
+    const data   = window[dataKey];
+    const canvas = document.getElementById(uid);
+    if (!canvas || !data) return;
+
+    /* Esperar Chart.js si aún no cargó */
+    if (typeof Chart === 'undefined') {
+      setTimeout(initChart, 100);
+      return;
+    }
+
+    const ctx = canvas.getContext('2d');
+
+    const gridColor = 'rgba(255,255,255,0.06)';
+    const textColor = '#4a6680';
+
+    /* Datasets */
+    const datasets = data.series.map(s => ({
+      label:            s.label,
+      data:             s.values,
+      borderColor:      s.stroke,
+      backgroundColor:  s.fill,
+      borderWidth:      s.id === 'flujo' ? 2.5 : 1.5,
+      pointRadius:      s.id === 'flujo' ? 4   : 3,
+      pointHoverRadius: 6,
+      fill:             s.id === 'flujo',
+      tension:          0.35,
+    }));
+
+    /* Plugin línea vertical del punto de equilibrio */
+    const bePlugin = {
+      id: 'beeline',
+      afterDraw(chart) {
+        if (!data.beMonth) return;
+        const idx  = data.beMonth - 1;
+        const meta = chart.getDatasetMeta(2);
+        if (!meta || !meta.data[idx]) return;
+        const x   = meta.data[idx].x;
+        const c   = chart.ctx;
+        const top = chart.chartArea.top;
+        const bot = chart.chartArea.bottom;
+        c.save();
+        c.setLineDash([5, 4]);
+        c.strokeStyle = '#00c8e8';
+        c.lineWidth   = 1;
+        c.beginPath();
+        c.moveTo(x, top);
+        c.lineTo(x, bot);
+        c.stroke();
+        c.setLineDash([]);
+        c.fillStyle  = '#00c8e8';
+        c.font       = '10px "JetBrains Mono", monospace';
+        c.textAlign  = 'center';
+        c.fillText('Punto equilibrio', x, top - 7);
+        c.restore();
+      }
+    };
+
+    /* Línea de cero */
+    const zeroPlugin = {
+      id: 'zeroline',
+      afterDraw(chart) {
+        const yScale = chart.scales.y;
+        const y = yScale.getPixelForValue(0);
+        const c = chart.ctx;
+        c.save();
+        c.strokeStyle = 'rgba(255,255,255,0.12)';
+        c.lineWidth   = 1;
+        c.beginPath();
+        c.moveTo(chart.chartArea.left,  y);
+        c.lineTo(chart.chartArea.right, y);
+        c.stroke();
+        c.restore();
+      }
+    };
+
+    new Chart(ctx, {
+      type: 'line',
+      data: { labels: data.months, datasets },
+      options: {
+        responsive:          true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(8,13,20,0.92)',
+            borderColor:     'rgba(0,200,232,0.3)',
+            borderWidth:     1,
+            titleColor:      '#9bb8d0',
+            bodyColor:       '#9bb8d0',
+            padding:         10,
+            callbacks: {
+              label(ctx) {
+                const v = ctx.parsed.y;
+                const m = (v / 1000000).toFixed(2);
+                const sign = v >= 0 ? '+' : '';
+                return ` ${ctx.dataset.label}: ${sign}${m}M COP`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid:  { color: gridColor },
+            ticks: { color: textColor, font: { family: '"JetBrains Mono", monospace', size: 10 } }
+          },
+          y: {
+            grid:  { color: gridColor },
+            ticks: {
+              color: textColor,
+              font:  { family: '"JetBrains Mono", monospace', size: 10 },
+              callback: v => (v / 1000000).toFixed(0) + 'M'
+            }
+          }
+        }
+      },
+      plugins: [bePlugin, zeroPlugin]
+    });
+
+    /* Leyenda manual */
+    const leg = document.getElementById(uid + '_leg');
+    if (leg) {
+      leg.innerHTML = data.series.map(s =>
+        `<span class="cf-leg-item">
+           <span class="cf-leg-dot" style="background:${s.stroke}"></span>
+           ${s.label}
+         </span>`
+      ).join('');
+    }
+
+    /* Limpiar window */
+    delete window[dataKey];
+  };
+
+  /* Ejecutar después de que el HTML se inserte en el DOM */
+  requestAnimationFrame(() => requestAnimationFrame(initChart));
+
+  return wrapBlock(block.label, html);
+}
+
+/* ─────────────────────────────────────────
+   En RENDERERS ya debes tener:
+   'cashflow-chart': renderCashflowChart,
+─────────────────────────────────────────── */
+
 
 /* ─────────────────────────────────────────
    REGISTRO CENTRAL DE RENDERERS
@@ -422,6 +616,7 @@ const RENDERERS = {
   'dashboard':          renderDashboard,
   'gantt':              renderGantt,
   'table':              renderTable,
+  'cashflow-chart': renderCashflowChart
 };
 
 /**

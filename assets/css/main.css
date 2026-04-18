@@ -982,6 +982,61 @@ body::after {
 
 
 /* ══════════════════════════════════════════
+   REEMPLAZA los estilos .cf-* en main.css
+   (corrige el canvas que no tenía altura fija)
+══════════════════════════════════════════ */
+
+.cf-chart-wrap {
+  width: 100%;
+}
+
+/* CRÍTICO: el canvas necesita altura explícita
+   cuando maintainAspectRatio es false          */
+.cf-canvas {
+  width: 100% !important;
+  height: 300px !important;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cf-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.cf-leg-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+.cf-leg-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cf-note {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  padding: 0.6rem 0.9rem;
+  border-left: 2px solid var(--cyan);
+  border-radius: 0;
+  background: var(--cyan-dim);
+  margin-top: 0.25rem;
+}
+
+
+/* ══════════════════════════════════════════
    AGREGAR ESTO AL FINAL DE main.css
    Estilos para el bloque tipo "gantt"
 ══════════════════════════════════════════ */

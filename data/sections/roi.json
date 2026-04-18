@@ -6,7 +6,10 @@
     "sprint": "Sprint 7 · Entregable 13",
     "fecha": "2026-03-08",
     "version": "1.0",
-    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+    "autores": [
+      "Juan Camilo Madero",
+      "Oscar Daniel Farfan Juanias"
+    ]
   },
   "blocks": [
     {
@@ -18,71 +21,271 @@
       "type": "kpi-grid",
       "label": "Indicadores Clave del ROI",
       "items": [
-        { "id": "INVERSIÓN TOTAL",       "text": "COP $50.552.045 (presupuesto completo con contingencia)" },
-        { "id": "INGRESOS PROYECTADOS",  "text": "COP $108.750.000 acumulados en 9 meses" },
-        { "id": "FLUJO NETO TOTAL",      "text": "COP $56.165.300 al mes 9" },
-        { "id": "ROI",                   "text": "111% sobre la inversión total" },
-        { "id": "PUNTO DE EQUILIBRIO",   "text": "Mes 8 — flujo acumulado positivo" },
-        { "id": "CLIENTES MES 9",        "text": "270 PYMEs suscritas en escenario proyectado" }
+        {
+          "id": "INVERSIÓN TOTAL",
+          "text": "COP $50.552.045 (presupuesto completo con contingencia)"
+        },
+        {
+          "id": "INGRESOS PROYECTADOS",
+          "text": "COP $108.750.000 acumulados en 9 meses"
+        },
+        {
+          "id": "FLUJO NETO TOTAL",
+          "text": "COP $56.165.300 al mes 9"
+        },
+        {
+          "id": "ROI",
+          "text": "111% sobre la inversión total"
+        },
+        {
+          "id": "PUNTO DE EQUILIBRIO",
+          "text": "Mes 8 — flujo acumulado positivo"
+        },
+        {
+          "id": "CLIENTES MES 9",
+          "text": "270 PYMEs suscritas en escenario proyectado"
+        }
       ]
     },
     {
       "type": "table",
       "label": "Flujo de Caja Proyectado — Egresos",
-      "headers": ["Categoría", "Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6", "Mes 7", "Mes 8", "Mes 9", "Total"],
+      "headers": [
+        "Categoría",
+        "Mes 1",
+        "Mes 2",
+        "Mes 3",
+        "Mes 4",
+        "Mes 5",
+        "Mes 6",
+        "Mes 7",
+        "Mes 8",
+        "Mes 9",
+        "Total"
+      ],
       "rows": [
         [
           "Recursos Humanos",
-          "$21.440.000", "$21.440.000",
-          "$0", "$0", "$0", "$0", "$0", "$0", "$0",
+          "$21.440.000",
+          "$21.440.000",
+          "$0",
+          "$0",
+          "$0",
+          "$0",
+          "$0",
+          "$0",
+          "$0",
           "$42.880.000"
         ],
         [
           "Infraestructura Cloud (AWS)",
-          "$1.078.300", "$1.078.300",
-          "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
+          "$1.078.300",
           "$9.704.700"
         ]
       ],
-      "footer": ["Total Gastos Mes", "$22.518.300", "$22.518.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$1.078.300", "$52.584.700"]
+      "footer": [
+        "Total Gastos Mes",
+        "$22.518.300",
+        "$22.518.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$1.078.300",
+        "$52.584.700"
+      ]
     },
     {
       "type": "table",
       "label": "Flujo de Caja Proyectado — Ingresos",
-      "headers": ["Fuente de Ingreso", "Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6", "Mes 7", "Mes 8", "Mes 9", "Total"],
+      "headers": [
+        "Fuente de Ingreso",
+        "Mes 1",
+        "Mes 2",
+        "Mes 3",
+        "Mes 4",
+        "Mes 5",
+        "Mes 6",
+        "Mes 7",
+        "Mes 8",
+        "Mes 9",
+        "Total"
+      ],
       "rows": [
         [
           "Plan premium paquete predictivo",
-          "$0", "$0",
-          "$500.000", "$1.000.000", "$2.500.000", "$3.750.000", "$6.000.000", "$9.000.000", "$13.500.000",
+          "$0",
+          "$0",
+          "$500.000",
+          "$1.000.000",
+          "$2.500.000",
+          "$3.750.000",
+          "$6.000.000",
+          "$9.000.000",
+          "$13.500.000",
           "$36.250.000"
         ],
         [
           "Alianzas estratégicas — venta de soluciones",
-          "$0", "$0",
-          "$1.000.000", "$2.000.000", "$5.000.000", "$7.500.000", "$12.000.000", "$18.000.000", "$27.000.000",
+          "$0",
+          "$0",
+          "$1.000.000",
+          "$2.000.000",
+          "$5.000.000",
+          "$7.500.000",
+          "$12.000.000",
+          "$18.000.000",
+          "$27.000.000",
           "$72.500.000"
         ]
       ],
-      "footer": ["Total Ingresos Mes", "$0", "$0", "$1.500.000", "$3.000.000", "$7.500.000", "$11.250.000", "$18.000.000", "$27.000.000", "$40.500.000", "$108.750.000"]
+      "footer": [
+        "Total Ingresos Mes",
+        "$0",
+        "$0",
+        "$1.500.000",
+        "$3.000.000",
+        "$7.500.000",
+        "$11.250.000",
+        "$18.000.000",
+        "$27.000.000",
+        "$40.500.000",
+        "$108.750.000"
+      ]
     },
     {
       "type": "table",
       "label": "Flujo Neto y Clientes por Mes",
-      "headers": ["Indicador", "Mes 1", "Mes 2", "Mes 3", "Mes 4", "Mes 5", "Mes 6", "Mes 7", "Mes 8", "Mes 9", "Total"],
+      "headers": [
+        "Indicador",
+        "Mes 1",
+        "Mes 2",
+        "Mes 3",
+        "Mes 4",
+        "Mes 5",
+        "Mes 6",
+        "Mes 7",
+        "Mes 8",
+        "Mes 9",
+        "Total"
+      ],
       "rows": [
         [
           "Flujo Neto (Ingreso − Gasto)",
-          "−$22.518.300", "−$22.518.300",
-          "$421.700", "$1.921.700", "$6.421.700", "$10.171.700", "$16.921.700", "$25.921.700", "$39.421.700",
+          "−$22.518.300",
+          "−$22.518.300",
+          "$421.700",
+          "$1.921.700",
+          "$6.421.700",
+          "$10.171.700",
+          "$16.921.700",
+          "$25.921.700",
+          "$39.421.700",
           "$56.165.300"
         ],
         [
           "Clientes acumulados (PYMEs)",
-          "0", "0", "10", "20", "50", "75", "120", "180", "270", "—"
+          "0",
+          "0",
+          "10",
+          "20",
+          "50",
+          "75",
+          "120",
+          "180",
+          "270",
+          "—"
         ]
       ],
-      "footer": ["ROI sobre inversión total", "", "", "", "", "", "", "", "", "111%"]
+      "footer": [
+        "ROI sobre inversión total",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "111%"
+      ]
+    },
+    {
+      "type": "cashflow-chart",
+      "label": "Punto de Equilibrio — Flujo de Caja Acumulado",
+      "breakeven_month": 8,
+      "note": "El flujo acumulado cruza el eje cero entre el mes 7 (−$9.178.100) y el mes 8 (+$16.743.600), confirmando el punto de equilibrio en el mes 8.",
+      "months": [
+        "Mes 1",
+        "Mes 2",
+        "Mes 3",
+        "Mes 4",
+        "Mes 5",
+        "Mes 6",
+        "Mes 7",
+        "Mes 8",
+        "Mes 9"
+      ],
+      "series": [
+        {
+          "id": "ingresos",
+          "label": "Ingresos acumulados",
+          "color": "green",
+          "values": [
+            0,
+            0,
+            1500000,
+            4500000,
+            12000000,
+            23250000,
+            41250000,
+            68250000,
+            108750000
+          ]
+        },
+        {
+          "id": "gastos",
+          "label": "Gastos acumulados",
+          "color": "red",
+          "values": [
+            22518300,
+            45036600,
+            46114900,
+            47193200,
+            48271500,
+            49349800,
+            50428100,
+            51506400,
+            52584700
+          ]
+        },
+        {
+          "id": "flujo",
+          "label": "Flujo neto acumulado",
+          "color": "cyan",
+          "values": [
+            -22518300,
+            -45036600,
+            -44614900,
+            -42693200,
+            -36271500,
+            -26099800,
+            -9178100,
+            16743600,
+            56165300
+          ]
+        }
+      ]
     },
     {
       "type": "two-col",
