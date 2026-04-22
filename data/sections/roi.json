@@ -1,348 +1,149 @@
 {
-  "_comment": "Sección: ROI del Proyecto. Análisis financiero basado en el presupuesto real de COP $50.552.045. Proyección a 9 meses post-lanzamiento.",
+  "_comment": "ROI con proyección a 24 meses. Tres escenarios con curva logística de adopción. Punto de equilibrio: Conservador mes 18, Moderado mes 11, Optimista mes 9.",
   "meta": {
     "id": "roi",
     "title": "Retorno de Inversión (ROI)",
     "sprint": "Sprint 7 · Entregable 13",
     "fecha": "2026-03-08",
-    "version": "1.0",
-    "autores": [
-      "Juan Camilo Madero",
-      "Oscar Daniel Farfan Juanias"
-    ]
+    "version": "3.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
   },
   "blocks": [
     {
       "type": "paragraph",
-      "label": "Modelo Financiero",
-      "content": "El análisis de retorno de inversión proyecta el comportamiento financiero del proyecto durante 9 meses: los primeros 2 meses corresponden a la fase de desarrollo e inversión sin ingresos, y a partir del mes 3 se inicia la comercialización con dos fuentes de ingreso: el plan premium del paquete predictivo (suscripción directa de PYMEs) y alianzas estratégicas para venta de soluciones a terceros. La inversión total de referencia es COP $50.552.045 incluyendo la contingencia del 15%."
+      "label": "Modelo Financiero — Proyección a 24 Meses",
+      "content": "El análisis proyecta tres escenarios de adopción durante 24 meses usando una curva logística: crecimiento lento al inicio, aceleración en la fase media y estabilización al acercarse al techo de mercado. Los meses 1 y 2 corresponden al desarrollo sin ingresos. A partir del mes 3 inicia la comercialización. El escenario conservador es la base de planificación; el moderado es la meta; el optimista es el techo alcanzable. La inversión total de referencia es COP $50.552.045. Los costos operativos post-lanzamiento son COP $1.078.300/mes (infraestructura cloud). El precio de suscripción es COP $180.000/PYME/mes."
     },
     {
       "type": "kpi-grid",
-      "label": "Indicadores Clave del ROI",
+      "label": "Puntos de Equilibrio y ROI por Escenario",
       "items": [
-        {
-          "id": "INVERSIÓN TOTAL",
-          "text": "COP $50.552.045 (presupuesto completo con contingencia)"
-        },
-        {
-          "id": "INGRESOS PROYECTADOS",
-          "text": "COP $108.750.000 acumulados en 9 meses"
-        },
-        {
-          "id": "FLUJO NETO TOTAL",
-          "text": "COP $56.165.300 al mes 9"
-        },
-        {
-          "id": "ROI",
-          "text": "111% sobre la inversión total"
-        },
-        {
-          "id": "PUNTO DE EQUILIBRIO",
-          "text": "Mes 8 — flujo acumulado positivo"
-        },
-        {
-          "id": "CLIENTES MES 9",
-          "text": "270 PYMEs suscritas en escenario proyectado"
-        }
+        { "id": "INVERSIÓN TOTAL",            "text": "COP $50.552.045 · base de los tres escenarios" },
+        { "id": "CONSERVADOR · Mes 18",       "text": "Punto de equilibrio mes 18 · 66 clientes · ROI mes 24: +222%" },
+        { "id": "MODERADO · Mes 11",          "text": "Punto de equilibrio mes 11 · 133 clientes · ROI mes 24: +1.664%" },
+        { "id": "OPTIMISTA · Mes 9",          "text": "Punto de equilibrio mes 9 · 223 clientes · ROI mes 24: +3.589%" },
+        { "id": "SOSTENIBILIDAD MÍNIMA",      "text": "6 clientes activos cubren costos operativos mensuales" },
+        { "id": "PRECIO SUSCRIPCIÓN",         "text": "COP $180.000 / PYME / mes · modelo SaaS" }
       ]
     },
     {
-      "type": "table",
-      "label": "Flujo de Caja Proyectado — Egresos",
-      "headers": [
-        "Categoría",
-        "Mes 1",
-        "Mes 2",
-        "Mes 3",
-        "Mes 4",
-        "Mes 5",
-        "Mes 6",
-        "Mes 7",
-        "Mes 8",
-        "Mes 9",
-        "Total"
-      ],
-      "rows": [
-        [
-          "Recursos Humanos",
-          "$21.440.000",
-          "$21.440.000",
-          "$0",
-          "$0",
-          "$0",
-          "$0",
-          "$0",
-          "$0",
-          "$0",
-          "$42.880.000"
-        ],
-        [
-          "Infraestructura Cloud (AWS)",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$1.078.300",
-          "$9.704.700"
-        ]
-      ],
-      "footer": [
-        "Total Gastos Mes",
-        "$22.518.300",
-        "$22.518.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$1.078.300",
-        "$52.584.700"
-      ]
-    },
-    {
-      "type": "table",
-      "label": "Flujo de Caja Proyectado — Ingresos",
-      "headers": [
-        "Fuente de Ingreso",
-        "Mes 1",
-        "Mes 2",
-        "Mes 3",
-        "Mes 4",
-        "Mes 5",
-        "Mes 6",
-        "Mes 7",
-        "Mes 8",
-        "Mes 9",
-        "Total"
-      ],
-      "rows": [
-        [
-          "Plan premium paquete predictivo",
-          "$0",
-          "$0",
-          "$500.000",
-          "$1.000.000",
-          "$2.500.000",
-          "$3.750.000",
-          "$6.000.000",
-          "$9.000.000",
-          "$13.500.000",
-          "$36.250.000"
-        ],
-        [
-          "Alianzas estratégicas — venta de soluciones",
-          "$0",
-          "$0",
-          "$1.000.000",
-          "$2.000.000",
-          "$5.000.000",
-          "$7.500.000",
-          "$12.000.000",
-          "$18.000.000",
-          "$27.000.000",
-          "$72.500.000"
-        ]
-      ],
-      "footer": [
-        "Total Ingresos Mes",
-        "$0",
-        "$0",
-        "$1.500.000",
-        "$3.000.000",
-        "$7.500.000",
-        "$11.250.000",
-        "$18.000.000",
-        "$27.000.000",
-        "$40.500.000",
-        "$108.750.000"
-      ]
-    },
-    {
-      "type": "table",
-      "label": "Flujo Neto y Clientes por Mes",
-      "headers": [
-        "Indicador",
-        "Mes 1",
-        "Mes 2",
-        "Mes 3",
-        "Mes 4",
-        "Mes 5",
-        "Mes 6",
-        "Mes 7",
-        "Mes 8",
-        "Mes 9",
-        "Total"
-      ],
-      "rows": [
-        [
-          "Flujo Neto (Ingreso − Gasto)",
-          "−$22.518.300",
-          "−$22.518.300",
-          "$421.700",
-          "$1.921.700",
-          "$6.421.700",
-          "$10.171.700",
-          "$16.921.700",
-          "$25.921.700",
-          "$39.421.700",
-          "$56.165.300"
-        ],
-        [
-          "Clientes acumulados (PYMEs)",
-          "0",
-          "0",
-          "10",
-          "20",
-          "50",
-          "75",
-          "120",
-          "180",
-          "270",
-          "—"
-        ]
-      ],
-      "footer": [
-        "ROI sobre inversión total",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "111%"
-      ]
+      "type": "highlight",
+      "label": "Escenario Base de Planificación",
+      "content": "El proyecto planifica sobre el escenario CONSERVADOR. Con una adopción inicial de 3 clientes en el mes 3 y crecimiento gradual hasta 137 en el mes 24, el punto de equilibrio se alcanza en el mes 18. Aunque la inversión inicial no se recupera rápidamente, el proyecto es autosostenible operativamente desde que supera los 6 suscriptores activos — meta alcanzable incluso en el escenario más pesimista antes del mes 6."
     },
     {
       "type": "cashflow-chart",
-      "label": "Punto de Equilibrio — Flujo de Caja Acumulado",
-      "breakeven_month": 8,
-      "note": "El flujo acumulado cruza el eje cero entre el mes 7 (−$9.178.100) y el mes 8 (+$16.743.600), confirmando el punto de equilibrio en el mes 8.",
+      "label": "Flujo de Caja Acumulado — Proyección 24 Meses (3 Escenarios)",
+      "breakeven_month": 18,
+      "note": "Conservador: equilibrio mes 18 (66 clientes) · Moderado: equilibrio mes 11 (133 clientes) · Optimista: equilibrio mes 9 (223 clientes). La línea punteada marca el punto de equilibrio del escenario base (conservador).",
       "months": [
-        "Mes 1",
-        "Mes 2",
-        "Mes 3",
-        "Mes 4",
-        "Mes 5",
-        "Mes 6",
-        "Mes 7",
-        "Mes 8",
-        "Mes 9"
+        "M1","M2","M3","M4","M5","M6","M7","M8","M9","M10","M11","M12",
+        "M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23","M24"
       ],
       "series": [
         {
-          "id": "ingresos",
-          "label": "Ingresos acumulados",
-          "color": "green",
+          "id": "conservador",
+          "label": "Conservador (máx. 137 clientes)",
+          "color": "red",
           "values": [
-            0,
-            0,
-            1500000,
-            4500000,
-            12000000,
-            23250000,
-            41250000,
-            68250000,
-            108750000
+            -22518300, -45036600, -45574900, -45933200, -46111500, -46109800,
+            -45928100, -45386400, -44484700, -43043000, -41061300, -38359600,
+            -34757900, -30076200, -24134500, -16752800,  -7751100,   3050600,
+             15832300,  30774000,  47875700,  67137400,  88559100, 112140800
           ]
         },
         {
-          "id": "gastos",
-          "label": "Gastos acumulados",
-          "color": "red",
+          "id": "moderado",
+          "label": "Moderado (máx. 494 clientes)",
+          "color": "amber",
           "values": [
-            22518300,
-            45036600,
-            46114900,
-            47193200,
-            48271500,
-            49349800,
-            50428100,
-            51506400,
-            52584700
+            -22518300, -45036600, -44674900, -43773200, -42151500, -39449800,
+            -35308100, -29186400, -20364700,  -7943000,   9158700,  32020400,
+             61902100,  99883800, 146685500, 202487200, 266748900, 338210600,
+            415252300, 496434000, 580495700, 666357400, 753479100, 841320800
           ]
         },
         {
           "id": "flujo",
-          "label": "Flujo neto acumulado",
+          "label": "Optimista (máx. 800 clientes)",
           "color": "cyan",
           "values": [
-            -22518300,
-            -45036600,
-            -44614900,
-            -42693200,
-            -36271500,
-            -26099800,
-            -9178100,
-            16743600,
-            56165300
+            -22518300, -45036600, -44314900, -42513200, -39091500, -32969800,
+            -22708100,  -6146400,  19775300,  58837000, 115358700, 192580400,
+            291222100, 408223800, 538005500, 674987200, 815388900, 957230600,
+           1099792300,1242534000,1385455700,1528377400,1671299100,1814220800
           ]
         }
       ]
     },
     {
-      "type": "two-col",
-      "label": "Fuentes de Ingreso — Modelo de Negocio",
-      "cols": [
-        {
-          "icon": "◈",
-          "title": "Plan Premium — Paquete Predictivo",
-          "variant": "info",
-          "items": [
-            "Suscripción mensual directa de PYMEs colombianas a la plataforma CyberRisk.",
-            "Acceso al motor de análisis de vulnerabilidades, dashboards de riesgo y reportes automatizados.",
-            "Precio estimado: COP $50.000/PYME/mes en fase inicial de adopción.",
-            "Proyección: de 10 clientes en el mes 3 a 270 clientes en el mes 9.",
-            "Escalable sin costo marginal significativo por cliente adicional — modelo SaaS."
-          ]
-        },
-        {
-          "icon": "⚡",
-          "title": "Alianzas Estratégicas — Venta de Soluciones",
-          "variant": "positive",
-          "items": [
-            "Comercialización de la plataforma a través de aliados: cámaras de comercio, aseguradoras y consultoras de TI.",
-            "Los aliados revenden o integran CyberRisk como parte de sus servicios a PYMEs.",
-            "Modelo de comisión o licencia B2B sobre el volumen de clientes referidos.",
-            "Fuente de ingreso de mayor crecimiento: de COP $1.000.000 en mes 3 a $27.000.000 en mes 9.",
-            "Canal prioritario para escalar sin necesidad de fuerza de ventas propia."
-          ]
-        }
-      ]
+      "type": "table",
+      "label": "Resumen por Semestre — Flujo Acumulado y Clientes",
+      "headers": ["Semestre", "Período", "Cons. clientes", "Cons. acumulado", "Mod. clientes", "Mod. acumulado", "Opt. clientes", "Opt. acumulado"],
+      "rows": [
+        ["S1", "Mes 1–6",   "6",   "−$46.109.800", "21",   "−$39.449.800", "40",  "−$32.969.800"],
+        ["S2", "Mes 7–12",  "21",  "−$38.359.600", "133",  "+$32.020.400", "435", "+$192.580.400"],
+        ["S3", "Mes 13–18", "66",  "+$3.050.600",  "316",  "+$202.487.200","767", "+$674.987.200"],
+        ["S4", "Mes 19–24", "137", "+$112.140.800", "494", "+$841.320.800","800", "+$1.814.220.800"]
+      ],
+      "footer": ["", "Punto equilibrio →", "Mes 18", "ROI +222%", "Mes 11", "ROI +1.664%", "Mes 9", "ROI +3.589%"]
     },
     {
       "type": "two-col",
-      "label": "Supuestos y Sensibilidad del Modelo",
+      "label": "Condiciones de Cada Escenario",
       "cols": [
-        {
-          "icon": "◉",
-          "title": "Supuestos del Modelo",
-          "variant": "warning",
-          "items": [
-            "La plataforma está lista para comercialización al inicio del mes 3 (semana 8 del proyecto).",
-            "Los costos de infraestructura se mantienen constantes en COP $1.078.300/mes durante los 9 meses.",
-            "El crecimiento de clientes sigue una curva de adopción S: lenta al inicio, acelerada a partir del mes 5.",
-            "Los ingresos por alianzas crecen al doble del plan premium, reflejando mayor volumen por canal B2B.",
-            "No se incluyen costos de ventas, marketing ni equipo comercial en esta fase inicial."
-          ]
-        },
         {
           "icon": "⚠",
-          "title": "Escenario Conservador",
+          "title": "Conservador — Escenario Base",
+          "variant": "warning",
+          "items": [
+            "Inicio con 3 clientes en mes 3, crecimiento hasta 137 en mes 24.",
+            "Adopción lenta: alianzas estratégicas tardan en concretarse.",
+            "Punto de equilibrio en el mes 18 con 66 suscriptores activos.",
+            "ROI positivo del +222% al mes 24 una vez superado el umbral.",
+            "Requiere financiación o runway hasta el mes 17 para sostenerse."
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "Moderado — Meta Realista",
           "variant": "info",
           "items": [
-            "Si los clientes crecen al 50% de lo proyectado, el punto de equilibrio se desplaza al mes 9.",
-            "Si las alianzas estratégicas no se materializan en el mes 3, el ROI cae a aproximadamente 45%.",
-            "El riesgo principal es la velocidad de adopción — mitigado con el piloto anticipado desde la semana 7.",
-            "Con solo el 30% de los clientes proyectados en mes 9 (81 PYMEs), el proyecto sigue siendo rentable.",
-            "El modelo es viable incluso sin alianzas si el plan premium alcanza 150 suscriptores al mes 9."
+            "Inicio con 8 clientes en mes 3, crecimiento hasta 494 en mes 24.",
+            "Al menos 2 alianzas estratégicas activas desde el mes 4.",
+            "Punto de equilibrio en el mes 11 con 133 suscriptores activos.",
+            "ROI del +1.664% al mes 24 — modelo SaaS de alta escalabilidad.",
+            "Meta principal del proyecto para la fase de lanzamiento comercial."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "",
+      "cols": [
+        {
+          "icon": "⚡",
+          "title": "Optimista — Techo Alcanzable",
+          "variant": "positive",
+          "items": [
+            "Inicio con 10 clientes en mes 3, crecimiento hasta 800 en mes 24.",
+            "Tracción orgánica desde el piloto + respaldo institucional (MinTIC o cámara de comercio).",
+            "Punto de equilibrio en el mes 9 — el más temprano de los tres escenarios.",
+            "ROI del +3.589% al mes 24 con 800 suscriptores activos.",
+            "Alcanzable si el piloto con PYMEs genera referencias activas desde el primer mes."
+          ]
+        },
+        {
+          "icon": "◉",
+          "title": "Umbral Mínimo de Sostenibilidad",
+          "variant": "positive",
+          "items": [
+            "6 clientes activos cubren los COP $1.078.300 de costos operativos mensuales.",
+            "24 clientes generan COP $4.320.000/mes — cuatro veces el costo operativo.",
+            "La plataforma es autosostenible operativamente desde el mes en que supere 6 suscriptores.",
+            "La inversión inicial (RRHH) se recupera acumulando excedentes operativos mes a mes.",
+            "Umbral de viabilidad a largo plazo: 24 clientes activos sostenidos durante 18 meses."
           ]
         }
       ]
@@ -350,7 +151,7 @@
     {
       "type": "paragraph",
       "label": "Conclusión del Análisis de ROI",
-      "content": "El proyecto CyberRisk Intelligence Platform genera un ROI del 111% sobre una inversión total de COP $50.552.045 en un horizonte de 9 meses, alcanzando el punto de equilibrio en el mes 8. El modelo de negocio combina ingresos directos por suscripción (plan premium) con ingresos indirectos por alianzas estratégicas B2B, lo que reduce la dependencia de una sola fuente de ingreso y acelera la penetración de mercado. Colombia cuenta con más de 1,6 millones de PYMEs con baja cobertura de herramientas de ciberseguridad, lo que representa un mercado suficientemente grande para sostener el crecimiento proyectado incluso en escenarios conservadores."
+      "content": "La proyección a 24 meses muestra que el proyecto CyberRisk Intelligence Platform es viable en todos los escenarios, pero con horizontes de recuperación muy distintos: mes 9 en el optimista, mes 11 en el moderado y mes 18 en el conservador. La diferencia clave entre escenarios no es el precio ni los costos operativos — es la velocidad de adopción comercial. Por eso la prioridad estratégica en los primeros 3 meses post-lanzamiento debe ser concretar alianzas con cámaras de comercio, aseguradoras o consultoras de TI que aceleren la tracción. Sin esas alianzas, el proyecto sigue la curva conservadora y requiere financiación hasta el mes 17. Con ellas, entra directamente en la curva moderada o superior."
     }
   ]
 }
