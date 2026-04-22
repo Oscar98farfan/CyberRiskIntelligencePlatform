@@ -1,92 +1,134 @@
 {
-  "_comment": "ROI con proyección a 24 meses. Tres escenarios con curva logística de adopción. Punto de equilibrio: Conservador mes 18, Moderado mes 11, Optimista mes 9.",
+  "_comment": "ROI 30 meses. Precios: $50.000 plan directo + $100.000 alianza. POE: Conservador mes 25, Moderado mes 15, Optimista mes 12.",
   "meta": {
     "id": "roi",
     "title": "Retorno de Inversión (ROI)",
     "sprint": "Sprint 7 · Entregable 13",
     "fecha": "2026-03-08",
-    "version": "3.0",
+    "version": "5.0",
     "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
   },
   "blocks": [
     {
       "type": "paragraph",
-      "label": "Modelo Financiero — Proyección a 24 Meses",
-      "content": "El análisis proyecta tres escenarios de adopción durante 24 meses usando una curva logística: crecimiento lento al inicio, aceleración en la fase media y estabilización al acercarse al techo de mercado. Los meses 1 y 2 corresponden al desarrollo sin ingresos. A partir del mes 3 inicia la comercialización. El escenario conservador es la base de planificación; el moderado es la meta; el optimista es el techo alcanzable. La inversión total de referencia es COP $50.552.045. Los costos operativos post-lanzamiento son COP $1.078.300/mes (infraestructura cloud). El precio de suscripción es COP $180.000/PYME/mes."
+      "label": "Modelo Financiero — Proyección a 30 Meses",
+      "content": "El modelo combina dos fuentes de ingreso: plan premium de suscripción directa (COP $50.000/PYME/mes) y alianzas estratégicas B2B con canales como cámaras de comercio y consultoras de TI (COP $100.000 por cliente referido/mes). La proyección usa una curva logística de adopción a 30 meses, lo que permite ver no solo cuándo se alcanza el punto de equilibrio sino cómo crece el proyecto en los meses posteriores. Los dos primeros meses son de desarrollo sin ingresos. La inversión total de referencia es COP $50.552.045 incluyendo contingencia del 15%."
     },
     {
       "type": "kpi-grid",
-      "label": "Puntos de Equilibrio y ROI por Escenario",
+      "label": "Resumen de los Tres Escenarios al Mes 30",
       "items": [
-        { "id": "INVERSIÓN TOTAL",            "text": "COP $50.552.045 · base de los tres escenarios" },
-        { "id": "CONSERVADOR · Mes 18",       "text": "Punto de equilibrio mes 18 · 66 clientes · ROI mes 24: +222%" },
-        { "id": "MODERADO · Mes 11",          "text": "Punto de equilibrio mes 11 · 133 clientes · ROI mes 24: +1.664%" },
-        { "id": "OPTIMISTA · Mes 9",          "text": "Punto de equilibrio mes 9 · 223 clientes · ROI mes 24: +3.589%" },
-        { "id": "SOSTENIBILIDAD MÍNIMA",      "text": "6 clientes activos cubren costos operativos mensuales" },
-        { "id": "PRECIO SUSCRIPCIÓN",         "text": "COP $180.000 / PYME / mes · modelo SaaS" }
+        { "id": "PLAN DIRECTO",        "text": "COP $50.000 / PYME / mes" },
+        { "id": "ALIANZA B2B",         "text": "COP $100.000 / cliente referido / mes" },
+        { "id": "CONSERVADOR",         "text": "POE mes 25 · 115 directos + 65 alianza · ROI +116%" },
+        { "id": "MODERADO",            "text": "POE mes 15 · 398 directos + 200 alianza · ROI +952%" },
+        { "id": "OPTIMISTA",           "text": "POE mes 12 · 600 directos + 300 alianza · ROI +1.870%" },
+        { "id": "SOSTENIBILIDAD MÍN.", "text": "16 directos O 11 por alianza cubren operación mensual" }
       ]
     },
     {
       "type": "highlight",
       "label": "Escenario Base de Planificación",
-      "content": "El proyecto planifica sobre el escenario CONSERVADOR. Con una adopción inicial de 3 clientes en el mes 3 y crecimiento gradual hasta 137 en el mes 24, el punto de equilibrio se alcanza en el mes 18. Aunque la inversión inicial no se recupera rápidamente, el proyecto es autosostenible operativamente desde que supera los 6 suscriptores activos — meta alcanzable incluso en el escenario más pesimista antes del mes 6."
+      "content": "El proyecto planifica sobre el escenario CONSERVADOR. Con una adopción inicial de 2 clientes directos y 1 por alianza en el mes 3, el punto de equilibrio se alcanza en el mes 25. Los meses 25 a 30 muestran crecimiento sostenido post-equilibrio: el flujo acumulado pasa de $0 a +$58 millones en solo 5 meses, confirmando que una vez cruzado el umbral el modelo escala con bajos costos marginales."
     },
     {
       "type": "cashflow-chart",
-      "label": "Flujo de Caja Acumulado — Proyección 24 Meses (3 Escenarios)",
-      "breakeven_month": 18,
-      "note": "Conservador: equilibrio mes 18 (66 clientes) · Moderado: equilibrio mes 11 (133 clientes) · Optimista: equilibrio mes 9 (223 clientes). La línea punteada marca el punto de equilibrio del escenario base (conservador).",
+      "label": "Gráfica 1 — Flujo Acumulado: 3 Escenarios (30 meses)",
+      "breakeven_month": 25,
+      "note": "Conservador: punto de equilibrio mes 25 (115 directos + 65 alianza) · Moderado: mes 15 · Optimista: mes 12. La línea punteada marca el punto de equilibrio del escenario base conservador.",
       "months": [
-        "M1","M2","M3","M4","M5","M6","M7","M8","M9","M10","M11","M12",
-        "M13","M14","M15","M16","M17","M18","M19","M20","M21","M22","M23","M24"
+        "M1","M2","M3","M4","M5","M6","M7","M8","M9","M10",
+        "M11","M12","M13","M14","M15","M16","M17","M18","M19","M20",
+        "M21","M22","M23","M24","M25","M26","M27","M28","M29","M30"
       ],
       "series": [
         {
           "id": "conservador",
-          "label": "Conservador (máx. 137 clientes)",
+          "label": "Conservador (POE mes 25)",
           "color": "red",
           "values": [
-            -22518300, -45036600, -45574900, -45933200, -46111500, -46109800,
-            -45928100, -45386400, -44484700, -43043000, -41061300, -38359600,
-            -34757900, -30076200, -24134500, -16752800,  -7751100,   3050600,
-             15832300,  30774000,  47875700,  67137400,  88559100, 112140800
+            -22518300,-45036600,-45914900,-46643200,-47221500,-47649800,
+            -47928100,-48056400,-48034700,-47813000,-47391300,-46669600,
+            -45597900,-44176200,-42404500,-40132800,-37361100,-34039400,
+            -30167700,-25596000,-20324300,-14302600,-7530900,-9200,
+            8162500,16984200,26455900,36577600,47249300,58421000
           ]
         },
         {
           "id": "moderado",
-          "label": "Moderado (máx. 494 clientes)",
+          "label": "Moderado (POE mes 15)",
           "color": "amber",
           "values": [
-            -22518300, -45036600, -44674900, -43773200, -42151500, -39449800,
-            -35308100, -29186400, -20364700,  -7943000,   9158700,  32020400,
-             61902100,  99883800, 146685500, 202487200, 266748900, 338210600,
-            415252300, 496434000, 580495700, 666357400, 753479100, 841320800
+            -22518300,-45036600,-45564900,-45893200,-46021500,-45799800,
+            -45178100,-44006400,-42084700,-39213000,-35041300,-29319600,
+            -21647900,-11626200,1145500,17067200,36388900,59160600,
+            85332300,114554000,146325700,180147400,215469100,251890800,
+            289162500,327034200,365305900,403777600,442449300,481271000
           ]
         },
         {
           "id": "flujo",
-          "label": "Optimista (máx. 800 clientes)",
+          "label": "Optimista (POE mes 12)",
           "color": "cyan",
           "values": [
-            -22518300, -45036600, -44314900, -42513200, -39091500, -32969800,
-            -22708100,  -6146400,  19775300,  58837000, 115358700, 192580400,
-            291222100, 408223800, 538005500, 674987200, 815388900, 957230600,
-           1099792300,1242534000,1385455700,1528377400,1671299100,1814220800
+            -22518300,-45036600,-45464900,-45643200,-45371500,-44449800,
+            -42578100,-39306400,-34034700,-25913000,-13891300,3280400,
+            26752100,57423800,95495500,140267200,190388900,244210600,
+            300332300,357804000,415925700,474397400,533019100,591790800,
+            650712500,709634200,768555900,827477600,886399300,945321000
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cashflow-chart",
+      "label": "Gráfica 2 — Ingresos vs Gastos Acumulados: Escenario Moderado (30 meses)",
+      "breakeven_month": 15,
+      "note": "El cruce entre ingresos (ámbar) y gastos (rojo) en el mes 15 es el punto de equilibrio del escenario moderado. A partir de ese mes los ingresos acumulados superan la inversión total y los costos operativos.",
+      "months": [
+        "M1","M2","M3","M4","M5","M6","M7","M8","M9","M10",
+        "M11","M12","M13","M14","M15","M16","M17","M18","M19","M20",
+        "M21","M22","M23","M24","M25","M26","M27","M28","M29","M30"
+      ],
+      "series": [
+        {
+          "id": "gastos",
+          "label": "Gastos acumulados",
+          "color": "red",
+          "values": [
+            22518300,45036600,46114900,47193200,48271500,49349800,
+            50428100,51506400,52584700,53663000,54741300,55819600,
+            56897900,57976200,59054500,60132800,61211100,62289400,
+            63367700,64446000,65524300,66602600,67680900,68759200,
+            69837500,70915800,71994100,73072400,74150700,75229000
+          ]
+        },
+        {
+          "id": "flujo",
+          "label": "Ingresos acumulados (Moderado)",
+          "color": "amber",
+          "values": [
+            0,0,550000,1300000,2250000,3550000,5250000,7500000,
+            10500000,14450000,19700000,26500000,35250000,46350000,
+            60200000,77200000,97600000,121450000,148700000,179000000,
+            211850000,246750000,283150000,320650000,359000000,397950000,
+            437300000,476850000,516600000,556500000
           ]
         }
       ]
     },
     {
       "type": "table",
-      "label": "Resumen por Semestre — Flujo Acumulado y Clientes",
-      "headers": ["Semestre", "Período", "Cons. clientes", "Cons. acumulado", "Mod. clientes", "Mod. acumulado", "Opt. clientes", "Opt. acumulado"],
+      "label": "Resumen Semestral — 30 Meses",
+      "headers": ["Semestre", "Período", "Cons. clientes", "Cons. flujo acum.", "Mod. clientes", "Mod. flujo acum.", "Opt. clientes", "Opt. flujo acum."],
       "rows": [
-        ["S1", "Mes 1–6",   "6",   "−$46.109.800", "21",   "−$39.449.800", "40",  "−$32.969.800"],
-        ["S2", "Mes 7–12",  "21",  "−$38.359.600", "133",  "+$32.020.400", "435", "+$192.580.400"],
-        ["S3", "Mes 13–18", "66",  "+$3.050.600",  "316",  "+$202.487.200","767", "+$674.987.200"],
-        ["S4", "Mes 19–24", "137", "+$112.140.800", "494", "+$841.320.800","800", "+$1.814.220.800"]
+        ["S1", "M1–M6",   "Dir:5 / Ali:2",     "−$47.649.800",  "Dir:14 / Ali:7",    "−$45.799.800",  "Dir:25 / Ali:11",   "−$44.449.800"],
+        ["S2", "M7–M12",  "Dir:17 / Ali:10",   "−$46.669.600",  "Dir:65 / Ali:32",   "−$29.319.600",  "Dir:115 / Ali:57",  "+$3.280.400"],
+        ["S3", "M13–M18", "Dir:39 / Ali:25",   "−$34.039.400",  "Dir:200 / Ali:100", "+$59.160.600",  "Dir:380 / Ali:190", "+$244.210.600"],
+        ["S4", "M19–M24", "Dir:74 / Ali:49",   "−$9.200",       "Dir:316 / Ali:158", "+$251.890.800", "Dir:560 / Ali:280", "+$591.790.800"],
+        ["S5", "M25–M30", "Dir:115 / Ali:65",  "+$58.421.000",  "Dir:398 / Ali:200", "+$481.271.000", "Dir:600 / Ali:300", "+$945.321.000"]
       ],
-      "footer": ["", "Punto equilibrio →", "Mes 18", "ROI +222%", "Mes 11", "ROI +1.664%", "Mes 9", "ROI +3.589%"]
+      "footer": ["POE →", "", "Mes 25", "ROI +116%", "Mes 15", "ROI +952%", "Mes 12", "ROI +1.870%"]
     },
     {
       "type": "two-col",
@@ -97,11 +139,11 @@
           "title": "Conservador — Escenario Base",
           "variant": "warning",
           "items": [
-            "Inicio con 3 clientes en mes 3, crecimiento hasta 137 en mes 24.",
-            "Adopción lenta: alianzas estratégicas tardan en concretarse.",
-            "Punto de equilibrio en el mes 18 con 66 suscriptores activos.",
-            "ROI positivo del +222% al mes 24 una vez superado el umbral.",
-            "Requiere financiación o runway hasta el mes 17 para sostenerse."
+            "Inicio: 2 directos + 1 alianza en mes 3.",
+            "Punto de equilibrio en el mes 25 con 115 directos + 65 alianza.",
+            "ROI +116% al mes 30 — crece rápido una vez cruzado el umbral.",
+            "Requiere financiación o runway hasta el mes 24.",
+            "Las alianzas estratégicas tardan en activarse — canal B2B lento al inicio."
           ]
         },
         {
@@ -109,10 +151,10 @@
           "title": "Moderado — Meta Realista",
           "variant": "info",
           "items": [
-            "Inicio con 8 clientes en mes 3, crecimiento hasta 494 en mes 24.",
-            "Al menos 2 alianzas estratégicas activas desde el mes 4.",
-            "Punto de equilibrio en el mes 11 con 133 suscriptores activos.",
-            "ROI del +1.664% al mes 24 — modelo SaaS de alta escalabilidad.",
+            "Inicio: 5 directos + 3 alianza en mes 3.",
+            "Punto de equilibrio en el mes 15 con 266 directos + 133 alianza.",
+            "ROI +952% al mes 30 — modelo SaaS de alta escalabilidad.",
+            "Requiere 2 alianzas estratégicas activas desde el mes 4.",
             "Meta principal del proyecto para la fase de lanzamiento comercial."
           ]
         }
@@ -127,23 +169,23 @@
           "title": "Optimista — Techo Alcanzable",
           "variant": "positive",
           "items": [
-            "Inicio con 10 clientes en mes 3, crecimiento hasta 800 en mes 24.",
-            "Tracción orgánica desde el piloto + respaldo institucional (MinTIC o cámara de comercio).",
-            "Punto de equilibrio en el mes 9 — el más temprano de los tres escenarios.",
-            "ROI del +3.589% al mes 24 con 800 suscriptores activos.",
-            "Alcanzable si el piloto con PYMEs genera referencias activas desde el primer mes."
+            "Inicio: 7 directos + 3 alianza en mes 3.",
+            "Punto de equilibrio en el mes 12 con 320 directos + 160 alianza.",
+            "ROI +1.870% al mes 30 con 600 directos + 300 por alianza.",
+            "Requiere respaldo institucional activo desde el lanzamiento.",
+            "Alcanzable si el piloto con PYMEs genera tracción orgánica desde el mes 3."
           ]
         },
         {
           "icon": "◉",
-          "title": "Umbral Mínimo de Sostenibilidad",
+          "title": "Umbral de Sostenibilidad Operativa",
           "variant": "positive",
           "items": [
-            "6 clientes activos cubren los COP $1.078.300 de costos operativos mensuales.",
-            "24 clientes generan COP $4.320.000/mes — cuatro veces el costo operativo.",
-            "La plataforma es autosostenible operativamente desde el mes en que supere 6 suscriptores.",
-            "La inversión inicial (RRHH) se recupera acumulando excedentes operativos mes a mes.",
-            "Umbral de viabilidad a largo plazo: 24 clientes activos sostenidos durante 18 meses."
+            "Costo operativo mensual: COP $1.078.300.",
+            "16 clientes directos ($800.000) + 3 por alianza ($300.000) = costos cubiertos.",
+            "O 11 clientes por alianza estratégica cubren los costos operativos.",
+            "Este umbral es alcanzable en los primeros 4–5 meses en todos los escenarios.",
+            "A partir de ahí el proyecto no genera pérdida operativa mensual nueva."
           ]
         }
       ]
@@ -151,7 +193,7 @@
     {
       "type": "paragraph",
       "label": "Conclusión del Análisis de ROI",
-      "content": "La proyección a 24 meses muestra que el proyecto CyberRisk Intelligence Platform es viable en todos los escenarios, pero con horizontes de recuperación muy distintos: mes 9 en el optimista, mes 11 en el moderado y mes 18 en el conservador. La diferencia clave entre escenarios no es el precio ni los costos operativos — es la velocidad de adopción comercial. Por eso la prioridad estratégica en los primeros 3 meses post-lanzamiento debe ser concretar alianzas con cámaras de comercio, aseguradoras o consultoras de TI que aceleren la tracción. Sin esas alianzas, el proyecto sigue la curva conservadora y requiere financiación hasta el mes 17. Con ellas, entra directamente en la curva moderada o superior."
+      "content": "Con precios accesibles de COP $50.000 (directo) y $100.000 (alianza), el proyecto requiere entre 12 y 25 meses para recuperar la inversión según el escenario. Lo más relevante es lo que ocurre después del punto de equilibrio: en los 5 meses siguientes al cruce, incluso el escenario conservador genera +$58 millones de flujo acumulado positivo, confirmando que el modelo SaaS escala bien una vez superado el umbral. La clave estratégica sigue siendo la misma: activar alianzas en los primeros 3 meses post-lanzamiento para no quedarse en la curva conservadora. Sin ellas, 25 meses de financiación es un runway largo pero viable para un emprendimiento de este tipo."
     }
   ]
 }
