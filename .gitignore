@@ -1,1 +1,11 @@
 seccionesBackup.json
+
+# Python 
+ml/.venv/
+ml/uv.lock
+ml/data/raw/
+ml/data/processed/
+ml/models/
+
+# Jupyter
+ml/notebooks/.ipynb_checkpoints/
