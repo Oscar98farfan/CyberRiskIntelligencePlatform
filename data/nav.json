@@ -20,6 +20,11 @@
       "icon": "▸"
     },
     {
+      "id": "seguimiento",
+      "label": "Seguimiento",
+      "icon": "▸"
+    },
+    {
       "id": "ejecucion",
       "label": "Ejecución",
       "icon": "▸"
@@ -167,10 +172,20 @@
       "status": "done"
     },
     {
-      "id": "desarrollo",
-      "label": "Desarrollo de la Plataforma",
+      "id": "actas",
+      "label": "Actas del proyecto",
       "icon": "◉",
-      "file": "data/sections/desarrollo.json",
+      "file": "data/sections/actas.json",
+      "order": 14,
+      "sprint": 8,
+      "stage": "seguimiento",
+      "status": "in-progress"
+    },
+    {
+      "id": "desarrollo",
+      "label": "Identificacion de fuentes",
+      "icon": "◉",
+      "file": "data/sections/fuentes.json",
       "order": 14,
       "sprint": 8,
       "stage": "ejecucion",
@@ -187,22 +202,32 @@
       "status": "in-progress"
     },
     {
+      "id": "limpieza",
+      "label": "Data Mining / Wrangling",
+      "icon": "◉",
+      "file": "data/sections/limpieza.json",
+      "order": 15,
+      "sprint": 10,
+      "stage": "ejecucion",
+      "status": "in-progress"
+    },
+    {
       "id": "integracion",
-      "label": "Integración de Fuentes de Inteligencia",
+      "label": "Integración de Fuentes de datos",
       "icon": "◉",
       "file": "data/sections/integracion.json",
       "order": 16,
-      "sprint": 9,
+      "sprint": 10,
       "stage": "ejecucion",
       "status": "todo"
     },
     {
       "id": "implementacion",
-      "label": "Implementación de Módulos",
+      "label": "Implementación de Modelos",
       "icon": "◉",
       "file": "data/sections/implementacion.json",
       "order": 17,
-      "sprint": 9,
+      "sprint": 11,
       "stage": "ejecucion",
       "status": "todo"
     },
@@ -212,7 +237,37 @@
       "icon": "◉",
       "file": "data/sections/pruebas.json",
       "order": 18,
-      "sprint": 10,
+      "sprint": 12,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "web",
+      "label": "Desarrollo plataforma Web",
+      "icon": "◉",
+      "file": "data/sections/web.json",
+      "order": 18,
+      "sprint": 13,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "qaInterno",
+      "label": "Testeo General del desarrollo",
+      "icon": "◉",
+      "file": "data/sections/qaInterno.json",
+      "order": 18,
+      "sprint": 14,
+      "stage": "ejecucion",
+      "status": "todo"
+    },
+    {
+      "id": "qa",
+      "label": "Pruebas de Usuario",
+      "icon": "◉",
+      "file": "data/sections/qa.json",
+      "order": 18,
+      "sprint": 14,
       "stage": "ejecucion",
       "status": "todo"
     },
@@ -222,7 +277,7 @@
       "icon": "◉",
       "file": "data/sections/despliegue.json",
       "order": 19,
-      "sprint": 10,
+      "sprint": 15,
       "stage": "ejecucion",
       "status": "todo"
     },
@@ -232,7 +287,7 @@
       "icon": "◉",
       "file": "data/sections/documentacion.json",
       "order": 20,
-      "sprint": 11,
+      "sprint": 16,
       "stage": "ejecucion",
       "status": "todo"
     }

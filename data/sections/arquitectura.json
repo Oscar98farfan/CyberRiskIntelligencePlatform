@@ -1,0 +1,110 @@
+{
+  "_comment": "Sección: Arquitectura Tecnológica. Sin base de datos. El usuario selecciona su stack y el modelo consulta el dataset NVD directamente.",
+  "meta": {
+    "id": "arquitectura",
+    "title": "Arquitectura Tecnológica",
+    "sprint": "Sprint 8 · Entregable 15",
+    "fecha": "2026-03-08",
+    "version": "2.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Descripción General",
+      "content": "La arquitectura es simple y directa: el usuario entra a la plataforma web, selecciona las tecnologías que usa su empresa (sistema operativo, servidor, lenguaje, framework), y la plataforma consulta el modelo ML que fue entrenado con el dataset NVD para generar un reporte de riesgo. No hay base de datos propia — el dataset de 347.000 CVEs del NVD se procesa durante el entrenamiento y queda embebido en el modelo. Todo el stack es open source."
+    },
+    {
+      "type": "timeline",
+      "label": "Flujo Principal — Cómo Funciona la Plataforma",
+      "phases": [
+        { "id": "01", "name": "El usuario abre la plataforma web y selecciona su stack tecnológico desde un formulario (SO, servidor, lenguaje, framework)", "weeks": "Frontend — HTML / CSS / JS" },
+        { "id": "02", "name": "El frontend envía la selección al backend como una petición HTTP", "weeks": "Frontend → Backend" },
+        { "id": "03", "name": "El backend (FastAPI) recibe los datos y los pasa al modelo ML", "weeks": "Backend — Python / FastAPI" },
+        { "id": "04", "name": "El modelo ML busca las CVEs asociadas a ese stack y calcula el nivel de riesgo (Alto / Medio / Bajo)", "weeks": "Modelo — Scikit-learn / XGBoost" },
+        { "id": "05", "name": "El resultado se devuelve al frontend con las vulnerabilidades encontradas y recomendaciones", "weeks": "Backend → Frontend" },
+        { "id": "06", "name": "La plataforma muestra el reporte visual al usuario con gráficas Plotly", "weeks": "Frontend — Plotly / JS" }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Las Dos Partes del Proyecto",
+      "cols": [
+        {
+          "icon": "◈",
+          "title": "Parte 1 — Preparación del Modelo (offline)",
+          "variant": "info",
+          "items": [
+            "Se descarga el dataset NVD (347.000 CVEs) una sola vez.",
+            "Python + Pandas limpia y normaliza los datos.",
+            "Scikit-learn / XGBoost entrena el modelo con los datos limpios.",
+            "El modelo entrenado se guarda como archivo (.pkl o similar).",
+            "Este proceso se hace en Google Colab Pro — no lo ve el usuario final.",
+            "El modelo solo se vuelve a entrenar cuando haya nueva data relevante."
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title": "Parte 2 — Plataforma Web (online)",
+          "variant": "positive",
+          "items": [
+            "HTML + CSS + JS muestran la interfaz donde el usuario selecciona su stack.",
+            "FastAPI carga el modelo entrenado y responde las consultas.",
+            "Plotly genera las gráficas del reporte de riesgo.",
+            "GitHub Pages publica el frontend de forma gratuita.",
+            "AWS EC2 corre el backend con el modelo cargado en memoria.",
+            "El usuario recibe su reporte en segundos sin necesidad de registrarse."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Stack Tecnológico Completo",
+      "headers": ["Capa", "Tecnología", "Para qué se usa", "Costo"],
+      "rows": [
+        ["Interfaz de usuario",  "HTML5 · CSS3 · JavaScript",  "Formulario de selección de stack y visualización del reporte", "Gratuito"],
+        ["Gráficas",             "Plotly",                     "Dashboards interactivos del reporte de riesgo",                "Gratuito"],
+        ["Backend / API",        "Python · FastAPI",           "Recibe consultas del frontend y devuelve el análisis",         "Gratuito"],
+        ["Modelo ML",            "Scikit-learn · XGBoost",     "Clasifica el nivel de riesgo según el stack seleccionado",     "Gratuito"],
+        ["Limpieza de datos",    "Python · Pandas",            "Procesa los 347k CVEs del NVD antes del entrenamiento",        "Gratuito"],
+        ["Entrenamiento ML",     "Google Colab Pro",           "Entrena el modelo con GPU sobre el dataset NVD",               "$10/mes"],
+        ["Hosting frontend",     "GitHub Pages",               "Publica la plataforma web con cada nuevo commit",              "Gratuito"],
+        ["Hosting backend",      "AWS EC2 t3.medium",          "Servidor que corre FastAPI con el modelo cargado",             "Free tier"],
+        ["Control de versiones", "Git · GitHub",               "Versiona el código, los notebooks y la wiki del proyecto",     "Gratuito"]
+      ],
+      "footer": ["", "", "Costo total prototipo", "~USD $0 con Free Tier"]
+    },
+    {
+      "type": "two-col",
+      "label": "Dato de Entrada y Salida de la Plataforma",
+      "cols": [
+        {
+          "icon": "◉",
+          "title": "Lo que el usuario selecciona (entrada)",
+          "variant": "info",
+          "items": [
+            "Sistema operativo — ej: Windows Server 2019, Ubuntu 22.04.",
+            "Servidor web — ej: Apache, Nginx, IIS.",
+            "Lenguaje de programación — ej: PHP, Python, Java, Node.js.",
+            "Framework — ej: Laravel, Django, Spring, Express.",
+            "Base de datos — ej: MySQL, PostgreSQL, MongoDB.",
+            "La selección se hace con checkboxes o dropdowns — sin escribir nada."
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title": "Lo que la plataforma devuelve (salida)",
+          "variant": "positive",
+          "items": [
+            "Nivel de riesgo general: CRÍTICO / ALTO / MEDIO / BAJO.",
+            "Listado de CVEs encontradas para ese stack con su severidad.",
+            "Gráfica de distribución de vulnerabilidades por tecnología.",
+            "Recomendaciones básicas de mitigación para cada hallazgo.",
+            "Resumen ejecutivo descargable — pensado para usuarios no técnicos."
+          ]
+        }
+      ]
+    }
+  ]
+}

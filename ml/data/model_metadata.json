@@ -1,0 +1,33 @@
+{
+  "ultima_extraccion": "2026-05-02T18:35:06.392087+00:00",
+  "total_cves": 347752,
+  "cves_con_cvss_v31": 209991,
+  "cves_en_kev": 1586,
+  "cves_sin_cvss": 137761,
+  "archivo_parquet": "nvd_dataset.parquet",
+  "archivo_raw": "nvd_raw_20260502_132847.json",
+  "columnas": [
+    "CVE_ID",
+    "PUBLISHED_DATE",
+    "MODIFIED_DATE",
+    "CVE_YEAR",
+    "HAS_KEV",
+    "DESC_EN",
+    "SCORE_BASE",
+    "SEVERITY",
+    "VEC_ATAQUE",
+    "COMPLEJIDAD",
+    "PRIVILEGIOS",
+    "INTERACCION",
+    "ALCANCE",
+    "IMP_CONFID",
+    "IMP_INTEGR",
+    "IMP_DISPON",
+    "FACILIDAD",
+    "CWE_ID",
+    "CPE_VENDOR",
+    "CPE_PRODUCT",
+    "PATCH_URL"
+  ],
+  "version_dataset": "1.0"
+}

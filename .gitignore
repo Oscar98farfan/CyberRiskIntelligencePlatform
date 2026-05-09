@@ -9,3 +9,7 @@ ml/models/
 
 # Jupyter
 ml/notebooks/.ipynb_checkpoints/
+
+
+# Jupyter
+docs/*.docs

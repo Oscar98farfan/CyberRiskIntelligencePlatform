@@ -1,0 +1,178 @@
+
+<h2 class="sr-only">Explicación de cada columna del dataset NVD para el modelo CyberRisk</h2>
+<style>
+.wrap{padding:1rem 0}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.fb{padding:4px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:transparent;font-size:12px;cursor:pointer;color:var(--color-text-secondary)}
+.fb.on{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary)}
+.row{display:grid;grid-template-columns:130px 90px 1fr;gap:12px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary);align-items:start}
+.row:hover{background:var(--color-background-secondary);border-radius:var(--border-radius-md)}
+.hdr{font-size:11px;color:var(--color-text-secondary);font-weight:500;padding-bottom:8px;border-bottom:0.5px solid var(--color-border-secondary)}
+.cn{font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.ex{font-family:var(--font-mono);font-size:11px;color:var(--color-text-secondary);margin-top:3px}
+.badge{font-size:10px;padding:2px 8px;border-radius:10px;display:inline-block;font-weight:500}
+.b1{background:#E6F1FB;color:#0C447C}
+.b2{background:#EAF3DE;color:#27500A}
+.b3{background:#EEEDFE;color:#3C3489}
+.b4{background:#FAEEDA;color:#633806}
+.b5{background:#F1EFE8;color:#444441}
+.b6{background:#FCEBEB;color:#791F1F}
+@media(prefers-color-scheme:dark){
+.b1{background:#0C447C;color:#B5D4F4}
+.b2{background:#27500A;color:#C0DD97}
+.b3{background:#3C3489;color:#CECBF6}
+.b4{background:#633806;color:#FAC775}
+.b5{background:#444441;color:#D3D1C7}
+.b6{background:#791F1F;color:#F7C1C1}
+}
+.desc{font-size:13px;color:var(--color-text-secondary);line-height:1.5}
+.desc strong{color:var(--color-text-primary);font-weight:500}
+.hidden{display:none}
+</style>
+<div class="wrap">
+<div class="filters">
+  <button class="fb on" onclick="fil('all',this)">Todas (21)</button>
+  <button class="fb" onclick="fil('id',this)">Identificacion</button>
+  <button class="fb" onclick="fil('target',this)">Targets ML</button>
+  <button class="fb" onclick="fil('feature',this)">Features ML</button>
+  <button class="fb" onclick="fil('nlp',this)">Texto / NLP</button>
+  <button class="fb" onclick="fil('ui',this)">Solo UI</button>
+</div>
+<div class="row hdr"><div>Columna</div><div>Rol</div><div>Que hace y para que sirve</div></div>
+
+<div class="row" data-c="id">
+  <div><div class="cn">CVE_ID</div><div class="ex">CVE-2024-1234</div></div>
+  <div><span class="badge b5">identificador</span></div>
+  <div class="desc">El nombre unico de cada vulnerabilidad en el mundo. Como un numero de cedula para cada fallo. <strong>No entra al modelo</strong> — se usa para mostrar el enlace al detalle oficial y en el reporte PDF de la PYME.</div>
+</div>
+
+<div class="row" data-c="id">
+  <div><div class="cn">PUBLISHED_DATE</div><div class="ex">2024-03-15</div></div>
+  <div><span class="badge b5">identificador</span></div>
+  <div class="desc">Fecha en que el fallo fue publicado oficialmente. <strong>Se usa en la UI</strong> para filtrar "amenazas del ultimo año" y ordenar por las mas recientes.</div>
+</div>
+
+<div class="row" data-c="id">
+  <div><div class="cn">MODIFIED_DATE</div><div class="ex">2024-06-01</div></div>
+  <div><span class="badge b5">identificador</span></div>
+  <div class="desc">Fecha de ultima modificacion del CVE. <strong>Se usa en actualizaciones incrementales</strong>: solo descargamos CVEs con esta fecha posterior a la ultima extraccion, ahorrando horas de descarga.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">CVE_YEAR</div><div class="ex">2024</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Año extraido del CVE_ID. <strong>Le dice al modelo que tan antiguo es el fallo</strong>. Un CVE del 2024 sin parche es mucho mas peligroso que uno del 2015 que ya tiene solucion.</div>
+</div>
+
+<div class="row" data-c="target">
+  <div><div class="cn">HAS_KEV</div><div class="ex">True / False</div></div>
+  <div><span class="badge b1">target binario</span></div>
+  <div class="desc"><strong>La columna mas importante del proyecto.</strong> True = hackers reales estan explotando este fallo activamente HOY. Si la PYME tiene en su stack un software con HAS_KEV=True, se dispara alerta roja inmediata sin importar el score.</div>
+</div>
+
+<div class="row" data-c="nlp">
+  <div><div class="cn">DESC_EN</div><div class="ex">"A buffer overflow in Apache..."</div></div>
+  <div><span class="badge b3">texto NLP</span></div>
+  <div class="desc">Descripcion tecnica del fallo en ingles. <strong>El modelo la convierte en numeros con TF-IDF</strong> para aprender patrones semanticos. Tambien se traduce al español para mostrarle al empresario en lenguaje simple que paso.</div>
+</div>
+
+<div class="row" data-c="target">
+  <div><div class="cn">SCORE_BASE</div><div class="ex">9.8 / 4.3 / 7.1</div></div>
+  <div><span class="badge b1">target numerico</span></div>
+  <div class="desc">Puntaje de gravedad del 0 al 10. <strong>Es el numero grande del dashboard</strong>: "Tu empresa tiene un riesgo de 8.2/10". El modelo aprende a predecir este numero para CVEs sin score oficial.</div>
+</div>
+
+<div class="row" data-c="target">
+  <div><div class="cn">SEVERITY</div><div class="ex">CRITICAL / HIGH / MEDIUM / LOW</div></div>
+  <div><span class="badge b1">target clase</span></div>
+  <div class="desc">Etiqueta del nivel de riesgo en 4 categorias. <strong>Es el semaforo de colores de la UI</strong>: rojo=CRITICAL, naranja=HIGH, amarillo=MEDIUM, verde=LOW. Mucho mas entendible que un numero para el empresario.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">VEC_ATAQUE</div><div class="ex">NETWORK / LOCAL / PHYSICAL</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Por donde entra el ataque. <strong>NETWORK</strong> = cualquiera desde internet puede atacar. <strong>LOCAL</strong> = solo si ya esta dentro del equipo. <strong>PHYSICAL</strong> = necesita acceso fisico a la oficina. La UI lo explica en lenguaje simple.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">COMPLEJIDAD</div><div class="ex">LOW / HIGH</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Que tan dificil es ejecutar el ataque. <strong>LOW</strong> = cualquier persona con un script puede hacerlo. <strong>HIGH</strong> = requiere un hacker experto con condiciones especificas. Ayuda a priorizar que parchear primero.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">PRIVILEGIOS</div><div class="ex">NONE / LOW / HIGH</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el atacante necesita una cuenta primero. <strong>NONE</strong> = ataque desde afuera sin cuenta. <strong>HIGH</strong> = solo si ya es administrador. Importante para detectar amenazas internas de empleados.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">INTERACCION</div><div class="ex">NONE / REQUIRED</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el empleado debe cometer un error para que funcione. <strong>REQUIRED</strong> = alguien debe hacer clic en un enlace o abrir un archivo. <strong>NONE</strong> = el ataque es automatico sin que nadie haga nada.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">ALCANCE</div><div class="ex">UNCHANGED / CHANGED</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el ataque puede saltar a otros equipos. <strong>CHANGED</strong> = el virus puede infectar toda la red de la oficina. Muy critico para PYMEs con todo en la misma red. La recomendacion incluye segmentacion de red.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">IMP_CONFID</div><div class="ex">NONE / LOW / HIGH</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el ataque roba informacion. <strong>HIGH</strong> = pueden copiar todos los datos de clientes, contraseñas, facturas. Relevante para cumplimiento de habeas data en Colombia (Ley 1581).</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">IMP_INTEGR</div><div class="ex">NONE / LOW / HIGH</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el ataque modifica informacion. <strong>HIGH</strong> = pueden alterar precios, facturas, registros contables. Critico para PYMEs del sector retail o financiero donde la integridad de datos es esencial.</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">IMP_DISPON</div><div class="ex">NONE / LOW / HIGH</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Si el ataque apaga el sistema. <strong>HIGH</strong> = ransomware, el negocio se detiene completamente. Es la consecuencia mas entendible para cualquier empresario: "no puedo trabajar".</div>
+</div>
+
+<div class="row" data-c="feature">
+  <div><div class="cn">FACILIDAD</div><div class="ex">0.0 — 3.9</div></div>
+  <div><span class="badge b2">feature ML</span></div>
+  <div class="desc">Puntaje numerico de que tan automatico es el ataque. <strong>Alta correlacion con HAS_KEV</strong>: cuando es 3.9 (maximo) casi siempre hay exploits automatizados en circulacion. Feature muy poderosa para predecir explotacion activa.</div>
+</div>
+
+<div class="row" data-c="nlp">
+  <div><div class="cn">CWE_ID</div><div class="ex">CWE-89 / CWE-79</div></div>
+  <div><span class="badge b3">texto NLP</span></div>
+  <div class="desc">Tipo de error que causo el fallo. <strong>CWE-89</strong> = inyeccion SQL, <strong>CWE-79</strong> = XSS, <strong>CWE-119</strong> = desbordamiento de memoria. Agrupa CVEs por familia de error para dar recomendaciones generales por patron.</div>
+</div>
+
+<div class="row" data-c="nlp">
+  <div><div class="cn">CPE_VENDOR</div><div class="ex">microsoft / apache / google</div></div>
+  <div><span class="badge b3">feature busqueda</span></div>
+  <div class="desc"><strong>Lo que el usuario selecciona en la UI</strong>: "Microsoft", "Google", "Apache". El sistema filtra todos los CVEs de ese fabricante. Sin esta columna no es posible personalizar el analisis por empresa.</div>
+</div>
+
+<div class="row" data-c="nlp">
+  <div><div class="cn">CPE_PRODUCT</div><div class="ex">windows_10 / chrome / mysql</div></div>
+  <div><span class="badge b3">feature busqueda</span></div>
+  <div class="desc"><strong>El producto especifico que usa la empresa</strong>. Junto con CPE_VENDOR permite filtrar exactamente: "quiero ver solo CVEs de Windows 10, no de Windows Server". Es la clave del analisis personalizado.</div>
+</div>
+
+<div class="row" data-c="ui">
+  <div><div class="cn">PATCH_URL</div><div class="ex">https://microsoft.com/...</div></div>
+  <div><span class="badge b6">solo UI</span></div>
+  <div class="desc"><strong>No entra al modelo.</strong> Es el enlace al parche oficial del fabricante. En la plataforma aparece como boton "Descargar parche" en el reporte de la PYME. La accion mas concreta que puede tomar el empresario.</div>
+</div>
+
+</div>
+<script>
+function fil(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.row[data-c]').forEach(r=>{
+    r.classList.toggle('hidden', cat!=='all' && r.dataset.c!==cat);
+  });
+}
+</script>

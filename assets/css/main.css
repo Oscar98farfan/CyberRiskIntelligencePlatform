@@ -1036,6 +1036,73 @@ body::after {
 }
 
 
+/* Css para las actas */
+
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.9rem;
+}
+
+.pdf-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color var(--transition);
+}
+
+.pdf-card:hover { border-color: var(--border-2); }
+
+.pdf-card-body { display: flex; gap: 0.9rem; align-items: flex-start; }
+
+.pdf-icon {
+  width: 36px; height: 44px;
+  background: var(--red-dim);
+  border: 1px solid rgba(232,64,64,0.2);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.pdf-icon span {
+  font-family: var(--font-mono); font-size: 0.55rem;
+  color: var(--red); letter-spacing: 0.05em;
+}
+
+.pdf-name { font-size: 0.88rem; font-weight: 600; color: var(--text-bright); margin-bottom: 0.2rem; }
+.pdf-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+
+.pdf-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim);
+}
+
+.pdf-btn {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  color: var(--cyan); border: 1px solid rgba(0,200,232,0.3);
+  border-radius: var(--radius); padding: 0.2rem 0.6rem;
+  text-decoration: none; transition: background var(--transition);
+}
+
+.pdf-btn:hover { background: var(--cyan-dim); }
+
+@media (max-width: 800px) {
+  .pdf-grid { grid-template-columns: 1fr; }
+}
+
+
+
+
+
+
+
+
+
+
 /* ══════════════════════════════════════════
    AGREGAR ESTO AL FINAL DE main.css
    Estilos para el bloque tipo "gantt"

@@ -398,6 +398,33 @@ function renderGantt(block) {
 }
 
 
+
+
+function renderPdfGallery(block) {
+  const cards = (block.items || []).map(item => `
+    <div class="pdf-card">
+      <div class="pdf-card-body">
+        <div class="pdf-icon"><span>PDF</span></div>
+        <div class="pdf-info">
+          <div class="pdf-name">${esc(item.name)}</div>
+          <div class="pdf-desc">${esc(item.desc || '')}</div>
+        </div>
+      </div>
+      <div class="pdf-meta">
+        <span>${esc(item.date || '')}${item.size ? ' · ' + esc(item.size) : ''}</span>
+        <a href="${esc(item.file)}" target="_blank" rel="noopener" class="pdf-btn">↗ Abrir</a>
+      </div>
+    </div>
+  `).join('');
+  return wrapBlock(block.label, `<div class="pdf-grid">${cards}</div>`);
+}
+
+// Y en RENDERERS:
+
+
+
+
+
 /* ─────────────────────────────────────────
    REEMPLAZA la función renderCashflowChart
    en renderer.js (versión corregida)
@@ -616,7 +643,8 @@ const RENDERERS = {
   'dashboard':          renderDashboard,
   'gantt':              renderGantt,
   'table':              renderTable,
-  'cashflow-chart': renderCashflowChart
+  'cashflow-chart': renderCashflowChart,
+  'pdf-gallery': renderPdfGallery,
 };
 
 /**

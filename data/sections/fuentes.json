@@ -1,0 +1,118 @@
+{
+  "_comment": "Sección: Identificación de Fuentes de Información. Solo API NVD. Dataset de 347k registros descargado y pendiente de limpieza.",
+  "meta": {
+    "id": "integracion",
+    "title": "Identificación de Fuentes de Información",
+    "sprint": "Sprint 9 · Entregable 16",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "highlight",
+      "label": "Fuente Principal de Datos",
+      "content": "El proyecto utiliza como única fuente de datos la API pública del NVD (National Vulnerability Database) del NIST. Se descargaron 347.000 registros de vulnerabilidades CVE que cubren el histórico completo de la base de datos. El dataset está actualizado y se encuentra en proceso de limpieza y normalización para su uso en el entrenamiento del modelo ML."
+    },
+    {
+      "type": "cards-grid",
+      "label": "¿Qué es el NVD?",
+      "items": [
+        {
+          "title": "National Vulnerability Database",
+          "content": "Repositorio oficial del gobierno de Estados Unidos (NIST) que centraliza todas las vulnerabilidades de software conocidas bajo el estándar CVE. Es la fuente de datos de ciberseguridad más completa y confiable disponible de forma pública y gratuita."
+        },
+        {
+          "title": "¿Qué contiene cada registro?",
+          "content": "ID CVE único, descripción de la vulnerabilidad, software y versiones afectadas, puntuación de severidad CVSS (0–10), vector de ataque, fecha de publicación y fecha de última modificación."
+        },
+        {
+          "title": "Estado actual del dataset",
+          "content": "347.000 registros descargados vía API REST. Dataset actualizado a la fecha. Pendiente proceso de limpieza: eliminación de duplicados, normalización de campos y filtrado de registros incompletos."
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Ficha Técnica de la Fuente",
+      "headers": ["Atributo", "Detalle"],
+      "rows": [
+        ["Nombre",             "NVD — National Vulnerability Database"],
+        ["Organización",       "NIST (National Institute of Standards and Technology) — Gobierno de EE.UU."],
+        ["URL",                "https://nvd.nist.gov / https://services.nvd.nist.gov/rest/json/cves/2.0"],
+        ["Tipo de acceso",     "API REST pública con API Key gratuita"],
+        ["Formato de datos",   "JSON"],
+        ["Registros obtenidos","347.000 CVEs descargados"],
+        ["Cobertura temporal", "Histórico completo desde 1999 hasta la fecha actual"],
+        ["Actualización",      "Continua — el NVD publica nuevas CVEs diariamente"],
+        ["Costo",              "Gratuito — sin límite de descarga con API Key"],
+        ["Estado actual",      "Dataset descargado y almacenado · Pendiente de limpieza y normalización"]
+      ],
+      "footer": ["", "Única fuente de datos del proyecto"]
+    },
+    {
+      "type": "table",
+      "label": "Campos Clave del Dataset — Estructura de un Registro CVE",
+      "headers": ["Campo", "Descripción", "Uso en el modelo"],
+      "rows": [
+        ["cveId",              "Identificador único (ej: CVE-2024-12345)",                   "Llave primaria del dataset"],
+        ["description",        "Descripción textual de la vulnerabilidad en inglés",          "Análisis de texto / NLP futuro"],
+        ["cvssScore",          "Puntuación de severidad CVSS v3 del 0 al 10",                "Variable objetivo del modelo ML"],
+        ["cvssVector",         "Vector de ataque (AV:N/AC:L/PR:N — red, bajo, sin privilegios)","Features del modelo"],
+        ["affectedProducts",   "Software y versiones vulnerables (CPE — Common Platform Enum.)","Matching con stack del usuario"],
+        ["publishedDate",      "Fecha de publicación de la CVE",                              "Feature temporal del modelo"],
+        ["lastModifiedDate",   "Fecha de última actualización del registro",                  "Control de vigencia del dato"],
+        ["severity",           "Clasificación: CRITICAL / HIGH / MEDIUM / LOW / NONE",        "Variable objetivo clasificación"]
+      ],
+      "footer": ["", "347.000 registros con esta estructura", "Pendiente limpieza y normalización"]
+    },
+    {
+      "type": "timeline",
+      "label": "Plan de Limpieza y Preparación del Dataset",
+      "phases": [
+        { "id": "L1", "name": "Revisión inicial — análisis exploratorio del dataset crudo (EDA)", "weeks": "Semana 9 · O. Farfan" },
+        { "id": "L2", "name": "Eliminación de registros duplicados y CVEs sin puntuación CVSS", "weeks": "Semana 9 · O. Farfan" },
+        { "id": "L3", "name": "Normalización del campo cvssVector y extracción de features individuales", "weeks": "Semana 10 · O. Farfan" },
+        { "id": "L4", "name": "Mapeo de productos afectados (CPE) con el catálogo de tecnologías de la plataforma", "weeks": "Semana 10 · J. Madero" },
+        { "id": "L5", "name": "Validación de calidad: < 5% valores nulos en campos críticos", "weeks": "Semana 10 · Equipo" },
+        { "id": "L6", "name": "Carga del dataset limpio en PostgreSQL (AWS RDS) y versionado en S3", "weeks": "Semana 11 · J. Madero" }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Ventajas y Limitaciones de la Fuente",
+      "cols": [
+        {
+          "icon": "✓",
+          "title": "Ventajas del NVD",
+          "variant": "positive",
+          "items": [
+            "Fuente oficial y confiable — respaldada por el gobierno de EE.UU.",
+            "347.000 registros históricos — suficiente volumen para entrenar modelos ML robustos.",
+            "Actualización continua — nuevas CVEs disponibles el mismo día de su publicación.",
+            "Gratuito y sin restricciones de uso para proyectos académicos y comerciales.",
+            "Estándar de la industria — compatible con todas las herramientas de ciberseguridad.",
+            "Formato JSON estructurado — fácil de procesar con Python y Pandas."
+          ]
+        },
+        {
+          "icon": "⚠",
+          "title": "Limitaciones conocidas",
+          "variant": "warning",
+          "items": [
+            "No todas las CVEs tienen puntuación CVSS v3 — algunas solo tienen v2 o ninguna.",
+            "Las descripciones están en inglés — puede requerir traducción para reportes en español.",
+            "El campo de productos afectados (CPE) no siempre está completo en registros antiguos.",
+            "No incluye información sobre si la vulnerabilidad ha sido explotada activamente.",
+            "Registros anteriores a 2005 tienen menor nivel de detalle que los recientes."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Decisión de usar una sola fuente",
+      "content": "La decisión de trabajar únicamente con el NVD se basa en tres razones: primero, los 347.000 registros disponibles son suficientes para entrenar y validar un modelo de clasificación de riesgo con las métricas objetivo del proyecto (F1-score ≥ 0.75). Segundo, agregar más fuentes en esta fase introduciría complejidad de integración y posibles inconsistencias en los datos que no están justificadas para el prototipo. Tercero, el NVD ya está descargado y actualizado, lo que permite avanzar directamente a la limpieza y el modelado sin depender de APIs externas adicionales durante el desarrollo."
+    }
+  ]
+}

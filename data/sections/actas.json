@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "id": "actas",
+    "title": "Actas del Proyecto",
+    "sprint": "Sprint 3 · Entregable 1",
+    "fecha": "2026-03-08",
+    "version": "1.0",
+    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+  },
+  "blocks": [
+    {
+      "type": "paragraph",
+      "label": "Descripción",
+      "content": "Repositorio de actas oficiales del proyecto, evidenciado seguimientos y evidencias del proyecto."
+    },
+    {
+      "type": "pdf-gallery",
+      "label": "Documentos PDF",
+      "items": [
+        {
+          "name": "Acta de Reunión #1",
+          "desc": "Definición del alcance inicial y asignación de tareas.",
+          "file": "docs/acta-reunion-01.pdf",
+          "date": "2026-05-05",
+          "size": "100 KB"
+        }
+      ]
+    }
+  ]
+}
