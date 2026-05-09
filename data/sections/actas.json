@@ -18,6 +18,13 @@
       "label": "Documentos PDF",
       "items": [
         {
+          "name": "Cyberrisk Picht",
+          "desc": "Picht inicial conseguir inversion.",
+          "file": "docs/CyberRisk.pdf",
+          "date": "2026-05-05",
+          "size": "100 KB"
+        },
+        {
           "name": "Acta de Reunión #1",
           "desc": "Definición del alcance inicial y asignación de tareas.",
           "file": "docs/acta-reunion-01.pdf",

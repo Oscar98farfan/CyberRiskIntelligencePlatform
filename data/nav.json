@@ -187,7 +187,7 @@
       "icon": "◉",
       "file": "data/sections/fuentes.json",
       "order": 14,
-      "sprint": 8,
+      "sprint": 9,
       "stage": "ejecucion",
       "status": "in-progress"
     },
@@ -197,7 +197,7 @@
       "icon": "◉",
       "file": "data/sections/arquitectura.json",
       "order": 15,
-      "sprint": 8,
+      "sprint": 9,
       "stage": "ejecucion",
       "status": "in-progress"
     },
