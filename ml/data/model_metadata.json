@@ -29,5 +29,13 @@
     "CPE_PRODUCT",
     "PATCH_URL"
   ],
-  "version_dataset": "1.0"
+  "version_dataset": "1.0",
+  "preprocesamiento": {
+    "fecha": "2026-05-09T17:23:56.919524+00:00",
+    "total_modelo": 181277,
+    "total_train": 145021,
+    "total_test": 36256,
+    "features": 16,
+    "scale_pos_weight_kev": 113.59
+  }
 }
