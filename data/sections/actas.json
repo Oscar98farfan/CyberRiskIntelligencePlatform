@@ -30,6 +30,13 @@
           "file": "docs/acta-reunion-01.pdf",
           "date": "2026-05-05",
           "size": "100 KB"
+        },
+        {
+          "name": "Acta de Reunión #2",
+          "desc": "Limpieza de la información y arquitectura.",
+          "file": "docs/acta-reunion-02.pdf",
+          "date": "2026-05-13",
+          "size": "100 KB"
         }
       ]
     }

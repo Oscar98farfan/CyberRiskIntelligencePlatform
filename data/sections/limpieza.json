@@ -6,7 +6,10 @@
     "sprint": "Sprint 9 · Entregable 17",
     "fecha": "2026-03-08",
     "version": "1.0",
-    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+    "autores": [
+      "Juan Camilo Madero",
+      "Oscar Daniel Farfan Juanias"
+    ]
   },
   "blocks": [
     {
@@ -18,12 +21,30 @@
       "type": "kpi-grid",
       "label": "Estado del Dataset",
       "items": [
-        { "id": "DATASET CRUDO",       "text": "347.752 CVEs · 21 columnas · 206 MB en memoria" },
-        { "id": "DATASET MODELO",      "text": "181.279 CVEs · con CPE_VENDOR + SCORE_BASE completos" },
-        { "id": "DESCARTADOS",         "text": "166.473 CVEs · sin vendor o sin puntuación CVSS v3.1" },
-        { "id": "COBERTURA TEMPORAL",  "text": "1999 – 2026 · media del dataset: año 2018" },
-        { "id": "VENDORS ÚNICOS",      "text": "35.530 vendors · Top: linux, google, microsoft, oracle" },
-        { "id": "PRODUCTOS ÚNICOS",    "text": "59.636 productos · Top: linux_kernel, android, chrome" }
+        {
+          "id": "DATASET CRUDO",
+          "text": "347.752 CVEs · 21 columnas · 206 MB en memoria"
+        },
+        {
+          "id": "DATASET MODELO",
+          "text": "181.279 CVEs · con CPE_VENDOR + SCORE_BASE completos"
+        },
+        {
+          "id": "DESCARTADOS",
+          "text": "166.473 CVEs · sin vendor o sin puntuación CVSS v3.1"
+        },
+        {
+          "id": "COBERTURA TEMPORAL",
+          "text": "1999 – 2026 · media del dataset: año 2018"
+        },
+        {
+          "id": "VENDORS ÚNICOS",
+          "text": "35.530 vendors · Top: linux, google, microsoft, oracle"
+        },
+        {
+          "id": "PRODUCTOS ÚNICOS",
+          "text": "59.636 productos · Top: linux_kernel, android, chrome"
+        }
       ]
     },
     {
@@ -59,33 +80,289 @@
       ]
     },
     {
+      "type": "numbered-list",
+      "label": "Proceso Completo de Limpieza y Preparación",
+      "items": [
+        "Confirmación de características de los campos: se verifica el tipo de dato de cada columna, se ajusta el formato de las fechas y se normalizan para consistencia temporal.",
+        "Clasificación de columnas en categóricas y numéricas: se separan para aplicar transformaciones distintas según el tipo — encoding para categóricas, normalización para numéricas.",
+        "Análisis de valores únicos en columnas categóricas: SEVERITY (5 valores), VEC_ATAQUE (4), COMPLEJIDAD (2), PRIVILEGIOS (3), INTERACCION (2), ALCANCE (2), IMP_CONFID / IMP_INTEGR / IMP_DISPON (3 cada una).",
+        "Análisis de valores nulos: se identifica un 22% de nulos en el dataset. Los campos SCORE_BASE, SEVERITY y todas las features CVSS son los más afectados con 137.761 registros sin datos.",
+        "Transformación de nulos a sin información: los valores nulos se convierten a una categoría explícita para una posterior limpieza o normalización orientada al modelo.",
+        "Extracción e integración de fuentes externas KEV y EPSS: se relacionan como confirmación de ataques exitosos. KEV indica si la vulnerabilidad ha sido explotada activamente; EPSS indica la probabilidad de explotación en los próximos 30 días.",
+        "Análisis de nulos post-integración con KEV y EPSS: después de la relación con las nuevas fuentes se encuentra que solo el 0,5% de los CVEs tienen resultados en ambas fuentes — dato esperado dado que KEV y EPSS solo cubren vulnerabilidades de alta criticidad.",
+        "Cálculo de la variable dependiente del modelo: se construye la probabilidad de ataque y se clasifica el riesgo en una variable risk_score que combina SCORE_BASE, HAS_KEV y EPSS.",
+        "Separación de variables por modelo: se identifican las variables que entran al modelo de probabilidad binario (¿será atacado?) y las que entran al modelo de clasificación de riesgo (¿qué tan grave?).",
+        "Identificación de variables con alta cardinalidad: se encuentran 3 variables con cardinalidad alta — CPE_VENDOR (35.530 valores únicos), CPE_PRODUCT (59.636) y CPE combinado.",
+        "Construcción de diccionario de datos para agrupación semántica: se agrupan vendors y productos por categorías relacionales (ej: todos los productos de red, todos los sistemas operativos) para reducir la cardinalidad y mejorar la generalización del modelo."
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Fuentes Externas Integradas — KEV y EPSS",
+      "cols": [
+        {
+          "icon": "⚡",
+          "title": "KEV — Known Exploited Vulnerabilities (CISA)",
+          "variant": "warning",
+          "items": [
+            "Catálogo oficial de la CISA con vulnerabilidades confirmadas como explotadas activamente.",
+            "Se integra al dataset como campo HAS_KEV (booleano True/False).",
+            "1.582 CVEs del dataset modelo tienen HAS_KEV = True — alta prioridad en el modelo.",
+            "Un CVE con HAS_KEV = True eleva automáticamente su risk_score independientemente del CVSS.",
+            "Fuente: https://www.cisa.gov/known-exploited-vulnerabilities-catalog"
+          ]
+        },
+        {
+          "icon": "◈",
+          "title": "EPSS — Exploit Prediction Scoring System",
+          "variant": "info",
+          "items": [
+            "Score de 0 a 1 que indica la probabilidad de que una CVE sea explotada en los próximos 30 días.",
+            "Desarrollado por FIRST.org — complementa el CVSS que mide severidad pero no probabilidad.",
+            "Solo el 0,5% de los CVEs del dataset tienen datos EPSS — cobertura limitada a vulnerabilidades recientes y de alta criticidad.",
+            "Se usa como feature adicional en el modelo de probabilidad binario.",
+            "Fuente: https://www.first.org/epss"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "two-col",
+      "label": "Variables del Modelo — Separación por Tipo",
+      "cols": [
+        {
+          "icon": "◉",
+          "title": "Modelo Binario — ¿Será atacado?",
+          "variant": "info",
+          "items": [
+            "Variable objetivo: probabilidad de ataque (0 = no explotado, 1 = explotado).",
+            "Features principales: HAS_KEV, EPSS score, SCORE_BASE, VEC_ATAQUE, COMPLEJIDAD.",
+            "PRIVILEGIOS e INTERACCION como features de contexto del ataque.",
+            "CVE_YEAR como feature temporal — vulnerabilidades recientes tienen mayor probabilidad.",
+            "Responde la pregunta: ¿qué tan probable es que esta vulnerabilidad sea explotada?"
+          ]
+        },
+        {
+          "icon": "⚡",
+          "title": "Modelo de Clasificación — ¿Qué tan grave?",
+          "variant": "warning",
+          "items": [
+            "Variable objetivo: risk_score — clasificación en CRÍTICO / ALTO / MEDIO / BAJO.",
+            "Features principales: SCORE_BASE, IMP_CONFID, IMP_INTEGR, IMP_DISPON, ALCANCE.",
+            "FACILIDAD como peso del impacto — cuán fácil es explotar la vulnerabilidad.",
+            "HAS_KEV como feature binaria que eleva el riesgo cuando está activo.",
+            "Responde la pregunta: si se explota, ¿qué daño puede causar a la empresa?"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "label": "Alta Cardinalidad — Problema y Solución",
+      "headers": [
+        "Variable",
+        "Valores únicos",
+        "Problema",
+        "Solución aplicada"
+      ],
+      "rows": [
+        [
+          "CPE_VENDOR",
+          "35.530",
+          "Demasiadas categorías para encoding directo — el modelo no generaliza",
+          "Agrupación semántica por categoría: SO, red, base de datos, navegador, nube, etc."
+        ],
+        [
+          "CPE_PRODUCT",
+          "59.636",
+          "Alta cardinalidad + muchos productos con solo 1 CVE — ruido en el modelo",
+          "Agrupación relacional por vendor + categoría de producto — reduce a grupos manejables"
+        ],
+        [
+          "CPE combinado",
+          "~80k",
+          "Combinación vendor+product genera cardinalidad explosiva",
+          "Se trabaja vendor y product por separado con el diccionario de agrupación semántica"
+        ]
+      ],
+      "footer": [
+        "",
+        "",
+        "Meta: reducir a < 50 categorías por variable",
+        "Diccionario de datos construido manualmente"
+      ]
+    },
+    {
+      "type": "paragraph",
+      "label": "Variable Dependiente — risk_score",
+      "content": "La variable dependiente del modelo es el risk_score, calculado combinando tres fuentes de información: el SCORE_BASE del CVSS v3.1 (severidad técnica de la vulnerabilidad), el campo HAS_KEV (confirmación de explotación activa según CISA) y el score EPSS (probabilidad de explotación próxima según FIRST.org). La combinación de estas tres fuentes produce una clasificación de riesgo más precisa que el CVSS solo, ya que el CVSS mide el daño potencial pero no la probabilidad real de que el ataque ocurra. Un CVE con SCORE_BASE = 7.0 pero HAS_KEV = True y EPSS alto tiene un risk_score mayor que uno con SCORE_BASE = 9.0 pero sin historial de explotación."
+    },
+    {
       "type": "table",
       "label": "Análisis de Nulos — Dataset Crudo (347.752 registros)",
-      "headers": ["Columna", "Registros completos", "Nulos", "% nulos", "Acción tomada"],
-      "rows": [
-        ["CVE_ID",         "347.752", "0",       "0%",   "Completo — llave primaria"],
-        ["PUBLISHED_DATE", "347.752", "0",       "0%",   "Completo — datetime UTC"],
-        ["MODIFIED_DATE",  "347.752", "0",       "0%",   "Completo — datetime UTC"],
-        ["CVE_YEAR",       "347.752", "0",       "0%",   "Completo — int extraído de la fecha"],
-        ["HAS_KEV",        "347.752", "0",       "0%",   "Completo — bool True/False"],
-        ["DESC_EN",        "347.752", "0",       "0%",   "Completo — strings vacíos → NaN en extracción"],
-        ["SCORE_BASE",     "209.991", "137.761", "39,6%","Filtro del modelo: solo se usan los no nulos"],
-        ["SEVERITY",       "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["VEC_ATAQUE",     "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["COMPLEJIDAD",    "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["PRIVILEGIOS",    "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["INTERACCION",    "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["ALCANCE",        "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["IMP_CONFID",     "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["IMP_INTEGR",     "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["IMP_DISPON",     "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["FACILIDAD",      "209.991", "137.761", "39,6%","Depende de SCORE_BASE — mismo filtro"],
-        ["CWE_ID",         "274.234", "73.518",  "21,1%","Pendiente en 02_preprocess.py"],
-        ["CPE_VENDOR",     "296.193", "51.559",  "14,8%","Filtro del modelo: solo se usan los no nulos"],
-        ["CPE_PRODUCT",    "296.192", "51.560",  "14,8%","2 nulos quedan en dataset modelo — pendiente"],
-        ["PATCH_URL",      "330.227", "17.525",  "5%",   "No crítico para el modelo — informativo"]
+      "headers": [
+        "Columna",
+        "Registros completos",
+        "Nulos",
+        "% nulos",
+        "Acción tomada"
       ],
-      "footer": ["", "209.991 con CVSS completo", "137.761 sin CVSS v3.1", "39,6% del total", ""]
+      "rows": [
+        [
+          "CVE_ID",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — llave primaria"
+        ],
+        [
+          "PUBLISHED_DATE",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — datetime UTC"
+        ],
+        [
+          "MODIFIED_DATE",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — datetime UTC"
+        ],
+        [
+          "CVE_YEAR",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — int extraído de la fecha"
+        ],
+        [
+          "HAS_KEV",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — bool True/False"
+        ],
+        [
+          "DESC_EN",
+          "347.752",
+          "0",
+          "0%",
+          "Completo — strings vacíos → NaN en extracción"
+        ],
+        [
+          "SCORE_BASE",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Filtro del modelo: solo se usan los no nulos"
+        ],
+        [
+          "SEVERITY",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "VEC_ATAQUE",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "COMPLEJIDAD",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "PRIVILEGIOS",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "INTERACCION",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "ALCANCE",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "IMP_CONFID",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "IMP_INTEGR",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "IMP_DISPON",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "FACILIDAD",
+          "209.991",
+          "137.761",
+          "39,6%",
+          "Depende de SCORE_BASE — mismo filtro"
+        ],
+        [
+          "CWE_ID",
+          "274.234",
+          "73.518",
+          "21,1%",
+          "Pendiente en 02_preprocess.py"
+        ],
+        [
+          "CPE_VENDOR",
+          "296.193",
+          "51.559",
+          "14,8%",
+          "Filtro del modelo: solo se usan los no nulos"
+        ],
+        [
+          "CPE_PRODUCT",
+          "296.192",
+          "51.560",
+          "14,8%",
+          "2 nulos quedan en dataset modelo — pendiente"
+        ],
+        [
+          "PATCH_URL",
+          "330.227",
+          "17.525",
+          "5%",
+          "No crítico para el modelo — informativo"
+        ]
+      ],
+      "footer": [
+        "",
+        "209.991 con CVSS completo",
+        "137.761 sin CVSS v3.1",
+        "39,6% del total",
+        ""
+      ]
     },
     {
       "type": "highlight",
@@ -95,83 +372,330 @@
     {
       "type": "table",
       "label": "Resultado del Filtrado — Dataset Modelo (181.279 CVEs)",
-      "headers": ["Segmento", "CVEs", "Descripción"],
-      "rows": [
-        ["Con CPE + CVSS v3.1",    "181.279", "Dataset útil para el modelo — tienen vendor y puntuación CVSS"],
-        ["Con CPE sin CVSS v3.1",  "114.914", "Tienen vendor pero sin puntuación — descartados del modelo"],
-        ["Sin CPE con CVSS",       "22.847",  "Tienen puntuación pero sin vendor — descartados del modelo"],
-        ["Sin CPE ni CVSS",        "28.712",  "Sin ninguno de los dos datos mínimos — descartados"],
-        ["HAS_KEV activos",        "1.582",   "CVEs explotadas activamente en el dataset modelo — alta prioridad"]
+      "headers": [
+        "Segmento",
+        "CVEs",
+        "Descripción"
       ],
-      "footer": ["TOTAL DATASET CRUDO", "347.752", "100% — dataset original descargado del NVD"]
+      "rows": [
+        [
+          "Con CPE + CVSS v3.1",
+          "181.279",
+          "Dataset útil para el modelo — tienen vendor y puntuación CVSS"
+        ],
+        [
+          "Con CPE sin CVSS v3.1",
+          "114.914",
+          "Tienen vendor pero sin puntuación — descartados del modelo"
+        ],
+        [
+          "Sin CPE con CVSS",
+          "22.847",
+          "Tienen puntuación pero sin vendor — descartados del modelo"
+        ],
+        [
+          "Sin CPE ni CVSS",
+          "28.712",
+          "Sin ninguno de los dos datos mínimos — descartados"
+        ],
+        [
+          "HAS_KEV activos",
+          "1.582",
+          "CVEs explotadas activamente en el dataset modelo — alta prioridad"
+        ]
+      ],
+      "footer": [
+        "TOTAL DATASET CRUDO",
+        "347.752",
+        "100% — dataset original descargado del NVD"
+      ]
     },
     {
       "type": "table",
       "label": "Distribución de Severidad — Dataset Modelo",
-      "headers": ["Severidad", "CVEs", "% del modelo", "Score CVSS"],
-      "rows": [
-        ["MEDIUM",   "83.741", "46,2%", "4.0 – 6.9"],
-        ["HIGH",     "68.689", "37,9%", "7.0 – 8.9"],
-        ["CRITICAL", "21.664", "11,9%", "9.0 – 10.0"],
-        ["LOW",       "7.155",  "3,9%", "0.1 – 3.9"],
-        ["NONE",         "30",  "0,01%","0.0"]
+      "headers": [
+        "Severidad",
+        "CVEs",
+        "% del modelo",
+        "Score CVSS"
       ],
-      "footer": ["TOTAL", "181.279", "100%", "Media: 6.84 · Mediana: 6.70"]
+      "rows": [
+        [
+          "MEDIUM",
+          "83.741",
+          "46,2%",
+          "4.0 – 6.9"
+        ],
+        [
+          "HIGH",
+          "68.689",
+          "37,9%",
+          "7.0 – 8.9"
+        ],
+        [
+          "CRITICAL",
+          "21.664",
+          "11,9%",
+          "9.0 – 10.0"
+        ],
+        [
+          "LOW",
+          "7.155",
+          "3,9%",
+          "0.1 – 3.9"
+        ],
+        [
+          "NONE",
+          "30",
+          "0,01%",
+          "0.0"
+        ]
+      ],
+      "footer": [
+        "TOTAL",
+        "181.279",
+        "100%",
+        "Media: 6.84 · Mediana: 6.70"
+      ]
     },
     {
       "type": "table",
       "label": "Top 20 Vendors con más CVEs — Dataset Modelo",
-      "headers": ["#", "Vendor", "CVEs", "Relevancia para PYMEs colombianas"],
-      "rows": [
-        ["1",  "linux",     "10.761", "Alta — servidores y sistemas operativos muy usados"],
-        ["2",  "google",     "8.486", "Alta — Chrome, Android, servicios cloud"],
-        ["3",  "microsoft",  "7.669", "Alta — Windows, Office, servidores IIS"],
-        ["4",  "adobe",      "4.038", "Media — Acrobat, Flash (legacy)"],
-        ["5",  "ibm",        "3.683", "Media — sistemas empresariales"],
-        ["6",  "apple",      "3.676", "Media — macOS, iOS"],
-        ["7",  "oracle",     "3.470", "Alta — bases de datos Java, MySQL"],
-        ["8",  "cisco",      "2.822", "Alta — routers y switches de red"],
-        ["9",  "qualcomm",   "1.848", "Baja — chips móviles"],
-        ["10", "tenda",      "1.813", "Alta — routers económicos muy usados en PYMEs"],
-        ["11", "huawei",     "1.668", "Media — equipos de red"],
-        ["12", "apache",     "1.624", "Alta — servidor web más usado en PYMEs"],
-        ["13", "dlink",      "1.525", "Alta — routers y switches PYMEs"],
-        ["14", "siemens",    "1.486", "Baja — sistemas industriales"],
-        ["15", "jenkins",    "1.432", "Media — CI/CD DevOps"],
-        ["16", "intel",      "1.399", "Media — procesadores y firmware"],
-        ["17", "mozilla",    "1.385", "Alta — Firefox, navegadores"],
-        ["18", "dell",       "1.325", "Media — hardware empresarial"],
-        ["19", "samsung",    "1.309", "Media — móviles y smart TVs"],
-        ["20", "gitlab",     "1.228", "Media — repositorios de código"]
+      "headers": [
+        "#",
+        "Vendor",
+        "CVEs",
+        "Relevancia para PYMEs colombianas"
       ],
-      "footer": ["Total únicos", "35.530 vendors", "181.279 CVEs con vendor", ""]
+      "rows": [
+        [
+          "1",
+          "linux",
+          "10.761",
+          "Alta — servidores y sistemas operativos muy usados"
+        ],
+        [
+          "2",
+          "google",
+          "8.486",
+          "Alta — Chrome, Android, servicios cloud"
+        ],
+        [
+          "3",
+          "microsoft",
+          "7.669",
+          "Alta — Windows, Office, servidores IIS"
+        ],
+        [
+          "4",
+          "adobe",
+          "4.038",
+          "Media — Acrobat, Flash (legacy)"
+        ],
+        [
+          "5",
+          "ibm",
+          "3.683",
+          "Media — sistemas empresariales"
+        ],
+        [
+          "6",
+          "apple",
+          "3.676",
+          "Media — macOS, iOS"
+        ],
+        [
+          "7",
+          "oracle",
+          "3.470",
+          "Alta — bases de datos Java, MySQL"
+        ],
+        [
+          "8",
+          "cisco",
+          "2.822",
+          "Alta — routers y switches de red"
+        ],
+        [
+          "9",
+          "qualcomm",
+          "1.848",
+          "Baja — chips móviles"
+        ],
+        [
+          "10",
+          "tenda",
+          "1.813",
+          "Alta — routers económicos muy usados en PYMEs"
+        ],
+        [
+          "11",
+          "huawei",
+          "1.668",
+          "Media — equipos de red"
+        ],
+        [
+          "12",
+          "apache",
+          "1.624",
+          "Alta — servidor web más usado en PYMEs"
+        ],
+        [
+          "13",
+          "dlink",
+          "1.525",
+          "Alta — routers y switches PYMEs"
+        ],
+        [
+          "14",
+          "siemens",
+          "1.486",
+          "Baja — sistemas industriales"
+        ],
+        [
+          "15",
+          "jenkins",
+          "1.432",
+          "Media — CI/CD DevOps"
+        ],
+        [
+          "16",
+          "intel",
+          "1.399",
+          "Media — procesadores y firmware"
+        ],
+        [
+          "17",
+          "mozilla",
+          "1.385",
+          "Alta — Firefox, navegadores"
+        ],
+        [
+          "18",
+          "dell",
+          "1.325",
+          "Media — hardware empresarial"
+        ],
+        [
+          "19",
+          "samsung",
+          "1.309",
+          "Media — móviles y smart TVs"
+        ],
+        [
+          "20",
+          "gitlab",
+          "1.228",
+          "Media — repositorios de código"
+        ]
+      ],
+      "footer": [
+        "Total únicos",
+        "35.530 vendors",
+        "181.279 CVEs con vendor",
+        ""
+      ]
     },
     {
       "type": "table",
       "label": "Estadísticas Descriptivas — Columnas Numéricas",
-      "headers": ["Métrica", "CVE_YEAR", "SCORE_BASE (CVSS)", "FACILIDAD"],
-      "rows": [
-        ["Registros",  "347.752",  "209.991",  "209.991"],
-        ["Media",      "2018,9",   "6,84",     "2,60"],
-        ["Desv. std",  "6,30",     "1,72",     "0,95"],
-        ["Mínimo",     "1999",     "0,0",      "0,10"],
-        ["25%",        "2016",     "5,50",     "1,80"],
-        ["Mediana",    "2021",     "6,70",     "2,80"],
-        ["75%",        "2024",     "7,80",     "3,90"],
-        ["Máximo",     "2026",     "10,0",     "3,90"]
+      "headers": [
+        "Métrica",
+        "CVE_YEAR",
+        "SCORE_BASE (CVSS)",
+        "FACILIDAD"
       ],
-      "footer": ["", "Dataset desde 1999 hasta 2026", "Score promedio: ALTO", "Facilidad promedio: MEDIA"]
+      "rows": [
+        [
+          "Registros",
+          "347.752",
+          "209.991",
+          "209.991"
+        ],
+        [
+          "Media",
+          "2018,9",
+          "6,84",
+          "2,60"
+        ],
+        [
+          "Desv. std",
+          "6,30",
+          "1,72",
+          "0,95"
+        ],
+        [
+          "Mínimo",
+          "1999",
+          "0,0",
+          "0,10"
+        ],
+        [
+          "25%",
+          "2016",
+          "5,50",
+          "1,80"
+        ],
+        [
+          "Mediana",
+          "2021",
+          "6,70",
+          "2,80"
+        ],
+        [
+          "75%",
+          "2024",
+          "7,80",
+          "3,90"
+        ],
+        [
+          "Máximo",
+          "2026",
+          "10,0",
+          "3,90"
+        ]
+      ],
+      "footer": [
+        "",
+        "Dataset desde 1999 hasta 2026",
+        "Score promedio: ALTO",
+        "Facilidad promedio: MEDIA"
+      ]
     },
     {
       "type": "timeline",
       "label": "Próximos Pasos — Script 02_preprocess.py",
       "phases": [
-        { "id": "P1", "name": "Manejar los 17.715 nulos en CWE_ID — rellenar con 'UNKNOWN' o excluir según impacto en el modelo", "weeks": "Semana 10 · O. Farfan" },
-        { "id": "P2", "name": "Encoding de variables categóricas: SEVERITY, VEC_ATAQUE, COMPLEJIDAD, PRIVILEGIOS, INTERACCION, ALCANCE → números", "weeks": "Semana 10 · O. Farfan" },
-        { "id": "P3", "name": "Definir variable objetivo del modelo: SEVERITY (clasificación) o SCORE_BASE (regresión)", "weeks": "Semana 10 · Equipo" },
-        { "id": "P4", "name": "Exportar catálogo de vendors y productos para el formulario de selección del usuario en la plataforma web", "weeks": "Semana 10 · J. Madero" },
-        { "id": "P5", "name": "Dividir en train (80%) y test (20%) con estratificación por SEVERITY para mantener distribución", "weeks": "Semana 11 · O. Farfan" },
-        { "id": "P6", "name": "Exportar dataset final listo para entrenamiento del modelo", "weeks": "Semana 11 · O. Farfan" }
+        {
+          "id": "P1",
+          "name": "Manejar los 17.715 nulos en CWE_ID — rellenar con 'UNKNOWN' o excluir según impacto en el modelo",
+          "weeks": "Semana 10 · O. Farfan"
+        },
+        {
+          "id": "P2",
+          "name": "Encoding de variables categóricas: SEVERITY, VEC_ATAQUE, COMPLEJIDAD, PRIVILEGIOS, INTERACCION, ALCANCE → números",
+          "weeks": "Semana 10 · O. Farfan"
+        },
+        {
+          "id": "P3",
+          "name": "Definir variable objetivo del modelo: SEVERITY (clasificación) o SCORE_BASE (regresión)",
+          "weeks": "Semana 10 · Equipo"
+        },
+        {
+          "id": "P4",
+          "name": "Exportar catálogo de vendors y productos para el formulario de selección del usuario en la plataforma web",
+          "weeks": "Semana 10 · J. Madero"
+        },
+        {
+          "id": "P5",
+          "name": "Dividir en train (80%) y test (20%) con estratificación por SEVERITY para mantener distribución",
+          "weeks": "Semana 11 · O. Farfan"
+        },
+        {
+          "id": "P6",
+          "name": "Exportar dataset final listo para entrenamiento del modelo",
+          "weeks": "Semana 11 · O. Farfan"
+        }
       ]
     }
   ]
