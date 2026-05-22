@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CyberRisk Platform</title>
+
+  <!-- Favicon inline (sin archivos extra) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+
+
+  <!-- GLOBAL -->
+  <link rel="stylesheet" href="../assets/css/main.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="../assets/css/cyberrisk.css">
+</head>
+
+<body>
+
+  <div class="cr">
+
+    <div class="cr-grid"></div>
+
+    <!-- HEADER -->
+    <header class="cr-hdr">
+
+      <a
+        href="../index.html"
+        class="cr-logo"
+      >
+
+        <div class="cr-logo-box">
+          CR
+        </div>
+
+        <span>
+          <span>Cyber</span>Risk Intelligence Platform
+        </span>
+
+      </a>
+
+      <div class="cr-badge-live">
+
+        <div class="cr-badge-dot"></div>
+
+        CVE/NVD SYNC · ACTIVO
+
+      </div>
+
+    </header>
+
+    <!-- BODY -->
+    <div class="cr-body">
+
+      <!-- LEFT -->
+      <aside class="cr-left">
+
+        <div class="cr-panel-title">
+          Stack Tecnológico
+        </div>
+
+        <div class="cr-search">
+
+          <span class="cr-search-icon">
+            ⌕
+          </span>
+
+          <input
+            type="text"
+            id="cr-search-input"
+            placeholder="Buscar tecnología..."
+            oninput="filterTechs(this.value)"
+          >
+
+        </div>
+
+        <div id="cr-tech-container"></div>
+
+        <div
+          id="cr-sel-count"
+          class="cr-selected-count"
+        >
+          0 tecnologías seleccionadas
+        </div>
+
+        <button
+          class="cr-analyze-btn"
+          id="cr-analyze-btn"
+          onclick="runAnalysis()"
+          disabled
+        >
+          ⬡ ANALIZAR EXPOSICIÓN
+        </button>
+
+      </aside>
+
+      <!-- RIGHT -->
+      <main class="cr-right">
+
+        <!-- EMPTY -->
+        <div
+          class="cr-empty"
+          id="cr-empty"
+        >
+
+          <div class="cr-empty-icon">
+            ⬡
+          </div>
+
+          <div class="cr-empty-title">
+            Selecciona tu stack
+          </div>
+
+          <div class="cr-empty-sub">
+            Elige las tecnologías que usa tu organización y obtén un análisis de exposición a vulnerabilidades conocidas.
+          </div>
+
+        </div>
+
+        <!-- RESULT -->
+        <div
+          class="cr-result"
+          id="cr-result"
+        >
+
+          <div class="cr-risk-header">
+
+            <div>
+
+              <div class="cr-risk-title">
+                Análisis de Exposición al Riesgo
+              </div>
+
+              <div
+                class="cr-risk-sub"
+                id="cr-result-sub"
+              >
+                // stack analizado
+              </div>
+
+            </div>
+
+            <div
+              class="cr-result-date"
+              id="cr-result-date"
+            ></div>
+
+          </div>
+
+          <!-- EXPOSURE -->
+          <div class="cr-exposure">
+
+            <div class="cr-exp-header">
+
+              <span class="cr-exp-label">
+                Índice de Exposición Global
+              </span>
+
+              <span
+                class="cr-exp-score"
+                id="cr-exp-score"
+              >
+                --
+              </span>
+
+            </div>
+
+            <div class="cr-bar-track">
+
+              <div
+                class="cr-bar-fill"
+                id="cr-bar-fill"
+                style="width:0%"
+              ></div>
+
+            </div>
+
+            <div class="cr-bar-labels">
+
+              <span>BAJO</span>
+              <span>MEDIO</span>
+              <span>ALTO</span>
+              <span>CRÍTICO</span>
+
+            </div>
+
+          </div>
+
+          <!-- SCORE -->
+          <div class="cr-score-grid">
+
+            <div class="cr-score-card">
+              <div
+                class="cr-score-val critical"
+                id="sc-critical"
+              >
+                --
+              </div>
+
+              <div class="cr-score-lbl">
+                Críticas
+              </div>
+            </div>
+
+            <div class="cr-score-card">
+              <div
+                class="cr-score-val high"
+                id="sc-high"
+              >
+                --
+              </div>
+
+              <div class="cr-score-lbl">
+                Altas
+              </div>
+            </div>
+
+            <div class="cr-score-card">
+              <div
+                class="cr-score-val medium"
+                id="sc-medium"
+              >
+                --
+              </div>
+
+              <div class="cr-score-lbl">
+                Medias
+              </div>
+            </div>
+
+            <div class="cr-score-card">
+              <div
+                class="cr-score-val safe"
+                id="sc-cves"
+              >
+                --
+              </div>
+
+              <div class="cr-score-lbl">
+                CVEs Totales
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CWE -->
+          <div class="cr-section-title">
+            Debilidades CWE Detectadas
+          </div>
+
+          <div
+            class="cr-cwe-list"
+            id="cr-cwe-list"
+          ></div>
+
+          <!-- RECOMMENDATIONS -->
+          <div class="cr-section-title">
+            Recomendaciones de Mitigación
+          </div>
+
+          <div
+            class="cr-rec-list"
+            id="cr-rec-list"
+          ></div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <script src="../assets/js/cyberrisk.js"></script>
+
+</body>
+</html>

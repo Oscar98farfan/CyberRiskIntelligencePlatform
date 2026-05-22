@@ -194,6 +194,35 @@ body::after {
   border-left: 1px solid var(--border);
 }
 
+.PageCyberRisk {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--cyan);
+  border-radius: var(--radius);
+
+  background: rgba(0, 255, 255, 0.05);
+  color: var(--cyan);
+
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+.PageCyberRisk:hover {
+  background: var(--cyan);
+  color: #05080c;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+
 /* ══════════════════════════════════════════
    LAYOUT PRINCIPAL
 ══════════════════════════════════════════ */
