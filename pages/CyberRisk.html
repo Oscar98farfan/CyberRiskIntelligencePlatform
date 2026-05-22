@@ -8,7 +8,8 @@
   <title>CyberRisk Platform</title>
 
   <!-- Favicon inline (sin archivos extra) -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
 
 
   <!-- GLOBAL -->
@@ -21,35 +22,21 @@
 <body>
 
   <div class="cr">
-
     <div class="cr-grid"></div>
-
     <!-- HEADER -->
     <header class="cr-hdr">
-
-      <a
-        href="../index.html"
-        class="cr-logo"
-      >
-
+      <a href="../index.html" class="cr-logo">
         <div class="cr-logo-box">
           CR
         </div>
-
         <span>
           <span>Cyber</span>Risk Intelligence Platform
         </span>
-
       </a>
-
       <div class="cr-badge-live">
-
         <div class="cr-badge-dot"></div>
-
         CVE/NVD SYNC · ACTIVO
-
       </div>
-
     </header>
 
     <!-- BODY -->
@@ -57,54 +44,54 @@
 
       <!-- LEFT -->
       <aside class="cr-left">
+        <!-- TABS -->
+        <div class="cr-tabs">
+          <button id="tab-tech" class="cr-tab active" onclick="switchTab('tech')">
+            Tecnologías
+          </button>
 
-        <div class="cr-panel-title">
-          Stack Tecnológico
+          <button id="tab-provider" class="cr-tab" onclick="switchTab('provider')">
+            Proveedores
+          </button>
         </div>
 
-        <div class="cr-search">
 
+        <!-- SEARCH -->
+        <div class="cr-search">
           <span class="cr-search-icon">
             ⌕
           </span>
 
-          <input
-            type="text"
-            id="cr-search-input"
-            placeholder="Buscar tecnología..."
-            oninput="filterTechs(this.value)"
-          >
-
+          <input type="text" id="cr-global-search" placeholder="Buscar..." oninput="handleSearch(this.value)">
         </div>
 
-        <div id="cr-tech-container"></div>
 
-        <div
-          id="cr-sel-count"
-          class="cr-selected-count"
-        >
-          0 tecnologías seleccionadas
+        <!-- SCROLL BODY -->
+        <div class="cr-selector-body">
+          <div id="cr-selector-container"></div>
         </div>
 
-        <button
-          class="cr-analyze-btn"
-          id="cr-analyze-btn"
-          onclick="runAnalysis()"
-          disabled
-        >
-          ⬡ ANALIZAR EXPOSICIÓN
-        </button>
 
+        <!-- SUMMARY -->
+        <section class="cr-side-summary">
+          <div id="cr-sel-count" class="cr-selected-count">
+            0 tecnologías
+          </div>
+          <div id="cr-provider-count" class="cr-selected-count">
+            0 proveedores
+          </div>
+          <button class="cr-analyze-btn" id="cr-analyze-btn" onclick="runAnalysis()" disabled>
+            ⬡ ANALIZAR EXPOSICIÓN
+          </button>
+        </section>
       </aside>
+
 
       <!-- RIGHT -->
       <main class="cr-right">
 
         <!-- EMPTY -->
-        <div
-          class="cr-empty"
-          id="cr-empty"
-        >
+        <div class="cr-empty" id="cr-empty">
 
           <div class="cr-empty-icon">
             ⬡
@@ -115,16 +102,14 @@
           </div>
 
           <div class="cr-empty-sub">
-            Elige las tecnologías que usa tu organización y obtén un análisis de exposición a vulnerabilidades conocidas.
+            Elige las tecnologías que usa tu organización y obtén un análisis de exposición a vulnerabilidades
+            conocidas.
           </div>
 
         </div>
 
         <!-- RESULT -->
-        <div
-          class="cr-result"
-          id="cr-result"
-        >
+        <div class="cr-result" id="cr-result">
 
           <div class="cr-risk-header">
 
@@ -134,19 +119,13 @@
                 Análisis de Exposición al Riesgo
               </div>
 
-              <div
-                class="cr-risk-sub"
-                id="cr-result-sub"
-              >
+              <div class="cr-risk-sub" id="cr-result-sub">
                 // stack analizado
               </div>
 
             </div>
 
-            <div
-              class="cr-result-date"
-              id="cr-result-date"
-            ></div>
+            <div class="cr-result-date" id="cr-result-date"></div>
 
           </div>
 
@@ -159,10 +138,7 @@
                 Índice de Exposición Global
               </span>
 
-              <span
-                class="cr-exp-score"
-                id="cr-exp-score"
-              >
+              <span class="cr-exp-score" id="cr-exp-score">
                 --
               </span>
 
@@ -170,11 +146,7 @@
 
             <div class="cr-bar-track">
 
-              <div
-                class="cr-bar-fill"
-                id="cr-bar-fill"
-                style="width:0%"
-              ></div>
+              <div class="cr-bar-fill" id="cr-bar-fill" style="width:0%"></div>
 
             </div>
 
@@ -193,10 +165,7 @@
           <div class="cr-score-grid">
 
             <div class="cr-score-card">
-              <div
-                class="cr-score-val critical"
-                id="sc-critical"
-              >
+              <div class="cr-score-val critical" id="sc-critical">
                 --
               </div>
 
@@ -206,10 +175,7 @@
             </div>
 
             <div class="cr-score-card">
-              <div
-                class="cr-score-val high"
-                id="sc-high"
-              >
+              <div class="cr-score-val high" id="sc-high">
                 --
               </div>
 
@@ -219,10 +185,7 @@
             </div>
 
             <div class="cr-score-card">
-              <div
-                class="cr-score-val medium"
-                id="sc-medium"
-              >
+              <div class="cr-score-val medium" id="sc-medium">
                 --
               </div>
 
@@ -232,10 +195,7 @@
             </div>
 
             <div class="cr-score-card">
-              <div
-                class="cr-score-val safe"
-                id="sc-cves"
-              >
+              <div class="cr-score-val safe" id="sc-cves">
                 --
               </div>
 
@@ -251,20 +211,14 @@
             Debilidades CWE Detectadas
           </div>
 
-          <div
-            class="cr-cwe-list"
-            id="cr-cwe-list"
-          ></div>
+          <div class="cr-cwe-list" id="cr-cwe-list"></div>
 
           <!-- RECOMMENDATIONS -->
           <div class="cr-section-title">
             Recomendaciones de Mitigación
           </div>
 
-          <div
-            class="cr-rec-list"
-            id="cr-rec-list"
-          ></div>
+          <div class="cr-rec-list" id="cr-rec-list"></div>
 
         </div>
 
@@ -277,4 +231,5 @@
   <script src="../assets/js/cyberrisk.js"></script>
 
 </body>
+
 </html>
