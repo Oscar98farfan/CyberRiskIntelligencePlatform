@@ -5,7 +5,10 @@
     "sprint": "Sprint 3 · Entregable 1",
     "fecha": "2026-03-08",
     "version": "1.0",
-    "autores": ["Juan Camilo Madero", "Oscar Daniel Farfan Juanias"]
+    "autores": [
+      "Juan Camilo Madero",
+      "Oscar Daniel Farfan Juanias"
+    ]
   },
   "blocks": [
     {
@@ -36,6 +39,13 @@
           "desc": "Limpieza de la información y arquitectura.",
           "file": "docs/acta-reunion-02.pdf",
           "date": "2026-05-13",
+          "size": "100 KB"
+        },
+        {
+          "name": "Acta de Reunión #3",
+          "desc": "Limpieza de la información y Diseño Web.",
+          "file": "docs/acta-reunion-03.pdf",
+          "date": "2026-05-19",
           "size": "100 KB"
         }
       ]

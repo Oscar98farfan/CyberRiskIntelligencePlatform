@@ -3,8 +3,8 @@
   "project": {
     "name": "CyberRisk Intelligence Platform",
     "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
-    "version": "1.0.20",
-    "sprint": "Sprint 8",
+    "version": "1.0.23",
+    "sprint": "Sprint 11",
     "status": "active",
     "repo": "https://github.com/usuario/cyberrisk-platform"
   },
@@ -189,7 +189,7 @@
       "order": 14,
       "sprint": 9,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "arquitectura",
@@ -199,7 +199,7 @@
       "order": 15,
       "sprint": 9,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "limpieza",
@@ -209,7 +209,7 @@
       "order": 15,
       "sprint": 10,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "integracion",
@@ -219,7 +219,7 @@
       "order": 16,
       "sprint": 10,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "implementacion",
@@ -229,7 +229,7 @@
       "order": 17,
       "sprint": 11,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "pruebas",
@@ -239,7 +239,7 @@
       "order": 18,
       "sprint": 12,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "web",
@@ -249,7 +249,7 @@
       "order": 18,
       "sprint": 13,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "qaInterno",
