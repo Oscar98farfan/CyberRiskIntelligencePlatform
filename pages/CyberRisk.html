@@ -34,9 +34,9 @@
         rel="stylesheet" />
 
     <!-- Estilos base del proyecto -->
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
     <!-- Estilos específicos del módulo -->
-    <link rel="stylesheet" href="assets/css/cyberrisk.css" />
+    <link rel="stylesheet" href="/assets/css/cyberrisk.css" />
 </head>
 
 <body>
@@ -50,7 +50,7 @@
        HEADER
   ══════════════════════════════════ -->
         <header class="cr-hdr" role="banner">
-            <a href="index.html" class="cr-logo" aria-label="Volver al wiki del proyecto">
+            <a href="../index.html" class="cr-logo" aria-label="Volver al wiki del proyecto">
                 <div class="cr-logo-box" aria-hidden="true">CR</div>
                 <span><span>Cyber</span>Risk Intelligence Platform</span>
             </a>
@@ -79,22 +79,17 @@
 
                 <!-- ─ PANEL 1: SELECCIÓN DE TECNOLOGÍAS ─ -->
                 <section class="cr-panel active" id="panel-1" aria-labelledby="panel1-title">
-
                     <div class="cr-panel-title" id="panel1-title">
                         Seleccionar tecnología
                     </div>
-
                     <div class="cr-panel-scroll">
-
                         <!-- Loader mientras se cargan los JSON -->
                         <div id="catalog-loader" class="cr-loader-inline">
                             <div class="cr-spinner-sm"></div>
                             <span>Cargando catálogo…</span>
                         </div>
-
                         <!-- Formulario de selección (se muestra tras carga) -->
                         <div id="catalog-form" style="display:none">
-
                             <div class="cr-field">
                                 <label for="sel-cat" class="cr-label">Clasificación</label>
                                 <div class="cr-select-wrap">
@@ -103,7 +98,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="cr-field">
                                 <label for="sel-vendor" class="cr-label">Vendedor</label>
                                 <div class="cr-select-wrap">
@@ -112,7 +106,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="cr-field">
                                 <label for="sel-product" class="cr-label">Producto</label>
                                 <div class="cr-select-wrap">
@@ -121,22 +114,17 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="cr-field">
                                 <label for="inp-desc" class="cr-label">Descripción / Contexto <span
                                         class="cr-optional">(opcional)</span></label>
                                 <input type="text" id="inp-desc" placeholder="ej: versión 2.1, producción, sede Bogotá…"
                                     aria-label="Descripción o contexto adicional" />
                             </div>
-
                             <button class="cr-add-btn" id="add-tech-btn" onclick="addTech()" disabled>
                                 + AGREGAR AL STACK
                             </button>
-
                         </div>
-
                     </div><!-- /cr-panel-scroll -->
-
                     <!-- Lista de tecnologías agregadas -->
                     <div class="cr-tech-list-wrap" id="tech-list-wrap">
                         <div class="cr-tech-list-header">
@@ -147,20 +135,77 @@
                             <div class="cr-no-techs">Ninguna tecnología añadida aún</div>
                         </div>
                     </div>
-
                 </section><!-- /panel-1 -->
 
                 <!-- ─ PANEL 2: CUESTIONARIO ─ -->
-                <section class="cr-panel" id="panel-2" aria-labelledby="panel2-title">
+                <!-- <section class="cr-panel" id="panel-2" aria-labelledby="panel2-title">
                     <div class="cr-panel-title" id="panel2-title">Cuestionario por tecnología</div>
-                    <!-- Contenido inyectado dinámicamente por cyberrisk.js -->
                     <div id="q-content" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
                         <div class="cr-panel-scroll">
                             <p class="cr-no-techs" style="padding-top:1.5rem;">Agrega tecnologías en el paso 1 para
                                 responder el cuestionario.</p>
                         </div>
                     </div>
-                </section><!-- /panel-2 -->
+                </section> -->
+
+
+                <section class="cr-panel" id="panel-2">
+                    <div class="cr-panel-title">
+                        Cuestionario de Riesgo
+                    </div>
+                    <div id="q-content">
+                        <div class="cr-question-header">
+                            <div id="current-tech-name">
+                                Selecciona una tecnología
+                            </div>
+                            <div id="question-progress">
+                                0 / 0
+                            </div>
+                        </div>
+                        <div id="question-container">
+                            <div class="cr-no-techs">
+                                Agrega tecnologías en el paso 1
+                            </div>
+                        </div>
+                        <div class="cr-question-actions">
+                            <button class="cr-export-btn" onclick="previousTech()">
+                                ← Anterior
+                            </button>
+                            <button class="cr-export-btn cr-export-primary" onclick="nextTech()">
+                                Siguiente →
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- PANEL 2: CUESTIONARIO -->
+                <!-- <section class="cr-panel" id="panel-2">
+                    <div class="cr-panel-title">
+                        Cuestionario de Riesgo
+                    </div>
+                    <div id="q-content">
+                        <div class="cr-question-header">
+                            <div id="current-tech-name">
+                                Selecciona una tecnología
+                            </div>
+                            <div id="question-progress">
+                                0 / 0
+                            </div>
+                        </div>
+                        <div id="question-container">
+                        </div>
+                        <div class="cr-question-actions">
+                            <button class="cr-export-btn" onclick="previousTech()">
+                                ← Anterior
+                            </button>
+                            <button class="cr-export-btn cr-export-primary" onclick="nextTech()">
+                                Siguiente →
+                            </button>
+                        </div>
+                    </div>
+                </section> -->
+
 
                 <!-- ─ PANEL 3: EXPORTAR ─ -->
                 <section class="cr-panel" id="panel-3" aria-labelledby="panel3-title">
@@ -184,7 +229,6 @@
                         </div>
                     </div>
                 </section><!-- /panel-3 -->
-
                 <!-- ─ FOOTER DEL SIDEBAR ─ -->
                 <div class="cr-sidebar-footer">
                     <div class="cr-footer-nav">
@@ -211,14 +255,11 @@
                         </button>
                     </div>
                 </div>
-
             </aside><!-- /cr-sidebar -->
-
             <!-- ══════════════════════════════════
          PANEL PRINCIPAL / DASHBOARD
     ══════════════════════════════════ -->
             <main class="cr-main" id="cr-main" role="main" aria-label="Dashboard de resultados">
-
                 <!-- Estado vacío inicial -->
                 <div class="cr-empty-state" id="cr-empty">
                     <div class="cr-empty-hex" aria-hidden="true">⬡</div>
@@ -233,17 +274,14 @@
                         <div class="cr-empty-step"><span>03</span>Ejecuta el análisis y consulta el dashboard</div>
                     </div>
                 </div>
-
                 <!-- Dashboard — oculto hasta ejecutar análisis -->
                 <div id="cr-dashboard" aria-live="polite" aria-label="Resultados del análisis de riesgo">
-
                     <!-- Cabecera del dashboard -->
                     <div class="cr-dash-header">
                         <div class="cr-dash-eyebrow">Análisis de Exposición al Riesgo</div>
                         <h1 class="cr-dash-title">Dashboard de Riesgos Cibernéticos</h1>
                         <div class="cr-dash-meta" id="dash-meta">—</div>
                     </div>
-
                     <!-- KPIs -->
                     <div class="cr-section-label">Indicadores Globales</div>
                     <div class="cr-kpi-grid">
@@ -264,7 +302,6 @@
                             <div class="cr-kpi-lbl">Tecnologías</div>
                         </div>
                     </div>
-
                     <!-- Barra de exposición global -->
                     <div class="cr-section-label">Índice de Exposición Global</div>
                     <div class="cr-exposure-card">
@@ -282,7 +319,6 @@
                             <span>CRÍTICO (80–100)</span>
                         </div>
                     </div>
-
                     <!-- Gráficas -->
                     <div class="cr-section-label">Análisis Detallado</div>
                     <div class="cr-charts-grid">
@@ -295,7 +331,6 @@
                             <div class="cr-bar-chart" id="chart-factors"></div>
                         </div>
                     </div>
-
                     <!-- Tabla detallada -->
                     <div class="cr-section-label">Detalle por Tecnología</div>
                     <div class="cr-table-wrap">
@@ -312,7 +347,6 @@
                             <tbody id="risk-tbody"></tbody>
                         </table>
                     </div>
-
                     <!-- Recomendaciones -->
                     <div class="cr-section-label">Recomendaciones de Mitigación</div>
                     <div class="cr-rec-list" id="cr-rec-list"></div>
@@ -320,22 +354,17 @@
                     <!-- JSON preview -->
                     <div class="cr-section-label">Payload ML Enviado</div>
                     <pre class="cr-json-preview" id="json-preview-dash" aria-label="JSON enviado al modelo ML"></pre>
-
                 </div><!-- /#cr-dashboard -->
-
             </main><!-- /cr-main -->
-
         </div><!-- /.cr-body -->
-
     </div><!-- /#cr-app -->
-
     <!--
   Scripts — cargados en orden de dependencia:
   1. loader.js        → fetchJSON, caché
   2. cyberrisk.js     → lógica del módulo
 -->
-    <script src="assets/js/loader.js"></script>
-    <script src="assets/js/cyberrisk.js"></script>
+    <script src="/assets/js/loader.js"></script>
+    <script src="/assets/js/cyberrisk.js"></script>
 
 </body>
 

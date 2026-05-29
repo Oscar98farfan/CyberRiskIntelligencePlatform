@@ -88,10 +88,10 @@ function clearCache() {
  * (Mismo archivo del proyecto wiki — reutilizable)
  */
 
-'use strict';
+
 
 /* ─── Caché en memoria para evitar re-fetches ─── */
-const _cache = new Map();
+
 
 /**
  * Carga un archivo JSON desde la ruta indicada.

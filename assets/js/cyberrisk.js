@@ -1,825 +1,537 @@
-/* ════════════════════════════════
-   DATASET TECNOLOGÍAS
-════════════════════════════════ */
+'use strict';
 
-const TECHS = [
+/* ==========================================
+ESTADO GLOBAL
+========================================== */
 
-  { id: 'apache', name: 'Apache HTTP Server', vendor: 'Apache', cat: 'Servidores Web' },
-  { id: 'nginx', name: 'Nginx', vendor: 'Nginx Inc.', cat: 'Servidores Web' },
-  { id: 'iis', name: 'IIS', vendor: 'Microsoft', cat: 'Servidores Web' },
+let TECH_CATALOG = [];
+let QUESTIONS = [];
 
-  { id: 'mysql', name: 'MySQL', vendor: 'Oracle', cat: 'Bases de Datos' },
-  { id: 'postgresql', name: 'PostgreSQL', vendor: 'PostgreSQL Global', cat: 'Bases de Datos' },
-  { id: 'mssql', name: 'SQL Server', vendor: 'Microsoft', cat: 'Bases de Datos' },
-  { id: 'mongodb', name: 'MongoDB', vendor: 'MongoDB Inc.', cat: 'Bases de Datos' },
+let selectedTechs = [];
 
-  { id: 'wordpress', name: 'WordPress', vendor: 'Automattic', cat: 'CMS / Frameworks' },
-  { id: 'laravel', name: 'Laravel', vendor: 'Taylor Otwell', cat: 'CMS / Frameworks' },
-  { id: 'django', name: 'Django', vendor: 'Django Software', cat: 'CMS / Frameworks' },
-  { id: 'node', name: 'Node.js', vendor: 'OpenJS Foundation', cat: 'CMS / Frameworks' },
+let currentCat = '';
+let currentVendor = '';
+let currentProduct = '';
 
-  { id: 'win-server', name: 'Windows Server', vendor: 'Microsoft', cat: 'Sistemas Operativos' },
-  { id: 'ubuntu', name: 'Ubuntu Server', vendor: 'Canonical', cat: 'Sistemas Operativos' },
-  { id: 'centos', name: 'CentOS', vendor: 'Red Hat', cat: 'Sistemas Operativos' },
+let currentTechIndex = 0;
 
-  { id: 'openssl', name: 'OpenSSL', vendor: 'OpenSSL Project', cat: 'Librerías / Seguridad' },
-  { id: 'log4j', name: 'Log4j', vendor: 'Apache', cat: 'Librerías / Seguridad' },
-  { id: 'spring', name: 'Spring Boot', vendor: 'VMware', cat: 'Librerías / Seguridad' },
+document.addEventListener('DOMContentLoaded', init);
 
-];
+async function init() {
 
+  try {
 
-/* ════════════════════════════════
-   PROVEEDORES
-════════════════════════════════ */
+    const catalogData =
+      await fetchJSON('/data/tech-catalog.json');
 
-const PROVIDERS = [
+    const questionData =
+      await fetchJSON('/data/questions-config.json');
 
-  {
-    id: 'microsoft',
-    name: 'Microsoft',
-    country: 'USA',
-    risk: 'high'
-  },
+    TECH_CATALOG =
+      catalogData.catalog || [];
 
-  {
-    id: 'google',
-    name: 'Google Cloud',
-    country: 'USA',
-    risk: 'medium'
-  },
+    QUESTIONS =
+      questionData.questions || [];
 
-  {
-    id: 'amazon',
-    name: 'Amazon AWS',
-    country: 'USA',
-    risk: 'high'
-  },
+    loadCategories();
 
-  {
-    id: 'oracle',
-    name: 'Oracle',
-    country: 'USA',
-    risk: 'high'
-  },
+    document.getElementById('catalog-loader').style.display = 'none';
 
-  {
-    id: 'apache',
-    name: 'Apache Foundation',
-    country: 'USA',
-    risk: 'medium'
-  },
+    document.getElementById('catalog-form').style.display = 'block';
 
-  {
-    id: 'vmware',
-    name: 'VMware',
-    country: 'USA',
-    risk: 'critical'
-  },
+    document.getElementById('cr-status-text').textContent =
+      'DATOS CARGADOS';
 
-  {
-    id: 'fortinet',
-    name: 'Fortinet',
-    country: 'USA',
-    risk: 'critical'
-  },
-
-  {
-    id: 'paloalto',
-    name: 'Palo Alto Networks',
-    country: 'USA',
-    risk: 'medium'
-  },
-
-  {
-    id: 'canonical',
-    name: 'Canonical',
-    country: 'UK',
-    risk: 'low'
-  },
-
-  {
-    id: 'redhat',
-    name: 'Red Hat',
-    country: 'USA',
-    risk: 'medium'
   }
+  catch (error) {
 
-];
+    console.error(error);
 
-
-/* ════════════════════════════════
-   CWE DATA
-════════════════════════════════ */
-
-const CWE_DATA = {
-
-  apache: [
-    {
-      id: 'CWE-20',
-      sev: 'critical',
-      name: 'Validación de entrada incorrecta',
-      desc: 'Path traversal en módulos mod_rewrite.',
-      cves: 47
-    },
-
-    {
-      id: 'CWE-400',
-      sev: 'high',
-      name: 'Consumo no controlado de recursos',
-      desc: 'Ataques DoS HTTP/2.',
-      cves: 18
-    }
-  ],
-
-  nginx: [
-    {
-      id: 'CWE-444',
-      sev: 'high',
-      name: 'HTTP Request Smuggling',
-      desc: 'Inyección por parsing inconsistente.',
-      cves: 12
-    }
-  ],
-
-  mysql: [
-    {
-      id: 'CWE-89',
-      sev: 'critical',
-      name: 'SQL Injection',
-      desc: 'Parámetros no sanitizados.',
-      cves: 63
-    }
-  ],
-
-  wordpress: [
-    {
-      id: 'CWE-79',
-      sev: 'high',
-      name: 'Cross-Site Scripting',
-      desc: 'Plugins vulnerables.',
-      cves: 89
-    }
-  ],
-
-  openssl: [
-    {
-      id: 'CWE-125',
-      sev: 'critical',
-      name: 'Out-of-bounds Read',
-      desc: 'Heartbleed y variantes.',
-      cves: 58
-    }
-  ]
-
-};
-
-
-/* ════════════════════════════════
-   RECOMENDACIONES
-════════════════════════════════ */
-
-const RECS = {
-
-  critical: [
-
-    'Aplicar parches de seguridad de forma inmediata.',
-
-    'Aislar servicios críticos en segmentos de red.',
-
-    'Activar WAF con reglas actualizadas.',
-
-    'Revisar logs de explotación recientes.'
-
-  ],
-
-  high: [
-
-    'Programar mantenimiento de parcheo.',
-
-    'Implementar mínimo privilegio.',
-
-    'Activar MFA en accesos administrativos.'
-
-  ],
-
-  medium: [
-
-    'Revisar configuraciones por defecto.',
-
-    'Ejecutar escaneo mensual.',
-
-    'Actualizar dependencias.'
-
-  ]
-
-};
-
-
-/* ════════════════════════════════
-   ESTADO GLOBAL
-════════════════════════════════ */
-
-let currentView = 'tech';
-
-let selected = new Set();
-
-let selectedProviders = new Set();
-
-let filteredTechs = TECHS;
-
-let filteredProviders = PROVIDERS;
-
-
-/* ════════════════════════════════
-   SWITCH TABS
-════════════════════════════════ */
-
-function switchTab(view) {
-
-  currentView = view;
-
-  document
-    .querySelectorAll('.cr-tab')
-    .forEach(tab => tab.classList.remove('active'));
-
-  if (view === 'tech') {
-
-    document
-      .getElementById('tab-tech')
-      .classList.add('active');
-
-    renderTechs(filteredTechs);
-
-  } else {
-
-    document
-      .getElementById('tab-provider')
-      .classList.add('active');
-
-    renderProviders(filteredProviders);
+    document.getElementById('cr-status-text').textContent =
+      'ERROR DE CARGA';
 
   }
 
 }
 
 
-/* ════════════════════════════════
-   SEARCH
-════════════════════════════════ */
 
-function handleSearch(q) {
+function loadCategories() {
 
-  if (currentView === 'tech') {
+  const selCat =
+    document.getElementById('sel-cat');
 
-    filterTechs(q);
+  const categories =
+    [...new Set(
+      TECH_CATALOG.map(x => x.cat)
+    )];
 
-  } else {
+  categories.forEach(cat => {
 
-    filterProviders(q);
-
-  }
-
-}
-
-
-/* ════════════════════════════════
-   FILTER TECHS
-════════════════════════════════ */
-
-function filterTechs(q) {
-
-  filteredTechs = q
-
-    ? TECHS.filter(t =>
-
-      t.name.toLowerCase().includes(q.toLowerCase()) ||
-
-      t.vendor.toLowerCase().includes(q.toLowerCase())
-
-    )
-
-    : TECHS;
-
-  renderTechs(filteredTechs);
-
-}
-
-
-/* ════════════════════════════════
-   FILTER PROVIDERS
-════════════════════════════════ */
-
-function filterProviders(q) {
-
-  filteredProviders = q
-
-    ? PROVIDERS.filter(provider =>
-
-      provider.name
-        .toLowerCase()
-        .includes(q.toLowerCase())
-
-    )
-
-    : PROVIDERS;
-
-  renderProviders(filteredProviders);
-
-}
-
-
-/* ════════════════════════════════
-   RENDER TECHS
-════════════════════════════════ */
-
-function renderTechs(list) {
-
-  const cats = {};
-
-  list.forEach(t => {
-
-    if (!cats[t.cat]) {
-
-      cats[t.cat] = [];
-
-    }
-
-    cats[t.cat].push(t);
+    selCat.innerHTML +=
+      `<option value="${cat}">
+                ${cat}
+            </option>`;
 
   });
 
-  let html = '';
+}
 
-  for (const [cat, items] of Object.entries(cats)) {
 
-    html += `
-      <div class="cr-cat-label">
-        ${cat}
-      </div>
 
-      <div class="cr-tech-list">
-    `;
+document.addEventListener('change', (e) => {
 
-    items.forEach(t => {
+  if (e.target.id === 'sel-cat') {
 
-      const sel =
-        selected.has(t.id)
-          ? 'selected'
-          : '';
-
-      html += `
-        <button
-          class="cr-tech-item ${sel}"
-          onclick="toggleTech('${t.id}')"
-        >
-
-          <div class="cr-tech-check">
-            ${selected.has(t.id) ? '✓' : ''}
-          </div>
-
-          <span class="cr-tech-name">
-            ${t.name}
-          </span>
-
-          <span class="cr-tech-vendor">
-            ${t.vendor}
-          </span>
-
-        </button>
-      `;
-
-    });
-
-    html += `</div>`;
+    loadVendors(e.target.value);
 
   }
 
-  document.getElementById(
-    'cr-selector-container'
-  ).innerHTML = html;
+  if (e.target.id === 'sel-vendor') {
+
+    loadProducts(
+      document.getElementById('sel-cat').value,
+      e.target.value
+    );
+
+  }
+
+  if (e.target.id === 'sel-product') {
+
+    document.getElementById('add-tech-btn').disabled = false;
+
+  }
+
+});
+
+
+function loadVendors(cat) {
+
+  const selVendor =
+    document.getElementById('sel-vendor');
+
+  selVendor.innerHTML =
+    '<option value="">Seleccione</option>';
+
+  const vendors =
+    TECH_CATALOG
+      .filter(x => x.cat === cat)
+      .map(x => x.vendor);
+
+  vendors.forEach(v => {
+
+    selVendor.innerHTML +=
+      `<option value="${v}">
+                ${v}
+            </option>`;
+
+  });
+
+  selVendor.disabled = false;
 
 }
 
 
-/* ════════════════════════════════
-   RENDER PROVIDERS
-════════════════════════════════ */
+function loadProducts(cat, vendor) {
 
-function renderProviders(list) {
+  const selProduct =
+    document.getElementById('sel-product');
 
-  let html = '';
+  selProduct.innerHTML =
+    '<option value="">Seleccione</option>';
 
-  list.forEach(provider => {
+  const record =
+    TECH_CATALOG.find(x =>
+      x.cat === cat &&
+      x.vendor === vendor
+    );
 
-    const sel =
-      selectedProviders.has(provider.id)
-        ? 'selected'
-        : '';
+  if (!record) return;
 
-    html += `
-      <button
-        class="cr-tech-item ${sel}"
-        onclick="toggleProvider('${provider.id}')"
-      >
+  record.products.forEach(product => {
 
-        <div class="cr-tech-check">
-          ${selectedProviders.has(provider.id) ? '✓' : ''}
+    selProduct.innerHTML +=
+      `<option value="${product}">
+                ${product}
+            </option>`;
+
+  });
+
+  selProduct.disabled = false;
+
+}
+
+
+
+function addTech() {
+
+  const tech = {
+
+    cat:
+      document.getElementById('sel-cat').value,
+
+    vendor:
+      document.getElementById('sel-vendor').value,
+
+    product:
+      document.getElementById('sel-product').value,
+
+    description:
+      document.getElementById('inp-desc').value
+
+  };
+
+  selectedTechs.push(tech);
+
+  renderTechCards();
+
+  // renderQuestions();
+
+}
+
+
+
+function renderTechCards() {
+  const container =
+    document.getElementById('tech-cards');
+  if (!selectedTechs.length) {
+    container.innerHTML =
+      '<div class="cr-no-techs">Ninguna tecnología añadida aún</div>';
+    return;
+  }
+  container.innerHTML =
+    selectedTechs.map((t, i) => `
+        <div class="cr-tech-card">
+            <strong>${t.product}</strong>
+            <div>${t.vendor}</div>
+            <small>${t.cat}</small>
         </div>
-
-        <span class="cr-tech-name">
-          ${provider.name}
-        </span>
-
-        <span class="cr-tech-vendor">
-          ${provider.country}
-        </span>
-
-      </button>
-    `;
-
-  });
-
-  document.getElementById(
-    'cr-selector-container'
-  ).innerHTML = html;
-
+    `).join('');
+  document.getElementById('tech-count-badge').textContent =
+    selectedTechs.length;
+  document.getElementById('fc-techs').textContent =
+    selectedTechs.length;
 }
 
 
-/* ════════════════════════════════
-   SELECT TECH
-════════════════════════════════ */
-
-function toggleTech(id) {
-
-  if (selected.has(id)) {
-
-    selected.delete(id);
-
-  } else {
-
-    selected.add(id);
-
-  }
-
-  updateSummary();
-
-  renderTechs(filteredTechs);
-
-}
-
-
-/* ════════════════════════════════
-   SELECT PROVIDER
-════════════════════════════════ */
-
-function toggleProvider(id) {
-
-  if (selectedProviders.has(id)) {
-
-    selectedProviders.delete(id);
-
-  } else {
-
-    selectedProviders.add(id);
-
-  }
-
-  updateSummary();
-
-  renderProviders(filteredProviders);
-
-}
+// function renderQuestions() {
+//   const container =
+//     document.getElementById('q-content');
+//   let html = '';
+//   selectedTechs.forEach((tech, index) => {
+//     html += `
+//         <div class="cr-panel-scroll">
+//             <h3>${tech.product}</h3>
+//         `;
+//     QUESTIONS.forEach(q => {
+//       html += `
+//             <div class="cr-question">
+//                 <label>${q.text}</label>
+//                 <select
+//                     data-tech="${index}"
+//                     data-question="${q.id}"
+//                 >
+//                     <option value="0">No</option>
+//                     <option value="1">Sí</option>
+//                 </select>
+//             </div>
+//             `;
+//     });
+//     html += '</div>';
+//   });
+//   container.innerHTML = html;
+// }
 
 
-/* ════════════════════════════════
-   UPDATE SUMMARY
-════════════════════════════════ */
 
-function updateSummary() {
 
-  const techCount =
-    selected.size;
+// function showStep(step) {
 
-  const providerCount =
-    selectedProviders.size;
+//   document
+//     .querySelectorAll('.cr-panel')
+//     .forEach(panel => panel.classList.remove('active'));
 
-  document.getElementById(
-    'cr-sel-count'
-  ).textContent =
-    `${techCount} tecnologías`;
+//   const panel =
+//     document.getElementById(`panel-${step}`);
 
-  document.getElementById(
-    'cr-provider-count'
-  ).textContent =
-    `${providerCount} proveedores`;
+//   if (panel) {
+//     panel.classList.add('active');
+//   }
 
-  document.getElementById(
-    'cr-analyze-btn'
-  ).disabled =
-    techCount === 0 &&
-    providerCount === 0;
+//   document
+//     .querySelectorAll('.cr-nav-btn')
+//     .forEach(btn => btn.classList.remove('active'));
+
+//   const btn =
+//     document.getElementById(`btn-step${step}`);
+
+//   if (btn) {
+//     btn.classList.add('active');
+//   }
+
+//   // NUEVO
+//   if (step === 3) {
+//     generateJSON();
+//   }
+
+// }
+
+
+function copyJSON() {
+
+  const json =
+    document.getElementById('json-output').textContent;
+
+  navigator.clipboard.writeText(json);
+
+  alert('JSON copiado');
 
 }
+window.copyJSON = copyJSON;
 
 
-/* ════════════════════════════════
-   RUN ANALYSIS
-════════════════════════════════ */
+
 
 function runAnalysis() {
 
-  const allCwes = [];
+  generateJSON();
 
-  selected.forEach(id => {
+  alert('Análisis ejecutado');
 
-    (CWE_DATA[id] || [])
-      .forEach(cwe => {
+}
 
-        allCwes.push({
-          ...cwe,
-          tech: id
-        });
-
-      });
-
-  });
-
-  const deduped = [];
-
-  const seen = new Set();
-
-  allCwes.forEach(cwe => {
-
-    if (!seen.has(cwe.id)) {
-
-      seen.add(cwe.id);
-
-      deduped.push(cwe);
-
-    }
-
-  });
-
-  const critical =
-    deduped.filter(c => c.sev === 'critical');
-
-  const high =
-    deduped.filter(c => c.sev === 'high');
-
-  const medium =
-    deduped.filter(c => c.sev === 'medium');
-
-  const totalCves =
-    deduped.reduce((s, c) => s + c.cves, 0);
+window.runAnalysis = runAnalysis;
 
 
-  /* RIESGO PROVEEDORES */
+function generateJSON() {
 
-  let providerRisk = 0;
+  const payload = selectedTechs.map((tech, index) => {
 
-  selectedProviders.forEach(id => {
+    const answers = {};
 
-    const provider =
-      PROVIDERS.find(p => p.id === id);
+    QUESTIONS.forEach(q => {
 
-    if (!provider) return;
+      const control =
+        document.querySelector(
+          `[data-tech="${index}"][data-question="${q.id}"]`
+        );
 
-    if (provider.risk === 'critical') {
+      answers[q.id] =
+        control
+          ? Number(control.value)
+          : 0;
 
-      providerRisk += 20;
+    });
 
-    } else if (provider.risk === 'high') {
+    return {
 
-      providerRisk += 12;
+      technology: tech.product,
 
-    } else if (provider.risk === 'medium') {
+      vendor: tech.vendor,
 
-      providerRisk += 6;
+      category: tech.cat,
 
-    } else {
+      description: tech.description,
 
-      providerRisk += 2;
+      ...answers
 
-    }
+    };
 
   });
 
-
-  /* SCORE */
-
-  const baseScore =
-
-    critical.length * 25 +
-
-    high.length * 12 +
-
-    medium.length * 5;
-
-  const score =
-    Math.min(
-      100,
-      baseScore + providerRisk
+  document.getElementById(
+    'json-output'
+  ).textContent =
+    JSON.stringify(
+      payload,
+      null,
+      2
     );
 
-
-  /* HEADER */
-
-  const selectedNames = [
-
-    ...Array.from(selected)
-      .map(id => TECHS.find(t => t.id === id)?.name),
-
-    ...Array.from(selectedProviders)
-      .map(id => PROVIDERS.find(p => p.id === id)?.name)
-
-  ];
-
   document.getElementById(
-    'cr-result-sub'
+    'json-preview-dash'
   ).textContent =
-    '// ' + selectedNames.join(' · ');
+    JSON.stringify(
+      payload,
+      null,
+      2
+    );
 
   document.getElementById(
-    'cr-result-date'
+    'json-records-count'
   ).textContent =
-    new Date()
-      .toISOString()
-      .slice(0, 19)
-      .replace('T', ' ') + ' UTC';
+    `${payload.length} registros · ${selectedTechs.length} tecnologías`;
 
-
-  /* SCORE */
-
-  document.getElementById(
-    'cr-exp-score'
-  ).textContent =
-    `${score}/100`;
-
-  document.getElementById(
-    'cr-exp-score'
-  ).style.color =
-
-    score >= 70
-      ? '#e84040'
-
-      : score >= 40
-        ? '#f0a500'
-        : '#2ecc71';
-
-
-  /* CARDS */
-
-  document.getElementById(
-    'sc-critical'
-  ).textContent =
-    critical.length;
-
-  document.getElementById(
-    'sc-high'
-  ).textContent =
-    high.length;
-
-  document.getElementById(
-    'sc-medium'
-  ).textContent =
-    medium.length;
-
-  document.getElementById(
-    'sc-cves'
-  ).textContent =
-    totalCves;
-
-
-  /* BAR */
-
-  setTimeout(() => {
-
-    document.getElementById(
-      'cr-bar-fill'
-    ).style.width =
-      score + '%';
-
-  }, 100);
-
-
-  /* CWE */
-
-  const cweHtml =
-
-    [...critical, ...high, ...medium]
-
-      .map(cwe => `
-
-      <div class="cr-cwe-item sev-${cwe.sev}">
-
-        <div class="cr-cwe-top">
-
-          <span class="cr-cwe-id">
-            ${cwe.id}
-          </span>
-
-          <span class="cr-cwe-name">
-            ${cwe.name}
-          </span>
-
-          <span class="cr-sev-badge ${cwe.sev}">
-            ${cwe.sev.toUpperCase()}
-          </span>
-
-        </div>
-
-        <div class="cr-cwe-meta">
-
-          <span class="cr-cwe-desc">
-            ${cwe.desc}
-          </span>
-
-          <span class="cr-affected">
-            ${cwe.cves} CVEs
-          </span>
-
-        </div>
-
-      </div>
-
-    `).join('');
-
-
-  document.getElementById(
-    'cr-cwe-list'
-  ).innerHTML =
-
-    cweHtml ||
-
-    `
-      <div
-        style="
-          color:#2e4a60;
-          font-size:.8rem;
-        "
-      >
-        No se encontraron vulnerabilidades.
-      </div>
-    `;
-
-
-  /* RECOMENDACIONES */
-
-  const recSrc =
-
-    critical.length
-      ? RECS.critical
-
-      : high.length
-        ? RECS.high
-        : RECS.medium;
-
-
-  document.getElementById(
-    'cr-rec-list'
-  ).innerHTML =
-
-    recSrc.map((rec, i) => `
-
-      <div class="cr-rec-item">
-
-        <span class="cr-rec-num">
-          R${String(i + 1).padStart(2, '0')}
-        </span>
-
-        <span class="cr-rec-text">
-          ${rec}
-        </span>
-
-      </div>
-
-    `).join('');
-
-
-  /* SHOW RESULT */
-
-  document.getElementById(
-    'cr-empty'
-  ).style.display =
-    'none';
-
-  document.getElementById(
-    'cr-result'
-  ).classList.add('visible');
-
-  document.querySelector(
-    '.cr-right'
-  ).scrollTop = 0;
+  return payload;
 
 }
 
 
-/* ════════════════════════════════
-   INIT
-════════════════════════════════ */
 
-renderTechs(TECHS);
 
-updateSummary();
+function renderQuestionnaire() {
+
+  console.log("Renderizando tecnología:", currentTechIndex);
+
+  if (!selectedTechs.length) {
+    return;
+  }
+
+  const tech = selectedTechs[currentTechIndex];
+
+  document.getElementById('current-tech-name').textContent =
+    tech.product;
+
+  document.getElementById('question-progress').textContent =
+    `${currentTechIndex + 1} / ${selectedTechs.length}`;
+
+  let html = '';
+
+  QUESTIONS.forEach(q => {
+
+    html += `
+            <div class="cr-question-card">
+                <div class="cr-question-title">
+                    ${q.text}
+                </div>
+
+                <select
+                    data-tech="${currentTechIndex}"
+                    data-question="${q.id}">
+                    <option value="0">No</option>
+                    <option value="1">Sí</option>
+                </select>
+            </div>
+        `;
+  });
+
+  document.getElementById('question-container').innerHTML = html;
+}
+
+
+// function renderQuestionnaire() {
+
+//   if (!selectedTechs.length) {
+//     return;
+//   }
+
+//   const tech =
+//     selectedTechs[currentTechIndex];
+
+//   document.getElementById(
+//     'current-tech-name'
+//   ).textContent =
+//     tech.product;
+
+//   document.getElementById(
+//     'question-progress'
+//   ).textContent =
+//     `${currentTechIndex + 1} / ${selectedTechs.length}`;
+
+//   let html = '';
+
+//   QUESTIONS.forEach(q => {
+
+//     html += `
+//             <div class="cr-question-card">
+
+//                 <div class="cr-question-title">
+//                     ${q.text}
+//                 </div>
+
+//                 <select
+//                     data-tech="${currentTechIndex}"
+//                     data-question="${q.id}"
+//                 >
+//                     <option value="0">No</option>
+//                     <option value="1">Sí</option>
+//                 </select>
+
+//             </div>
+//         `;
+
+//   });
+
+//   document.getElementById(
+//     'question-container'
+//   ).innerHTML =
+//     html;
+
+// }
+
+
+function nextTech() {
+
+  if (
+    currentTechIndex <
+    selectedTechs.length - 1
+  ) {
+
+    currentTechIndex++;
+
+    renderQuestionnaire();
+
+  }
+
+}
+
+function previousTech() {
+
+  if (
+    currentTechIndex > 0
+  ) {
+
+    currentTechIndex--;
+
+    renderQuestionnaire();
+
+  }
+
+}
+
+
+function showStep(step) {
+
+  document
+    .querySelectorAll('.cr-panel')
+    .forEach(p =>
+      p.classList.remove('active')
+    );
+
+  document
+    .getElementById(`panel-${step}`)
+    ?.classList.add('active');
+
+  document
+    .querySelectorAll('.cr-nav-btn')
+    .forEach(btn =>
+      btn.classList.remove('active')
+    );
+
+  document
+    .getElementById(`btn-step${step}`)
+    ?.classList.add('active');
+
+  if (
+    step === 2 &&
+    selectedTechs.length
+  ) {
+
+    renderQuestionnaire();
+
+  }
+
+  if (step === 3) {
+
+    generateJSON();
+
+  }
+
+}
+
+
+
+window.showStep = showStep;
+window.nextTech = nextTech;
+window.previousTech = previousTech;
+window.generateJSON = generateJSON;
