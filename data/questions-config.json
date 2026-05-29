@@ -1,0 +1,87 @@
+{
+    "_comment": "Configuración del cuestionario y recomendaciones. Agrega preguntas en 'questions' sin tocar el código JS.",
+    "questions": [
+        {
+            "id": "maneja_ia",
+            "text": "Maneja Inteligencia Artificial / Machine Learning",
+            "risk_weight": 5,
+            "help": "Indica si la tecnología procesa o entrena modelos de IA."
+        },
+        {
+            "id": "tiene_cloud",
+            "text": "Está alojada en nube o tiene componente cloud",
+            "risk_weight": 8,
+            "help": "Incluye SaaS, IaaS, PaaS o cualquier componente en nube pública."
+        },
+        {
+            "id": "mfa",
+            "text": "Utiliza autenticación multifactor (MFA)",
+            "risk_weight": 15,
+            "help": "Verificación en dos o más pasos para acceder al sistema.",
+            "risk_if": 0
+        },
+        {
+            "id": "soporte_activo",
+            "text": "Tiene soporte activo del fabricante",
+            "risk_weight": 15,
+            "help": "El fabricante sigue emitiendo parches y actualizaciones de seguridad.",
+            "risk_if": 0
+        },
+        {
+            "id": "expuesta_internet",
+            "text": "Está expuesta directamente a internet",
+            "risk_weight": 20,
+            "help": "Accesible desde IP pública sin VPN o proxy intermedio.",
+            "risk_if": 1
+        },
+        {
+            "id": "actualizaciones_automaticas",
+            "text": "Aplica actualizaciones automáticas de seguridad",
+            "risk_weight": 10,
+            "help": "Los parches de seguridad se aplican sin intervención manual.",
+            "risk_if": 0
+        },
+        {
+            "id": "cifrado_datos",
+            "text": "Cifra los datos en reposo y en tránsito (TLS/AES)",
+            "risk_weight": 10,
+            "help": "Datos protegidos con cifrado estándar tanto almacenados como transmitidos.",
+            "risk_if": 0
+        },
+        {
+            "id": "logs_activos",
+            "text": "Tiene logs y auditoría de eventos activos",
+            "risk_weight": 8,
+            "help": "Registro de accesos, cambios y eventos de seguridad habilitado.",
+            "risk_if": 0
+        }
+    ],
+    "recommendations": {
+        "critical": [
+            "Aplicar parches de seguridad de forma inmediata (ventana máxima 24h).",
+            "Aislar servicios críticos en segmentos de red separados (DMZ / VLAN).",
+            "Activar WAF con reglas OWASP Top 10 actualizadas.",
+            "Contratar monitoreo SOC externo o activar alertas 24/7.",
+            "Realizar análisis forense de logs de los últimos 30 días."
+        ],
+        "high": [
+            "Programar mantenimiento de parcheo en el próximo sprint (< 1 semana).",
+            "Implementar principio de mínimo privilegio en todos los accesos.",
+            "Activar MFA obligatorio en todos los accesos administrativos.",
+            "Revisar y fortalecer la política de contraseñas (complejidad + rotación).",
+            "Ejecutar prueba de penetración focalizada en los componentes de mayor riesgo."
+        ],
+        "medium": [
+            "Revisar y endurecer las configuraciones por defecto del fabricante.",
+            "Ejecutar escaneo de vulnerabilidades mensual (OpenVAS, Nessus, Trivy).",
+            "Actualizar todas las dependencias y librerías de terceros.",
+            "Capacitar al equipo técnico en concientización de ciberseguridad (SAST/DAST).",
+            "Implementar inventario de activos tecnológicos y mantenerlo actualizado."
+        ],
+        "low": [
+            "Mantener el plan de parcheo periódico establecido.",
+            "Documentar la configuración de seguridad de cada componente.",
+            "Realizar revisión de accesos y privilegios trimestralmente."
+        ]
+    }
+}

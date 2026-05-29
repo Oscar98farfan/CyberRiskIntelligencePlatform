@@ -1,0 +1,190 @@
+{
+    "_comment": "Catálogo de tecnologías. Estructura jerárquica: clasificacion → vendedor → productos. Agrega nuevas entradas aquí sin tocar el código.",
+    "catalog": [
+        {
+            "cat": "Servidores Web",
+            "vendor": "Apache Foundation",
+            "products": [
+                "Apache HTTP Server 2.4",
+                "Apache Tomcat 10",
+                "Apache Traffic Server"
+            ]
+        },
+        {
+            "cat": "Servidores Web",
+            "vendor": "Nginx Inc.",
+            "products": [
+                "Nginx 1.24",
+                "Nginx Plus"
+            ]
+        },
+        {
+            "cat": "Servidores Web",
+            "vendor": "Microsoft",
+            "products": [
+                "IIS 10.0",
+                "IIS 8.5"
+            ]
+        },
+        {
+            "cat": "Bases de Datos",
+            "vendor": "Oracle",
+            "products": [
+                "MySQL 8.0",
+                "MySQL 5.7",
+                "Oracle DB 19c"
+            ]
+        },
+        {
+            "cat": "Bases de Datos",
+            "vendor": "PostgreSQL Global",
+            "products": [
+                "PostgreSQL 15",
+                "PostgreSQL 14"
+            ]
+        },
+        {
+            "cat": "Bases de Datos",
+            "vendor": "Microsoft",
+            "products": [
+                "SQL Server 2022",
+                "SQL Server 2019"
+            ]
+        },
+        {
+            "cat": "Bases de Datos",
+            "vendor": "MongoDB Inc.",
+            "products": [
+                "MongoDB 7.0",
+                "MongoDB 6.0"
+            ]
+        },
+        {
+            "cat": "Sistemas Operativos",
+            "vendor": "Microsoft",
+            "products": [
+                "Windows Server 2022",
+                "Windows Server 2019",
+                "Windows 11 Pro"
+            ]
+        },
+        {
+            "cat": "Sistemas Operativos",
+            "vendor": "Canonical",
+            "products": [
+                "Ubuntu 22.04 LTS",
+                "Ubuntu 20.04 LTS"
+            ]
+        },
+        {
+            "cat": "Sistemas Operativos",
+            "vendor": "Red Hat",
+            "products": [
+                "RHEL 9",
+                "CentOS Stream 9"
+            ]
+        },
+        {
+            "cat": "CMS / Frameworks",
+            "vendor": "Automattic",
+            "products": [
+                "WordPress 6.4",
+                "WordPress 6.3"
+            ]
+        },
+        {
+            "cat": "CMS / Frameworks",
+            "vendor": "Laravel",
+            "products": [
+                "Laravel 11",
+                "Laravel 10"
+            ]
+        },
+        {
+            "cat": "CMS / Frameworks",
+            "vendor": "Django Software Foundation",
+            "products": [
+                "Django 5.0",
+                "Django 4.2"
+            ]
+        },
+        {
+            "cat": "CMS / Frameworks",
+            "vendor": "OpenJS Foundation",
+            "products": [
+                "Node.js 20 LTS",
+                "Node.js 18 LTS"
+            ]
+        },
+        {
+            "cat": "Librerías / Seguridad",
+            "vendor": "OpenSSL Project",
+            "products": [
+                "OpenSSL 3.2",
+                "OpenSSL 1.1.1"
+            ]
+        },
+        {
+            "cat": "Librerías / Seguridad",
+            "vendor": "Apache Foundation",
+            "products": [
+                "Log4j 2.x",
+                "Log4j 1.x"
+            ]
+        },
+        {
+            "cat": "Librerías / Seguridad",
+            "vendor": "VMware",
+            "products": [
+                "Spring Boot 3.2",
+                "Spring Boot 2.7"
+            ]
+        },
+        {
+            "cat": "Firewall / Red",
+            "vendor": "Fortinet",
+            "products": [
+                "FortiGate 100F",
+                "FortiGate 60F",
+                "FortiOS 7.4"
+            ]
+        },
+        {
+            "cat": "Firewall / Red",
+            "vendor": "Palo Alto Networks",
+            "products": [
+                "PA-220",
+                "PA-3400",
+                "PAN-OS 11"
+            ]
+        },
+        {
+            "cat": "Cloud",
+            "vendor": "Amazon Web Services",
+            "products": [
+                "AWS EC2",
+                "AWS RDS",
+                "AWS S3",
+                "AWS Lambda"
+            ]
+        },
+        {
+            "cat": "Cloud",
+            "vendor": "Google Cloud",
+            "products": [
+                "Google Compute Engine",
+                "BigQuery",
+                "Cloud Run"
+            ]
+        },
+        {
+            "cat": "Cloud",
+            "vendor": "Microsoft",
+            "products": [
+                "Azure Virtual Machines",
+                "Azure SQL",
+                "Azure Functions"
+            ]
+        }
+    ]
+}
