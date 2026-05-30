@@ -47,6 +47,20 @@
           "file": "docs/acta-reunion-03.pdf",
           "date": "2026-05-19",
           "size": "100 KB"
+        },
+        {
+          "name": "Acta de Reunión #4",
+          "desc": "Aplicación de Modelos y Mejoras el el Fronted de la Web.",
+          "file": "docs/acta-reunion-04.pdf",
+          "date": "2026-05-23",
+          "size": "100 KB"
+        },
+        {
+          "name": "Control de Cambios",
+          "desc": "Registro Control de Cambios.",
+          "file": "docs/ControlDeCambios.pdf",
+          "date": "2026-05-25",
+          "size": "100 KB"
         }
       ]
     }

@@ -292,13 +292,48 @@ window.copyJSON = copyJSON;
 
 
 
-function runAnalysis() {
-
-  generateJSON();
-
-  alert('Análisis ejecutado');
-
+async function runAnalysis() {
+  try {
+    const payload = generateJSON();
+    const response = await fetch(
+      'http://127.0.0.1:5000/guardar-json',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    alert(
+      `Archivo guardado correctamente.\nID: ${result.id}`
+    );
+  }
+  catch (error) {
+    console.error(error);
+    alert(
+      'Error enviando información al backend'
+    );
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 window.runAnalysis = runAnalysis;
 
