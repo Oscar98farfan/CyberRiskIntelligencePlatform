@@ -292,114 +292,284 @@ window.copyJSON = copyJSON;
 
 
 
-async function runAnalysis() {
-  try {
-    const payload = generateJSON();
-    const response = await fetch(
-      'http://127.0.0.1:5000/guardar-json',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      }
-    );
-    const result = await response.json();
-    console.log(result);
-    alert(
-      `Archivo guardado correctamente.\nID: ${result.id}`
-    );
-  }
-  catch (error) {
-    console.error(error);
-    alert(
-      'Error enviando información al backend'
-    );
-  }
+// async function runAnalysis() {
+//   try {
+//     if (selectedTechs.length === 0) {
+//       alert("debes agregar al menos una tecnologia.")
+//       return;
+//     }
+//     const payload = generateJSON();
+//     // 1. Guardar el json
+//     const response = await fetch(
+//       'http://127.0.0.1:5000/guardar-json',
+//       {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(payload)
+//       }
+//     );
+//     const result = await response.json();
+//     console.log(result);
+//     alert(`Archivo guardado correctamente.\nID: ${result.id}`);
+
+//     // 2. Ejecutar el analisis
+//     const analysisResponse = await fetch("http://127.0.0.1:5000/analizar", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ id: result.id })
+//     });
+
+//     // ← AGREGAR ESTO para ver el error real
+//     if (!analysisResponse.ok) {
+//       const errorText = await analysisResponse.text();
+//       console.error("Error del servidor:", errorText);
+//       alert("Error del servidor: " + errorText);
+//       return;
+//     }
+
+//     const analysisResult = await analysisResponse.json();
+
+//     // const analysisResponse = await fetch(
+//     //   "http://127.0.0.1:5000/analizar",
+//     //   {
+//     //     method: "POST",
+//     //     headers: {
+//     //       "Content-Type": "application/json"
+//     //     },
+//     //     body: JSON.stringify({
+//     //       id: result.id
+//     //     })
+//     //   }
+//     // );
+//     // const analysisResult =
+//     //   await analysisResponse.json();
+
+//     console.log("Resultado ML:", analysisResult);
+//     alert(`Tier: ${analysisResult.prediction.tier}\nScore: ${analysisResult.prediction.score}`);
+
+//     // 3. Guardar resultado globalmente
+//     window.mlResult =
+//       analysisResult;
+//     alert(`Análisis completado.\nID: ${result.id}`);
+//   }
+
+//   catch (error) {
+//     console.error(error);
+//     alert(
+//       'Error enviando información al backend'
+//     );
+//   }
+// }
+
+
+
+
+// async function runAnalysis() {
+//   try {
+//     if (selectedTechs.length === 0) {
+//       alert("debes agregar al menos una tecnologia.");
+//       return;
+//     }
+
+//     const payload = generateJSON();
+
+//     // 1. Guardar el JSON
+//     const response = await fetch('http://127.0.0.1:5000/guardar-json', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(payload)
+//     });
+//     const result = await response.json();
+//     console.log("✅ Guardado:", result);
+
+//     // 2. Ejecutar el análisis
+//     const analysisResponse = await fetch('http://127.0.0.1:5000/analizar', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ id: result.id })
+//     });
+
+//     console.log("📡 Status analizar:", analysisResponse.status);
+
+//     const analysisResult = await analysisResponse.json();
+
+//     // ← Este es el que no estás viendo
+//     console.log("🧠 Resultado ML:", analysisResult);
+//     console.log("Tier:", analysisResult.prediction.tier);
+//     console.log("Score:", analysisResult.prediction.score);
+
+//     window.mlResult = analysisResult;
+
+//   } catch (error) {
+//     console.error("❌ Error:", error);
+//   }
+// }
+
+
+// window.runAnalysis = runAnalysis;
+
+
+
+
+// Genera el payload puro sin tocar el DOM
+function buildPayload() {
+  return selectedTechs.map((tech, index) => {
+    const answers = {};
+    QUESTIONS.forEach(q => {
+      const control = document.querySelector(
+        `[data-tech="${index}"][data-question="${q.id}"]`
+      );
+      answers[q.id] = control ? Number(control.value) : 0;
+    });
+    return {
+      technology: tech.product,
+      vendor: tech.vendor,
+      category: tech.cat,
+      description: tech.description,
+      ...answers
+    };
+  });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.runAnalysis = runAnalysis;
-
-
+// Actualiza el DOM con el JSON (solo cuando los elementos existen)
 function generateJSON() {
+  const payload = buildPayload();
 
-  const payload = selectedTechs.map((tech, index) => {
+  const outEl = document.getElementById('json-output');
+  const dashEl = document.getElementById('json-preview-dash');
+  const countEl = document.getElementById('json-records-count');
 
-    const answers = {};
+  const text = JSON.stringify(payload, null, 2);
 
-    QUESTIONS.forEach(q => {
-
-      const control =
-        document.querySelector(
-          `[data-tech="${index}"][data-question="${q.id}"]`
-        );
-
-      answers[q.id] =
-        control
-          ? Number(control.value)
-          : 0;
-
-    });
-
-    return {
-
-      technology: tech.product,
-
-      vendor: tech.vendor,
-
-      category: tech.cat,
-
-      description: tech.description,
-
-      ...answers
-
-    };
-
-  });
-
-  document.getElementById(
-    'json-output'
-  ).textContent =
-    JSON.stringify(
-      payload,
-      null,
-      2
-    );
-
-  document.getElementById(
-    'json-preview-dash'
-  ).textContent =
-    JSON.stringify(
-      payload,
-      null,
-      2
-    );
-
-  document.getElementById(
-    'json-records-count'
-  ).textContent =
+  if (outEl) outEl.textContent = text;
+  if (dashEl) dashEl.textContent = text;
+  if (countEl) countEl.textContent =
     `${payload.length} registros · ${selectedTechs.length} tecnologías`;
 
   return payload;
-
 }
+
+
+
+// runAnalysis usa buildPayload, no generateJSON
+async function runAnalysis(event) {
+  if (event) event.preventDefault();
+
+  try {
+    if (selectedTechs.length === 0) {
+      alert("Debes agregar al menos una tecnología.");
+      return;
+    }
+
+    const payload = buildPayload(); // ← sin tocar DOM
+
+    // 1. Guardar
+    const saveRes = await fetch('http://127.0.0.1:5000/guardar-json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const saveData = await saveRes.json();
+    console.log("✅ Guardado:", saveData);
+
+    // 2. Analizar
+    const analRes = await fetch('http://127.0.0.1:5000/analizar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: saveData.id })
+    });
+
+    if (!analRes.ok) {
+      const err = await analRes.text();
+      console.error("❌ Error servidor:", err);
+      return;
+    }
+
+    const result = await analRes.json();
+    console.log("🧠 Resultado ML:", result);
+
+    window.mlResult = result;
+
+    // Mostrar resultado en pantalla en vez de alert
+    const outEl = document.getElementById('json-output');
+    if (outEl) outEl.textContent = JSON.stringify(result, null, 2);
+
+    alert(`✅ Análisis completado\nTier: ${result.prediction.tier}\nScore: ${result.prediction.score}`);
+
+  } catch (error) {
+    console.error("❌ Error:", error);
+    alert("Error: " + error.message);
+  }
+}
+
+window.runAnalysis = runAnalysis;
+window.generateJSON = generateJSON;
+window.buildPayload = buildPayload;
+
+// function generateJSON() {
+
+//   const payload = selectedTechs.map((tech, index) => {
+
+//     const answers = {};
+
+//     QUESTIONS.forEach(q => {
+
+//       const control =
+//         document.querySelector(
+//           `[data-tech="${index}"][data-question="${q.id}"]`
+//         );
+
+//       answers[q.id] =
+//         control
+//           ? Number(control.value)
+//           : 0;
+
+//     });
+
+//     return {
+
+//       technology: tech.product,
+
+//       vendor: tech.vendor,
+
+//       category: tech.cat,
+
+//       description: tech.description,
+
+//       ...answers
+
+//     };
+
+//   });
+
+//   document.getElementById(
+//     'json-output'
+//   ).textContent =
+//     JSON.stringify(
+//       payload,
+//       null,
+//       2
+//     );
+
+//   document.getElementById(
+//     'json-preview-dash'
+//   ).textContent =
+//     JSON.stringify(
+//       payload,
+//       null,
+//       2
+//     );
+
+//   document.getElementById(
+//     'json-records-count'
+//   ).textContent =
+//     `${payload.length} registros · ${selectedTechs.length} tecnologías`;
+
+//   return payload;
+
+// }
 
 
 

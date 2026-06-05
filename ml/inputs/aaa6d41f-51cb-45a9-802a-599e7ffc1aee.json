@@ -1,0 +1,16 @@
+[
+    {
+        "technology": "WordPress 6.3",
+        "vendor": "Automattic",
+        "category": "CMS / Frameworks",
+        "description": "",
+        "maneja_ia": 0,
+        "tiene_cloud": 0,
+        "mfa": 0,
+        "soporte_activo": 0,
+        "expuesta_internet": 0,
+        "actualizaciones_automaticas": 0,
+        "cifrado_datos": 0,
+        "logs_activos": 0
+    }
+]

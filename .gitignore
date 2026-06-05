@@ -7,6 +7,8 @@ ml/data/raw/
 ml/data/processed/
 ml/models/
 
+ml/json/
+
 # Jupyter
 ml/notebooks/.ipynb_checkpoints/
 

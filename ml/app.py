@@ -22,7 +22,7 @@ os.makedirs(LOGS_DIR, exist_ok=True)
 def home():
     return "API CyberRisk funcionando"
 
-
+# EndPoint para guardar el json - Entrada al modelo
 @app.route("/guardar-json", methods=["POST"])
 def guardar_json():
     data = request.json
@@ -37,6 +37,40 @@ def guardar_json():
 @app.route("/clientes", methods=["GET"])
 def clientes():
     return {"total": 100}
+
+
+
+
+@app.route("/analizar", methods=["POST"])
+def analizar():
+    resultado = {
+        "prediction": {
+            "tier": 4,
+            "score": 0.53
+        },
+        "asset": {
+            "Vendor": ["Canonical", "Imagemagick"],
+            "Producto": ["Linux Ecosystem", "Media Security Tools"],
+            "CWE": ["Null Pointer"],
+            "Severidad": ["Critical"]
+        },
+        "attack": {
+            "VectorAtaque": ["Network"],
+            "Complejidad": ["Low"],
+            "Privilegios": ["None"],
+            "InteraccionUsuario": ["None"],
+            "Alcance": ["Unchanged"]
+        },
+        "impact": {
+            "ImpactoConfidencialidad": ["High"],
+            "ImpactoIntegridad": ["High"],
+            "ImpactoDisponibilidad": ["High"]
+        }
+    }
+
+    return jsonify(resultado)
+
+
 
 
 # if __name__ == "__main__":
