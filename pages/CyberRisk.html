@@ -223,7 +223,7 @@
     ══════════════════════════════════ -->
             <main class="cr-main" id="cr-main" role="main" aria-label="Dashboard de resultados">
                 <!-- Estado vacío inicial -->
-                <div class="cr-empty-state" id="cr-empty">
+                <!-- <div class="cr-empty-state" id="cr-empty">
                     <div class="cr-empty-hex" aria-hidden="true">⬡</div>
                     <div class="cr-empty-title">Configura tu stack tecnológico</div>
                     <div class="cr-empty-desc">
@@ -235,7 +235,7 @@
                         <div class="cr-empty-step"><span>02</span>Responde las preguntas de riesgo por tecnología</div>
                         <div class="cr-empty-step"><span>03</span>Ejecuta el análisis y consulta el dashboard</div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Dashboard — oculto hasta ejecutar análisis -->
                 <div id="cr-dashboard" aria-live="polite" aria-label="Resultados del análisis de riesgo">
                     <!-- Cabecera del dashboard -->
@@ -243,6 +243,13 @@
                         <div class="cr-dash-eyebrow">Análisis de Exposición al Riesgo</div>
                         <h1 class="cr-dash-title">Dashboard de Riesgos Cibernéticos</h1>
                         <div class="cr-dash-meta" id="dash-meta">—</div>
+                    </div>
+                    <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+                        <button type="button" onclick="resetAnalysis()" style="background:none;border:1px solid var(--border-2);
+                            color:var(--text-dim);border-radius:3px;padding:0.4rem 1rem;
+                            font-family:var(--font-mono);font-size:0.62rem;cursor:pointer">
+                            ↺ NUEVO ANÁLISIS
+                        </button>
                     </div>
                     <!-- KPIs -->
                     <div class="cr-section-label">Indicadores Globales</div>

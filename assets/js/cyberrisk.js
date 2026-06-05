@@ -72,34 +72,87 @@ function loadProducts(cat, vendor) {
 /* ==========================================
    STACK DE TECNOLOGÍAS
 ========================================== */
+
+// function addTech() {
+//   const tech = {
+//     cat: document.getElementById('sel-cat').value,
+//     vendor: document.getElementById('sel-vendor').value,
+//     product: document.getElementById('sel-product').value,
+//     description: document.getElementById('inp-desc').value
+//   };
+//   selectedTechs.push(tech);
+//   renderTechCards();
+// }
+
 function addTech() {
+  const cat = document.getElementById('sel-cat').value;
+  const vendor = document.getElementById('sel-vendor').value;
+  const product = document.getElementById('sel-product').value;
+
+  // Validar que los tres estén seleccionados
+  if (!cat || !vendor || !product) {
+    alert('Debes seleccionar Clasificación, Vendedor y Producto.');
+    return;
+  }
+
   const tech = {
-    cat: document.getElementById('sel-cat').value,
-    vendor: document.getElementById('sel-vendor').value,
-    product: document.getElementById('sel-product').value,
+    cat, vendor, product,
     description: document.getElementById('inp-desc').value
   };
   selectedTechs.push(tech);
   renderTechCards();
 }
 
+
+// function renderTechCards() {
+//   const container = document.getElementById('tech-cards');
+//   if (!selectedTechs.length) {
+//     container.innerHTML = '<div class="cr-no-techs">Ninguna tecnología añadida aún</div>';
+//     return;
+//   }
+//   container.innerHTML = selectedTechs.map((t) => `
+//     <div class="cr-tech-card">
+//       <strong>${t.product}</strong>
+//       <div>${t.vendor}</div>
+//       <small>${t.cat}</small>
+//     </div>
+//   `).join('');
+//   document.getElementById('tech-count-badge').textContent = selectedTechs.length;
+//   document.getElementById('fc-techs').textContent = selectedTechs.length;
+//   document.getElementById('run-btn').disabled = false;
+// }
+
 function renderTechCards() {
   const container = document.getElementById('tech-cards');
   if (!selectedTechs.length) {
     container.innerHTML = '<div class="cr-no-techs">Ninguna tecnología añadida aún</div>';
+    document.getElementById('run-btn').disabled = true;
     return;
   }
-  container.innerHTML = selectedTechs.map((t) => `
+  container.innerHTML = selectedTechs.map((t, i) => `
     <div class="cr-tech-card">
       <strong>${t.product}</strong>
       <div>${t.vendor}</div>
       <small>${t.cat}</small>
+      <button type="button" onclick="removeTech(${i})" 
+        style="margin-top:4px;background:none;border:1px solid var(--red);
+               color:var(--red);border-radius:2px;padding:2px 8px;
+               font-size:0.6rem;cursor:pointer;width:100%">
+        ✕ eliminar
+      </button>
     </div>
   `).join('');
   document.getElementById('tech-count-badge').textContent = selectedTechs.length;
   document.getElementById('fc-techs').textContent = selectedTechs.length;
   document.getElementById('run-btn').disabled = false;
 }
+
+function removeTech(index) {
+  selectedTechs.splice(index, 1);
+  renderTechCards();
+}
+window.removeTech = removeTech;
+
 
 /* ==========================================
    CUESTIONARIO
@@ -187,6 +240,33 @@ function copyJSON() {
   alert('JSON copiado');
 }
 
+function resetAnalysis() {
+  // Limpiar estado
+  selectedTechs = [];
+  currentTechIndex = 0;
+
+  // Resetear UI del stack
+  renderTechCards();
+
+  // Resetear selects
+  document.getElementById('sel-cat').value = '';
+  document.getElementById('sel-vendor').value = '';
+  document.getElementById('sel-product').value = '';
+  document.getElementById('sel-vendor').disabled = true;
+  document.getElementById('sel-product').disabled = true;
+  document.getElementById('add-tech-btn').disabled = true;
+  document.getElementById('inp-desc').value = '';
+
+  // Volver al paso 1
+  showStep(1);
+  document.getElementById('btn-step1').classList.add('active');
+
+  // Ocultar dashboard, mostrar empty
+  // document.getElementById('cr-dashboard').style.display = 'none';
+  // document.getElementById('cr-empty').style.display = '';
+}
+window.resetAnalysis = resetAnalysis;
+
 /* ==========================================
    ANÁLISIS — llamada al backend
 ========================================== */
@@ -246,12 +326,12 @@ async function runAnalysis(event) {
    DASHBOARD
 ========================================== */
 function renderDashboard(result) {
-  const empty = document.getElementById('cr-empty');
-  const dash = document.getElementById('cr-dashboard');
+  // const empty = document.getElementById('cr-empty');
+  // const dash = document.getElementById('cr-dashboard');
 
   // Ocultar empty, mostrar dashboard
-  empty.style.display = 'none';
-  dash.style.display = 'block';
+  // empty.style.display = 'none';
+  // dash.style.display = 'block';
 
   const { prediction, asset, attack, impact } = result;
   const tier = prediction.tier;

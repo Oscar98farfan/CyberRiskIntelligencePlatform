@@ -61,6 +61,13 @@
           "file": "docs/ControlDeCambios.pdf",
           "date": "2026-05-25",
           "size": "100 KB"
+        },
+        {
+          "name": "Modelo de Machine Learning y API",
+          "desc": "Creación modelo de ML e inicio creación de la API.",
+          "file": "docs/acta-reunion-04.pdf",
+          "date": "2026-06-03",
+          "size": "100 KB"
         }
       ]
     }
