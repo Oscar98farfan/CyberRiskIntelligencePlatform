@@ -120,7 +120,7 @@
                                 <input type="text" id="inp-desc" placeholder="ej: versión 2.1, producción, sede Bogotá…"
                                     aria-label="Descripción o contexto adicional" />
                             </div>
-                            <button class="cr-add-btn" id="add-tech-btn" onclick="addTech()" disabled>
+                            <button type="button" class="cr-add-btn" id="add-tech-btn" onclick="addTech()" disabled>
                                 + AGREGAR AL STACK
                             </button>
                         </div>
@@ -156,10 +156,10 @@
                             </div>
                         </div>
                         <div class="cr-question-actions">
-                            <button class="cr-export-btn" onclick="previousTech()">
+                            <button type="button" class="cr-export-btn" onclick="previousTech()">
                                 ← Anterior
                             </button>
-                            <button class="cr-export-btn cr-export-primary" onclick="nextTech()">
+                            <button type="button" class="cr-export-btn cr-export-primary" onclick="nextTech()">
                                 Siguiente →
                             </button>
                         </div>
@@ -179,10 +179,11 @@
                         <pre class="cr-json-box" id="json-output" role="region"
                             aria-label="Payload JSON generado">{}</pre>
                         <div class="cr-export-actions">
-                            <button class="cr-export-btn" onclick="copyJSON()" aria-label="Copiar JSON al portapapeles">
+                            <button type="button" class="cr-export-btn" onclick="copyJSON()"
+                                aria-label="Copiar JSON al portapapeles">
                                 📋 Copiar JSON
                             </button>
-                            <button class="cr-export-btn cr-export-primary" onclick="runAnalysis()"
+                            <button type="button" class="cr-export-btn cr-export-primary" onclick="runAnalysis(event)"
                                 aria-label="Ejecutar análisis de riesgo">
                                 ⬡ ANALIZAR
                             </button>
@@ -192,15 +193,16 @@
                 <!-- ─ FOOTER DEL SIDEBAR ─ -->
                 <div class="cr-sidebar-footer">
                     <div class="cr-footer-nav">
-                        <button class="cr-nav-btn" id="btn-step1" onclick="showStep(1)" aria-pressed="true">
+                        <button type="button" class="cr-nav-btn" id="btn-step1" onclick="showStep(1)"
+                            aria-pressed="true">
                             <span class="cr-nav-num">01</span>
                             <span>Tecnologías</span>
                         </button>
-                        <button class="cr-nav-btn" id="btn-step2" onclick="showStep(2)">
+                        <button type="button" class="cr-nav-btn" id="btn-step2" onclick="showStep(2)">
                             <span class="cr-nav-num">02</span>
                             <span>Cuestionario</span>
                         </button>
-                        <button class="cr-nav-btn" id="btn-step3" onclick="showStep(3)">
+                        <button type="button" class="cr-nav-btn" id="btn-step3" onclick="showStep(3)">
                             <span class="cr-nav-num">03</span>
                             <span>Exportar</span>
                         </button>
@@ -209,7 +211,7 @@
                         <span class="cr-footer-stat"><strong id="fc-techs">0</strong> tecnologías</span>
                         <span class="cr-footer-sep">·</span>
                         <span class="cr-footer-stat"><strong id="fc-done">0</strong> completadas</span>
-                        <button class="cr-run-btn" id="run-btn" onclick="runAnalysis()" disabled
+                        <button type="button" class="cr-run-btn" id="run-btn" onclick="runAnalysis(event)" disabled
                             aria-label="Ejecutar análisis de riesgo">
                             ⬡ ANALIZAR
                         </button>

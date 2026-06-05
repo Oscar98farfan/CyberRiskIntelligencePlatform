@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.ignoreFiles": [
+        "ml/inputs/**",
+        "ml/outputs/**",
+        "mllogs/**",
+        "ml.git/**"
+    ]
+}
