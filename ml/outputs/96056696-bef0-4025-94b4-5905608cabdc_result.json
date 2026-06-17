@@ -1,0 +1,1442 @@
+[
+    {
+        "product": "office_suite",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.43
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Command Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Command Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "browser",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Buffer Overflow"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "None"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "None"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Buffer Overflow"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "None"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "None"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "None"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "office_suite",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Buffer Overflow"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Memory Corruption"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "office_suite",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.36
+                },
+                "asset": {
+                    "Vendor": [
+                        "Adobe"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "Required"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.43
+                },
+                "asset": {
+                    "Vendor": [
+                        "Adobe"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Adobe"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Adobe"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Adobe"
+                    ],
+                    "Producto": [
+                        "Office Suite"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "database",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.44
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "database",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.43
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.41
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.41
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

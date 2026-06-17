@@ -447,8 +447,13 @@ function showLoading(visible) {
 }
 
 /* ==========================================
-   DASHBOARD
+   DASHBOARD — reemplaza renderDashboard y
+   fetchRecommendations en cyberrisk.js
+   Orden: KPIs → barra → tabla detalle →
+          recomendaciones → análisis detallado
+          (barras + factores horizontal) → JSON
 ========================================== */
+
 function renderDashboard(resultList) {
 
   const tierMap = {
@@ -458,19 +463,33 @@ function renderDashboard(resultList) {
     4: { label: 'CRÍTICO', cls: 'red' },
   };
 
-  // Por cada tecnología (producto evaluado), tomar solo su PEOR escenario.
-  // Esto evita inflar los KPIs cuando el backend devuelve top_scenarios (ej. 5 por producto).
+  // Por cada item del backend, tomar su peor escenario
   const techResults = resultList.map(item => {
     const scenarios = item.top_scenarios || [];
     if (!scenarios.length) return null;
 
     const worst = scenarios.reduce((a, b) =>
       (b.prediction.tier > a.prediction.tier ||
-        (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
-        ? b : a
+        (b.prediction.tier === a.prediction.tier &&
+          b.prediction.score > a.prediction.score)) ? b : a
     );
 
-    return { ...worst, _product: item.product, _allScenarios: scenarios };
+    // Nombre legible: producto original que el usuario seleccionó
+    const displayName = (item.original_products && item.original_products[0])
+      ? item.original_products[0]
+      : item.product;
+
+    // CWEs únicos de TODOS los escenarios del producto
+    const allCwes = new Set();
+    scenarios.forEach(s => (s.asset?.CWE || []).forEach(c => allCwes.add(c)));
+
+    return {
+      ...worst,
+      _product: item.product,
+      _displayName: displayName,
+      _allScenarios: scenarios,
+      _cweList: [...allCwes]
+    };
   }).filter(Boolean);
 
   if (!techResults.length) {
@@ -478,100 +497,72 @@ function renderDashboard(resultList) {
     return;
   }
 
-  // Peor tecnología global (para recomendaciones y gráfica de factores)
+  // Peor tecnología global
   const worst = techResults.reduce((a, b) =>
     (b.prediction.tier > a.prediction.tier ||
-      (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
-      ? b : a
+      (b.prediction.tier === a.prediction.tier &&
+        b.prediction.score > a.prediction.score)) ? b : a
   );
 
-  const nivel = tierMap[worst.prediction.tier] || { label: 'DESCONOCIDO', cls: 'cyan' };
+  const globalNivel = tierMap[worst.prediction.tier] || { label: 'DESCONOCIDO', cls: 'cyan' };
+  const globalPct = Math.round(worst.prediction.score * 100);
 
-  // Score global = promedio del peor escenario de cada tecnología
-  const avgScore = techResults.reduce((sum, t) => sum + t.prediction.score, 0) / techResults.length;
-  const pct = Math.round(avgScore * 100);
-
-  // Tier global representativo, basado en el score promedio
-  const globalTier = avgScore >= 0.75 ? 4 : avgScore >= 0.5 ? 3 : avgScore >= 0.25 ? 2 : 1;
-  const globalNivel = tierMap[globalTier];
-
-  // Meta
+  // ── Meta ──
   document.getElementById('dash-meta').textContent =
-    `Análisis ejecutado · ${new Date().toLocaleString('es-CO')} · ${techResults.length} tecnología(s) evaluada(s) · Exposición global: ${globalNivel.label}`;
+    `Análisis ejecutado · ${new Date().toLocaleString('es-CO')} · ` +
+    `${techResults.length} tecnología(s) evaluada(s) · Exposición global: ${globalNivel.label}`;
 
-  // KPIs — uno por tecnología (su peor escenario)
+  // ── KPIs ──
   const criticalTechs = techResults.filter(t => t.prediction.tier === 4).length;
-  const highTechs = techResults.filter(t => t.prediction.tier === 3).length;
 
-  document.getElementById('kpi-critical').textContent = criticalTechs > 0 ? `⚠ ${criticalTechs}` : 'NO';
-  document.getElementById('kpi-high').textContent = highTechs;
-  document.getElementById('kpi-score').textContent = pct + '%';
+  document.getElementById('kpi-critical').textContent =
+    criticalTechs > 0 ? `⚠ ${criticalTechs}` : 'NO';
+
+  // KPI 2: nivel dinámico del peor caso
+  const kpiHigh = document.getElementById('kpi-high');
+  kpiHigh.textContent = globalNivel.label;
+  kpiHigh.className = `cr-kpi-val ${globalNivel.cls}`;
+
+  document.getElementById('kpi-score').textContent = globalPct + '%';
   document.getElementById('kpi-techs').textContent = stackItems.length;
 
-  // Barra de exposición global (promedio)
-  document.getElementById('exp-score-val').textContent = `${pct} / 100 — ${globalNivel.label}`;
+  // ── Barra de exposición ──
+  document.getElementById('exp-score-val').textContent =
+    `${globalPct} / 100 — ${globalNivel.label}`;
   const bar = document.getElementById('exp-bar');
-  bar.style.width = pct + '%';
-  bar.style.background = globalTier === 4 ? 'var(--red)'
-    : globalTier === 3 ? 'var(--amber)'
-      : globalTier === 2 ? 'var(--cyan)' : 'var(--green)';
+  bar.style.width = globalPct + '%';
+  bar.style.background =
+    worst.prediction.tier === 4 ? 'var(--red)'
+      : worst.prediction.tier === 3 ? 'var(--amber)'
+        : worst.prediction.tier === 2 ? 'var(--cyan)' : 'var(--green)';
 
-  // Gráfica factores (de la tecnología con peor escenario)
-  const { attack = {}, impact = {} } = worst;
-  const factores = {
-    'Vector de Ataque': attack.VectorAtaque?.[0] || '—',
-    'Complejidad': attack.Complejidad?.[0] || '—',
-    'Privilegios': attack.Privilegios?.[0] || '—',
-    'Interacción': attack.InteraccionUsuario?.[0] || '—',
-    'Confidencialidad': impact.ImpactoConfidencialidad?.[0] || '—',
-    'Integridad': impact.ImpactoIntegridad?.[0] || '—',
-    'Disponibilidad': impact.ImpactoDisponibilidad?.[0] || '—',
-  };
-  document.getElementById('chart-factors').innerHTML =
-    Object.entries(factores).map(([k, v]) => `
-      <div class="cr-hbar-row">
-        <span class="cr-hbar-label">${k}</span>
-        <span class="cr-hbar-val ${v === 'High' || v === 'Network' ? 'red' : 'cyan'}">${v}</span>
-      </div>`).join('');
+  // ── Tabla detalle: 1 fila por producto con nombre real ──
+  const sortedTechs = [...techResults].sort(
+    (a, b) => b.prediction.score - a.prediction.score
+  );
 
-  // Gráfica score por tecnología (1 barra por tecnología, ordenadas de mayor a menor)
-  const sortedTechs = [...techResults].sort((a, b) => b.prediction.score - a.prediction.score);
-
-  document.getElementById('chart-by-tech').innerHTML =
-    sortedTechs.map(t => {
-      const tPct = Math.round(t.prediction.score * 100);
-      const tNivel = tierMap[t.prediction.tier] || { cls: 'cyan' };
-      const label = t.asset?.Producto?.[0] || t._product || 'Sistema';
-      return `
-        <div class="cr-hbar-row">
-          <span class="cr-hbar-label">${label}</span>
-          <div class="cr-hbar-track">
-            <div class="cr-hbar-fill ${tNivel.cls}" style="width:${tPct}%"></div>
-          </div>
-          <span class="cr-hbar-pct">${tPct}%</span>
-        </div>`;
-    }).join('');
-
-  // Tabla — 1 fila por tecnología (su peor escenario)
   document.getElementById('risk-tbody').innerHTML =
     sortedTechs.map(t => {
       const tNivel = tierMap[t.prediction.tier] || { label: '—', cls: 'cyan' };
       const tPct = Math.round(t.prediction.score * 100);
-      const producto = t.asset?.Producto?.join(', ') || t._product || '—';
       const vendor = t.asset?.Vendor?.join(', ') || '—';
-      const cwe = t.asset?.CWE?.join(', ') || '—';
+      const cweTags = t._cweList.length
+        ? t._cweList.map(c =>
+          `<span class="cr-cwe-tag">${c}</span>`).join('')
+        : '<span class="cr-cwe-tag cr-cwe-empty">—</span>';
+
       return `
         <tr>
-          <td>${producto}</td>
-          <td>${cwe}</td>
+          <td class="cr-td-name">${t._displayName}</td>
+          <td><div class="cr-cwe-tags">${cweTags}</div></td>
           <td>${vendor}</td>
           <td><span class="cr-score-badge ${tNivel.cls}">${tPct}%</span></td>
           <td><span class="cr-nivel-badge ${tNivel.cls}">${tNivel.label}</span></td>
         </tr>`;
     }).join('');
 
-  // Recomendaciones — basadas en el tier global (promedio)
-  fetchRecommendations(globalTier).then(recs => {
+  // ── Recomendaciones del peor tier ──
+  fetchRecommendations(worst.prediction.tier).then(recs => {
     document.getElementById('cr-rec-list').innerHTML =
       recs.map(text => `
         <div class="cr-rec-item">
@@ -580,17 +571,98 @@ function renderDashboard(resultList) {
         </div>`).join('');
   });
 
-  // JSON preview — respuesta completa del backend (con todos los escenarios)
+  // ── Gráfica: score por producto (barras horizontales) ──
+  document.getElementById('chart-by-tech').innerHTML =
+    sortedTechs.map(t => {
+      const tPct = Math.round(t.prediction.score * 100);
+      const tNivel = tierMap[t.prediction.tier] || { cls: 'cyan' };
+      return `
+        <div class="cr-hbar-row">
+          <span class="cr-hbar-label">${t._displayName}</span>
+          <div class="cr-hbar-track">
+            <div class="cr-hbar-fill ${tNivel.cls}" style="width:${tPct}%"></div>
+          </div>
+          <span class="cr-hbar-pct">${tPct}%</span>
+        </div>`;
+    }).join('');
+
+  // ── Factores: tabla horizontal (una fila por producto) ──
+  const factorHeaders = [
+    'Vector', 'Complejidad', 'Privilegios',
+    'Confidencial.', 'Integridad', 'Disponibilidad'
+  ];
+
+  const factorRows = sortedTechs.map(t => {
+    const { attack = {}, impact = {} } = t;
+    const tNivel = tierMap[t.prediction.tier] || { label: '—', cls: 'cyan' };
+    const vals = [
+      attack.VectorAtaque?.[0] || '—',
+      attack.Complejidad?.[0] || '—',
+      attack.Privilegios?.[0] || '—',
+      impact.ImpactoConfidencialidad?.[0] || '—',
+      impact.ImpactoIntegridad?.[0] || '—',
+      impact.ImpactoDisponibilidad?.[0] || '—',
+    ];
+    const cells = vals.map(v => `
+      <td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)">
+        <span class="cr-hbar-val ${v === 'High' || v === 'Network' || v === 'None' ? 'red' : 'cyan'
+      }" style="font-size:0.62rem">${v}</span>
+      </td>`).join('');
+
+    return `
+      <tr>
+        <td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04);
+                   white-space:nowrap">
+          <span class="cr-td-name" style="font-size:0.82rem">${t._displayName}</span>
+          <span class="cr-nivel-badge ${tNivel.cls}"
+                style="margin-left:6px;font-size:0.55rem">${tNivel.label}</span>
+        </td>
+        ${cells}
+      </tr>`;
+  }).join('');
+
+  document.getElementById('chart-factors').innerHTML = `
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:0.78rem">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:0.55rem 0.8rem;
+                       font-family:var(--font-mono);font-size:0.52rem;
+                       color:var(--text-dim);letter-spacing:0.1em;
+                       text-transform:uppercase;
+                       border-bottom:1px solid var(--border);
+                       background:var(--bg-2);white-space:nowrap">
+              Producto
+            </th>
+            ${factorHeaders.map(h => `
+              <th style="text-align:left;padding:0.55rem 0.8rem;
+                         font-family:var(--font-mono);font-size:0.52rem;
+                         color:var(--text-dim);letter-spacing:0.1em;
+                         text-transform:uppercase;
+                         border-bottom:1px solid var(--border);
+                         background:var(--bg-2);white-space:nowrap">
+                ${h}
+              </th>`).join('')}
+          </tr>
+        </thead>
+        <tbody style="background:var(--bg-2)">${factorRows}</tbody>
+      </table>
+    </div>`;
+
+  // ── JSON preview — payload que envió el usuario (no la respuesta del modelo) ──
   const dashEl = document.getElementById('json-preview-dash');
-  if (dashEl) dashEl.textContent = JSON.stringify(resultList, null, 2);
+  if (dashEl) dashEl.textContent = JSON.stringify(buildPayload(), null, 2);
 
   document.getElementById('cr-main').scrollTop = 0;
 }
-/* Carga recomendaciones según tier desde questions-config (recommendations) */
+
+/* ──────────────────────────────────────────
+   fetchRecommendations — carga recomendaciones
+   según tier desde questions-config.json
+────────────────────────────────────────── */
 async function fetchRecommendations(tier) {
   const tierKeyMap = { 4: 'critical', 3: 'high', 2: 'medium', 1: 'low' };
   const key = tierKeyMap[tier] || 'medium';
-
   try {
     const cfg = await fetchJSON('/data/questions-config.json');
     return cfg.recommendations?.[key] || [];
@@ -598,6 +670,165 @@ async function fetchRecommendations(tier) {
     return [];
   }
 }
+
+// function renderDashboard(resultList) {
+
+//   const tierMap = {
+//     1: { label: 'BAJO', cls: 'green' },
+//     2: { label: 'MEDIO', cls: 'cyan' },
+//     3: { label: 'ALTO', cls: 'amber' },
+//     4: { label: 'CRÍTICO', cls: 'red' },
+//   };
+
+//   // Por cada tecnología (producto evaluado), tomar solo su PEOR escenario.
+//   // Esto evita inflar los KPIs cuando el backend devuelve top_scenarios (ej. 5 por producto).
+//   const techResults = resultList.map(item => {
+//     const scenarios = item.top_scenarios || [];
+//     if (!scenarios.length) return null;
+
+//     const worst = scenarios.reduce((a, b) =>
+//       (b.prediction.tier > a.prediction.tier ||
+//         (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
+//         ? b : a
+//     );
+
+//     return { ...worst, _product: item.product, _allScenarios: scenarios };
+//   }).filter(Boolean);
+
+//   if (!techResults.length) {
+//     console.warn('Sin escenarios en la respuesta.');
+//     return;
+//   }
+
+//   // Peor tecnología global (para recomendaciones, gráfica de factores, score global)
+//   const worst = techResults.reduce((a, b) =>
+//     (b.prediction.tier > a.prediction.tier ||
+//       (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
+//       ? b : a
+//   );
+
+//   const nivel = tierMap[worst.prediction.tier] || { label: 'DESCONOCIDO', cls: 'cyan' };
+
+//   // Score global = el del PEOR caso entre todas las tecnologías (no promedio).
+//   // Si una tecnología es crítica, el indicador global debe reflejarlo, no diluirlo.
+//   const pct = Math.round(worst.prediction.score * 100);
+//   const globalTier = worst.prediction.tier;
+//   const globalNivel = nivel;
+
+//   // CWEs únicos a los que está expuesta cada tecnología (de TODOS sus escenarios, no solo el peor)
+//   techResults.forEach(t => {
+//     const allCwes = new Set();
+//     (t._allScenarios || []).forEach(s => {
+//       (s.asset?.CWE || []).forEach(c => allCwes.add(c));
+//     });
+//     t._cweList = [...allCwes];
+//   });
+
+//   // Meta
+//   document.getElementById('dash-meta').textContent =
+//     `Análisis ejecutado · ${new Date().toLocaleString('es-CO')} · ${techResults.length} tecnología(s) evaluada(s) · Exposición global: ${globalNivel.label}`;
+
+//   // KPIs — uno por tecnología (su peor escenario)
+//   const criticalTechs = techResults.filter(t => t.prediction.tier === 4).length;
+//   const highTechs = techResults.filter(t => t.prediction.tier === 3).length;
+
+//   document.getElementById('kpi-critical').textContent = criticalTechs > 0 ? `⚠ ${criticalTechs}` : 'NO';
+//   document.getElementById('kpi-high').textContent = highTechs;
+//   document.getElementById('kpi-score').textContent = pct + '%';
+//   document.getElementById('kpi-techs').textContent = stackItems.length;
+
+//   // Barra de exposición global (promedio)
+//   document.getElementById('exp-score-val').textContent = `${pct} / 100 — ${globalNivel.label}`;
+//   const bar = document.getElementById('exp-bar');
+//   bar.style.width = pct + '%';
+//   bar.style.background = globalTier === 4 ? 'var(--red)'
+//     : globalTier === 3 ? 'var(--amber)'
+//       : globalTier === 2 ? 'var(--cyan)' : 'var(--green)';
+
+//   // Gráfica factores (de la tecnología con peor escenario)
+//   const { attack = {}, impact = {} } = worst;
+//   const factores = {
+//     'Vector de Ataque': attack.VectorAtaque?.[0] || '—',
+//     'Complejidad': attack.Complejidad?.[0] || '—',
+//     'Privilegios': attack.Privilegios?.[0] || '—',
+//     'Interacción': attack.InteraccionUsuario?.[0] || '—',
+//     'Confidencialidad': impact.ImpactoConfidencialidad?.[0] || '—',
+//     'Integridad': impact.ImpactoIntegridad?.[0] || '—',
+//     'Disponibilidad': impact.ImpactoDisponibilidad?.[0] || '—',
+//   };
+//   document.getElementById('chart-factors').innerHTML =
+//     Object.entries(factores).map(([k, v]) => `
+//       <div class="cr-hbar-row">
+//         <span class="cr-hbar-label">${k}</span>
+//         <span class="cr-hbar-val ${v === 'High' || v === 'Network' ? 'red' : 'cyan'}">${v}</span>
+//       </div>`).join('');
+
+//   // Gráfica score por tecnología (1 barra por tecnología, ordenadas de mayor a menor)
+//   const sortedTechs = [...techResults].sort((a, b) => b.prediction.score - a.prediction.score);
+
+//   document.getElementById('chart-by-tech').innerHTML =
+//     sortedTechs.map(t => {
+//       const tPct = Math.round(t.prediction.score * 100);
+//       const tNivel = tierMap[t.prediction.tier] || { cls: 'cyan' };
+//       const label = t.asset?.Producto?.[0] || t._product || 'Sistema';
+//       return `
+//         <div class="cr-hbar-row">
+//           <span class="cr-hbar-label">${label}</span>
+//           <div class="cr-hbar-track">
+//             <div class="cr-hbar-fill ${tNivel.cls}" style="width:${tPct}%"></div>
+//           </div>
+//           <span class="cr-hbar-pct">${tPct}%</span>
+//         </div>`;
+//     }).join('');
+
+//   // Tabla — 1 fila por tecnología, mostrando TODOS los CWE a los que está expuesta
+//   document.getElementById('risk-tbody').innerHTML =
+//     sortedTechs.map(t => {
+//       const tNivel = tierMap[t.prediction.tier] || { label: '—', cls: 'cyan' };
+//       const tPct = Math.round(t.prediction.score * 100);
+//       const producto = t.asset?.Producto?.join(', ') || t._product || '—';
+//       const vendor = t.asset?.Vendor?.join(', ') || '—';
+//       const cweTags = (t._cweList && t._cweList.length)
+//         ? t._cweList.map(c => `<span class="cr-cwe-tag">${c}</span>`).join('')
+//         : '<span class="cr-cwe-tag cr-cwe-empty">—</span>';
+//       return `
+//         <tr>
+//           <td class="cr-td-name">${producto}</td>
+//           <td><div class="cr-cwe-tags">${cweTags}</div></td>
+//           <td>${vendor}</td>
+//           <td><span class="cr-score-badge ${tNivel.cls}">${tPct}%</span></td>
+//           <td><span class="cr-nivel-badge ${tNivel.cls}">${tNivel.label}</span></td>
+//         </tr>`;
+//     }).join('');
+
+//   // Recomendaciones — basadas en el tier global (promedio)
+//   fetchRecommendations(globalTier).then(recs => {
+//     document.getElementById('cr-rec-list').innerHTML =
+//       recs.map(text => `
+//         <div class="cr-rec-item">
+//           <span class="cr-rec-icon">📌</span>
+//           <span>${text}</span>
+//         </div>`).join('');
+//   });
+
+//   // JSON preview — respuesta completa del backend (con todos los escenarios)
+//   const dashEl = document.getElementById('json-preview-dash');
+//   if (dashEl) dashEl.textContent = JSON.stringify(resultList, null, 2);
+
+//   document.getElementById('cr-main').scrollTop = 0;
+// }
+// /* Carga recomendaciones según tier desde questions-config (recommendations) */
+// async function fetchRecommendations(tier) {
+//   const tierKeyMap = { 4: 'critical', 3: 'high', 2: 'medium', 1: 'low' };
+//   const key = tierKeyMap[tier] || 'medium';
+
+//   try {
+//     const cfg = await fetchJSON('/data/questions-config.json');
+//     return cfg.recommendations?.[key] || [];
+//   } catch {
+//     return [];
+//   }
+// }
 
 /* ==========================================
    EXPORTS GLOBALES
@@ -611,6 +842,639 @@ window.buildPayload = buildPayload;
 window.showStep = showStep;
 window.resetAnalysis = resetAnalysis;
 window.showLoading = showLoading;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 'use strict';
+
+// /* ==========================================
+//    ESTADO GLOBAL
+// ========================================== */
+// let TECH_CATALOG = [];
+// let FORM_FIELDS = [];
+// let stackItems = [];   // sistemas agregados (canonical_json[])
+
+// // referencias a las instancias de Tom Select
+// let tsCat, tsVendor, tsProduct;
+
+// /* ==========================================
+//    INIT
+// ========================================== */
+// document.addEventListener('DOMContentLoaded', init);
+
+// async function init() {
+//   try {
+//     const catalogData = await fetchJSON('/data/tech-catalog.json');
+//     const formData = await fetchJSON('/data/canonical-form-config.json');
+
+//     TECH_CATALOG = catalogData.catalog || [];
+//     FORM_FIELDS = formData.fields || [];
+
+//     initSelects();
+//     loadCategories();
+//     renderExtraFields();
+
+//     document.getElementById('catalog-loader').style.display = 'none';
+//     document.getElementById('catalog-form').style.display = 'block';
+//     document.getElementById('cr-status-text').textContent = 'DATOS CARGADOS';
+//   } catch (error) {
+//     console.error(error);
+//     document.getElementById('cr-status-text').textContent = 'ERROR DE CARGA';
+//   }
+// }
+
+// /* ==========================================
+//    INICIALIZAR TOM SELECT (buscable)
+// ========================================== */
+// function initSelects() {
+//   tsCat = new TomSelect('#sel-cat', {
+//     placeholder: 'Ecosistema...',
+//     allowEmptyOption: true,
+//     onChange: () => onFilterChange('cat')
+//   });
+
+//   tsVendor = new TomSelect('#sel-vendor', {
+//     placeholder: 'Vendedor...',
+//     allowEmptyOption: true,
+//     onChange: () => onFilterChange('vendor')
+//   });
+
+//   tsProduct = new TomSelect('#sel-product', {
+//     placeholder: 'Producto...',
+//     allowEmptyOption: true,
+//     onChange: () => onFilterChange('product')
+//   });
+// }
+
+// /* ==========================================
+//    CATÁLOGO — Filtrado cruzado (cat / vendor / product)
+//    Los 3 selects están siempre habilitados.
+//    Cada vez que uno cambia, se recalculan las opciones
+//    de los otros dos según los valores ya seleccionados.
+//    El usuario puede empezar por cualquiera de los tres.
+// ========================================== */
+
+// // Construye lista de "filas planas": una por cada (cat, vendor, producto)
+// function buildFlatRows() {
+//   const rows = [];
+//   TECH_CATALOG.forEach(entry => {
+//     entry.products.forEach(product => {
+//       rows.push({ cat: entry.cat, vendor: entry.vendor, product });
+//     });
+//   });
+//   return rows;
+// }
+
+// let FLAT_ROWS = [];
+
+// // Carga inicial: llenar los 3 selects con todas las opciones posibles
+// function loadCategories() {
+//   FLAT_ROWS = buildFlatRows();
+
+//   const cats = [...new Set(FLAT_ROWS.map(r => r.cat))].sort();
+//   const vendors = [...new Set(FLAT_ROWS.map(r => r.vendor))].sort();
+//   const products = [...new Set(FLAT_ROWS.map(r => r.product))].sort();
+
+//   cats.forEach(c => tsCat.addOption({ value: c, text: c }));
+//   vendors.forEach(v => tsVendor.addOption({ value: v, text: v }));
+//   products.forEach(p => tsProduct.addOption({ value: p, text: p }));
+
+//   tsCat.refreshOptions(false);
+//   tsVendor.refreshOptions(false);
+//   tsProduct.refreshOptions(false);
+
+//   tsCat.enable();
+//   tsVendor.enable();
+//   tsProduct.enable();
+// }
+
+// // Se llama cuando cualquiera de los 3 selects cambia
+// function onFilterChange(changed) {
+//   const cat = tsCat.getValue();
+//   const vendor = tsVendor.getValue();
+//   const product = tsProduct.getValue();
+
+//   // Filtrar filas según lo seleccionado en los OTROS selects
+//   const filterFor = (target) => {
+//     return FLAT_ROWS.filter(r => {
+//       if (target !== 'cat' && cat && r.cat !== cat) return false;
+//       if (target !== 'vendor' && vendor && r.vendor !== vendor) return false;
+//       if (target !== 'product' && product && r.product !== product) return false;
+//       return true;
+//     });
+//   };
+
+//   // Recalcular opciones de cat (si no fue el que cambió, o aunque lo sea, según los otros dos)
+//   updateSelectOptions(tsCat, [...new Set(filterFor('cat').map(r => r.cat))].sort(), cat);
+//   updateSelectOptions(tsVendor, [...new Set(filterFor('vendor').map(r => r.vendor))].sort(), vendor);
+//   updateSelectOptions(tsProduct, [...new Set(filterFor('product').map(r => r.product))].sort(), product);
+
+//   validateAddButton();
+// }
+
+// // Reemplaza las opciones de un Tom Select, conservando el valor actual si sigue siendo válido
+// function updateSelectOptions(ts, values, currentValue) {
+//   const stillValid = currentValue && values.includes(currentValue);
+
+//   ts.clearOptions();
+//   values.forEach(v => ts.addOption({ value: v, text: v }));
+//   ts.refreshOptions(false);
+
+//   if (stillValid) {
+//     ts.setValue(currentValue, true); // true = silent, evita loop de onChange
+//   } else if (currentValue) {
+//     ts.clear(true);
+//   }
+// }
+
+// /* ==========================================
+//    CAMPOS EXTRA DEL JSON CANÓNICO (dinámicos)
+// ========================================== */
+// function renderExtraFields() {
+//   const container = document.getElementById('extra-fields');
+//   let html = '';
+
+//   FORM_FIELDS.forEach(field => {
+//     html += `<div class="cr-field" data-field-id="${field.id}">`;
+//     html += `<label class="cr-label" for="f-${field.id}">${field.label}</label>`;
+
+//     switch (field.type) {
+//       case 'bool':
+//         html += `
+//           <div class="cr-select-wrap">
+//             <select id="f-${field.id}">
+//               <option value="">— Seleccionar —</option>
+//               <option value="true">Sí</option>
+//               <option value="false">No</option>
+//             </select>
+//           </div>`;
+//         break;
+
+//       case 'select':
+//         html += `<div class="cr-select-wrap"><select id="f-${field.id}">`;
+//         html += `<option value="">— Seleccionar —</option>`;
+//         (field.options || []).forEach(opt => {
+//           html += `<option value="${opt.value}">${opt.label}</option>`;
+//         });
+//         html += `</select></div>`;
+//         break;
+
+//       case 'number':
+//         html += `<input type="number" id="f-${field.id}"
+//                     min="${field.min ?? 0}" value="${field.default ?? 0}" />`;
+//         break;
+
+//       default:
+//         html += `<input type="text" id="f-${field.id}" />`;
+//     }
+
+//     if (field.help) {
+//       html += `<div class="cr-field-help">${field.help}</div>`;
+//     }
+
+//     html += `</div>`;
+//   });
+
+//   container.innerHTML = html;
+// }
+
+// /* ==========================================
+//    VALIDACIÓN DEL BOTÓN AGREGAR
+// ========================================== */
+// function validateAddButton() {
+//   const cat = tsCat.getValue();
+//   const vendor = tsVendor.getValue();
+//   const product = tsProduct.getValue();
+
+//   document.getElementById('add-tech-btn').disabled = !(cat && vendor && product);
+// }
+
+// /* ==========================================
+//    AGREGAR AL STACK
+// ========================================== */
+// function addToStack() {
+//   const cat = tsCat.getValue();
+//   const vendor = tsVendor.getValue();
+//   const product = tsProduct.getValue();
+
+//   if (!cat || !vendor || !product) {
+//     alert('Debes seleccionar Clasificación, Vendedor y Producto.');
+//     return;
+//   }
+
+//   // Construir canonical_json
+//   const canonical = {
+//     vendor: vendor,
+//     products: [product],
+//     category: cat   // informativo, no lo usa el modelo pero útil para mostrar
+//   };
+
+//   const missing = [];
+
+//   FORM_FIELDS.forEach(field => {
+//     const el = document.getElementById(`f-${field.id}`);
+//     if (!el) return;
+
+//     const raw = el.value;
+
+//     if (field.type === 'bool') {
+//       if (raw === '') { missing.push(field.label); return; }
+//       canonical[field.id] = raw === 'true';
+//     } else if (field.type === 'select') {
+//       if (raw === '') { missing.push(field.label); return; }
+//       canonical[field.id] = raw;
+//     } else if (field.type === 'number') {
+//       canonical[field.id] = Number(raw) || 0;
+//     } else {
+//       canonical[field.id] = raw;
+//     }
+//   });
+
+//   if (missing.length) {
+//     alert('Faltan campos por seleccionar:\n- ' + missing.join('\n- '));
+//     return;
+//   }
+
+//   stackItems.push(canonical);
+//   renderStackCards();
+//   resetFormFields();
+// }
+
+// function resetFormFields() {
+//   // Resetear selects de catálogo (Tom Select) y restaurar todas las opciones
+//   tsCat.clear(true);
+//   tsVendor.clear(true);
+//   tsProduct.clear(true);
+//   onFilterChange('reset');
+//   document.getElementById('add-tech-btn').disabled = true;
+
+//   // Resetear campos extra
+//   FORM_FIELDS.forEach(field => {
+//     const el = document.getElementById(`f-${field.id}`);
+//     if (el) el.value = field.default ?? '';
+//   });
+// }
+
+// /* ==========================================
+//    STACK — render / eliminar
+// ========================================== */
+// function renderStackCards() {
+//   const container = document.getElementById('tech-cards');
+
+//   if (!stackItems.length) {
+//     container.innerHTML = '<div class="cr-no-techs">Ningún sistema añadido aún</div>';
+//     document.getElementById('run-btn').disabled = true;
+//     document.getElementById('tech-count-badge').textContent = 0;
+//     document.getElementById('fc-techs').textContent = 0;
+//     return;
+//   }
+
+//   container.innerHTML = stackItems.map((item, i) => `
+//     <div class="cr-tech-card">
+//       <strong>${item.products[0]}</strong>
+//       <div>${item.vendor}</div>
+//       <small>${item.category} · Criticidad: ${item.business_criticality}</small>
+//       <button type="button" onclick="removeStackItem(${i})"
+//         style="margin-top:4px;background:none;border:1px solid var(--red);
+//                color:var(--red);border-radius:2px;padding:2px 8px;
+//                font-size:0.6rem;cursor:pointer;width:100%">
+//         ✕ eliminar
+//       </button>
+//     </div>
+//   `).join('');
+
+//   document.getElementById('tech-count-badge').textContent = stackItems.length;
+//   document.getElementById('fc-techs').textContent = stackItems.length;
+//   document.getElementById('run-btn').disabled = false;
+// }
+
+// function removeStackItem(index) {
+//   stackItems.splice(index, 1);
+//   renderStackCards();
+// }
+
+// /* ==========================================
+//    NAVEGACIÓN POR PASOS
+// ========================================== */
+// function showStep(step) {
+//   document.querySelectorAll('.cr-panel').forEach(p => p.classList.remove('active'));
+//   document.getElementById(`panel-${step}`)?.classList.add('active');
+//   document.querySelectorAll('.cr-nav-btn').forEach(btn => btn.classList.remove('active'));
+//   document.getElementById(`btn-step${step}`)?.classList.add('active');
+
+//   if (step === 3) generateJSON();
+// }
+
+// /* ==========================================
+//    JSON / PAYLOAD
+// ========================================== */
+// function buildPayload() {
+//   // Quitamos 'category' (es solo informativo en UI, no lo espera el modelo)
+//   return stackItems.map(({ category, ...rest }) => rest);
+// }
+
+// function generateJSON() {
+//   const payload = buildPayload();
+//   const text = JSON.stringify(payload, null, 2);
+//   const outEl = document.getElementById('json-output');
+//   const dashEl = document.getElementById('json-preview-dash');
+//   const countEl = document.getElementById('json-records-count');
+//   if (outEl) outEl.textContent = text;
+//   if (dashEl) dashEl.textContent = text;
+//   if (countEl) countEl.textContent = `${payload.length} sistema(s) a evaluar`;
+//   return payload;
+// }
+
+// function copyJSON() {
+//   const json = document.getElementById('json-output').textContent;
+//   navigator.clipboard.writeText(json);
+//   alert('JSON copiado');
+// }
+
+// /* ==========================================
+//    RESET / NUEVO ANÁLISIS
+// ========================================== */
+// function resetAnalysis() {
+//   stackItems = [];
+//   renderStackCards();
+//   resetFormFields();
+//   showStep(1);
+// }
+
+// /* ==========================================
+//    ANÁLISIS — llamada al backend
+// ========================================== */
+
+
+// async function runAnalysis(event) {
+//   if (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//   }
+
+//   if (stackItems.length === 0) {
+//     alert('Debes agregar al menos un sistema a evaluar.');
+//     return;
+//   }
+
+//   showLoading(true);
+
+//   try {
+//     const payload = buildPayload();
+
+//     const saveRes = await fetch('http://127.0.0.1:5000/guardar-json', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(payload)
+//     });
+//     const saveData = await saveRes.json();
+//     console.log('✅ Guardado:', saveData);
+
+//     const analRes = await fetch('http://127.0.0.1:5000/analizar', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ id: saveData.id })
+//     });
+
+//     if (!analRes.ok) {
+//       const err = await analRes.text();
+//       console.error('❌ Error servidor:', err);
+//       alert('Error del servidor: ' + err);
+//       return;
+//     }
+
+//     const result = await analRes.json();
+//     console.log('🧠 Resultado ML:', result);
+
+//     window.mlResult = result;
+//     renderDashboard(result);   // ← era resultList, ahora result
+
+//   } catch (error) {
+//     console.error('❌ Error:', error);
+//     alert('Error: ' + error.message);
+//   } finally {
+//     showLoading(false);
+//   }
+// }
+
+// /* ==========================================
+//    LOADING — overlay mientras corre el modelo
+// ========================================== */
+// function showLoading(visible) {
+//   let overlay = document.getElementById('ml-loading-overlay');
+
+//   if (!overlay) {
+//     overlay = document.createElement('div');
+//     overlay.id = 'ml-loading-overlay';
+//     overlay.style.position = 'fixed';
+//     overlay.style.inset = '0';
+//     overlay.style.background = 'rgba(0,0,0,0.6)';
+//     overlay.style.display = 'flex';
+//     overlay.style.flexDirection = 'column';
+//     overlay.style.alignItems = 'center';
+//     overlay.style.justifyContent = 'center';
+//     overlay.style.zIndex = '9999';
+//     overlay.style.color = '#fff';
+//     overlay.style.fontFamily = 'inherit';
+//     overlay.innerHTML = `
+//       <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,0.25);
+//                    border-top-color:#fff;border-radius:50%;
+//                    animation:ml-spin 0.8s linear infinite;margin-bottom:12px;"></div>
+//       <div id="ml-loading-text" style="font-size:0.9rem;letter-spacing:0.05em;">
+//         Ejecutando modelo, por favor espera...
+//       </div>
+//       <style>
+//         @keyframes ml-spin { to { transform: rotate(360deg); } }
+//       </style>
+//     `;
+//     document.body.appendChild(overlay);
+//   }
+
+//   overlay.style.display = visible ? 'flex' : 'none';
+// }
+
+// /* ==========================================
+//    DASHBOARD
+// ========================================== */
+// function renderDashboard(resultList) {
+
+//   const tierMap = {
+//     1: { label: 'BAJO', cls: 'green' },
+//     2: { label: 'MEDIO', cls: 'cyan' },
+//     3: { label: 'ALTO', cls: 'amber' },
+//     4: { label: 'CRÍTICO', cls: 'red' },
+//   };
+
+//   // Por cada tecnología (producto evaluado), tomar solo su PEOR escenario.
+//   // Esto evita inflar los KPIs cuando el backend devuelve top_scenarios (ej. 5 por producto).
+//   const techResults = resultList.map(item => {
+//     const scenarios = item.top_scenarios || [];
+//     if (!scenarios.length) return null;
+
+//     const worst = scenarios.reduce((a, b) =>
+//       (b.prediction.tier > a.prediction.tier ||
+//         (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
+//         ? b : a
+//     );
+
+//     return { ...worst, _product: item.product, _allScenarios: scenarios };
+//   }).filter(Boolean);
+
+//   if (!techResults.length) {
+//     console.warn('Sin escenarios en la respuesta.');
+//     return;
+//   }
+
+//   // Peor tecnología global (para recomendaciones y gráfica de factores)
+//   const worst = techResults.reduce((a, b) =>
+//     (b.prediction.tier > a.prediction.tier ||
+//       (b.prediction.tier === a.prediction.tier && b.prediction.score > a.prediction.score))
+//       ? b : a
+//   );
+
+//   const nivel = tierMap[worst.prediction.tier] || { label: 'DESCONOCIDO', cls: 'cyan' };
+
+//   // Score global = promedio del peor escenario de cada tecnología
+//   const avgScore = techResults.reduce((sum, t) => sum + t.prediction.score, 0) / techResults.length;
+//   const pct = Math.round(avgScore * 100);
+
+//   // Tier global representativo, basado en el score promedio
+//   const globalTier = avgScore >= 0.75 ? 4 : avgScore >= 0.5 ? 3 : avgScore >= 0.25 ? 2 : 1;
+//   const globalNivel = tierMap[globalTier];
+
+//   // Meta
+//   document.getElementById('dash-meta').textContent =
+//     `Análisis ejecutado · ${new Date().toLocaleString('es-CO')} · ${techResults.length} tecnología(s) evaluada(s) · Exposición global: ${globalNivel.label}`;
+
+//   // KPIs — uno por tecnología (su peor escenario)
+//   const criticalTechs = techResults.filter(t => t.prediction.tier === 4).length;
+//   const highTechs = techResults.filter(t => t.prediction.tier === 3).length;
+
+//   document.getElementById('kpi-critical').textContent = criticalTechs > 0 ? `⚠ ${criticalTechs}` : 'NO';
+//   document.getElementById('kpi-high').textContent = highTechs;
+//   document.getElementById('kpi-score').textContent = pct + '%';
+//   document.getElementById('kpi-techs').textContent = stackItems.length;
+
+//   // Barra de exposición global (promedio)
+//   document.getElementById('exp-score-val').textContent = `${pct} / 100 — ${globalNivel.label}`;
+//   const bar = document.getElementById('exp-bar');
+//   bar.style.width = pct + '%';
+//   bar.style.background = globalTier === 4 ? 'var(--red)'
+//     : globalTier === 3 ? 'var(--amber)'
+//       : globalTier === 2 ? 'var(--cyan)' : 'var(--green)';
+
+//   // Gráfica factores (de la tecnología con peor escenario)
+//   const { attack = {}, impact = {} } = worst;
+//   const factores = {
+//     'Vector de Ataque': attack.VectorAtaque?.[0] || '—',
+//     'Complejidad': attack.Complejidad?.[0] || '—',
+//     'Privilegios': attack.Privilegios?.[0] || '—',
+//     'Interacción': attack.InteraccionUsuario?.[0] || '—',
+//     'Confidencialidad': impact.ImpactoConfidencialidad?.[0] || '—',
+//     'Integridad': impact.ImpactoIntegridad?.[0] || '—',
+//     'Disponibilidad': impact.ImpactoDisponibilidad?.[0] || '—',
+//   };
+//   document.getElementById('chart-factors').innerHTML =
+//     Object.entries(factores).map(([k, v]) => `
+//       <div class="cr-hbar-row">
+//         <span class="cr-hbar-label">${k}</span>
+//         <span class="cr-hbar-val ${v === 'High' || v === 'Network' ? 'red' : 'cyan'}">${v}</span>
+//       </div>`).join('');
+
+//   // Gráfica score por tecnología (1 barra por tecnología, ordenadas de mayor a menor)
+//   const sortedTechs = [...techResults].sort((a, b) => b.prediction.score - a.prediction.score);
+
+//   document.getElementById('chart-by-tech').innerHTML =
+//     sortedTechs.map(t => {
+//       const tPct = Math.round(t.prediction.score * 100);
+//       const tNivel = tierMap[t.prediction.tier] || { cls: 'cyan' };
+//       const label = t.asset?.Producto?.[0] || t._product || 'Sistema';
+//       return `
+//         <div class="cr-hbar-row">
+//           <span class="cr-hbar-label">${label}</span>
+//           <div class="cr-hbar-track">
+//             <div class="cr-hbar-fill ${tNivel.cls}" style="width:${tPct}%"></div>
+//           </div>
+//           <span class="cr-hbar-pct">${tPct}%</span>
+//         </div>`;
+//     }).join('');
+
+//   // Tabla — 1 fila por tecnología (su peor escenario)
+//   document.getElementById('risk-tbody').innerHTML =
+//     sortedTechs.map(t => {
+//       const tNivel = tierMap[t.prediction.tier] || { label: '—', cls: 'cyan' };
+//       const tPct = Math.round(t.prediction.score * 100);
+//       const producto = t.asset?.Producto?.join(', ') || t._product || '—';
+//       const vendor = t.asset?.Vendor?.join(', ') || '—';
+//       const cwe = t.asset?.CWE?.join(', ') || '—';
+//       return `
+//         <tr>
+//           <td>${producto}</td>
+//           <td>${cwe}</td>
+//           <td>${vendor}</td>
+//           <td><span class="cr-score-badge ${tNivel.cls}">${tPct}%</span></td>
+//           <td><span class="cr-nivel-badge ${tNivel.cls}">${tNivel.label}</span></td>
+//         </tr>`;
+//     }).join('');
+
+//   // Recomendaciones — basadas en el tier global (promedio)
+//   fetchRecommendations(globalTier).then(recs => {
+//     document.getElementById('cr-rec-list').innerHTML =
+//       recs.map(text => `
+//         <div class="cr-rec-item">
+//           <span class="cr-rec-icon">📌</span>
+//           <span>${text}</span>
+//         </div>`).join('');
+//   });
+
+//   // JSON preview — respuesta completa del backend (con todos los escenarios)
+//   const dashEl = document.getElementById('json-preview-dash');
+//   if (dashEl) dashEl.textContent = JSON.stringify(resultList, null, 2);
+
+//   document.getElementById('cr-main').scrollTop = 0;
+// }
+// /* Carga recomendaciones según tier desde questions-config (recommendations) */
+// async function fetchRecommendations(tier) {
+//   const tierKeyMap = { 4: 'critical', 3: 'high', 2: 'medium', 1: 'low' };
+//   const key = tierKeyMap[tier] || 'medium';
+
+//   try {
+//     const cfg = await fetchJSON('/data/questions-config.json');
+//     return cfg.recommendations?.[key] || [];
+//   } catch {
+//     return [];
+//   }
+// }
+
+// /* ==========================================
+//    EXPORTS GLOBALES
+// ========================================== */
+// window.addToStack = addToStack;
+// window.removeStackItem = removeStackItem;
+// window.copyJSON = copyJSON;
+// window.runAnalysis = runAnalysis;
+// window.generateJSON = generateJSON;
+// window.buildPayload = buildPayload;
+// window.showStep = showStep;
+// window.resetAnalysis = resetAnalysis;
+// window.showLoading = showLoading;
 
 
 

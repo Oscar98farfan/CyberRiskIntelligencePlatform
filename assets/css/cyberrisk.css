@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background: var(--bg, #05080c);
+  background: var(--bg, #9199a3);
   color: var(--text, #9bb8d0);
   font-family: var(--font-body, 'Barlow', sans-serif);
   font-size: 14px;
@@ -1395,6 +1395,285 @@ body {
   display: block;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* ══════════════════════════════════════════
+   AJUSTES — MÁS AIRE EN EL DASHBOARD
+   Agregar AL FINAL de cyberrisk.css
+══════════════════════════════════════════ */
+
+/* Más espacio general en el main */
+.cr-main {
+  padding: 2.4rem 2.8rem;
+}
+
+.cr-dash-header {
+  margin-bottom: 2.2rem;
+  padding-bottom: 1.5rem;
+}
+
+.cr-section-label {
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  font-size: 0.62rem;
+}
+
+.cr-section-label:first-of-type {
+  margin-top: 0;
+}
+
+/* KPI cards más grandes y respirables */
+.cr-kpi-grid {
+  gap: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.cr-kpi-card {
+  padding: 1.5rem 1.2rem;
+}
+
+.cr-kpi-val {
+  font-size: 2.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.cr-kpi-lbl {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+}
+
+/* Barra de exposición con más espacio */
+.cr-exposure-card {
+  padding: 1.5rem 1.8rem;
+}
+
+.cr-bar-track {
+  height: 12px;
+  margin-bottom: 0.6rem;
+}
+
+.cr-exp-score {
+  font-size: 1.9rem;
+}
+
+/* Gráficas con más aire */
+.cr-charts-grid {
+  gap: 1.5rem;
+}
+
+.cr-chart-card {
+  padding: 1.5rem;
+}
+
+.cr-chart-title {
+  margin-bottom: 1.2rem;
+  font-size: 0.58rem;
+}
+
+.cr-hbar-row {
+  padding: 0.65rem 0;
+  gap: 1rem;
+}
+
+.cr-hbar-label {
+  width: 160px;
+  font-size: 0.74rem;
+}
+
+.cr-hbar-track {
+  height: 10px;
+}
+
+/* Tabla con más padding por celda */
+.cr-risk-table th {
+  padding: 0.85rem 1.2rem;
+  font-size: 0.56rem;
+}
+
+.cr-risk-table td {
+  padding: 1rem 1.2rem;
+  font-size: 0.88rem;
+}
+
+/* Tags de CWE dentro de la tabla */
+.cr-cwe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  max-width: 320px;
+}
+
+.cr-cwe-tag {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 3px;
+  background: rgba(232, 64, 64, 0.1);
+  color: #e87070;
+  border: 1px solid rgba(232, 64, 64, 0.25);
+  white-space: nowrap;
+}
+
+.cr-cwe-tag.cr-cwe-empty {
+  background: var(--surface, #0f1a26);
+  color: var(--text-muted, #2e4a60);
+  border-color: var(--border, #1a2e42);
+}
+
+/* Recomendaciones con más espacio entre items */
+.cr-rec-list {
+  gap: 0.7rem;
+  margin-bottom: 2.2rem;
+}
+
+.cr-rec-item {
+  padding: 0.9rem 1.2rem;
+}
+
+/* JSON preview un poco más alto */
+.cr-json-preview {
+  padding: 1.1rem;
+  font-size: 0.65rem;
+  max-height: 320px;
+}
+
+/* Responsive: en pantallas chicas, vuelve a paddings más compactos */
+@media (max-width: 800px) {
+  .cr-main {
+    padding: 1.2rem;
+  }
+
+  .cr-kpi-val {
+    font-size: 1.8rem;
+  }
+
+  .cr-cwe-tags {
+    max-width: none;
+  }
+}
+
+
+
+
+
+/* ── MEJORA DE CONTRASTE EN EL FORMULARIO ── */
+
+/* Labels más visibles */
+.cr-label {
+  color: #7ab8d0;
+  /* era #4a6680 — más claro */
+  font-size: 0.62rem;
+  /* era 0.52rem — más grande */
+  letter-spacing: 0.1em;
+}
+
+/* Texto de ayuda más legible */
+.cr-field-help {
+  color: #4a6680;
+  /* era #2e4a60 — un escalón más claro */
+  font-size: 0.7rem;
+  /* era 0.62rem */
+}
+
+/* Inputs con fondo ligeramente más claro y borde más visible */
+.cr-field select,
+.cr-field input[type="text"],
+.cr-field input[type="number"] {
+  background: #080d14;
+  /* era #0c1420 — un poco más claro */
+  border: 1px solid #243d55;
+  /* era #1a2e42 — más visible */
+  color: #ddeeff;
+  /* era igual, mantener */
+  font-size: 0.88rem;
+  /* era 0.82rem — más grande */
+}
+
+/* Placeholder más visible */
+.cr-field input::placeholder {
+  color: #3a5570;
+  /* era #2e4a60 */
+}
+
+/* Opciones de select */
+.cr-field select option {
+  background: #0f1a26;
+  color: #9bb8d0;
+  /* era igual */
+}
+
+/* Tom Select — si lo usas */
+.ts-wrapper .ts-control {
+  background: #0f1a26 !important;
+  border-color: #243d55 !important;
+  color: #ddeeff !important;
+  font-size: 0.88rem !important;
+}
+
+.ts-wrapper .ts-control input {
+  color: #ddeeff !important;
+}
+
+.ts-dropdown {
+  background: #0f1a26 !important;
+  border-color: #243d55 !important;
+}
+
+.ts-dropdown .option {
+  color: #9bb8d0 !important;
+  font-size: 0.85rem !important;
+}
+
+.ts-dropdown .option:hover,
+.ts-dropdown .option.active {
+  background: rgba(0, 200, 232, 0.12) !important;
+  color: #00c8e8 !important;
+}
+
+/* Título del panel sidebar más visible */
+.cr-panel-title {
+  font-size: 0.65rem;
+  /* era 0.55rem */
+  color: #00c8e8;
+  letter-spacing: 0.14em;
+}
+
+/* Texto "Stack configurado" y contador */
+.cr-tech-list-title {
+  font-size: 0.62rem;
+  /* era 0.5rem */
+  color: #4a6680;
+  /* era #2e4a60 */
+}
+
+/* No-techs placeholder */
+.cr-no-techs {
+  font-size: 0.82rem;
+  /* era 0.75rem */
+  color: #3a5570;
+  /* era #2e4a60 */
+}
+
+/* Tarjetas de tecnología en el stack */
+.cr-tech-card strong {
+  color: #ddeeff;
+  font-size: 0.85rem;
+}
+
+.cr-tech-card div,
+.cr-tech-card small {
+  color: #7ab8d0;
+  font-size: 0.78rem;
+}
 
 
 

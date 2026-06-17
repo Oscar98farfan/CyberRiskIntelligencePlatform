@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="../assets/css/cyberrisk.css" />
     <link rel="stylesheet" href="../assets/css/tomselect-theme.css">
 
+
 <body>
 
     <div id="cr-app">
@@ -103,16 +104,16 @@
                             <div class="cr-field">
                                 <label for="sel-vendor" class="cr-label">Vendedor</label>
                                 <div class="cr-select-wrap">
-                                    <select id="sel-vendor" disabled aria-label="Vendedor">
-                                        <option value="">— Primero selecciona clasificación —</option>
+                                    <select id="sel-vendor" aria-label="Vendedor">
+                                        <option value="">— Seleccionar —</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="cr-field">
                                 <label for="sel-product" class="cr-label">Producto</label>
                                 <div class="cr-select-wrap">
-                                    <select id="sel-product" disabled aria-label="Producto">
-                                        <option value="">— Primero selecciona vendedor —</option>
+                                    <select id="sel-product" aria-label="Producto">
+                                        <option value="">— Seleccionar —</option>
                                     </select>
                                 </div>
                             </div>
@@ -225,20 +226,6 @@
          PANEL PRINCIPAL / DASHBOARD
     ══════════════════════════════════ -->
             <main class="cr-main" id="cr-main" role="main" aria-label="Dashboard de resultados">
-                <!-- Estado vacío inicial -->
-                <!-- <div class="cr-empty-state" id="cr-empty">
-                    <div class="cr-empty-hex" aria-hidden="true">⬡</div>
-                    <div class="cr-empty-title">Configura tu stack tecnológico</div>
-                    <div class="cr-empty-desc">
-                        Selecciona las tecnologías de tu organización en el panel izquierdo,
-                        responde el cuestionario de riesgos y ejecuta el análisis.
-                    </div>
-                    <div class="cr-empty-steps">
-                        <div class="cr-empty-step"><span>01</span>Selecciona clasificación, vendedor y producto</div>
-                        <div class="cr-empty-step"><span>02</span>Responde las preguntas de riesgo por tecnología</div>
-                        <div class="cr-empty-step"><span>03</span>Ejecuta el análisis y consulta el dashboard</div>
-                    </div>
-                </div> -->
                 <!-- Dashboard — oculto hasta ejecutar análisis -->
                 <div id="cr-dashboard" aria-live="polite" aria-label="Resultados del análisis de riesgo">
                     <!-- Cabecera del dashboard -->
@@ -263,7 +250,7 @@
                         </div>
                         <div class="cr-kpi-card">
                             <div class="cr-kpi-val amber" id="kpi-high">—</div>
-                            <div class="cr-kpi-lbl">Riesgo Alto</div>
+                            <div class="cr-kpi-lbl">Nivel Global</div>
                         </div>
                         <div class="cr-kpi-card">
                             <div class="cr-kpi-val cyan" id="kpi-score">—</div>
@@ -291,8 +278,24 @@
                             <span>CRÍTICO (80–100)</span>
                         </div>
                     </div>
+                    <!-- Tabla detallada -->
+                    <div class="cr-section-label">Detalle por Tecnología</div>
+                    <div class="cr-table-wrap">
+                        <table class="cr-risk-table" id="cr-risk-table" aria-label="Tabla de riesgo por tecnología">
+                            <thead>
+                                <tr>
+                                    <th>Tecnología</th>
+                                    <th>CWE Expuestos</th>
+                                    <th>Vendedor</th>
+                                    <th>Score ML</th>
+                                    <th>Nivel de Riesgo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="risk-tbody"></tbody>
+                        </table>
+                    </div>
                     <!-- Gráficas -->
-                    <div class="cr-section-label">Análisis Detallado</div>
+                    <!-- <div class="cr-section-label">Análisis Detallado</div>
                     <div class="cr-charts-grid">
                         <div class="cr-chart-card">
                             <div class="cr-chart-title">Score de Riesgo por Tecnología</div>
@@ -302,23 +305,20 @@
                             <div class="cr-chart-title">Distribución de Factores de Riesgo</div>
                             <div class="cr-bar-chart" id="chart-factors"></div>
                         </div>
+                    </div> -->
+                    <!-- 6. Análisis detallado (tabla horizontal de factores) -->
+                    <div class="cr-section-label">Análisis Detallado por Tecnología</div>
+                    <div class="cr-charts-grid">
+                        <div class="cr-chart-card">
+                            <div class="cr-chart-title">Score de Riesgo por Tecnología</div>
+                            <div class="cr-bar-chart" id="chart-by-tech"></div>
+                        </div>
+                        <div class="cr-chart-card">
+                            <div class="cr-chart-title">Factores de Riesgo por Tecnología</div>
+                            <div id="chart-factors"></div>
+                        </div>
                     </div>
-                    <!-- Tabla detallada -->
-                    <div class="cr-section-label">Detalle por Tecnología</div>
-                    <div class="cr-table-wrap">
-                        <table class="cr-risk-table" id="cr-risk-table" aria-label="Tabla de riesgo por tecnología">
-                            <thead>
-                                <tr>
-                                    <th>Tecnología</th>
-                                    <th>Clasificación</th>
-                                    <th>Vendedor</th>
-                                    <th>Score ML</th>
-                                    <th>Nivel de Riesgo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="risk-tbody"></tbody>
-                        </table>
-                    </div>
+
                     <!-- Recomendaciones -->
                     <div class="cr-section-label">Recomendaciones de Mitigación</div>
                     <div class="cr-rec-list" id="cr-rec-list"></div>

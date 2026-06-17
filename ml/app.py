@@ -55,9 +55,20 @@ def analizar():
 
     resultados = []
 
+    # for canonical_json in payload:
+    #     try:
+    #         resultado = predecir(canonical_json)  # devuelve lista [{product, top_scenarios}]
+    #         resultados.extend(resultado)
+    #     except Exception as e:
+    #         return jsonify({
+    #             "error": f"Error al predecir para {canonical_json.get('vendor', '?')}: {str(e)}"
+    #         }), 500
     for canonical_json in payload:
         try:
-            resultado = predecir(canonical_json)  # devuelve lista [{product, top_scenarios}]
+            resultado = predecir(canonical_json)
+            # Inyectar los productos originales en cada item del resultado
+            for item in resultado:
+                item["original_products"] = canonical_json.get("products", [])
             resultados.extend(resultado)
         except Exception as e:
             return jsonify({
