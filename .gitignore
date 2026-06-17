@@ -8,6 +8,7 @@ ml/data/processed/
 ml/models/
 
 ml/inputs/
+ml/outputs/
 
 # Jupyter
 ml/notebooks/.ipynb_checkpoints/
