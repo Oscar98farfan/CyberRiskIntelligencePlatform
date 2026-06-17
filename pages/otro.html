@@ -36,10 +36,7 @@
     <!-- Estilos base del proyecto -->
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!-- Estilos específicos del módulo -->
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <link rel="stylesheet" href="/assets/css/cyberrisk.css" />
-    <link rel="stylesheet" href="/assets/css/tomselect-theme.css">
 </head>
 
 <body>
@@ -123,8 +120,7 @@
                                 <input type="text" id="inp-desc" placeholder="ej: versión 2.1, producción, sede Bogotá…"
                                     aria-label="Descripción o contexto adicional" />
                             </div>
-                            <div id="extra-fields"></div>
-                            <button type="button" class="cr-add-btn" id="add-tech-btn" onclick="addToStack()" disabled>
+                            <button type="button" class="cr-add-btn" id="add-tech-btn" onclick="addTech()" disabled>
                                 + AGREGAR AL STACK
                             </button>
                         </div>
@@ -327,6 +323,271 @@
                     <!-- JSON preview -->
                     <div class="cr-section-label">Payload ML Enviado</div>
                     <pre class="cr-json-preview" id="json-preview-dash" aria-label="JSON enviado al modelo ML"></pre>
+                </div><!-- /#cr-dashboard -->
+            </main><!-- /cr-main -->
+        </div><!-- /.cr-body -->
+    </div><!-- /#cr-app -->
+    <!--
+  Scripts — cargados en orden de dependencia:
+  1. loader.js        → fetchJSON, caché
+  2. cyberrisk.js     → lógica del módulo
+-->
+    <script src="/assets/js/loader.js"></script>
+    <script src="/assets/js/cyberrisk.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+nuevo con cambios
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+    ═══════════════════════════════════════════════════════════
+    CyberRisk Intelligence Platform
+    Módulo de Captura de Sistemas (JSON canónico) + Dashboard
+    ═══════════════════════════════════════════════════════════
+    Datos cargados desde:
+      - data/canonical-form-config.json → Campos del formulario
+      - data/questions-config.json      → Recomendaciones por tier
+
+    Para modificar las preguntas del formulario:
+      edita data/canonical-form-config.json
+    ═══════════════════════════════════════════════════════════
+  -->
+
+    <title>CyberRisk — Análisis de Exposición</title>
+    <meta name="description" content="Plataforma de Inteligencia de Amenazas para PYMEs Colombianas." />
+
+    <!-- Favicon inline -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;600&family=Barlow:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+    <!-- Estilos base del proyecto -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <!-- Estilos específicos del módulo -->
+    <link rel="stylesheet" href="/assets/css/cyberrisk.css" />
+</head>
+
+<body>
+
+    <div id="cr-app">
+
+        <!-- ── GRID DE FONDO ── -->
+        <div class="cr-grid" aria-hidden="true"></div>
+
+        <!-- ══════════════════════════════════
+       HEADER
+  ══════════════════════════════════ -->
+        <header class="cr-hdr" role="banner">
+            <a href="../index.html" class="cr-logo" aria-label="Volver al wiki del proyecto">
+                <div class="cr-logo-box" aria-hidden="true">CR</div>
+                <span><span>Cyber</span>Risk Intelligence Platform</span>
+            </a>
+
+            <div class="cr-header-center" id="cr-step-indicator" aria-label="Pasos del proceso">
+                <div class="cr-step-pip active" data-step="1" title="Sistema">01 · SISTEMA</div>
+                <div class="cr-step-sep" aria-hidden="true">—</div>
+                <div class="cr-step-pip" data-step="3" title="Exportar">02 · EXPORTAR</div>
+            </div>
+
+            <div class="cr-badge-live" role="status" aria-live="polite">
+                <div class="cr-badge-dot" aria-hidden="true"></div>
+                <span id="cr-status-text">CARGANDO DATOS…</span>
+            </div>
+        </header>
+
+        <!-- ══════════════════════════════════
+       CUERPO: SIDEBAR + MAIN
+  ══════════════════════════════════ -->
+        <div class="cr-body">
+
+            <!-- ── SIDEBAR ── -->
+            <aside class="cr-sidebar" id="cr-sidebar" role="complementary" aria-label="Panel de configuración">
+
+                <!-- ─ PANEL 1: FORMULARIO CANÓNICO ─ -->
+                <section class="cr-panel active" id="panel-1" aria-labelledby="panel1-title">
+                    <div class="cr-panel-title" id="panel1-title">
+                        Describir sistema a evaluar
+                    </div>
+                    <div class="cr-panel-scroll">
+                        <!-- Loader mientras se carga el config -->
+                        <div id="catalog-loader" class="cr-loader-inline">
+                            <div class="cr-spinner-sm"></div>
+                            <span>Cargando formulario…</span>
+                        </div>
+                        <!-- Formulario dinámico (generado por cyberrisk.js) -->
+                        <div id="catalog-form" style="display:none"></div>
+                    </div><!-- /cr-panel-scroll -->
+
+                    <!-- Lista de sistemas agregados -->
+                    <div class="cr-tech-list-wrap" id="tech-list-wrap">
+                        <div class="cr-tech-list-header">
+                            <span class="cr-tech-list-title">Stack a evaluar</span>
+                            <span class="cr-tech-list-count" id="tech-count-badge">0</span>
+                        </div>
+                        <div id="tech-cards" aria-live="polite" aria-label="Sistemas agregados">
+                            <div class="cr-no-techs">Ningún sistema añadido aún</div>
+                        </div>
+                    </div>
+                </section><!-- /panel-1 -->
+
+                <!-- ─ PANEL 3: EXPORTAR ─ -->
+                <section class="cr-panel" id="panel-3" aria-labelledby="panel3-title">
+                    <div class="cr-panel-title" id="panel3-title">Payload para modelo ML</div>
+                    <div class="cr-panel-scroll">
+                        <p class="cr-info-tip">
+                            JSON canónico listo para enviar al modelo de Machine Learning.
+                            Cada sistema agregado se evalúa de forma independiente.
+                        </p>
+                        <div class="cr-json-meta" id="json-records-count">0 sistema(s) a evaluar</div>
+                        <pre class="cr-json-box" id="json-output" role="region"
+                            aria-label="Payload JSON generado">[]</pre>
+                        <div class="cr-export-actions">
+                            <button type="button" class="cr-export-btn" onclick="copyJSON()"
+                                aria-label="Copiar JSON al portapapeles">
+                                📋 Copiar JSON
+                            </button>
+                            <button type="button" class="cr-export-btn cr-export-primary" onclick="runAnalysis(event)"
+                                aria-label="Ejecutar análisis de riesgo">
+                                ⬡ ANALIZAR
+                            </button>
+                        </div>
+                    </div>
+                </section><!-- /panel-3 -->
+
+                <!-- ─ FOOTER DEL SIDEBAR ─ -->
+                <div class="cr-sidebar-footer">
+                    <div class="cr-footer-nav">
+                        <button type="button" class="cr-nav-btn active" id="btn-step1" onclick="showStep(1)"
+                            aria-pressed="true">
+                            <span class="cr-nav-num">01</span>
+                            <span>Sistema</span>
+                        </button>
+                        <button type="button" class="cr-nav-btn" id="btn-step3" onclick="showStep(3)">
+                            <span class="cr-nav-num">02</span>
+                            <span>Exportar</span>
+                        </button>
+                    </div>
+                    <div class="cr-footer-meta">
+                        <span class="cr-footer-stat"><strong id="fc-techs">0</strong> sistemas</span>
+                        <span class="cr-footer-sep">·</span>
+                        <button type="button" class="cr-export-btn" onclick="resetAnalysis()"
+                            style="flex:none;padding:0.4rem 0.7rem;font-size:0.55rem">
+                            ↺ Nuevo
+                        </button>
+                        <button type="button" class="cr-run-btn" id="run-btn" onclick="runAnalysis(event)" disabled
+                            aria-label="Ejecutar análisis de riesgo">
+                            ⬡ ANALIZAR
+                        </button>
+                    </div>
+                </div>
+            </aside><!-- /cr-sidebar -->
+
+            <!-- ══════════════════════════════════
+         PANEL PRINCIPAL / DASHBOARD
+    ══════════════════════════════════ -->
+            <main class="cr-main" id="cr-main" role="main" aria-label="Dashboard de resultados">
+                <!-- Dashboard — visible siempre, se llena al ejecutar análisis -->
+                <div id="cr-dashboard" aria-live="polite" aria-label="Resultados del análisis de riesgo">
+                    <!-- Cabecera del dashboard -->
+                    <div class="cr-dash-header">
+                        <div class="cr-dash-eyebrow">Análisis de Exposición al Riesgo</div>
+                        <h1 class="cr-dash-title">Dashboard de Riesgos Cibernéticos</h1>
+                        <div class="cr-dash-meta" id="dash-meta">
+                            Configura un sistema en el panel izquierdo y ejecuta el análisis para ver resultados.
+                        </div>
+                    </div>
+                    <!-- KPIs -->
+                    <div class="cr-section-label">Indicadores Globales</div>
+                    <div class="cr-kpi-grid">
+                        <div class="cr-kpi-card">
+                            <div class="cr-kpi-val red" id="kpi-critical">—</div>
+                            <div class="cr-kpi-lbl">Escenarios Críticos</div>
+                        </div>
+                        <div class="cr-kpi-card">
+                            <div class="cr-kpi-val amber" id="kpi-high">—</div>
+                            <div class="cr-kpi-lbl">Riesgo Alto/Crítico</div>
+                        </div>
+                        <div class="cr-kpi-card">
+                            <div class="cr-kpi-val cyan" id="kpi-score">—</div>
+                            <div class="cr-kpi-lbl">Score Máximo</div>
+                        </div>
+                        <div class="cr-kpi-card">
+                            <div class="cr-kpi-val green" id="kpi-techs">—</div>
+                            <div class="cr-kpi-lbl">Sistemas Evaluados</div>
+                        </div>
+                    </div>
+                    <!-- Barra de exposición global -->
+                    <div class="cr-section-label">Índice de Exposición Global</div>
+                    <div class="cr-exposure-card">
+                        <div class="cr-exp-header">
+                            <span class="cr-exp-label">Exposición Calculada (peor escenario)</span>
+                            <span class="cr-exp-score" id="exp-score-val">—</span>
+                        </div>
+                        <div class="cr-bar-track">
+                            <div class="cr-bar-fill" id="exp-bar" style="width:0%"></div>
+                        </div>
+                        <div class="cr-bar-labels">
+                            <span>BAJO (0–35)</span>
+                            <span>MEDIO (36–59)</span>
+                            <span>ALTO (60–79)</span>
+                            <span>CRÍTICO (80–100)</span>
+                        </div>
+                    </div>
+                    <!-- Gráficas -->
+                    <div class="cr-section-label">Análisis Detallado</div>
+                    <div class="cr-charts-grid">
+                        <div class="cr-chart-card">
+                            <div class="cr-chart-title">Score por Escenario (Top 10)</div>
+                            <div class="cr-bar-chart" id="chart-by-tech"></div>
+                        </div>
+                        <div class="cr-chart-card">
+                            <div class="cr-chart-title">Distribución de Factores de Riesgo (peor caso)</div>
+                            <div class="cr-bar-chart" id="chart-factors"></div>
+                        </div>
+                    </div>
+                    <!-- Tabla detallada -->
+                    <div class="cr-section-label">Detalle por Escenario</div>
+                    <div class="cr-table-wrap">
+                        <table class="cr-risk-table" id="cr-risk-table" aria-label="Tabla de riesgo por escenario">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>CWE</th>
+                                    <th>Vendor</th>
+                                    <th>Score ML</th>
+                                    <th>Nivel de Riesgo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="risk-tbody"></tbody>
+                        </table>
+                    </div>
+                    <!-- Recomendaciones -->
+                    <div class="cr-section-label">Recomendaciones de Mitigación</div>
+                    <div class="cr-rec-list" id="cr-rec-list"></div>
+
+                    <!-- JSON preview -->
+                    <div class="cr-section-label">Payload ML Recibido</div>
+                    <pre class="cr-json-preview" id="json-preview-dash" aria-label="JSON recibido del modelo ML"></pre>
                 </div><!-- /#cr-dashboard -->
             </main><!-- /cr-main -->
         </div><!-- /.cr-body -->

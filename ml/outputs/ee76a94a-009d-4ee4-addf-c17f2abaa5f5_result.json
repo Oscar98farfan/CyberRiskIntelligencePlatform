@@ -1,0 +1,707 @@
+[
+    {
+        "product": "cloud_devops",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.58
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.55
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "enterprise_app",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.59
+                },
+                "asset": {
+                    "Producto": [
+                        "Enterprise App"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.55
+                },
+                "asset": {
+                    "Producto": [
+                        "Enterprise App"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Enterprise App"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Enterprise App"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.53
+                },
+                "asset": {
+                    "Producto": [
+                        "Enterprise App"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "browser",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.48
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.46
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.45
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.45
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.45
+                },
+                "asset": {
+                    "Vendor": [
+                        "Google"
+                    ],
+                    "Producto": [
+                        "Browser"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

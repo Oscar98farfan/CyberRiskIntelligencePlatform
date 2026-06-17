@@ -1,0 +1,131 @@
+{
+    "_comment": "Campos adicionales del JSON canónico. Vendor y productos vienen del catálogo (tech-catalog.json).",
+    "fields": [
+        {
+            "id": "accessible_from_browser",
+            "label": "¿Se puede acceder desde un navegador web?",
+            "type": "bool",
+            "help": "Incluye portales, dashboards o paneles administrativos vía HTTP/HTTPS."
+        },
+        {
+            "id": "internet_exposed",
+            "label": "¿El sistema está disponible desde Internet?",
+            "type": "bool",
+            "help": "Accesible desde una IP pública sin VPN."
+        },
+        {
+            "id": "internal_use",
+            "label": "¿Se usa principalmente dentro de la empresa?",
+            "type": "bool",
+            "help": "Uso restringido a la red interna / intranet."
+        },
+        {
+            "id": "controls_devices",
+            "label": "¿Controla equipos físicos o dispositivos?",
+            "type": "bool",
+            "help": "IoT, PLCs, cámaras, sensores, controladores industriales."
+        },
+        {
+            "id": "requires_login",
+            "label": "¿Requiere iniciar sesión para usarlo?",
+            "type": "bool",
+            "help": "Autenticación de usuario obligatoria."
+        },
+        {
+            "id": "business_criticality",
+            "label": "Importancia para la organización",
+            "type": "select",
+            "options": [
+                {
+                    "value": "low",
+                    "label": "Baja"
+                },
+                {
+                    "value": "medium",
+                    "label": "Media"
+                },
+                {
+                    "value": "high",
+                    "label": "Alta"
+                },
+                {
+                    "value": "critical",
+                    "label": "Crítica"
+                }
+            ],
+            "help": "Qué tan crítico es este sistema para la operación del negocio."
+        },
+        {
+            "id": "data_sensitivity",
+            "label": "Sensibilidad de la información que maneja",
+            "type": "select",
+            "options": [
+                {
+                    "value": "none",
+                    "label": "No sensible"
+                },
+                {
+                    "value": "internal",
+                    "label": "Interna"
+                },
+                {
+                    "value": "confidential",
+                    "label": "Confidencial"
+                },
+                {
+                    "value": "highly_confidential",
+                    "label": "Altamente confidencial"
+                }
+            ],
+            "help": "Tipo de datos que almacena o procesa el sistema."
+        },
+        {
+            "id": "integrity_impact",
+            "label": "Impacto si la información es modificada indebidamente",
+            "type": "select",
+            "options": [
+                {
+                    "value": "low",
+                    "label": "Bajo"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medio"
+                },
+                {
+                    "value": "high",
+                    "label": "Alto"
+                }
+            ],
+            "help": "Consecuencia de una alteración no autorizada de los datos."
+        },
+        {
+            "id": "availability_impact",
+            "label": "Impacto si el sistema deja de funcionar",
+            "type": "select",
+            "options": [
+                {
+                    "value": "low",
+                    "label": "Bajo"
+                },
+                {
+                    "value": "medium",
+                    "label": "Medio"
+                },
+                {
+                    "value": "high",
+                    "label": "Alto"
+                }
+            ],
+            "help": "Consecuencia de una caída o indisponibilidad del sistema."
+        },
+        {
+            "id": "reference_count",
+            "label": "Cantidad de fuentes/referencias técnicas conocidas",
+            "type": "number",
+            "default": 1,
+            "min": 0,
+            "help": "Número de documentos, CVEs o referencias técnicas disponibles sobre este sistema."
+        }
+    ]
+}

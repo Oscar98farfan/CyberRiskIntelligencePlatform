@@ -1,0 +1,50 @@
+[
+    {
+        "prediction": {
+            "tier": 4,
+            "score": 0.53
+        },
+        "asset": {
+            "Vendor": [
+                "Microsoft"
+            ],
+            "Producto": [
+                "Windows Server 2019"
+            ],
+            "CWE": [
+                "Null Pointer"
+            ],
+            "Severidad": [
+                "Critical"
+            ]
+        },
+        "attack": {
+            "VectorAtaque": [
+                "Network"
+            ],
+            "Complejidad": [
+                "Low"
+            ],
+            "Privilegios": [
+                "None"
+            ],
+            "InteraccionUsuario": [
+                "None"
+            ],
+            "Alcance": [
+                "Unchanged"
+            ]
+        },
+        "impact": {
+            "ImpactoConfidencialidad": [
+                "High"
+            ],
+            "ImpactoIntegridad": [
+                "High"
+            ],
+            "ImpactoDisponibilidad": [
+                "High"
+            ]
+        }
+    }
+]

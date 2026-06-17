@@ -1,0 +1,232 @@
+[
+    {
+        "product": "cloud_devops",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.58
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.55
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Cloud Devops"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

@@ -1332,6 +1332,79 @@ body {
   border-radius: 2px;
 }
 
+
+
+
+
+
+
+
+
+/* ══════════════════════════════════════════
+   ADICIONES — FORMULARIO CANÓNICO
+   Agregar al final de cyberrisk.css
+══════════════════════════════════════════ */
+
+/* Texto de ayuda bajo cada campo */
+.cr-field-help {
+  font-size: 0.62rem;
+  color: var(--text-muted, #2e4a60);
+  margin-top: 0.3rem;
+  line-height: 1.5;
+}
+
+/* Lista de tags (productos) */
+.cr-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.cr-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(0, 200, 232, 0.08);
+  border: 1px solid rgba(0, 200, 232, 0.25);
+  color: var(--cyan, #00c8e8);
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+}
+
+.cr-tag button {
+  background: none;
+  border: none;
+  color: var(--cyan, #00c8e8);
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.cr-tag button:hover {
+  opacity: 1;
+  color: var(--red, #e84040);
+}
+
+/* Dashboard siempre visible */
+#cr-dashboard {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* ══════════════════════════════════════════
    RESPONSIVE — TABLET
 ══════════════════════════════════════════ */

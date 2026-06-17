@@ -1,0 +1,48 @@
+{
+    "prediction": {
+        "tier": 4,
+        "score": 0.83
+    },
+    "asset": {
+        "Vendor": [
+            "Oracle"
+        ],
+        "Producto": [
+            "MySQL 5.7"
+        ],
+        "CWE": [
+            "Null Pointer"
+        ],
+        "Severidad": [
+            "Critical"
+        ]
+    },
+    "attack": {
+        "VectorAtaque": [
+            "Network"
+        ],
+        "Complejidad": [
+            "Low"
+        ],
+        "Privilegios": [
+            "None"
+        ],
+        "InteraccionUsuario": [
+            "None"
+        ],
+        "Alcance": [
+            "Unchanged"
+        ]
+    },
+    "impact": {
+        "ImpactoConfidencialidad": [
+            "High"
+        ],
+        "ImpactoIntegridad": [
+            "High"
+        ],
+        "ImpactoDisponibilidad": [
+            "High"
+        ]
+    }
+}

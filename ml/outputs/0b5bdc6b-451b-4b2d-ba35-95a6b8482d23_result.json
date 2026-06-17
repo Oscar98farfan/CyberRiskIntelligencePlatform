@@ -1,0 +1,462 @@
+[
+    {
+        "product": "email_server",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.56
+                },
+                "asset": {
+                    "Producto": [
+                        "Email Server"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Email Server"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Email Server"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Email Server"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.51
+                },
+                "asset": {
+                    "Producto": [
+                        "Email Server"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "High"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "linux_ecosystem",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.57
+                },
+                "asset": {
+                    "Producto": [
+                        "Linux Ecosystem"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.54
+                },
+                "asset": {
+                    "Producto": [
+                        "Linux Ecosystem"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.53
+                },
+                "asset": {
+                    "Producto": [
+                        "Linux Ecosystem"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.53
+                },
+                "asset": {
+                    "Producto": [
+                        "Linux Ecosystem"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.53
+                },
+                "asset": {
+                    "Producto": [
+                        "Linux Ecosystem"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Critical"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

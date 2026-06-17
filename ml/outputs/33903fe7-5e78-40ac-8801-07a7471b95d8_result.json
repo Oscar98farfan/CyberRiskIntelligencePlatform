@@ -1,0 +1,937 @@
+[
+    {
+        "product": "web_server",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.4
+                },
+                "asset": {
+                    "Producto": [
+                        "Web Server"
+                    ],
+                    "CWE": [
+                        "Xss Injection"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.39
+                },
+                "asset": {
+                    "Producto": [
+                        "Web Server"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Web Server"
+                    ],
+                    "CWE": [
+                        "Xss Injection"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.38
+                },
+                "asset": {
+                    "Producto": [
+                        "Web Server"
+                    ],
+                    "CWE": [
+                        "Xss Injection"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "Required"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.37
+                },
+                "asset": {
+                    "Producto": [
+                        "Web Server"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "Required"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "database",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.36
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.36
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Low"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.36
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Privilege Management"
+                    ],
+                    "Severidad": [
+                        "Low"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.36
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "Low"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.35
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Low"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "Low"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "windows_ecosystem",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.43
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.41
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.4
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.4
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Privilege Management"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 3,
+                    "score": 0.4
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Database Injection"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "product": "database",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.44
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Low"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.43
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authorization"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.42
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "High"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.41
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 4,
+                    "score": 0.4
+                },
+                "asset": {
+                    "Producto": [
+                        "Database"
+                    ],
+                    "CWE": [
+                        "Information Disclosure"
+                    ],
+                    "Severidad": [
+                        "Medium"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "Low"
+                    ],
+                    "ImpactoIntegridad": [
+                        "High"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

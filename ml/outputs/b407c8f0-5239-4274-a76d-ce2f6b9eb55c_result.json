@@ -1,0 +1,247 @@
+[
+    {
+        "product": "windows_ecosystem",
+        "top_scenarios": [
+            {
+                "prediction": {
+                    "tier": 2,
+                    "score": 0.33
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 2,
+                    "score": 0.33
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Resource Exhaustion"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 2,
+                    "score": 0.33
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Authentication"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 2,
+                    "score": 0.33
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Xss Injection"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Changed"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            },
+            {
+                "prediction": {
+                    "tier": 2,
+                    "score": 0.33
+                },
+                "asset": {
+                    "Vendor": [
+                        "Microsoft"
+                    ],
+                    "Producto": [
+                        "Windows Ecosystem"
+                    ],
+                    "CWE": [
+                        "Access Control"
+                    ],
+                    "Severidad": [
+                        "High"
+                    ]
+                },
+                "attack": {
+                    "VectorAtaque": [
+                        "Network"
+                    ],
+                    "Complejidad": [
+                        "Low"
+                    ],
+                    "Privilegios": [
+                        "Low"
+                    ],
+                    "InteraccionUsuario": [
+                        "None"
+                    ],
+                    "Alcance": [
+                        "Unchanged"
+                    ]
+                },
+                "impact": {
+                    "ImpactoConfidencialidad": [
+                        "None"
+                    ],
+                    "ImpactoIntegridad": [
+                        "Low"
+                    ],
+                    "ImpactoDisponibilidad": [
+                        "High"
+                    ]
+                }
+            }
+        ]
+    }
+]

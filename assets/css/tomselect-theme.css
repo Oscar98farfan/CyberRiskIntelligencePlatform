@@ -1,0 +1,187 @@
+/* ════════════════════════════════════════════════════════
+   TOM SELECT - TEMA CYBERRISK
+════════════════════════════════════════════════════════ */
+
+.ts-wrapper {
+    width: 100%;
+}
+
+/* CONTROL PRINCIPAL */
+.ts-wrapper .ts-control {
+
+    background: var(--bg-3, #0c1420) !important;
+
+    border: 1px solid var(--border, #1a2e42) !important;
+
+    border-radius: var(--radius, 3px);
+
+    min-height: 38px;
+
+    padding: 0.5rem 0.75rem;
+
+    box-shadow: none !important;
+
+    color: var(--text-bright, #ddeeff);
+
+    font-family: var(--font-body, 'Barlow', sans-serif);
+
+    font-size: 0.82rem;
+}
+
+.ts-wrapper.focus .ts-control {
+
+    border-color: var(--cyan, #00c8e8) !important;
+
+    box-shadow:
+        0 0 0 1px rgba(0, 200, 232, .3),
+        0 0 12px rgba(0, 200, 232, .15) !important;
+}
+
+/* TEXTO SELECCIONADO */
+.ts-control>div,
+.ts-wrapper.single .ts-control .item {
+
+    color: var(--text-bright, #ddeeff) !important;
+
+    font-size: 0.82rem;
+}
+
+/* INPUT DE BÚSQUEDA */
+.ts-wrapper .ts-control input,
+.ts-wrapper .ts-control input[type="text"],
+.ts-control input,
+.ts-control input[type="text"] {
+
+    background: transparent !important;
+
+    color: var(--text-bright, #ddeeff) !important;
+
+    -webkit-text-fill-color: var(--text-bright, #ddeeff) !important;
+
+    font-family: var(--font-body, 'Barlow', sans-serif) !important;
+
+    font-size: 0.82rem !important;
+
+    opacity: 1 !important;
+}
+
+/* PLACEHOLDER */
+.ts-wrapper .ts-control input::placeholder,
+.ts-control input::placeholder {
+
+    color: var(--text-dim, #4a6680) !important;
+
+    opacity: 1 !important;
+}
+
+/* DROPDOWN */
+.ts-dropdown {
+
+    background: var(--bg-3, #0c1420) !important;
+
+    border: 1px solid var(--border-2, #243d55) !important;
+
+    border-radius: var(--radius, 3px);
+
+    margin-top: 4px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .5);
+
+    overflow: hidden;
+
+    z-index: 9999;
+}
+
+/* CONTENIDO */
+.ts-dropdown-content {
+
+    background: var(--bg-3, #0c1420);
+
+    max-height: 250px;
+
+    scrollbar-width: thin;
+
+    scrollbar-color: var(--border-2, #243d55) transparent;
+}
+
+.ts-dropdown-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ts-dropdown-content::-webkit-scrollbar-thumb {
+
+    background: var(--border-2, #243d55);
+
+    border-radius: 2px;
+}
+
+/* OPCIONES */
+.ts-dropdown .option {
+
+    padding: 10px 12px;
+
+    color: var(--text, #9bb8d0);
+
+    font-size: 0.82rem;
+
+    transition: all .15s ease;
+}
+
+.ts-dropdown .option:hover,
+.ts-dropdown .option.active {
+
+    background: rgba(0, 200, 232, .10);
+
+    color: var(--text-bright, #ddeeff);
+}
+
+.ts-dropdown .option.selected {
+
+    background: rgba(0, 200, 232, .15);
+
+    color: var(--cyan, #00c8e8);
+
+    font-weight: 600;
+}
+
+/* TEXTO RESALTADO AL BUSCAR */
+.ts-dropdown .highlight {
+
+    color: var(--cyan, #00c8e8);
+
+    background: rgba(0, 200, 232, .15);
+
+    padding: 1px 2px;
+
+    border-radius: 2px;
+}
+
+/* MENSAJE SIN RESULTADOS */
+.ts-dropdown .no-results {
+
+    color: var(--text-muted, #2e4a60);
+
+    padding: 12px;
+}
+
+/* ESTADO DESHABILITADO */
+.ts-wrapper.disabled .ts-control {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+}
+
+/* FLECHA */
+.ts-control::after {
+
+    border-color:
+        var(--text-dim, #4a6680) transparent transparent transparent;
+}
+
+.ts-wrapper.dropdown-active .ts-control::after {
+
+    border-color:
+        transparent transparent var(--cyan, #00c8e8) transparent;
+}
