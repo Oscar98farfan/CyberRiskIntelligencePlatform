@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "id": "actas",
+        "title": "Entrega Final del Proyecto",
+        "sprint": "Sprint 16 · Entregable",
+        "fecha": "2026-06-18",
+        "version": "1.0",
+        "autores": [
+            "Juan Camilo Madero",
+            "Oscar Daniel Farfan Juanias"
+        ]
+    },
+    "blocks": [
+        {
+            "type": "paragraph",
+            "label": "Descripción",
+            "content": "Repositorio de la presentación final del proyecto, evidenciado lecciones aprendidas, cambios, variaciones a nivel de presupuesto, lecciones aprendidas y presentación del MVP."
+        },
+        {
+            "type": "pdf-gallery",
+            "label": "Documentos PDF",
+            "items": [
+                {
+                    "name": "Cyberrisk Picht",
+                    "desc": "Entrega final del proyecto.",
+                    "file": "docs/FinalCyberRisk.pdf",
+                    "date": "2026-06-19",
+                    "size": "100 KB"
+                }
+            ]
+        }
+    ]
+}

@@ -4,9 +4,9 @@
     "name": "CyberRisk Intelligence Platform",
     "subtitle": "Plataforma de Inteligencia de Amenazas para PYMEs Colombianas",
     "version": "1.0.23",
-    "sprint": "Sprint 11",
+    "sprint": "Sprint 16",
     "status": "active",
-    "repo": "https://github.com/usuario/cyberrisk-platform"
+    "repo": "https://github.com/Oscar98farfan/CyberRiskIntelligencePlatform"
   },
   "stages": [
     {
@@ -27,6 +27,11 @@
     {
       "id": "ejecucion",
       "label": "Ejecución",
+      "icon": "▸"
+    },
+    {
+      "id": "entrega",
+      "label": "Entrega Final",
       "icon": "▸"
     }
   ],
@@ -179,7 +184,7 @@
       "order": 14,
       "sprint": 8,
       "stage": "seguimiento",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "desarrollo",
@@ -229,7 +234,7 @@
       "order": 17,
       "sprint": 11,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "pruebas",
@@ -239,7 +244,7 @@
       "order": 18,
       "sprint": 12,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "web",
@@ -249,7 +254,7 @@
       "order": 18,
       "sprint": 13,
       "stage": "ejecucion",
-      "status": "in-progress"
+      "status": "done"
     },
     {
       "id": "qaInterno",
@@ -259,7 +264,7 @@
       "order": 18,
       "sprint": 14,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "qa",
@@ -269,7 +274,7 @@
       "order": 18,
       "sprint": 14,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": "despliegue",
@@ -279,7 +284,7 @@
       "order": 19,
       "sprint": 15,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "id": "documentacion",
@@ -289,7 +294,17 @@
       "order": 20,
       "sprint": 16,
       "stage": "ejecucion",
-      "status": "todo"
+      "status": "in-progress"
+    },
+    {
+      "id": "PresentacionFinal",
+      "label": "Entrega Final",
+      "icon": "◉",
+      "file": "data/sections/final.json",
+      "order": 20,
+      "sprint": 16,
+      "stage": "entrega",
+      "status": "done"
     }
   ]
 }
