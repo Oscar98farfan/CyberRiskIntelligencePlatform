@@ -4,7 +4,7 @@
 #   powershell -ExecutionPolicy Bypass -File .\iniciar_servidor.ps1
 #
 # Requisitos (una sola vez):
-#   1. winget install ngrok.ngrok
+#   1. winget install ngrok.ngrok   (o descargar ngrok.exe y copiarlo en C:\ngrok\)
 #   2. ngrok config add-authtoken <TU_TOKEN>      (dashboard.ngrok.com)
 #   3. En ml\.env:  NGROK_DOMAIN=tu-dominio.ngrok-free.app
 #
@@ -20,8 +20,17 @@ if (-not $dominio) {
     Write-Host "Falta NGROK_DOMAIN en ml\.env (ej: NGROK_DOMAIN=tu-dominio.ngrok-free.app)" -ForegroundColor Red
     exit 1
 }
-if (-not (Get-Command ngrok -ErrorAction SilentlyContinue)) {
-    Write-Host "ngrok no está instalado. Ejecuta: winget install ngrok.ngrok  (y abre una terminal nueva)" -ForegroundColor Red
+# ── Buscar ngrok: en el PATH, donde lo deja winget, o en C:\ngrok ──
+$ngrok = (Get-Command ngrok -ErrorAction SilentlyContinue).Source
+if (-not $ngrok) {
+    $candidatos = @(
+        "$env:LOCALAPPDATA\Microsoft\WinGet\Links\ngrok.exe",
+        "C:\ngrok\ngrok.exe"
+    ) + (Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages\ngrok*\ngrok.exe" -ErrorAction SilentlyContinue | ForEach-Object FullName)
+    $ngrok = $candidatos | Where-Object { $_ -and (Test-Path $_) } | Select-Object -First 1
+}
+if (-not $ngrok) {
+    Write-Host "No encontré ngrok. Instálalo con 'winget install ngrok.ngrok' o copia ngrok.exe en C:\ngrok\" -ForegroundColor Red
     exit 1
 }
 
@@ -44,7 +53,7 @@ try {
     Write-Host "API lista. Publicando en: https://$dominio" -ForegroundColor Green
     Write-Host "Deja esta ventana abierta. Ctrl+C para detener API y túnel." -ForegroundColor Green
     Write-Host ""
-    ngrok http 5000 --url "https://$dominio"
+    & $ngrok http 5000 --url "https://$dominio"
 }
 finally {
     # Cerrar la API (y su proceso de Python) al salir

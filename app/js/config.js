@@ -18,7 +18,7 @@ export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gGJ7W8ulAoq6XMN6PYKjlg_P
 
 /* URL pública de la API (túnel ngrok o servidor en la nube), SIN "/" al final.
    Ej: 'https://cyberrisk-oscar.ngrok-free.app'. Vacía = usar la API local. */
-const API_PUBLICA = '';
+const API_PUBLICA = 'https://placate-shredding-ranger.ngrok-free.dev';
 
 /* URL de la API de análisis (Flask + modelo ML) que usa toda la plataforma */
 export const API_URL = API_PUBLICA || 'http://127.0.0.1:5000';

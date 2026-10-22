@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 # URL de la API por defecto (se puede cambiar en la pantalla de enlace)
-API_URL_PREDETERMINADA = "http://127.0.0.1:5000"
+API_URL_PREDETERMINADA = "https://placate-shredding-ranger.ngrok-free.dev"
 
 ES_WINDOWS = sys.platform.startswith("win")
 
