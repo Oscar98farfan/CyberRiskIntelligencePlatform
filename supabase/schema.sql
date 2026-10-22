@@ -244,9 +244,14 @@ create policy "empresas: borrar dueno" on public.empresas
 -- ── miembros ── (invitar usuarios queda para una fase posterior)
 create policy "miembros: ver los de mi empresa" on public.miembros
   for select to authenticated using ((select privado.es_miembro(empresa_id)));
-create policy "miembros: gestionar dueno" on public.miembros
-  for all to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno'])))
+-- Una política por acción (no "for all") para que el SELECT evalúe una sola regla
+create policy "miembros: agregar dueno" on public.miembros
+  for insert to authenticated with check ((select privado.tiene_rol(empresa_id, array['dueno'])));
+create policy "miembros: editar dueno" on public.miembros
+  for update to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno'])))
   with check ((select privado.tiene_rol(empresa_id, array['dueno'])));
+create policy "miembros: quitar dueno" on public.miembros
+  for delete to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno'])));
 
 -- ── autorizaciones ──
 create policy "autorizaciones: ver" on public.autorizaciones
@@ -264,9 +269,13 @@ grant  update (revocado_en) on public.autorizaciones to authenticated;
 -- ── activos ──
 create policy "activos: ver" on public.activos
   for select to authenticated using ((select privado.es_miembro(empresa_id)));
-create policy "activos: gestionar dueno/admin" on public.activos
-  for all to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno','admin'])))
+create policy "activos: crear dueno/admin" on public.activos
+  for insert to authenticated with check ((select privado.tiene_rol(empresa_id, array['dueno','admin'])));
+create policy "activos: editar dueno/admin" on public.activos
+  for update to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno','admin'])))
   with check ((select privado.tiene_rol(empresa_id, array['dueno','admin'])));
+create policy "activos: borrar dueno/admin" on public.activos
+  for delete to authenticated using ((select privado.tiene_rol(empresa_id, array['dueno','admin'])));
 
 -- ── escaneos ──
 create policy "escaneos: ver" on public.escaneos
