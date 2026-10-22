@@ -154,7 +154,7 @@ app/
 ├── reset.html        ← nueva contraseña (enlace del correo)
 ├── onboarding.html   ← registro de empresa + autorización de escaneo
 ├── dashboard.html    ← estado, hallazgos priorizados, evolución, activos, historial
-├── escaneo.html      ← cuestionario existente, guardado a nombre de la empresa
+├── escaneo.html      ← cuestionario "Lo que el agente no ve" (casillas + respuestas prellenadas)
 ├── css/app.css
 └── js/               ← config.js (URL + llave pública), supabase-client, auth, ui, …
 supabase/schema.sql   ← tablas + Row Level Security (cada empresa solo ve lo suyo)

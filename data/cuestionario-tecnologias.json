@@ -1,0 +1,89 @@
+{
+  "_comentario": [
+    "Tecnologías que muestra el cuestionario (app/escaneo.html) como casillas.",
+    "vendor y product DEBEN existir en data/tech-catalog.json.",
+    "respuestas: valores por defecto que el usuario puede cambiar con un clic:",
+    "  internet = ¿visible desde internet?  navegador = ¿se usa desde el navegador?",
+    "  login = ¿pide usuario y contraseña?  dispositivos = ¿controla equipos físicos?",
+    "importancia: low | medium | high | critical (importancia por defecto para el negocio)."
+  ],
+  "version": 1,
+  "grupos": [
+    {"id": "web", "titulo": "Sitio web y tienda en línea", "descripcion": "Lo que tus clientes ven en internet.",
+      "tecnologias": [
+        {"id": "wordpress", "nombre": "WordPress", "vendor": "Automattic", "product": "wordpress", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Sitio web o blog"},
+        {"id": "prestashop", "nombre": "PrestaShop", "vendor": "PrestaShop", "product": "prestashop", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Tienda en línea"},
+        {"id": "magento", "nombre": "Magento / Adobe Commerce", "vendor": "Adobe", "product": "magento", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Tienda en línea"},
+        {"id": "joomla", "nombre": "Joomla", "vendor": "Joomla!", "product": "joomla", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Sitio web"},
+        {"id": "drupal", "nombre": "Drupal", "vendor": "Drupal", "product": "drupal", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Sitio web"},
+        {"id": "moodle", "nombre": "Moodle", "vendor": "Moodle", "product": "moodle", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Plataforma de cursos"}
+      ]},
+    {"id": "oficina", "titulo": "Correo, oficina y gestión", "descripcion": "Herramientas del día a día y del negocio.",
+      "tecnologias": [
+        {"id": "m365", "nombre": "Microsoft 365", "vendor": "Microsoft", "product": "office_365_proplus", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Correo, Teams, OneDrive"},
+        {"id": "exchange", "nombre": "Exchange Server (propio)", "vendor": "Microsoft", "product": "exchange_server", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Servidor de correo en la empresa"},
+        {"id": "zimbra", "nombre": "Zimbra", "vendor": "Zimbra", "product": "zimbra_collaboration_suite", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor de correo"},
+        {"id": "sharepoint", "nombre": "SharePoint Server", "vendor": "Unknown", "product": "sharepoint_server", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Intranet / documentos"},
+        {"id": "odoo", "nombre": "Odoo", "vendor": "Unknown", "product": "odoo", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "ERP: ventas, inventario, contabilidad"},
+        {"id": "dynamics", "nombre": "Dynamics 365", "vendor": "Unknown", "product": "dynamics_365", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "ERP / CRM de Microsoft"},
+        {"id": "jira", "nombre": "Jira", "vendor": "Atlassian", "product": "jira", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Gestión de proyectos"},
+        {"id": "confluence", "nombre": "Confluence", "vendor": "Atlassian", "product": "confluence_server", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Wiki / documentación"}
+      ]},
+    {"id": "red", "titulo": "Red y seguridad", "descripcion": "Equipos que protegen y conectan tu red.",
+      "tecnologias": [
+        {"id": "mikrotik", "nombre": "Router MikroTik", "vendor": "MikroTik", "product": "routeros", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": true}, "importancia": "critical", "ayuda": "Router / balanceador"},
+        {"id": "fortigate", "nombre": "Firewall Fortinet (FortiGate)", "vendor": "Fortinet", "product": "fortios", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": true}, "importancia": "critical", "ayuda": "Firewall / VPN"},
+        {"id": "cisco_asa", "nombre": "Firewall Cisco ASA", "vendor": "Cisco", "product": "adaptive_security_appliance_software", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": true}, "importancia": "critical", "ayuda": "Firewall / VPN"},
+        {"id": "paloalto", "nombre": "Firewall Palo Alto", "vendor": "Palo Alto Networks", "product": "pan-os", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": true}, "importancia": "critical", "ayuda": "Firewall"},
+        {"id": "aruba", "nombre": "Wi-Fi Aruba", "vendor": "Aruba (HPE)", "product": "arubaos", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": true}, "importancia": "high", "ayuda": "Red inalámbrica"},
+        {"id": "forticlient", "nombre": "FortiClient VPN", "vendor": "Unknown", "product": "forticlient", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "VPN en los equipos"},
+        {"id": "anyconnect", "nombre": "Cisco Secure Client (AnyConnect)", "vendor": "Cisco", "product": "anyconnect_secure_mobility_client", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "VPN en los equipos"}
+      ]},
+    {"id": "servidores", "titulo": "Servidores y virtualización", "descripcion": "Donde corren tus sistemas.",
+      "tecnologias": [
+        {"id": "winserver", "nombre": "Windows Server", "vendor": "Microsoft", "product": "windows_server", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Servidor de archivos, dominio, aplicaciones"},
+        {"id": "ubuntu", "nombre": "Linux Ubuntu", "vendor": "Unknown", "product": "ubuntu_linux", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor Linux"},
+        {"id": "debian", "nombre": "Linux Debian", "vendor": "Debian", "product": "debian_linux", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor Linux"},
+        {"id": "rhel", "nombre": "Red Hat Enterprise Linux", "vendor": "Red Hat", "product": "enterprise_linux", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor Linux"},
+        {"id": "esxi", "nombre": "VMware ESXi", "vendor": "VMware", "product": "esxi", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Servidor de máquinas virtuales"},
+        {"id": "vcenter", "nombre": "VMware vCenter", "vendor": "VMware", "product": "vcenter_server", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "critical", "ayuda": "Administración de VMware"},
+        {"id": "xenserver", "nombre": "Citrix XenServer", "vendor": "Citrix / Xen Project", "product": "xenserver", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Virtualización"},
+        {"id": "docker", "nombre": "Docker", "vendor": "Docker Inc.", "product": "docker", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Contenedores"},
+        {"id": "kubernetes", "nombre": "Kubernetes", "vendor": "CNCF / Kubernetes", "product": "kubernetes", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Orquestación de contenedores"}
+      ]},
+    {"id": "aplicaciones", "titulo": "Servidores web y desarrollo", "descripcion": "Lo que publica o construye tus aplicaciones.",
+      "tecnologias": [
+        {"id": "apache", "nombre": "Apache HTTP Server", "vendor": "Apache Foundation", "product": "http_server", "respuestas": {"internet": true, "navegador": true, "login": false, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor web"},
+        {"id": "tomcat", "nombre": "Apache Tomcat", "vendor": "Apache Foundation", "product": "tomcat", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Aplicaciones Java"},
+        {"id": "iis", "nombre": "IIS (servidor web de Windows)", "vendor": "Unknown", "product": "internet_information_services", "respuestas": {"internet": true, "navegador": true, "login": false, "dispositivos": false}, "importancia": "high", "ayuda": "Servidor web"},
+        {"id": "php", "nombre": "PHP", "vendor": "Unknown", "product": "php", "respuestas": {"internet": true, "navegador": true, "login": false, "dispositivos": false}, "importancia": "medium", "ayuda": "Lenguaje de sitios web"},
+        {"id": "phpmyadmin", "nombre": "phpMyAdmin", "vendor": "Unknown", "product": "phpmyadmin", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Administrador web de MySQL"},
+        {"id": "nodejs", "nombre": "Node.js", "vendor": "OpenJS Foundation", "product": "node.js", "respuestas": {"internet": true, "navegador": true, "login": false, "dispositivos": false}, "importancia": "medium", "ayuda": "Aplicaciones JavaScript"},
+        {"id": "jenkins", "nombre": "Jenkins", "vendor": "Jenkins / CloudBees", "product": "jenkins", "respuestas": {"internet": false, "navegador": true, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Automatización de despliegues"},
+        {"id": "gitlab", "nombre": "GitLab", "vendor": "GitLab Inc.", "product": "gitlab", "respuestas": {"internet": true, "navegador": true, "login": true, "dispositivos": false}, "importancia": "high", "ayuda": "Repositorio de código"}
+      ]},
+    {"id": "datos", "titulo": "Bases de datos", "descripcion": "Donde vive la información del negocio.",
+      "tecnologias": [
+        {"id": "mysql", "nombre": "MySQL", "vendor": "Oracle / IBM", "product": "mysql_server", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "critical"},
+        {"id": "mariadb", "nombre": "MariaDB", "vendor": "MariaDB Foundation", "product": "mariadb", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "critical"},
+        {"id": "postgresql", "nombre": "PostgreSQL", "vendor": "PostgreSQL Global Development Group", "product": "postgresql", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "critical"},
+        {"id": "sqlserver", "nombre": "SQL Server", "vendor": "Microsoft", "product": "sql_server", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "critical"},
+        {"id": "mongodb", "nombre": "MongoDB", "vendor": "MongoDB Inc.", "product": "mongodb", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "high"},
+        {"id": "redis", "nombre": "Redis", "vendor": "Redis Ltd.", "product": "redis", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "medium", "ayuda": "Caché"}
+      ]},
+    {"id": "equipos", "titulo": "Computadores y celulares sin agente", "descripcion": "Equipos donde no se puede instalar el agente.",
+      "tecnologias": [
+        {"id": "win11", "nombre": "Windows 11", "vendor": "Microsoft", "product": "windows_11", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium"},
+        {"id": "win10", "nombre": "Windows 10", "vendor": "Microsoft", "product": "windows_10", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium", "ayuda": "Pierde soporte: conviene migrar"},
+        {"id": "macos", "nombre": "macOS", "vendor": "Apple", "product": "macos", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium"},
+        {"id": "android", "nombre": "Celulares Android", "vendor": "Google / Huawei", "product": "android", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium"},
+        {"id": "ios", "nombre": "iPhone / iPad", "vendor": "Apple", "product": "ios", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "medium"},
+        {"id": "office", "nombre": "Microsoft Office (instalado)", "vendor": "Microsoft", "product": "office", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "medium"},
+        {"id": "chrome", "nombre": "Google Chrome", "vendor": "Google", "product": "chrome", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "medium"},
+        {"id": "edge", "nombre": "Microsoft Edge", "vendor": "Microsoft", "product": "edge_chromium", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "medium"},
+        {"id": "firefox", "nombre": "Mozilla Firefox", "vendor": "Mozilla", "product": "firefox", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "medium"},
+        {"id": "acrobat", "nombre": "Adobe Acrobat Reader", "vendor": "Adobe", "product": "acrobat_reader_dc", "respuestas": {"internet": false, "navegador": false, "login": false, "dispositivos": false}, "importancia": "low"},
+        {"id": "zoom", "nombre": "Zoom", "vendor": "Unknown", "product": "zoom", "respuestas": {"internet": false, "navegador": false, "login": true, "dispositivos": false}, "importancia": "low"}
+      ]}
+  ]
+}

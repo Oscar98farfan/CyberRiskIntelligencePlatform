@@ -30,7 +30,7 @@ const ROLES = { dueno: 'Dueño', admin: 'Administrador', lector: 'Lector' };
 const TIPOS = { servidor: 'Servidor', estacion: 'Estación', portatil: 'Portátil', red: 'Equipo de red', nube: 'Nube', otro: 'Otro' };
 const CRITICIDAD = { baja: 'Baja', media: 'Media', alta: 'Alta', critica: 'Crítica' };
 const CLAVE_MANUAL = 'cuestionario';          // agrupa los escaneos sin equipo (cuestionario)
-const NOMBRE_MANUAL = 'Evaluación manual';
+const NOMBRE_MANUAL = 'Nube y equipos sin agente';
 const MAX_PRIORIDADES = 8;
 
 /** Nombre corto en español de cada tipo de falla (el modelo las da en inglés) */
@@ -325,7 +325,7 @@ function tarjetaManual(escaneo) {
     el('div', { class: 'app-equipo__head' },
       el('div', {},
         el('strong', { class: 'app-text-bright' }, NOMBRE_MANUAL),
-        el('div', { class: 'app-muted app-small' }, 'Tecnologías elegidas a mano en el cuestionario')),
+        el('div', { class: 'app-muted app-small' }, 'Sitio web, nube, red y servidores marcados en el cuestionario')),
       el('span', { class: `app-badge app-badge--${claseNivel(actual)}` }, actual ? nombreNivel(actual) : '—')),
     el('div', { class: 'app-small app-muted' },
       `Último: ${formatearFecha(escaneo.completado_en || escaneo.creado_en, true)}`, tendencia ? ` · ${tendencia}` : ''),
