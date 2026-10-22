@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Dashboard de la empresa: estado actual, evolución entre escaneos,
+    activos y hallazgos priorizados. Todo se llena desde Supabase en
+    js/dashboard.js; aquí solo está la estructura.
+  -->
+  <title>CyberRisk — Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="app-body">
+
+  <!-- ── Barra superior ── -->
+  <header class="app-topbar">
+    <a href="../index.html" class="app-brand" aria-label="Volver al wiki del proyecto">
+      <span class="app-brand__mark" aria-hidden="true">CR</span>
+      <span><span class="app-accent">Cyber</span>Risk</span>
+    </a>
+    <div class="app-topbar__empresa">
+      <label for="sel-empresa" class="app-sr-only">Empresa</label>
+      <select id="sel-empresa" class="app-select" hidden></select>
+      <span id="nombre-empresa" class="app-text-bright"></span>
+      <span id="rol-usuario" class="app-pill"></span>
+    </div>
+    <div class="app-topbar__user">
+      <span id="usuario" class="app-muted"></span>
+      <button type="button" class="app-btn app-btn--ghost" id="btn-salir">Salir</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div id="alerta" class="app-alert" role="alert" hidden></div>
+
+    <!-- ── Encabezado ── -->
+    <section class="app-page-head">
+      <div>
+        <h1 class="app-title">Estado de seguridad</h1>
+        <p class="app-muted" id="ultimo-escaneo">—</p>
+      </div>
+      <!-- El nuevo escaneo (cuestionario conectado) llega en el siguiente paso -->
+      <button type="button" class="app-btn app-btn--primary" id="btn-nuevo-escaneo" disabled
+              title="Disponible en el siguiente paso del desarrollo">+ Nuevo escaneo</button>
+    </section>
+
+    <!-- ── KPIs ── -->
+    <section class="app-kpis" aria-label="Indicadores principales">
+      <article class="app-kpi"><span class="app-kpi__label">Nivel de riesgo</span>
+        <strong class="app-kpi__val" id="kpi-nivel">—</strong>
+        <span class="app-kpi__sub" id="kpi-nivel-sub"></span></article>
+      <article class="app-kpi"><span class="app-kpi__label">Hallazgos críticos</span>
+        <strong class="app-kpi__val" id="kpi-criticos">—</strong>
+        <span class="app-kpi__sub" id="kpi-criticos-sub"></span></article>
+      <article class="app-kpi"><span class="app-kpi__label">Activos</span>
+        <strong class="app-kpi__val" id="kpi-activos">—</strong>
+        <span class="app-kpi__sub">equipos registrados</span></article>
+      <article class="app-kpi"><span class="app-kpi__label">Escaneos</span>
+        <strong class="app-kpi__val" id="kpi-escaneos">—</strong>
+        <span class="app-kpi__sub">realizados</span></article>
+    </section>
+
+    <div class="app-cols">
+      <!-- ── Hallazgos priorizados ── -->
+      <section class="app-panel" aria-labelledby="h-hallazgos">
+        <h2 id="h-hallazgos" class="app-panel__title">Qué atender primero</h2>
+        <div id="hallazgos"></div>
+      </section>
+
+      <!-- ── Evolución entre escaneos ── -->
+      <section class="app-panel" aria-labelledby="h-evolucion">
+        <h2 id="h-evolucion" class="app-panel__title">Evolución</h2>
+        <div id="evolucion"></div>
+      </section>
+    </div>
+
+    <div class="app-cols">
+      <!-- ── Activos ── -->
+      <section class="app-panel" aria-labelledby="h-activos">
+        <h2 id="h-activos" class="app-panel__title">Activos</h2>
+        <div id="activos"></div>
+      </section>
+
+      <!-- ── Historial ── -->
+      <section class="app-panel" aria-labelledby="h-historial">
+        <h2 id="h-historial" class="app-panel__title">Historial de escaneos</h2>
+        <div id="historial"></div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

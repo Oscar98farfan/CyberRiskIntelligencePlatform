@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Login y registro (correo + contraseña) con Supabase Auth.
+    Lógica en js/login.js. No contiene datos: solo la estructura.
+  -->
+  <title>CyberRisk — Ingresar</title>
+  <meta name="description" content="Ingresa a CyberRisk, la plataforma de riesgo cibernético para PYMEs colombianas." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="app-body">
+  <main class="app-center">
+    <section class="app-card app-card--auth" aria-labelledby="titulo">
+
+      <a href="../index.html" class="app-brand" aria-label="Volver al wiki del proyecto">
+        <span class="app-brand__mark" aria-hidden="true">CR</span>
+        <span><span class="app-accent">Cyber</span>Risk</span>
+      </a>
+      <h1 id="titulo" class="app-title">Tu riesgo cibernético, claro y priorizado</h1>
+      <p class="app-muted">Ingresa o crea la cuenta de tu empresa.</p>
+
+      <!-- Pestañas Ingresar / Crear cuenta -->
+      <div class="app-tabs" role="tablist">
+        <button type="button" class="app-tab is-active" role="tab" id="tab-ingresar"
+                aria-selected="true" aria-controls="form-ingresar">Ingresar</button>
+        <button type="button" class="app-tab" role="tab" id="tab-registro"
+                aria-selected="false" aria-controls="form-registro">Crear cuenta</button>
+      </div>
+
+      <div id="alerta" class="app-alert" role="alert" hidden></div>
+
+      <!-- Formulario: Ingresar -->
+      <form id="form-ingresar" class="app-form" role="tabpanel" aria-labelledby="tab-ingresar" novalidate>
+        <label class="app-field">
+          <span>Correo</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label class="app-field">
+          <span>Contraseña</span>
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+        <button type="submit" class="app-btn app-btn--primary">Ingresar</button>
+        <button type="button" class="app-link" id="btn-olvide">¿Olvidaste tu contraseña?</button>
+      </form>
+
+      <!-- Formulario: Crear cuenta -->
+      <form id="form-registro" class="app-form" role="tabpanel" aria-labelledby="tab-registro" hidden novalidate>
+        <label class="app-field">
+          <span>Nombre completo</span>
+          <input type="text" name="nombre" autocomplete="name" required maxlength="120" />
+        </label>
+        <label class="app-field">
+          <span>Correo</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+        <label class="app-field">
+          <span>Contraseña <small class="app-muted">(mínimo 8 caracteres, letras y números)</small></span>
+          <input type="password" name="password" autocomplete="new-password" required minlength="8" />
+        </label>
+        <label class="app-field">
+          <span>Confirmar contraseña</span>
+          <input type="password" name="password2" autocomplete="new-password" required minlength="8" />
+        </label>
+        <button type="submit" class="app-btn app-btn--primary">Crear cuenta</button>
+      </form>
+
+    </section>
+  </main>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Onboarding en 2 pasos:
+      1. Registrar la empresa (tabla empresas; el creador queda como dueño).
+      2. Autorizar el escaneo (tabla autorizaciones, con versión de términos).
+    Lógica en js/onboarding.js.
+  -->
+  <title>CyberRisk — Configura tu empresa</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="app-body">
+  <main class="app-center">
+    <section class="app-card app-card--wide" aria-labelledby="titulo">
+
+      <div class="app-card__top">
+        <div class="app-brand"><span class="app-brand__mark" aria-hidden="true">CR</span>
+          <span><span class="app-accent">Cyber</span>Risk</span></div>
+        <button type="button" class="app-link" id="btn-salir">Cerrar sesión</button>
+      </div>
+
+      <ol class="app-steps" aria-label="Pasos">
+        <li id="paso-ind-1" class="is-active">1 · Tu empresa</li>
+        <li id="paso-ind-2">2 · Autorización</li>
+      </ol>
+
+      <div id="alerta" class="app-alert" role="alert" hidden></div>
+
+      <!-- PASO 1: datos de la empresa -->
+      <form id="form-empresa" class="app-form" novalidate>
+        <h1 id="titulo" class="app-title">Registra tu empresa</h1>
+        <p class="app-muted">Con estos datos adaptamos las recomendaciones a tu contexto.</p>
+
+        <label class="app-field"><span>Nombre de la empresa *</span>
+          <input type="text" name="nombre" required minlength="2" maxlength="150" autocomplete="organization" /></label>
+
+        <div class="app-grid-2">
+          <label class="app-field"><span>NIT <small class="app-muted">(opcional)</small></span>
+            <input type="text" name="nit" maxlength="20" inputmode="numeric" placeholder="900123456-7" /></label>
+          <label class="app-field"><span>Ciudad</span>
+            <input type="text" name="ciudad" maxlength="80" placeholder="Bogotá" /></label>
+        </div>
+
+        <div class="app-grid-2">
+          <label class="app-field"><span>Sector *</span>
+            <select name="sector" required>
+              <option value="">Selecciona…</option>
+              <option>Comercio</option>
+              <option>Servicios profesionales</option>
+              <option>Salud</option>
+              <option>Educación</option>
+              <option>Financiero / seguros</option>
+              <option>Manufactura</option>
+              <option>Tecnología</option>
+              <option>Logística y transporte</option>
+              <option>Turismo y hotelería</option>
+              <option>Construcción</option>
+              <option>Agro</option>
+              <option>Otro</option>
+            </select></label>
+          <label class="app-field"><span>Tamaño *</span>
+            <select name="tamano" required>
+              <option value="">Selecciona…</option>
+              <option value="micro">Micro (1–10 personas)</option>
+              <option value="pequena">Pequeña (11–50)</option>
+              <option value="mediana">Mediana (51–200)</option>
+              <option value="grande">Grande (más de 200)</option>
+            </select></label>
+        </div>
+
+        <button type="submit" class="app-btn app-btn--primary">Continuar</button>
+      </form>
+
+      <!-- PASO 2: autorización de escaneo -->
+      <form id="form-autorizacion" class="app-form" hidden novalidate>
+        <h1 class="app-title">Autoriza el análisis de tu infraestructura</h1>
+        <p class="app-muted">Empresa: <strong id="nombre-empresa" class="app-text-bright"></strong></p>
+
+        <div class="app-terms" tabindex="0" aria-label="Términos de la autorización">
+          <h2>¿Qué recolecta CyberRisk?</h2>
+          <p>Solo <strong>metadatos de inventario</strong> de los equipos que tú decidas:</p>
+          <ul>
+            <li>Sistema operativo y su versión.</li>
+            <li>Software instalado y sus versiones.</li>
+            <li>Servicios, puertos en escucha y procesos en ejecución.</li>
+          </ul>
+          <h2>¿Qué NUNCA recolecta?</h2>
+          <ul>
+            <li>Archivos personales o documentos.</li>
+            <li>Contraseñas, credenciales o llaves.</li>
+            <li>Correos, mensajes o tráfico de red.</li>
+          </ul>
+          <h2>Tu control</h2>
+          <ul>
+            <li>Antes de enviar cualquier dato puedes revisar exactamente qué se recolectó.</li>
+            <li>La información se envía cifrada y solo la ven los usuarios de tu empresa.</li>
+            <li>Puedes revocar esta autorización en cualquier momento.</li>
+          </ul>
+          <p class="app-muted">Versión de los términos: <span id="version-terminos"></span></p>
+        </div>
+
+        <label class="app-check">
+          <input type="checkbox" name="acepto" required />
+          <span>Soy responsable de esta empresa (o tengo su permiso) y autorizo a CyberRisk a analizar
+            la información descrita arriba.</span>
+        </label>
+
+        <button type="submit" class="app-btn app-btn--primary">Autorizar y continuar</button>
+      </form>
+
+    </section>
+  </main>
+  <script type="module" src="js/onboarding.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    Punto de entrada de la plataforma (app/).
+    No muestra contenido: revisa la sesión y redirige a login,
+    onboarding o dashboard según el estado del usuario (ver js/auth.js).
+  -->
+  <title>CyberRisk — Plataforma</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="app-body">
+  <main class="app-center">
+    <p class="app-muted" id="estado">Cargando plataforma…</p>
+  </main>
+
+  <script type="module">
+    import { rutaSegunEstado } from './js/auth.js';
+    import { RUTAS } from './js/config.js';
+    /* Si algo falla (red, etc.) se envía al login, que muestra el error */
+    rutaSegunEstado()
+      .then(ruta => window.location.replace(ruta))
+      .catch(() => window.location.replace(RUTAS.login));
+  </script>
+</body>
+</html>

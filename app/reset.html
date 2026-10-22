@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Página a la que llega el enlace de "recuperar contraseña". Lógica en js/reset.js -->
+  <title>CyberRisk — Nueva contraseña</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body class="app-body">
+  <main class="app-center">
+    <section class="app-card app-card--auth" aria-labelledby="titulo">
+      <div class="app-brand"><span class="app-brand__mark" aria-hidden="true">CR</span>
+        <span><span class="app-accent">Cyber</span>Risk</span></div>
+      <h1 id="titulo" class="app-title">Crea una nueva contraseña</h1>
+      <div id="alerta" class="app-alert" role="alert" hidden></div>
+      <form id="form-reset" class="app-form" novalidate>
+        <label class="app-field"><span>Nueva contraseña</span>
+          <input type="password" name="password" autocomplete="new-password" required minlength="8" /></label>
+        <label class="app-field"><span>Confirmar contraseña</span>
+          <input type="password" name="password2" autocomplete="new-password" required minlength="8" /></label>
+        <button type="submit" class="app-btn app-btn--primary">Guardar contraseña</button>
+      </form>
+    </section>
+  </main>
+  <script type="module" src="js/reset.js"></script>
+</body>
+</html>
