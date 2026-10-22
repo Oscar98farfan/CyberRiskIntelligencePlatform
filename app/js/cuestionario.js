@@ -18,7 +18,7 @@
 
 import { supabase } from './supabase-client.js';
 import { requerirSesion, obtenerEmpresaActual, tieneAutorizacionVigente } from './auth.js';
-import { API_URL, RUTAS } from './config.js';
+import { API_URL, API_HEADERS, RUTAS } from './config.js';
 import { el, mostrarAlerta, traducirError } from './ui.js';
 
 const MAX_TECNOLOGIAS = 50;              // límite de la API por escaneo
@@ -271,7 +271,7 @@ $('btn-analizar').addEventListener('click', async () => {
   try {
     const { data: { session } } = await supabase.auth.getSession();
     const resp = await fetch(`${API_URL}/api/escaneos/${escaneo.id}/analizar`, {
-      method: 'POST', headers: { Authorization: `Bearer ${session.access_token}` }
+      method: 'POST', headers: { ...API_HEADERS, Authorization: `Bearer ${session.access_token}` }
     });
     const json = await resp.json().catch(() => ({}));
     if (!resp.ok) throw new Error(json.error || `Error del servidor (${resp.status}).`);

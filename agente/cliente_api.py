@@ -19,6 +19,7 @@ def _post(url, cuerpo, token=None, timeout=60):
     req = urllib.request.Request(url, data=datos, method="POST", headers={
         "Content-Type": "application/json",
         "User-Agent": f"CyberRisk-Agente/{VERSION_AGENTE}",
+        "ngrok-skip-browser-warning": "true",
         **({"Authorization": f"Bearer {token}"} if token else {}),
     })
     try:

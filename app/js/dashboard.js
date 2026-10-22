@@ -20,7 +20,7 @@ import {
   requerirSesion, listarMisEmpresas, obtenerEmpresaActual,
   fijarEmpresaActual, tieneAutorizacionVigente, cerrarSesion
 } from './auth.js';
-import { RUTAS, API_URL } from './config.js';
+import { RUTAS, API_URL, API_HEADERS } from './config.js';
 import { el, mostrarAlerta, formatearFecha, traducirError } from './ui.js';
 
 /* ═════════════ Constantes de presentación ═════════════ */
@@ -401,7 +401,7 @@ async function llamarApi(ruta, cuerpo) {
   try {
     resp = await fetch(`${API_URL}${ruta}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+      headers: { ...API_HEADERS, 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
       body: cuerpo ? JSON.stringify(cuerpo) : undefined
     });
   } catch {

@@ -29,6 +29,18 @@ CORS(app, origins=ORIGENES_PERMITIDOS)
 # Endpoints de la plataforma con usuarios (Supabase): /api/...
 app.register_blueprint(plataforma_bp)
 
+# Los endpoints del demo del wiki (/guardar-json y /analizar) NO piden login.
+# Cuando la API se publica con un túnel (ngrok) o un proxy, esas peticiones
+# llegan con la cabecera X-Forwarded-For: se rechazan para que nadie desde
+# internet pueda usarlos. Desde este mismo PC (Live Server) siguen funcionando.
+ENDPOINTS_SOLO_LOCALES = {"/guardar-json", "/analizar"}
+
+
+@app.before_request
+def bloquear_demo_desde_internet():
+    if request.path in ENDPOINTS_SOLO_LOCALES and request.headers.get("X-Forwarded-For"):
+        return jsonify({"error": "Endpoint del demo disponible solo en local."}), 403
+
 # Carpetas
 INPUTS_DIR  = "inputs"
 OUTPUTS_DIR = "outputs"

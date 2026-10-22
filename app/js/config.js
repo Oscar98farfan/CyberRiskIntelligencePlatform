@@ -16,9 +16,17 @@
 export const SUPABASE_URL = 'https://vpnfkclwcmzhnwiiwapy.supabase.co';
 export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gGJ7W8ulAoq6XMN6PYKjlg_PEGCJpGR';
 
-/* URL de la API de análisis (Flask + modelo ML).
-   En local: http://127.0.0.1:5000 · Con túnel: la URL https del túnel. */
-export const API_URL = 'http://127.0.0.1:5000';
+/* URL pública de la API (túnel ngrok o servidor en la nube), SIN "/" al final.
+   Ej: 'https://cyberrisk-oscar.ngrok-free.app'. Vacía = usar la API local. */
+const API_PUBLICA = '';
+
+/* URL de la API de análisis (Flask + modelo ML) que usa toda la plataforma */
+export const API_URL = API_PUBLICA || 'http://127.0.0.1:5000';
+
+/* Cabeceras extra para cada llamada a la API.
+   ngrok (plan gratis) muestra una página de aviso a los navegadores; esta
+   cabecera la salta. En la API local o en otro servidor simplemente se ignora. */
+export const API_HEADERS = { 'ngrok-skip-browser-warning': 'true' };
 
 /* Versión de los términos de autorización de escaneo.
    Si cambias el texto de la autorización, sube esta versión: las empresas
