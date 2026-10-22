@@ -158,7 +158,10 @@ app/
 ├── css/app.css
 └── js/               ← config.js (URL + llave pública), supabase-client, auth, ui, …
 supabase/schema.sql   ← tablas + Row Level Security (cada empresa solo ve lo suyo)
-ml/plataforma.py      ← endpoint POST /api/escaneos/<id>/analizar
+ml/plataforma.py      ← API: análisis del cuestionario y del agente (/api/...)
+ml/mapeo_agente.py    ← traduce el inventario del agente al catálogo del modelo
+data/agente-mapeo.json← reglas programa/servicio → vendor/product (editable)
+agente/               ← agente Windows (.exe): ver agente/README.md
 ```
 
 ### Ejecutar en local

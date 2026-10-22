@@ -1,0 +1,13 @@
+[project]
+name = "cyberrisk-agente"
+version = "0.1.0"
+description = "Agente de inventario de CyberRisk (Windows): recolecta metadatos y los envía tras la aprobación del cliente"
+requires-python = ">=3.11"
+dependencies = [
+    "psutil>=5.9",
+]
+
+[dependency-groups]
+dev = [
+    "pyinstaller>=6.0",
+]

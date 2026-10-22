@@ -305,3 +305,28 @@ grant  update (revocado) on public.agentes to authenticated;
 revoke select on public.agentes from authenticated;
 grant  select (id, empresa_id, activo_id, nombre, plataforma, version,
                ultimo_contacto, revocado, creado_en) on public.agentes to authenticated;
+
+
+-- ───────────────────────────────────────────────────────────────────
+-- 5. SOPORTE PARA EL AGENTE INSTALABLE (migración "soporte_agente")
+-- ───────────────────────────────────────────────────────────────────
+-- Activos: el cliente indica si el equipo está expuesto a internet
+alter table public.activos
+  add column if not exists expuesto_internet boolean not null default false;
+
+-- Escaneos: inventario crudo enviado por el agente (lo que el cliente revisó y aprobó)
+alter table public.escaneos
+  add column if not exists inventario jsonb;
+
+-- Agentes: enlace con código de un solo uso.
+-- El dashboard crea el agente con un código corto (hash + vencimiento);
+-- el .exe lo canjea UNA vez por su token permanente (también solo hash).
+alter table public.agentes
+  add column if not exists codigo_hash   text unique,
+  add column if not exists codigo_expira timestamptz,
+  add column if not exists enlazado_en   timestamptz;
+alter table public.agentes alter column token_hash set default null;
+alter table public.agentes alter column token_hash drop not null;
+
+-- El navegador puede ver estos campos nuevos (nunca los hash)
+grant select (codigo_expira, enlazado_en) on public.agentes to authenticated;

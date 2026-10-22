@@ -13,6 +13,8 @@ from predictor import predecir
 from plataforma import bp as plataforma_bp
 
 app = Flask(__name__)
+# Límite de tamaño por petición (el inventario del agente pesa unos cientos de KB)
+app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 
 # CORS: solo los orígenes permitidos pueden llamar a la API desde el navegador
 # (antes era abierto a cualquier sitio). Se configuran en ml/.env.

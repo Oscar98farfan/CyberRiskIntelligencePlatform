@@ -194,6 +194,25 @@
   border: 1px dashed var(--border-2); border-radius: var(--radius);
 }
 
+/* Cabecera de panel con acción */
+.app-panel__head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+.app-panel__head .app-panel__title { margin-bottom: 0; }
+.app-nota { margin-top: 0.7rem; }
+.app-select--sm { width: auto; padding: 0.3rem 0.5rem; font-size: 0.85rem; }
+.app-checkbox { width: 18px; height: 18px; accent-color: var(--cyan); cursor: pointer; }
+
+/* Código de enlace del agente */
+.app-codigo {
+  display: grid; gap: 0.6rem; margin-bottom: 1rem; padding: 1rem 1.1rem;
+  background: var(--cyan-dim); border: 1px solid var(--cyan); border-radius: var(--radius);
+}
+.app-codigo__fila { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.app-codigo__valor {
+  font-family: var(--font-mono); font-size: 1.9rem; letter-spacing: 0.18em; color: var(--text-bright);
+}
+.app-codigo__pasos { padding-left: 1.2rem; font-size: 0.9rem; }
+.app-codigo .app-link { justify-self: start; }
+
 /* Tablas */
 .app-table-wrap { overflow-x: auto; }
 .app-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }

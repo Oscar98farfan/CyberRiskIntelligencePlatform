@@ -29,3 +29,10 @@ __pycache__/
 # Secretos (llaves de Supabase, etc.)
 .env
 *.env
+
+# Agente: entorno y archivos generados por PyInstaller
+agente/.venv/
+agente/build/
+agente/dist/
+agente/*.spec
+agente/uv.lock

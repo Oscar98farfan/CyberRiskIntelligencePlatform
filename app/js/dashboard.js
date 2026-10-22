@@ -8,7 +8,10 @@
  * Datos que usa:
  *   escaneos   → historial, último escaneo y evolución
  *   hallazgos  → del último escaneo completado (priorizados por tier/score)
- *   activos    → inventario de equipos
+ *   activos    → inventario de equipos (criticidad y exposición editables)
+ *
+ * Acciones:
+ *   "Agregar equipo" → POST {API_URL}/api/agentes → código de enlace para el agente .exe
  * ─────────────────────────────────────────────────────────────
  */
 
@@ -17,7 +20,7 @@ import {
   requerirSesion, listarMisEmpresas, obtenerEmpresaActual,
   fijarEmpresaActual, tieneAutorizacionVigente, cerrarSesion
 } from './auth.js';
-import { RUTAS } from './config.js';
+import { RUTAS, API_URL } from './config.js';
 import { el, mostrarAlerta, formatearFecha, traducirError } from './ui.js';
 
 /* Niveles de riesgo del modelo (mismo criterio que pages/CyberRisk.html) */
@@ -46,6 +49,8 @@ const CRITICIDAD = {
 };
 
 const $ = id => document.getElementById(id);
+let empresaActual = null;
+const puedeEditar = () => ['dueno', 'admin'].includes(empresaActual?.rol);
 const alerta = $('alerta');
 
 document.getElementById('btn-salir').addEventListener('click', cerrarSesion);
@@ -61,7 +66,12 @@ document.getElementById('btn-salir').addEventListener('click', cerrarSesion);
     if (!empresa || !(await tieneAutorizacionVigente(empresa.id))) {
       return window.location.replace(RUTAS.onboarding);
     }
+    empresaActual = empresa;
     await pintarSelectorEmpresas(empresa);
+    if (puedeEditar()) {
+      $('btn-agregar-equipo').hidden = false;
+      $('btn-agregar-equipo').addEventListener('click', agregarEquipo);
+    }
     await cargarDashboard(empresa);
   } catch (err) {
     if (!String(err.message).startsWith('Sin sesión')) mostrarAlerta(alerta, traducirError(err));
@@ -98,7 +108,7 @@ async function cargarDashboard(empresa) {
       .order('creado_en', { ascending: false })
       .limit(30),
     supabase.from('activos')
-      .select('id, nombre, tipo, sistema_operativo, version_so, criticidad, ultimo_escaneo')
+      .select('id, nombre, tipo, sistema_operativo, version_so, criticidad, expuesto_internet, ultimo_escaneo')
       .eq('empresa_id', empresa.id)
       .order('nombre', { ascending: true })
   ]);
@@ -221,17 +231,101 @@ function pintarEvolucion(completados) {
 function pintarActivos(activos) {
   const cont = $('activos');
   if (!activos.length) {
-    cont.replaceChildren(vacio('Aún no hay equipos registrados. El agente de CyberRisk los agregará automáticamente.'));
+    cont.replaceChildren(vacio(puedeEditar()
+      ? 'Aún no hay equipos. Pulsa «+ Agregar equipo» e instala el agente en tu primer equipo.'
+      : 'Aún no hay equipos registrados.'));
     return;
   }
+  const editable = puedeEditar();
   const filas = activos.map(a => el('tr', {},
     el('td', { class: 'app-text-bright' }, a.nombre),
     el('td', {}, TIPOS[a.tipo] || a.tipo),
     el('td', {}, [a.sistema_operativo, a.version_so].filter(Boolean).join(' ') || '—'),
-    el('td', {}, el('span', { class: `app-c-${CRITICIDAD[a.criticidad]?.cls || 'muted'}` },
+    el('td', {}, editable ? selectorCriticidad(a) : el('span', { class: `app-c-${CRITICIDAD[a.criticidad]?.cls || 'muted'}` },
       CRITICIDAD[a.criticidad]?.label || a.criticidad)),
+    el('td', {}, editable ? casillaExpuesto(a) : (a.expuesto_internet ? 'Sí' : 'No')),
     el('td', { class: 'app-nowrap' }, formatearFecha(a.ultimo_escaneo, true))));
-  cont.replaceChildren(tabla(['Equipo', 'Tipo', 'Sistema', 'Criticidad', 'Último escaneo'], filas));
+  cont.replaceChildren(
+    tabla(['Equipo', 'Tipo', 'Sistema', 'Criticidad', 'Expuesto a internet', 'Último escaneo'], filas),
+    editable ? el('p', { class: 'app-muted app-small app-nota' },
+      'La criticidad y la exposición se tienen en cuenta en el próximo escaneo del equipo.') : null);
+}
+
+/* ── Edición de activos (RLS solo lo permite a dueño/admin) ── */
+async function actualizarActivo(id, cambios, control, valorAnterior) {
+  control.disabled = true;
+  const { error } = await supabase.from('activos').update(cambios).eq('id', id);
+  control.disabled = false;
+  if (error) {
+    if (control.type === 'checkbox') control.checked = valorAnterior; else control.value = valorAnterior;
+    mostrarAlerta(alerta, 'No se pudo guardar el cambio: ' + traducirError(error));
+  }
+}
+
+function selectorCriticidad(activo) {
+  const sel = el('select', { class: 'app-select app-select--sm', 'aria-label': `Criticidad de ${activo.nombre}` },
+    Object.entries(CRITICIDAD).map(([valor, c]) => el('option', { value: valor, selected: valor === activo.criticidad }, c.label)));
+  let anterior = activo.criticidad;
+  sel.addEventListener('change', async () => {
+    await actualizarActivo(activo.id, { criticidad: sel.value }, sel, anterior);
+    anterior = sel.value;
+  });
+  return sel;
+}
+
+function casillaExpuesto(activo) {
+  const caja = el('input', { type: 'checkbox', class: 'app-checkbox', checked: !!activo.expuesto_internet,
+    'aria-label': `¿${activo.nombre} está expuesto a internet?` });
+  caja.addEventListener('change', () =>
+    actualizarActivo(activo.id, { expuesto_internet: caja.checked }, caja, !caja.checked));
+  return caja;
+}
+
+/* ── Agregar equipo: pide a la API un código de enlace de un solo uso ── */
+async function agregarEquipo() {
+  const boton = $('btn-agregar-equipo');
+  const panel = $('panel-codigo');
+  boton.disabled = true;
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    const resp = await fetch(`${API_URL}/api/agentes`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+      body: JSON.stringify({ empresa_id: empresaActual.id })
+    });
+    const datos = await resp.json().catch(() => ({}));
+    if (!resp.ok) throw new Error(datos.error || `Error del servidor (${resp.status}).`);
+
+    const copiar = el('button', { type: 'button', class: 'app-btn app-btn--ghost' }, 'Copiar');
+    copiar.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(datos.codigo); copiar.textContent = 'Copiado ✔'; }
+      catch { copiar.textContent = 'Cópialo manualmente'; }
+    });
+    const cerrar = el('button', { type: 'button', class: 'app-link' }, 'Cerrar');
+    cerrar.addEventListener('click', () => { panel.hidden = true; });
+
+    panel.replaceChildren(
+      el('div', { class: 'app-codigo__fila' },
+        el('div', {},
+          el('div', { class: 'app-kpi__label' }, 'Código de enlace'),
+          el('div', { class: 'app-codigo__valor' }, datos.codigo)),
+        copiar),
+      el('ol', { class: 'app-codigo__pasos' },
+        el('li', {}, 'En el equipo a analizar, abre ', el('strong', {}, 'CyberRisk-Agente.exe'), '.'),
+        el('li', {}, 'Pega este código y pulsa «Enlazar equipo».'),
+        el('li', {}, 'Pulsa «Escanear», revisa lo recolectado y envíalo.')),
+      el('p', { class: 'app-muted app-small' },
+        `Un solo uso · vence el ${formatearFecha(datos.expira)} · al recargar esta página ya no se vuelve a mostrar.`),
+      cerrar);
+    panel.hidden = false;
+  } catch (err) {
+    const sinApi = err instanceof TypeError;   // fetch falló: la API no responde
+    mostrarAlerta(alerta, sinApi
+      ? `No se pudo conectar con la API de CyberRisk (${API_URL}). ¿Está corriendo?`
+      : err.message);
+  } finally {
+    boton.disabled = false;
+  }
 }
 
 function pintarHistorial(escaneos) {

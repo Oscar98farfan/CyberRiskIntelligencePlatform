@@ -82,7 +82,13 @@
     <div class="app-cols">
       <!-- ── Activos ── -->
       <section class="app-panel" aria-labelledby="h-activos">
-        <h2 id="h-activos" class="app-panel__title">Activos</h2>
+        <div class="app-panel__head">
+          <h2 id="h-activos" class="app-panel__title">Activos</h2>
+          <!-- Genera el código de enlace para el agente .exe (solo dueño/admin) -->
+          <button type="button" class="app-btn app-btn--ghost" id="btn-agregar-equipo" hidden>+ Agregar equipo</button>
+        </div>
+        <!-- Se muestra al generar un código de enlace -->
+        <div id="panel-codigo" class="app-codigo" role="status" hidden></div>
         <div id="activos"></div>
       </section>
 
