@@ -1910,3 +1910,14 @@ body {
   font-size: 1rem;
   flex-shrink: 0;
 }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE v2 — cabecera en celular
+══════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .cr-hdr { gap: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; }
+  .cr-header-center,
+  .cr-badge-live { display: none; }
+  .cr-logo { min-width: 0; flex: 1 1 auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .cr-hdr .cr-theme-toggle { flex: none; }
+}

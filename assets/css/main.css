@@ -1805,3 +1805,33 @@ tfoot .tbl-footer:last-child {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE v2 — correcciones para celular
+══════════════════════════════════════════ */
+
+/* El contenido es un elemento de grid: sin min-width:0, una tabla ancha
+   ensancha TODA la columna (texto cortado y scroll horizontal de la página).
+   Con esto, las tablas se desplazan dentro de su propia caja (.tbl-scroll). */
+#app-content,
+#app-content > * { min-width: 0; }
+.gantt-scroll, .tbl-scroll { max-width: 100%; }
+
+@media (max-width: 800px) {
+  /* Cabecera: que quepan logo, Ingresar, tema y menú en el ancho del celular */
+  #app-header { gap: 0.5rem; padding: 0 0.75rem; }
+  #app-header .logo-sub,
+  #app-header .header-meta,
+  #app-header .header-status { display: none; }
+  #app-header .header-logo { min-width: 0; flex: 1 1 auto; gap: 0.5rem; }
+  #app-header .logo-text { font-size: 1.05rem; white-space: nowrap; }
+  #app-header .PageCyberRisk { padding: 0.45rem 0.7rem; font-size: 0.68rem; white-space: nowrap; }
+  #app-header .cr-theme-toggle { width: 32px; height: 32px; flex: none; }
+  #menu-toggle { flex: none; order: 10; }   /* menú siempre al extremo derecho */
+}
+
+@media (max-width: 560px) {
+  /* El demo del cuestionario no está pensado para celular: se oculta su botón */
+  #app-header a.PageCyberRisk[href*="pages/"] { display: none; }
+  #app-header .logo-mark { width: 28px; height: 28px; font-size: 0.7rem; }
+}
