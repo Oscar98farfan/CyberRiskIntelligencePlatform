@@ -1,0 +1,20 @@
+# API de CyberRisk (Flask + modelo ML) servida con gunicorn.
+# Plantilla: instalar.sh reemplaza __USUARIO__, __DIR__ y __HOME__.
+[Unit]
+Description=CyberRisk API (Flask + modelo ML)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=__USUARIO__
+WorkingDirectory=__DIR__/ml
+Environment=PATH=__HOME__/.local/bin:/usr/local/bin:/usr/bin:/bin
+# 1 worker: cada worker carga los 8 GB del modelo. Hilos para atender varias peticiones.
+# timeout alto: un escaneo grande puede tardar varios minutos en el modelo.
+ExecStart=__HOME__/.local/bin/uv run --with gunicorn gunicorn --workers 1 --threads 4 --timeout 900 --bind 127.0.0.1:5000 app:app
+Restart=on-failure
+RestartSec=15
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target

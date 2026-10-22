@@ -1,0 +1,16 @@
+# Túnel ngrok con el dominio fijo (NGROK_DOMAIN en ml/.env).
+# La API solo escucha en 127.0.0.1: no se abre ningún puerto a internet.
+[Unit]
+Description=CyberRisk tunel ngrok
+After=network-online.target cyberrisk-api.service
+Wants=network-online.target
+
+[Service]
+User=__USUARIO__
+EnvironmentFile=__DIR__/ml/.env
+ExecStart=/usr/local/bin/ngrok http 127.0.0.1:5000 --domain=${NGROK_DOMAIN} --log=stdout
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
