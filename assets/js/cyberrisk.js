@@ -430,7 +430,7 @@ function showLoading(visible) {
     overlay.style.color = '#fff';
     overlay.style.fontFamily = 'inherit';
     overlay.innerHTML = `
-      <div style="width:48px;height:48px;border:4px solid rgba(255,255,255,0.25);
+      <div style="width:48px;height:48px;border:4px solid var(--tint-3);
                    border-top-color:#fff;border-radius:50%;
                    animation:ml-spin 0.8s linear infinite;margin-bottom:12px;"></div>
       <div id="ml-loading-text" style="font-size:0.9rem;letter-spacing:0.05em;">
@@ -604,14 +604,14 @@ function renderDashboard(resultList) {
       impact.ImpactoDisponibilidad?.[0] || '—',
     ];
     const cells = vals.map(v => `
-      <td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04)">
+      <td style="padding:0.6rem 0.8rem;border-bottom:1px solid var(--tint-2)">
         <span class="cr-hbar-val ${v === 'High' || v === 'Network' || v === 'None' ? 'red' : 'cyan'
       }" style="font-size:0.62rem">${v}</span>
       </td>`).join('');
 
     return `
       <tr>
-        <td style="padding:0.6rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.04);
+        <td style="padding:0.6rem 0.8rem;border-bottom:1px solid var(--tint-2);
                    white-space:nowrap">
           <span class="cr-td-name" style="font-size:0.82rem">${t._displayName}</span>
           <span class="cr-nivel-badge ${tNivel.cls}"

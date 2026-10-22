@@ -315,6 +315,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
 });
 
+/* ─── Cambio de tema (assets/js/theme.js): volver a pintar la sección actual
+       para que las gráficas (canvas) tomen los colores del nuevo tema ─── */
+document.addEventListener('cr:tema', () => {
+  const actual = (App.nav?.sections || []).find(s => s.id === App.activeSectionId);
+  if (!actual) return;
+  App.activeSectionId = null;
+  navigateTo(actual.id, actual.file);
+});
+
 /* ─── Manejar navegación con el botón atrás/adelante del navegador ─── */
 window.addEventListener('hashchange', () => {
   const hashId  = window.location.hash.replace('#', '');

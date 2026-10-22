@@ -1,0 +1,129 @@
+/* ═══════════════════════════════════════════════════════════════════
+   CyberRisk — Temas OSCURO / CLARO
+   ───────────────────────────────────────────────────────────────────
+   Se carga en TODAS las páginas DESPUÉS de los demás CSS, así que sus
+   variables ganan sobre las de main.css.
+
+   - El tema activo lo fija assets/js/theme.js en <html data-theme="…">
+   - Para ajustar colores, edita SOLO este archivo: el resto de CSS y JS
+     usa estas variables (var(--text), var(--surface), …).
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── OSCURO (por defecto) — contraste mejorado respecto a la versión inicial ── */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #05080c;
+  --bg-2: #080d14;
+  --bg-3: #0e1724;
+  --surface: #0f1a26;
+  --surface-2: #142233;
+  --border: #233b54;
+  --border-2: #31506e;
+
+  --cyan: #00c8e8;
+  --cyan-hover: #20e0ff;
+  --cyan-dim: rgba(0, 200, 232, 0.12);
+  --cyan-glow: rgba(0, 200, 232, 0.35);
+  --red: #ff5a5a;
+  --red-dim: rgba(255, 90, 90, 0.12);
+  --green: #3ddc84;
+  --green-dim: rgba(61, 220, 132, 0.12);
+  --amber: #ffb627;
+  --amber-dim: rgba(255, 182, 39, 0.12);
+
+  /* Texto: antes #9bb8d0 / #4a6680 / #2e4a60 (poco legibles) */
+  --text: #c3d5e6;
+  --text-dim: #8ba3ba;
+  --text-bright: #f0f7ff;
+  --text-muted: #6d88a1;
+
+  /* Tokens extra para reemplazar colores fijos */
+  --on-accent: #05080c;                 /* texto sobre botones cian */
+  --header-bg: rgba(5, 8, 12, 0.94);
+  --tint-1: rgba(255, 255, 255, 0.02);  /* fondos sutiles */
+  --tint-2: rgba(255, 255, 255, 0.04);
+  --tint-3: rgba(255, 255, 255, 0.07);
+  --code-text: #8fcbe3;
+  --alert-error-text: #ffc2c2;
+  --alert-ok-text: #c3f5d6;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --chart-grid: rgba(255, 255, 255, 0.07);
+  --chart-tooltip: rgba(8, 13, 20, 0.94);
+  --grid-line: rgba(0, 200, 232, 0.025);
+}
+
+/* ── CLARO ── */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f2f5f9;
+  --bg-2: #ffffff;
+  --bg-3: #e8eef4;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #d4dee8;
+  --border-2: #b5c5d5;
+
+  --cyan: #00739f;            /* más oscuro para que se lea sobre blanco */
+  --cyan-hover: #005a7d;
+  --cyan-dim: rgba(0, 115, 159, 0.10);
+  --cyan-glow: rgba(0, 115, 159, 0.25);
+  --red: #c62828;
+  --red-dim: rgba(198, 40, 40, 0.08);
+  --green: #1b7f45;
+  --green-dim: rgba(27, 127, 69, 0.10);
+  --amber: #a85f00;
+  --amber-dim: rgba(168, 95, 0, 0.10);
+
+  --text: #2a3b4d;
+  --text-dim: #4d6175;
+  --text-bright: #0b1826;
+  --text-muted: #687d91;
+
+  --on-accent: #ffffff;
+  --header-bg: rgba(255, 255, 255, 0.94);
+  --tint-1: rgba(11, 24, 38, 0.02);
+  --tint-2: rgba(11, 24, 38, 0.04);
+  --tint-3: rgba(11, 24, 38, 0.07);
+  --code-text: #1f5673;
+  --alert-error-text: #8e1c1c;
+  --alert-ok-text: #145c32;
+  --shadow: 0 12px 40px rgba(11, 24, 38, 0.12);
+  --chart-grid: rgba(11, 24, 38, 0.08);
+  --chart-tooltip: rgba(255, 255, 255, 0.97);
+  --grid-line: rgba(0, 115, 159, 0.05);
+}
+
+/* Fondo cuadriculado de main.css adaptado al tema */
+body::before {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) !important;
+}
+:root[data-theme="light"] body::after { opacity: 0.4; }
+
+/* Transición suave al cambiar de tema */
+body, #app-header, .cr-hdr, .app-topbar, .app-card, .app-panel, .app-kpi {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ═════════ Botón de cambio de tema ═════════ */
+.cr-theme-toggle {
+  display: inline-grid; place-items: center; flex: none;
+  width: 34px; height: 34px; padding: 0; cursor: pointer;
+  border: 1px solid var(--border-2); border-radius: 50%;
+  background: var(--surface); color: var(--text-bright);
+  font-size: 1rem; line-height: 1;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+}
+.cr-theme-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
+.cr-theme-toggle:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.cr-theme-toggle:active { transform: scale(0.94); }
+
+/* Cuando la página no tiene cabecera (login, onboarding…) el botón flota */
+.cr-theme-toggle--float {
+  position: fixed; top: 16px; right: 16px; z-index: 1000;
+  box-shadow: var(--shadow);
+}

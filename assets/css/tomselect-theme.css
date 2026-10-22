@@ -9,9 +9,9 @@
 /* CONTROL PRINCIPAL */
 .ts-wrapper .ts-control {
 
-    background: var(--bg-3, #0c1420) !important;
+    background: var(--bg-3, var(--bg-3)) !important;
 
-    border: 1px solid var(--border, #1a2e42) !important;
+    border: 1px solid var(--border, var(--border)) !important;
 
     border-radius: var(--radius, 3px);
 
@@ -21,7 +21,7 @@
 
     box-shadow: none !important;
 
-    color: var(--text-bright, #ddeeff);
+    color: var(--text-bright, var(--text-bright));
 
     font-family: var(--font-body, 'Barlow', sans-serif);
 
@@ -30,7 +30,7 @@
 
 .ts-wrapper.focus .ts-control {
 
-    border-color: var(--cyan, #00c8e8) !important;
+    border-color: var(--cyan, var(--cyan)) !important;
 
     box-shadow:
         0 0 0 1px rgba(0, 200, 232, .3),
@@ -41,7 +41,7 @@
 .ts-control>div,
 .ts-wrapper.single .ts-control .item {
 
-    color: var(--text-bright, #ddeeff) !important;
+    color: var(--text-bright, var(--text-bright)) !important;
 
     font-size: 0.82rem;
 }
@@ -54,9 +54,9 @@
 
     background: transparent !important;
 
-    color: var(--text-bright, #ddeeff) !important;
+    color: var(--text-bright, var(--text-bright)) !important;
 
-    -webkit-text-fill-color: var(--text-bright, #ddeeff) !important;
+    -webkit-text-fill-color: var(--text-bright, var(--text-bright)) !important;
 
     font-family: var(--font-body, 'Barlow', sans-serif) !important;
 
@@ -69,7 +69,7 @@
 .ts-wrapper .ts-control input::placeholder,
 .ts-control input::placeholder {
 
-    color: var(--text-dim, #4a6680) !important;
+    color: var(--text-dim, var(--text-dim)) !important;
 
     opacity: 1 !important;
 }
@@ -77,9 +77,9 @@
 /* DROPDOWN */
 .ts-dropdown {
 
-    background: var(--bg-3, #0c1420) !important;
+    background: var(--bg-3, var(--bg-3)) !important;
 
-    border: 1px solid var(--border-2, #243d55) !important;
+    border: 1px solid var(--border-2, var(--border-2)) !important;
 
     border-radius: var(--radius, 3px);
 
@@ -96,13 +96,13 @@
 /* CONTENIDO */
 .ts-dropdown-content {
 
-    background: var(--bg-3, #0c1420);
+    background: var(--bg-3, var(--bg-3));
 
     max-height: 250px;
 
     scrollbar-width: thin;
 
-    scrollbar-color: var(--border-2, #243d55) transparent;
+    scrollbar-color: var(--border-2, var(--border-2)) transparent;
 }
 
 .ts-dropdown-content::-webkit-scrollbar {
@@ -111,7 +111,7 @@
 
 .ts-dropdown-content::-webkit-scrollbar-thumb {
 
-    background: var(--border-2, #243d55);
+    background: var(--border-2, var(--border-2));
 
     border-radius: 2px;
 }
@@ -121,7 +121,7 @@
 
     padding: 10px 12px;
 
-    color: var(--text, #9bb8d0);
+    color: var(--text, var(--text));
 
     font-size: 0.82rem;
 
@@ -133,14 +133,14 @@
 
     background: rgba(0, 200, 232, .10);
 
-    color: var(--text-bright, #ddeeff);
+    color: var(--text-bright, var(--text-bright));
 }
 
 .ts-dropdown .option.selected {
 
     background: rgba(0, 200, 232, .15);
 
-    color: var(--cyan, #00c8e8);
+    color: var(--cyan, var(--cyan));
 
     font-weight: 600;
 }
@@ -148,7 +148,7 @@
 /* TEXTO RESALTADO AL BUSCAR */
 .ts-dropdown .highlight {
 
-    color: var(--cyan, #00c8e8);
+    color: var(--cyan, var(--cyan));
 
     background: rgba(0, 200, 232, .15);
 
@@ -160,7 +160,7 @@
 /* MENSAJE SIN RESULTADOS */
 .ts-dropdown .no-results {
 
-    color: var(--text-muted, #2e4a60);
+    color: var(--text-muted, var(--text-muted));
 
     padding: 12px;
 }
@@ -177,11 +177,11 @@
 .ts-control::after {
 
     border-color:
-        var(--text-dim, #4a6680) transparent transparent transparent;
+        var(--text-dim, var(--text-dim)) transparent transparent transparent;
 }
 
 .ts-wrapper.dropdown-active .ts-control::after {
 
     border-color:
-        transparent transparent var(--cyan, #00c8e8) transparent;
+        transparent transparent var(--cyan, var(--cyan)) transparent;
 }

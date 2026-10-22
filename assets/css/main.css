@@ -107,7 +107,7 @@ body::after {
   left: 0;
   right: 0;
   height: var(--header-h);
-  background: rgba(5, 8, 12, 0.96);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border);
   backdrop-filter: blur(16px);
   z-index: 100;
@@ -232,7 +232,7 @@ body::after {
 
 .PageCyberRisk:hover {
   background: var(--cyan);
-  color: #05080c;
+  color: var(--on-accent);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.35);
   transform: translateY(-1px);
 }
@@ -264,7 +264,7 @@ body::after {
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid var(--border);
-  background: #080d14;
+  background: var(--bg-2);
   padding: 1.5rem 0;
   z-index: 50;
   scrollbar-width: thin;
@@ -313,7 +313,7 @@ body::after {
 }
 
 .stage-header:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint-1);
 }
 
 .stage-arrow {
@@ -391,7 +391,7 @@ body::after {
 
 .nav-item:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--tint-2);
   border-left-color: var(--border-2);
 }
 
@@ -429,13 +429,13 @@ body::after {
 
 .nav-badge.todo {
   background: rgba(150, 150, 150, 0.08);
-  color: #e7141e;
+  color: var(--red);
   border: 1px solid rgba(231, 7, 7, 0.2);
 }
 
 .nav-badge.progress {
   background: rgba(241, 196, 15, 0.12);
-  color: #f1c40f;
+  color: var(--amber);
   border: 1px solid rgba(241, 196, 15, 0.25);
 }
 
@@ -443,7 +443,7 @@ body::after {
 .sidebar-info {
   margin: 1.5rem 1rem 0;
   padding: 0.9rem;
-  background: rgba(0, 0, 0, 0.25);
+  background: var(--bg-3);
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
@@ -454,7 +454,7 @@ body::after {
   align-items: center;
   font-size: 0.72rem;
   padding: 0.25rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
 }
 
 .info-row:last-child {
@@ -669,7 +669,7 @@ body::after {
   display: flex;
   gap: 1rem;
   padding: 0.55rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
   font-size: 0.88rem;
   line-height: 1.65;
   align-items: flex-start;
@@ -772,7 +772,7 @@ body::after {
 .col-card-list li {
   font-size: 0.82rem;
   padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
   color: var(--text);
   line-height: 1.55;
   display: flex;
@@ -792,7 +792,7 @@ body::after {
   gap: 1rem;
   align-items: flex-start;
   padding: 0.65rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--tint-2);
 }
 
 .deliverable-code {
@@ -841,7 +841,7 @@ body::after {
   position: relative;
   margin-bottom: 1.2rem;
   padding-bottom: 1.2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
 }
 
 .tl-item:last-child {
@@ -951,7 +951,7 @@ body::after {
   display: flex;
   gap: 1.2rem;
   padding: 0.9rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--tint-2);
   align-items: flex-start;
 }
 
@@ -1041,7 +1041,7 @@ body::after {
 
 .badge-alto {
   background: rgba(232, 64, 64, 0.12);
-  color: #e87070;
+  color: var(--red);
   border: 1px solid rgba(232, 64, 64, 0.25);
 }
 
@@ -1053,7 +1053,7 @@ body::after {
 
 .badge-bajo {
   background: rgba(100, 150, 200, 0.08);
-  color: #7aabcc;
+  color: var(--code-text);
   border: 1px solid rgba(100, 150, 200, 0.15);
 }
 
@@ -1099,7 +1099,7 @@ body::after {
 }
 
 .matrix-head {
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--bg-3);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   color: var(--cyan);
@@ -1113,7 +1113,7 @@ body::after {
 }
 
 .matrix-label {
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--bg-3);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   color: var(--cyan);
@@ -1437,7 +1437,7 @@ body::after {
 
 /* Filas */
 .gantt-table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
 }
 
 .gantt-table tbody tr:last-child {
@@ -1533,14 +1533,14 @@ body::after {
 .tbl-td {
   padding: 0.6rem 1rem;
   color: var(--text);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--tint-2);
   vertical-align: middle;
   line-height: 1.5;
 }
 
 /* Filas alternas */
 .tbl-tr-alt .tbl-td {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--tint-1);
 }
 
 /* Hover en filas */

@@ -443,12 +443,13 @@ function renderCashflowChart(block) {
   const note    = block.note            || '';
   const uid     = 'cf_' + Math.random().toString(36).slice(2, 8);
 
-  /* Mapa de colores */
+  /* Mapa de colores — se leen del tema activo (assets/css/theme.css) */
+  const cssVar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
   const COLOR = {
-    green: { stroke: '#2ecc71', fill: 'rgba(46,204,113,0.10)'  },
-    red:   { stroke: '#e84040', fill: 'rgba(232,64,64,0.08)'   },
-    cyan:  { stroke: '#00c8e8', fill: 'rgba(0,200,232,0.10)'   },
-    amber: { stroke: '#f0a500', fill: 'rgba(240,165,0,0.08)'   },
+    green: { stroke: cssVar('--green'), fill: cssVar('--green-dim') },
+    red:   { stroke: cssVar('--red'),   fill: cssVar('--red-dim')   },
+    cyan:  { stroke: cssVar('--cyan'),  fill: cssVar('--cyan-dim')  },
+    amber: { stroke: cssVar('--amber'), fill: cssVar('--amber-dim') },
   };
 
   /* Guardar datos en window para que el script los encuentre */
@@ -486,8 +487,9 @@ function renderCashflowChart(block) {
 
     const ctx = canvas.getContext('2d');
 
-    const gridColor = 'rgba(255,255,255,0.06)';
-    const textColor = '#4a6680';
+    const gridColor = cssVar('--chart-grid');
+    const textColor = cssVar('--text-dim');
+    const accent    = cssVar('--cyan');
 
     /* Datasets */
     const datasets = data.series.map(s => ({
@@ -516,14 +518,14 @@ function renderCashflowChart(block) {
         const bot = chart.chartArea.bottom;
         c.save();
         c.setLineDash([5, 4]);
-        c.strokeStyle = '#00c8e8';
+        c.strokeStyle = accent;
         c.lineWidth   = 1;
         c.beginPath();
         c.moveTo(x, top);
         c.lineTo(x, bot);
         c.stroke();
         c.setLineDash([]);
-        c.fillStyle  = '#00c8e8';
+        c.fillStyle  = accent;
         c.font       = '10px "JetBrains Mono", monospace';
         c.textAlign  = 'center';
         c.fillText('Punto equilibrio', x, top - 7);
@@ -539,7 +541,7 @@ function renderCashflowChart(block) {
         const y = yScale.getPixelForValue(0);
         const c = chart.ctx;
         c.save();
-        c.strokeStyle = 'rgba(255,255,255,0.12)';
+        c.strokeStyle = cssVar('--border-2');
         c.lineWidth   = 1;
         c.beginPath();
         c.moveTo(chart.chartArea.left,  y);
@@ -559,11 +561,11 @@ function renderCashflowChart(block) {
         plugins: {
           legend: { display: false },
           tooltip: {
-            backgroundColor: 'rgba(8,13,20,0.92)',
-            borderColor:     'rgba(0,200,232,0.3)',
+            backgroundColor: cssVar('--chart-tooltip'),
+            borderColor:     cssVar('--border-2'),
             borderWidth:     1,
-            titleColor:      '#9bb8d0',
-            bodyColor:       '#9bb8d0',
+            titleColor:      cssVar('--text-bright'),
+            bodyColor:       cssVar('--text'),
             padding:         10,
             callbacks: {
               label(ctx) {

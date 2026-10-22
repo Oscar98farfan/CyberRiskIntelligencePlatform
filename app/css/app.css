@@ -61,7 +61,7 @@
 }
 .app-card {
   width: 100%; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 6px; padding: 2rem; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  border-radius: 6px; padding: 2rem; box-shadow: var(--shadow);
 }
 .app-card--auth { max-width: 420px; }
 .app-card--wide { max-width: 640px; }
@@ -125,8 +125,8 @@
   text-decoration: none;
   border: 1px solid var(--cyan); transition: background var(--transition), color var(--transition), box-shadow var(--transition);
 }
-.app-btn--primary { background: var(--cyan); color: var(--bg); font-weight: 600; }
-.app-btn--primary:hover:not(:disabled) { box-shadow: 0 0 16px var(--cyan-glow); }
+.app-btn--primary { background: var(--cyan); color: var(--on-accent); font-weight: 600; }
+.app-btn--primary:hover:not(:disabled) { box-shadow: 0 0 16px var(--cyan-glow); background: var(--cyan-hover); border-color: var(--cyan-hover); }
 .app-btn--ghost { background: transparent; color: var(--cyan); padding: 0.45rem 0.9rem; }
 .app-btn--ghost:hover { background: var(--cyan-dim); }
 .app-btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -145,15 +145,15 @@
   border: 1px solid;
 }
 .app-alert[hidden] { display: none; }
-.app-alert--error { color: #ffb4b4; background: var(--red-dim); border-color: rgba(232, 64, 64, 0.45); }
-.app-alert--ok { color: #b9f3cf; background: var(--green-dim); border-color: rgba(46, 204, 113, 0.45); }
+.app-alert--error { color: var(--alert-error-text); background: var(--red-dim); border-color: rgba(232, 64, 64, 0.45); }
+.app-alert--ok { color: var(--alert-ok-text); background: var(--green-dim); border-color: rgba(46, 204, 113, 0.45); }
 .app-alert--info { color: var(--text-bright); background: var(--cyan-dim); border-color: rgba(0, 200, 232, 0.4); }
 
 /* ═════════════ DASHBOARD ═════════════ */
 .app-topbar {
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
-  padding: 0.8rem 1.5rem; background: rgba(5, 8, 12, 0.94);
+  padding: 0.8rem 1.5rem; background: var(--header-bg);
   border-bottom: 1px solid var(--border); backdrop-filter: blur(8px);
 }
 .app-topbar__empresa { display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 0; }
@@ -247,6 +247,6 @@
 .cr-aviso-guardado {
   display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
   margin-bottom: 1rem; padding: 0.7rem 1rem; border-radius: var(--radius);
-  background: var(--green-dim); border: 1px solid rgba(46, 204, 113, 0.45); color: #b9f3cf; font-size: 0.9rem;
+  background: var(--green-dim); border: 1px solid rgba(46, 204, 113, 0.45); color: var(--alert-ok-text); font-size: 0.9rem;
 }
 .cr-aviso-guardado a { color: var(--cyan); font-family: var(--font-mono); font-size: 0.8rem; }
