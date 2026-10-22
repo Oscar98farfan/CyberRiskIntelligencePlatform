@@ -1,13 +1,31 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
 import os
 import json
 import uuid
 
+# Variables de entorno (ml/.env): SUPABASE_URL, SUPABASE_SECRET_KEY, CORS_ORIGINS.
+# Se cargan ANTES de importar plataforma.py, que las lee al importarse.
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+
 from predictor import predecir
+from plataforma import bp as plataforma_bp
 
 app = Flask(__name__)
-CORS(app)
+
+# CORS: solo los orígenes permitidos pueden llamar a la API desde el navegador
+# (antes era abierto a cualquier sitio). Se configuran en ml/.env.
+ORIGENES_PERMITIDOS = [
+    o.strip() for o in os.environ.get(
+        "CORS_ORIGINS",
+        "http://127.0.0.1:5500,http://localhost:5500,https://oscar98farfan.github.io",
+    ).split(",") if o.strip()
+]
+CORS(app, origins=ORIGENES_PERMITIDOS)
+
+# Endpoints de la plataforma con usuarios (Supabase): /api/...
+app.register_blueprint(plataforma_bp)
 
 # Carpetas
 INPUTS_DIR  = "inputs"

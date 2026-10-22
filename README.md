@@ -141,6 +141,40 @@ git push origin main
 
 ---
 
+---
+
+## 🔐 Plataforma con usuarios (Supabase) — carpeta `app/`
+
+Las empresas se registran, autorizan el escaneo y ven su historial de riesgo.
+
+```
+app/
+├── index.html        ← redirige según la sesión (login / onboarding / dashboard)
+├── login.html        ← ingreso y registro (correo + contraseña)
+├── reset.html        ← nueva contraseña (enlace del correo)
+├── onboarding.html   ← registro de empresa + autorización de escaneo
+├── dashboard.html    ← estado, hallazgos priorizados, evolución, activos, historial
+├── escaneo.html      ← cuestionario existente, guardado a nombre de la empresa
+├── css/app.css
+└── js/               ← config.js (URL + llave pública), supabase-client, auth, ui, …
+supabase/schema.sql   ← tablas + Row Level Security (cada empresa solo ve lo suyo)
+ml/plataforma.py      ← endpoint POST /api/escaneos/<id>/analizar
+```
+
+### Ejecutar en local
+1. **API:** copia `ml/.env.example` como `ml/.env`, pega la *secret key* de Supabase
+   (Project Settings → API Keys) y luego:
+   ```bash
+   cd ml
+   uv sync          # instala python-dotenv (nueva dependencia)
+   flask run
+   ```
+2. **Web:** abre `index.html` con Live Server y pulsa **Ingresar**.
+
+> ⚠ `ml/.env` contiene la llave secreta: está en `.gitignore` y nunca debe subirse.
+
+---
+
 ## 👥 Equipo
 
 | Nombre | Rol |

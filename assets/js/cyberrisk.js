@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
   try {
-    const catalogData = await fetchJSON('/data/tech-catalog.json');
-    const formData = await fetchJSON('/data/canonical-form-config.json');
+    const catalogData = await fetchJSON('../data/tech-catalog.json');
+    const formData = await fetchJSON('../data/canonical-form-config.json');
 
     TECH_CATALOG = catalogData.catalog || [];
     FORM_FIELDS = formData.fields || [];
@@ -664,7 +664,7 @@ async function fetchRecommendations(tier) {
   const tierKeyMap = { 4: 'critical', 3: 'high', 2: 'medium', 1: 'low' };
   const key = tierKeyMap[tier] || 'medium';
   try {
-    const cfg = await fetchJSON('/data/questions-config.json');
+    const cfg = await fetchJSON('../data/questions-config.json');
     return cfg.recommendations?.[key] || [];
   } catch {
     return [];

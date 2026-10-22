@@ -73,6 +73,8 @@ async function pintarSelectorEmpresas(actual) {
   const empresas = await listarMisEmpresas();
   $('nombre-empresa').textContent = actual.nombre;
   $('rol-usuario').textContent = ROLES[actual.rol] || actual.rol;
+  /* Solo dueño/admin pueden lanzar escaneos */
+  if (!['dueno', 'admin'].includes(actual.rol)) $('btn-nuevo-escaneo').hidden = true;
 
   if (empresas.length < 2) return;
   const sel = $('sel-empresa');
@@ -142,7 +144,7 @@ function pintarKpis({ escaneos, activos, ultimo, hallUltimo, hallAnterior }) {
   if (!ultimo) {
     $('ultimo-escaneo').textContent = escaneos.length
       ? 'Tienes escaneos en proceso. Los resultados aparecerán aquí.'
-      : 'Aún no hay escaneos. Cuando hagas el primero verás aquí tu estado.';
+      : 'Aún no hay escaneos. Pulsa "+ Nuevo escaneo" para hacer el primero.';
     $('kpi-nivel').textContent = 'Sin datos';
     $('kpi-criticos').textContent = '—';
     return;

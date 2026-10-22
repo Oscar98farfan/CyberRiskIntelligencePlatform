@@ -14,6 +14,8 @@
 .app-body > * { position: relative; z-index: 1; }
 
 /* ── Utilidades ── */
+/* El atributo hidden siempre gana (algunas clases fijan display) */
+[hidden] { display: none !important; }
 .app-muted { color: var(--text-dim); }
 .app-small { font-size: 0.82rem; }
 .app-text-bright { color: var(--text-bright); }
@@ -120,6 +122,7 @@
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
   padding: 0.7rem 1.2rem; border-radius: var(--radius); cursor: pointer;
   font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+  text-decoration: none;
   border: 1px solid var(--cyan); transition: background var(--transition), color var(--transition), box-shadow var(--transition);
 }
 .app-btn--primary { background: var(--cyan); color: var(--bg); font-weight: 600; }
@@ -234,3 +237,16 @@
   .app-topbar__empresa { order: 3; flex-basis: 100%; }
   .app-evo { grid-template-columns: 90px 1fr 60px; }
 }
+
+/* ═════════════ ESCANEO (app/escaneo.html reutiliza cyberrisk.css) ═════════════ */
+.cr-empresa-link {
+  margin-left: 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan);
+  text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px;
+}
+.cr-empresa-link:hover { text-decoration: underline; }
+.cr-aviso-guardado {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1rem; padding: 0.7rem 1rem; border-radius: var(--radius);
+  background: var(--green-dim); border: 1px solid rgba(46, 204, 113, 0.45); color: #b9f3cf; font-size: 0.9rem;
+}
+.cr-aviso-guardado a { color: var(--cyan); font-family: var(--font-mono); font-size: 0.8rem; }
