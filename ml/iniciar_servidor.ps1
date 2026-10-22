@@ -1,4 +1,4 @@
-# ═══════════════════════════════════════════════════════════════════
+﻿# ═══════════════════════════════════════════════════════════════════
 # Arranca la API de CyberRisk y la publica en internet con ngrok.
 #   cd ml
 #   powershell -ExecutionPolicy Bypass -File .\iniciar_servidor.ps1
@@ -53,7 +53,8 @@ try {
     Write-Host "API lista. Publicando en: https://$dominio" -ForegroundColor Green
     Write-Host "Deja esta ventana abierta. Ctrl+C para detener API y túnel." -ForegroundColor Green
     Write-Host ""
-    & $ngrok http 5000 --url "https://$dominio"
+    # --domain funciona en versiones antiguas y nuevas de ngrok (--url solo en las nuevas)
+    & $ngrok http 5000 --domain=$dominio
 }
 finally {
     # Cerrar la API (y su proceso de Python) al salir
