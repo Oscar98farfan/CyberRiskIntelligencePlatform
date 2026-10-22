@@ -36,6 +36,7 @@ import requests
 from flask import Blueprint, jsonify, request
 
 from mapeo_agente import Mapeador
+from nombres import tecnologia_de_resultado
 from predictor import predecir
 
 log = logging.getLogger("cyberrisk.plataforma")
@@ -163,8 +164,11 @@ def _a_hallazgos(resultados, escaneo):
                 "escaneo_id": escaneo["id"],
                 "empresa_id": escaneo["empresa_id"],
                 "activo_id": escaneo.get("activo_id"),
-                "vendor": _primero(asset.get("Vendor")),
+                # El modelo a veces no trae el fabricante: se usa el del sistema enviado
+                "vendor": _primero(asset.get("Vendor")) or item.get("vendor"),
                 "producto": _primero(asset.get("Producto")),
+                "tecnologia": item.get("tecnologia"),     # nombre real, ej: "Google Chrome"
+                "categoria": item.get("categoria"),       # categoría del catálogo, ej: "browser"
                 "cwe": ", ".join(asset.get("CWE") or []) or None,
                 "severidad": _primero(asset.get("Severidad")),
                 "tier": int(pred["tier"]) if pred.get("tier") is not None else None,
@@ -188,6 +192,7 @@ def _ejecutar_modelo_y_guardar(escaneo, payload, extra_resumen=None):
             resultado = predecir(canonical_json)
             for item in resultado:
                 item["original_products"] = canonical_json.get("products", [])
+                item["tecnologia"], item["categoria"], item["vendor"] = tecnologia_de_resultado(item, canonical_json)
             resultados.extend(resultado)
 
         hallazgos = _a_hallazgos(resultados, escaneo)

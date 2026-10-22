@@ -475,7 +475,9 @@ function renderDashboard(resultList) {
     );
 
     // Nombre legible: producto original que el usuario seleccionó
-    const displayName = (item.original_products && item.original_products[0])
+    // tecnologia: nombre real que agrega la API de la plataforma (ej: "Google Chrome")
+    const displayName = item.tecnologia ? item.tecnologia
+      : (item.original_products && item.original_products[0])
       ? item.original_products[0]
       : item.product;
 

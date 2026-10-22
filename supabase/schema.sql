@@ -330,3 +330,13 @@ alter table public.agentes alter column token_hash drop not null;
 
 -- El navegador puede ver estos campos nuevos (nunca los hash)
 grant select (codigo_expira, enlazado_en) on public.agentes to authenticated;
+
+
+-- ───────────────────────────────────────────────────────────────────
+-- 6. NOMBRE REAL DE LA TECNOLOGÍA EN HALLAZGOS (migración "hallazgos_tecnologia")
+-- ───────────────────────────────────────────────────────────────────
+-- El modelo devuelve solo la categoría en "producto" (ej: "Browser");
+-- la API guarda además la tecnología real (ej: "Google Chrome").
+alter table public.hallazgos
+  add column if not exists tecnologia text,
+  add column if not exists categoria  text;

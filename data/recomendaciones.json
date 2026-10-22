@@ -1,0 +1,177 @@
+{
+  "_comentario": "Textos en lenguaje sencillo que usa el dashboard (app/js/dashboard.js). Se pueden editar sin tocar código. Las recomendaciones del agente de IA (Fase 4) reemplazarán o complementarán estas reglas.",
+  "version": 1,
+
+  "niveles": {
+    "1": { "nombre": "Bajo",    "plazo": "Revisar cuando sea posible",  "explicacion": "Exposición limitada. Mantén las actualizaciones al día." },
+    "2": { "nombre": "Medio",   "plazo": "Atender este trimestre",      "explicacion": "Hay debilidades que un atacante podría aprovechar con algo de esfuerzo." },
+    "3": { "nombre": "Alto",    "plazo": "Atender este mes",            "explicacion": "Las fallas de este tipo se explotan con frecuencia. Conviene corregirlas pronto." },
+    "4": { "nombre": "Crítico", "plazo": "Atender esta semana",         "explicacion": "Riesgo serio: una falla así puede comprometer información o la operación del negocio." }
+  },
+
+  "fallas": {
+    "Command Injection":      "Un atacante podría ejecutar órdenes en el equipo como si fuera el dueño.",
+    "Database Injection":     "Un atacante podría leer, cambiar o borrar datos de la base de datos.",
+    "Xss Injection":          "Páginas web manipuladas podrían robar sesiones o engañar a los usuarios.",
+    "Information Disclosure": "Información interna o sensible podría quedar expuesta.",
+    "Authentication":         "Alguien podría entrar sin la contraseña correcta.",
+    "Authorization":          "Un usuario podría hacer cosas para las que no tiene permiso.",
+    "Access Control":         "Personas no autorizadas podrían acceder a funciones o datos protegidos.",
+    "Privilege Management":   "Un atacante con poco acceso podría convertirse en administrador.",
+    "Buffer Overflow":        "Un archivo o dato malicioso podría bloquear el programa o tomar control del equipo.",
+    "Memory Corruption":      "Contenido malicioso podría tomar control del programa.",
+    "Resource Exhaustion":    "Un atacante podría saturar el servicio y dejarlo sin funcionar.",
+    "Input Validation":       "Datos manipulados podrían provocar errores o comportamientos inesperados.",
+    "Path Traversal":         "Un atacante podría leer archivos del sistema que no debería ver.",
+    "Unrestricted Upload":    "Podrían subir archivos peligrosos al servidor."
+  },
+
+  "categorias": {
+    "windows_ecosystem": {
+      "nombre": "Sistema operativo",
+      "por_que": "Es la base del equipo: si el sistema operativo cae, cae todo lo que corre encima.",
+      "acciones": ["Activa Windows Update automático y reinicia para aplicar las actualizaciones pendientes.",
+                   "Verifica que la versión de Windows siga teniendo soporte de Microsoft.",
+                   "Usa cuentas sin permisos de administrador para el trabajo diario."]
+    },
+    "browser": {
+      "nombre": "Navegador web",
+      "por_que": "Es la puerta principal a internet: muchos ataques llegan por páginas o descargas.",
+      "acciones": ["Actualiza el navegador (Configuración → Ayuda → Acerca de) y reinícialo.",
+                   "Quita las extensiones que no uses o no reconozcas.",
+                   "Evita guardar contraseñas en el navegador si el equipo es compartido."]
+    },
+    "office_suite": {
+      "nombre": "Ofimática y documentos",
+      "por_que": "Los documentos adjuntos (Word, PDF, Excel) son una vía muy común de infección.",
+      "acciones": ["Actualiza la suite ofimática / lector de PDF a la última versión.",
+                   "Deja desactivadas las macros, salvo en documentos de confianza.",
+                   "No abras adjuntos inesperados aunque parezcan de un conocido."]
+    },
+    "database": {
+      "nombre": "Base de datos",
+      "por_que": "Guarda la información del negocio: clientes, ventas, contabilidad.",
+      "acciones": ["Aplica las actualizaciones acumulativas del motor de base de datos.",
+                   "Permite conexiones solo desde los equipos que las necesitan (firewall).",
+                   "Cambia las contraseñas por defecto y haz copias de seguridad probadas."]
+    },
+    "developer_runtime": {
+      "nombre": "Entorno de programación",
+      "por_que": "Lenguajes y entornos (Java, Python, Node.js…) desactualizados permiten ejecutar código malicioso.",
+      "acciones": ["Actualiza a una versión con soporte vigente.",
+                   "Desinstala versiones antiguas que ya no uses.",
+                   "Si no se usa en este equipo, desinstálalo."]
+    },
+    "cloud_devops": {
+      "nombre": "Herramientas de desarrollo y despliegue",
+      "por_que": "Suelen tener acceso a código, servidores y credenciales.",
+      "acciones": ["Actualiza Git, Docker y herramientas similares.",
+                   "No guardes contraseñas ni llaves dentro del código o de los repositorios.",
+                   "Revisa quién tiene acceso a los repositorios y servidores."]
+    },
+    "web_server": {
+      "nombre": "Servidor web",
+      "por_que": "Está expuesto a la red y es de los primeros puntos que buscan los atacantes.",
+      "acciones": ["Actualiza el servidor web y sus módulos.",
+                   "Publica solo lo necesario y usa HTTPS.",
+                   "Revisa los registros (logs) en busca de accesos extraños."]
+    },
+    "cms": {
+      "nombre": "Sitio web / gestor de contenidos",
+      "por_que": "Los sitios desactualizados se atacan de forma automática.",
+      "acciones": ["Actualiza el gestor de contenidos, temas y plugins.",
+                   "Elimina plugins que no uses.",
+                   "Activa la verificación en dos pasos para los administradores."]
+    },
+    "email_server": {
+      "nombre": "Correo",
+      "por_que": "El correo es la vía principal de engaños (phishing) y robo de información.",
+      "acciones": ["Actualiza el servidor de correo.",
+                   "Activa filtros antispam y antimalware.",
+                   "Usa verificación en dos pasos en las cuentas."]
+    },
+    "virtualization": {
+      "nombre": "Virtualización",
+      "por_que": "Un fallo aquí puede afectar a todas las máquinas virtuales a la vez.",
+      "acciones": ["Actualiza el software de virtualización.",
+                   "Limita quién puede administrarlo.",
+                   "Mantén copias de seguridad de las máquinas importantes."]
+    },
+    "security_appliance": {
+      "nombre": "Seguridad / VPN",
+      "por_que": "Si la herramienta de protección falla, deja pasar justo lo que debía bloquear.",
+      "acciones": ["Actualiza el firmware o cliente (VPN, firewall, antivirus).",
+                   "Revisa que las reglas sigan siendo necesarias.",
+                   "Cambia las contraseñas por defecto del equipo."]
+    },
+    "network_device": {
+      "nombre": "Equipo de red",
+      "por_que": "Routers y switches controlan todo el tráfico de la empresa.",
+      "acciones": ["Actualiza el firmware.",
+                   "Cambia las contraseñas por defecto y desactiva la administración remota si no se usa.",
+                   "Separa la red de invitados de la red de trabajo."]
+    },
+    "media_security_tools": {
+      "nombre": "Multimedia y utilidades",
+      "por_que": "Archivos manipulados (videos, imágenes) pueden aprovechar fallas de estos programas.",
+      "acciones": ["Actualiza el programa o desinstálalo si no se usa.",
+                   "Abre solo archivos de fuentes confiables."]
+    },
+    "enterprise_app": {
+      "nombre": "Aplicación empresarial",
+      "por_que": "Suele manejar procesos y datos importantes del negocio.",
+      "acciones": ["Aplica los parches del fabricante.",
+                   "Revisa los usuarios y permisos.",
+                   "Haz copias de seguridad periódicas."]
+    },
+    "storage_nas": {
+      "nombre": "Almacenamiento y copias",
+      "por_que": "Si se compromete, se pierden o cifran las copias de seguridad.",
+      "acciones": ["Actualiza el firmware o software de respaldo.",
+                   "Mantén al menos una copia fuera de la red."]
+    },
+    "linux_ecosystem": {
+      "nombre": "Sistema operativo Linux",
+      "por_que": "Es la base del servidor o equipo.",
+      "acciones": ["Aplica las actualizaciones del sistema (apt/dnf).",
+                   "Desactiva servicios que no uses."]
+    },
+    "apple_ecosystem": {
+      "nombre": "Sistema Apple",
+      "por_que": "Es la base del equipo.",
+      "acciones": ["Instala las actualizaciones de macOS / iOS.",
+                   "Activa el bloqueo con contraseña y FileVault."]
+    },
+    "mobile_device": {
+      "nombre": "Dispositivo móvil",
+      "por_que": "Los celulares acceden a correo y datos de la empresa.",
+      "acciones": ["Actualiza el sistema del dispositivo.",
+                   "Instala apps solo desde la tienda oficial."]
+    },
+    "android_ecosystem": {
+      "nombre": "Sistema Android",
+      "por_que": "Los celulares acceden a correo y datos de la empresa.",
+      "acciones": ["Actualiza el sistema del dispositivo.",
+                   "Instala apps solo desde la tienda oficial."]
+    },
+    "firmware_iot": {
+      "nombre": "Dispositivo / IoT",
+      "por_que": "Cámaras, impresoras y dispositivos conectados suelen quedar sin actualizar.",
+      "acciones": ["Actualiza el firmware.",
+                   "Cambia las contraseñas por defecto.",
+                   "Ponlos en una red separada."]
+    },
+    "other_software": {
+      "nombre": "Software instalado",
+      "por_que": "Cualquier programa desactualizado puede ser una puerta de entrada.",
+      "acciones": ["Actualiza el programa a la última versión.",
+                   "Si ya no se usa, desinstálalo."]
+    },
+    "_por_defecto": {
+      "nombre": "Tecnología",
+      "por_que": "Cualquier programa desactualizado puede ser una puerta de entrada.",
+      "acciones": ["Actualiza a la última versión disponible.",
+                   "Si no se usa, desinstálalo."]
+    }
+  }
+}

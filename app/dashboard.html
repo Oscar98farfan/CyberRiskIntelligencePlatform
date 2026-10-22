@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--
-    Dashboard de la empresa: estado actual, evolución entre escaneos,
-    activos y hallazgos priorizados. Todo se llena desde Supabase en
-    js/dashboard.js; aquí solo está la estructura.
+    Dashboard de la empresa (todo se llena desde Supabase en js/dashboard.js):
+      1. Estado actual en lenguaje sencillo (último escaneo de CADA equipo)
+      2. Qué atender primero: tecnologías agrupadas, con fallas y acciones
+      3. Equipos (tarjetas editables) y evolución
+      4. Historial de escaneos con detalle y reintento
+    Los textos de niveles, fallas y acciones vienen de data/recomendaciones.json
   -->
   <title>CyberRisk — Dashboard</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%2305080c'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='%2300c8e8'>⬡</text></svg>" />
@@ -39,66 +42,59 @@
   <main class="app-main">
     <div id="alerta" class="app-alert" role="alert" hidden></div>
 
-    <!-- ── Encabezado ── -->
-    <section class="app-page-head">
-      <div>
-        <h1 class="app-title">Estado de seguridad</h1>
-        <p class="app-muted" id="ultimo-escaneo">—</p>
-      </div>
-      <!-- Lleva al cuestionario conectado (escaneo.html). Se oculta para el rol "lector" -->
-      <a href="escaneo.html" class="app-btn app-btn--primary" id="btn-nuevo-escaneo">+ Nuevo escaneo</a>
+    <!-- ── 1. Estado actual ── -->
+    <section class="app-hero" id="hero" aria-live="polite">
+      <p class="app-muted">Cargando tu estado de seguridad…</p>
     </section>
 
-    <!-- ── KPIs ── -->
-    <section class="app-kpis" aria-label="Indicadores principales">
-      <article class="app-kpi"><span class="app-kpi__label">Nivel de riesgo</span>
-        <strong class="app-kpi__val" id="kpi-nivel">—</strong>
-        <span class="app-kpi__sub" id="kpi-nivel-sub"></span></article>
-      <article class="app-kpi"><span class="app-kpi__label">Hallazgos críticos</span>
-        <strong class="app-kpi__val" id="kpi-criticos">—</strong>
-        <span class="app-kpi__sub" id="kpi-criticos-sub"></span></article>
-      <article class="app-kpi"><span class="app-kpi__label">Activos</span>
-        <strong class="app-kpi__val" id="kpi-activos">—</strong>
-        <span class="app-kpi__sub">equipos registrados</span></article>
-      <article class="app-kpi"><span class="app-kpi__label">Escaneos</span>
-        <strong class="app-kpi__val" id="kpi-escaneos">—</strong>
-        <span class="app-kpi__sub">realizados</span></article>
+    <!-- ── 2. Qué atender primero ── -->
+    <section class="app-panel" aria-labelledby="h-prioridades">
+      <div class="app-panel__head">
+        <div>
+          <h2 id="h-prioridades" class="app-panel__title">Qué atender primero</h2>
+          <p class="app-muted app-small">Ordenado por nivel de riesgo. Abre cada uno para ver qué podría pasar y qué hacer.</p>
+        </div>
+      </div>
+      <div id="prioridades"></div>
     </section>
 
     <div class="app-cols">
-      <!-- ── Hallazgos priorizados ── -->
-      <section class="app-panel" aria-labelledby="h-hallazgos">
-        <h2 id="h-hallazgos" class="app-panel__title">Qué atender primero</h2>
-        <div id="hallazgos"></div>
+      <!-- ── 3a. Equipos ── -->
+      <section class="app-panel" aria-labelledby="h-activos">
+        <div class="app-panel__head">
+          <h2 id="h-activos" class="app-panel__title">Equipos</h2>
+          <div class="app-acciones">
+            <a href="escaneo.html" class="app-btn app-btn--ghost" id="btn-nuevo-escaneo" hidden
+               title="Evaluar tecnologías a mano (sin agente)">Cuestionario</a>
+            <button type="button" class="app-btn app-btn--primary" id="btn-agregar-equipo" hidden>+ Agregar equipo</button>
+          </div>
+        </div>
+        <div id="panel-codigo" class="app-codigo" role="status" hidden></div>
+        <div id="activos"></div>
       </section>
 
-      <!-- ── Evolución entre escaneos ── -->
+      <!-- ── 3b. Evolución ── -->
       <section class="app-panel" aria-labelledby="h-evolucion">
         <h2 id="h-evolucion" class="app-panel__title">Evolución</h2>
         <div id="evolucion"></div>
       </section>
     </div>
 
-    <div class="app-cols">
-      <!-- ── Activos ── -->
-      <section class="app-panel" aria-labelledby="h-activos">
-        <div class="app-panel__head">
-          <h2 id="h-activos" class="app-panel__title">Activos</h2>
-          <!-- Genera el código de enlace para el agente .exe (solo dueño/admin) -->
-          <button type="button" class="app-btn app-btn--ghost" id="btn-agregar-equipo" hidden>+ Agregar equipo</button>
-        </div>
-        <!-- Se muestra al generar un código de enlace -->
-        <div id="panel-codigo" class="app-codigo" role="status" hidden></div>
-        <div id="activos"></div>
-      </section>
-
-      <!-- ── Historial ── -->
-      <section class="app-panel" aria-labelledby="h-historial">
-        <h2 id="h-historial" class="app-panel__title">Historial de escaneos</h2>
-        <div id="historial"></div>
-      </section>
-    </div>
+    <!-- ── 4. Historial ── -->
+    <section class="app-panel" aria-labelledby="h-historial">
+      <h2 id="h-historial" class="app-panel__title">Historial de escaneos</h2>
+      <div id="historial"></div>
+    </section>
   </main>
+
+  <!-- Detalle de un escaneo (se llena al pulsar "Ver detalle") -->
+  <dialog id="detalle" class="app-dialog" aria-labelledby="detalle-titulo">
+    <div class="app-dialog__head">
+      <h2 id="detalle-titulo" class="app-panel__title">Detalle del escaneo</h2>
+      <button type="button" class="app-btn app-btn--ghost" id="detalle-cerrar">Cerrar</button>
+    </div>
+    <div id="detalle-cuerpo"></div>
+  </dialog>
 
   <script type="module" src="js/dashboard.js"></script>
 </body>
